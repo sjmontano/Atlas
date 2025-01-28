@@ -4,6 +4,6 @@ import { Router } from "express";
 const locationRouter = Router();
 
 locationRouter.post('/', postLocation);
-locationRouter.get('/:id', getLocation);
+locationRouter.get('/:term', getLocation);
 
 export default locationRouter;

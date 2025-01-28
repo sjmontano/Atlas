@@ -1,5 +1,6 @@
 import { request, response } from "express"
 import GeoCollection from "../models/location.model.js";
+import { isValidObjectId } from "mongoose";
 
 
 //Subir localización
@@ -13,7 +14,6 @@ const postLocation = async (req = request, res = response) => {
             return res.status(400).json({
                 msg: 'Faltan parametros'
             });
-
         }
 
         const geoCollection = GeoCollection.create(req.body);
@@ -35,20 +35,30 @@ const postLocation = async (req = request, res = response) => {
 }
 
 
-const getLocation = async (req, res) => {
+const getLocation = async (req = request, res = response) => {
 
-    const id = req.params.id;
+    const { term } = req.params;
+    const regex = new RegExp(term, 'i');
 
     try {
 
-        const geoCollection = await GeoCollection.findById(id);
+        let geoCollection;
+        // const geoCollection = await GeoCollection.findById(id);
+        if (isValidObjectId(term)) {
+            geoCollection = await GeoCollection.findById(term);
+        } else {
+            geoCollection = await GeoCollection.find({
+                $or: [{ name: regex }]
+            })
+        }
         res.json({ geoCollection });
 
     } catch (error) {
-        
+
         console.error({ error });
+
         res.status(500).json({
-            msg:'Algo salio mal.'
+            msg: 'Algo salio mal.'
         });
     }
 }
