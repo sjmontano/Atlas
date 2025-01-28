@@ -4,6 +4,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import uploadsRouter from '../routes/uploads.route.js';
 import modalInfoRouter from '../routes/modalInfo.route.js';
+import locationRouter from '../routes/location.routes.js';
 
 class Server {
 
@@ -21,7 +22,8 @@ class Server {
 
     middlewares() {
         this.app.use(cors());
-        this.app.use(express.json());
+        this.app.use(express.json({ limit: '5mb' }));
+        this.app.use(express.urlencoded({ limit: '5mb', extended: true }));
         this.app.use(
             fileUpload({
                 useTempFiles: true,
@@ -33,7 +35,7 @@ class Server {
     routes() {
         this.app.use('/api/v1/uploads', uploadsRouter);
         this.app.use('/api/v1/modal', modalInfoRouter);
-    
+        this.app.use('/api/v1/location', locationRouter);
     }
 
     listen() {

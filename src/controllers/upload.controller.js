@@ -21,18 +21,13 @@ const uploadImage = async (req, res) => {
             folder: 'assets'
         });
 
-        const picture = await modalPicture.create({
-            modal: modalId,
-            url
-        });
+        const picture = await modalPicture.create({ modal: modalId, url });
 
         await modalInfo.findByIdAndUpdate(modalId, {
             imgUrl: picture._id,
         });
 
-        res.json({
-            picture
-        });
+        res.json({ picture });
 
     } catch (error) {
         console.error({ error });
