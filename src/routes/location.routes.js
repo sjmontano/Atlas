@@ -7,3 +7,6 @@ locationRouter.post('/', postLocation);
 locationRouter.get('/:term', getLocation);
 
 export default locationRouter;
+
+
+

@@ -51,6 +51,16 @@ const getLocation = async (req = request, res = response) => {
                 $or: [{ name: regex }]
             })
         }
+
+        const isArray = Array.isArray(geoCollection);
+
+        console.log({ isArray });
+
+        if( isArray ) {
+            geoCollection = geoCollection[0];
+        }
+
+
         res.json({ geoCollection });
 
     } catch (error) {
