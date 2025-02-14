@@ -1,0 +1,282 @@
+.marker-button {
+    position: absolute; /* O también puedes usar fixed */
+    z-index: 10; /* Asegúrate de que el botón se vea encima de otros elementos */
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+   /* animation: pulse 3.0s;*/
+    opacity: 0;
+    animation: fadeIn 2s ease-in-out infinite; ;
+
+
+}
+
+/*@keyframes pulse {
+    0%{
+        transform: scale(1, 1);
+    }
+    50%{
+        opacity: 0.1;
+    }
+    10%{
+        transform: scale(1.2);
+    }
+}*/
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0; /* El ícono está invisible al principio */
+      } 100% {
+        opacity: 1; /* El ícono se vuelve invisible al final de la animación */
+    }
+}
+
+
+h4{
+    font-family: Noto Sans;
+font-weight: 400;
+font-size: 12px;
+line-height: 14.54px;
+letter-spacing: 0%;
+text-align: center;
+display: none;
+
+}
+
+#nevadoHuila{
+    position: absolute;
+    top:41vh;
+    left: 5.2%;
+    animation-delay: 0s;
+}
+
+#nevadoHuilaTitulo{
+    position: absolute;
+    top:35vh;
+    left: 4.5%;
+}
+
+
+#paramoDeMoras{
+    position: absolute;
+    top:40.5vh;
+    left: 16.5%;
+    animation-delay: 2s;
+
+}
+#paramoDeMorasTitulo{
+    position: absolute;
+    top:34.5vh;
+    left: 15.5%;
+}
+
+
+#paramoHermosas{
+    position: absolute;
+    top: 61.5vh;
+    left: 19.5%;
+    animation-delay: 4s;
+
+}
+#paramoHermosasTitulo{
+    position: absolute;
+    top: 58.5vh;
+    left: 14.5%;
+}
+
+
+#cerroMunchique{
+    position: absolute;
+    top: 42.5vh;
+    left: 26.5%;
+    animation-delay: 6s;
+
+    
+}
+#cerroMunchiqueTitulo{
+    position: absolute;
+    top: 34.5vh;
+    left: 25.5%;
+}
+
+
+#cerroTeta{
+    position: absolute;
+    top: 45vh;
+    left: 35.8%;
+    animation-delay: 8s;
+
+}
+#cerroTetaTitulo{
+    position: absolute;
+    top: 42vh;
+    left: 33.3%;
+}
+
+
+#villarica{
+    position: absolute;
+    top: 51vh;
+    left: 37.2%;
+    animation-delay: 10s;
+
+}
+
+#villaricaTitulo{
+    position: absolute;
+    top: 49.2vh;
+    left: 34.8%;
+}
+
+
+
+#salvajina{
+    position: absolute;
+    top: 44vh;
+    left: 40.2%;
+    animation-delay:12s ;
+
+}
+#salvajinaTitulo{
+    position: absolute;
+    top: 39vh;
+    left: 39.2%;
+}
+
+#suarez{
+    position: absolute;
+    top: 46vh;
+    left: 43%;
+    animation-delay:16s ;
+
+}
+#suarezTitulo{
+    position: absolute;
+    top: 44vh;
+    left: 44.5%;
+}
+
+#distritoAguablanca{
+    position: absolute;
+    top: 57vh;
+    left: 43%;
+    animation-delay:18s ;
+
+}
+#distritoAguablancaTitulo{
+    position: absolute;
+    top: 54vh;
+    left: 36%;
+}
+
+
+#lagunaSonso{
+    position: absolute;
+    top: 76.5vh;
+    left: 47.5%;
+    animation-delay: 20s ;
+
+}
+#lagunaSonsoTitulo{
+    position: absolute;
+    top: 74.7vh;
+    left: 41.5%;
+}
+
+
+#rioCauca{
+    position: absolute;
+    top: 85vh;
+    left: 53.2%;
+    animation-delay:22s ;
+
+}
+#rioCaucaTitulo{
+    position: absolute;
+    top: 83vh;
+    left: 55.2%;
+}
+
+
+#naturalMunchique{
+    position: absolute;
+    top: 36.5vh;
+    left: 51.2%;
+    animation-delay:24s ;
+
+}
+#naturalMunchiqueTitulo{
+    position: absolute;
+    top: 33.5vh;
+    left: 53.2%;
+}
+
+#losFarallones{
+    position: absolute;
+    top: 46vh;
+    left: 52.3%;
+    animation-delay:26s ;
+
+}
+#losFarallonesTitulo{
+    position: absolute;
+    top: 41.5vh;
+    left: 51.3%;
+}
+
+
+#lagoCalima{
+    position: absolute;
+    top: 69.5vh;
+    left: 64.3%;
+    animation-delay:28s ;
+
+}
+#lagoCalimaTitulo{
+    position: absolute;
+    top: 65vh;
+    left: 63.3%;
+}
+
+
+#buenaventura{
+    position: absolute;
+    top: 62vh;
+    left: 93.3%;
+    animation-delay:30s ;
+
+}
+#buenaventuraTitulo{
+    position: absolute;
+    top: 60vh;
+    left: 88.3%;
+}
+
+
+
+#purace{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    animation-delay:32s ;
+
+}
+
+#rio-cauca{
+    transform: translate(-100%, 420%); /* Centra el botón en el punto dado */
+}
+
+#pacifico{ 
+    transform: translate(1200%, 100%); /* Centra el botón en el punto dado */
+}
+
+
+.map-marker{
+    cursor:pointer;
+    transition: .5s;
+}
+
+.map-marker:hover {
+    transform: translateY(-0.5rem);
+}
+

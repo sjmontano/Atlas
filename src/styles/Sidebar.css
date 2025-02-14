@@ -1,0 +1,181 @@
+.sidebar-container{
+  position: absolute;
+  z-index: 1000;
+}
+
+
+.menu-toggle {
+  width: 40px; /* Tamaño del contenedor del icono */
+  height: 40px; /* Tamaño del contenedor del icono */
+  cursor: pointer; /* Hace el icono interactivo */
+  position: fixed; /* Fija el icono en la pantalla */
+  top: 20px; /* Posición desde la parte superior */
+  right: 30px; /* Posición desde la parte derecha */
+  z-index: 10; /* Asegura que el icono esté por encima de otros elementos */
+  display: flex; /* Utiliza flexbox para organizar las barras */
+  flex-direction: column; /* Dispone las barras en una columna */
+  justify-content: center; /* Centra las barras verticalmente */
+  align-items: center; /* Centra las barras horizontalmente */
+  gap: 6px; /* Espacio entre las barras */
+  transition: transform 0.3s ease; /* Transición suave para el efecto de rotación */
+}
+
+/* Estilo de las barras dentro del icono del menú */
+.menu-toggle .bar {
+  width: 30px; /* Ancho de las barras */
+  height: 4px; /* Altura de las barras */
+  background-color: #32CD32; /* Color de las barras */
+  border-radius: 2px; /* Bordes redondeados */
+  transition: all 0.3s ease; /* Transición para las transformaciones */
+}
+
+/* Transformación de la primera barra cuando el menú está activo */
+.menu-toggle.active .bar:nth-child(1) {
+  transform: translateY(10px) rotate(45deg); /* Mueve y rota la barra */
+  width: 30px; /* Ajusta el ancho de la barra */
+}
+
+/* Transformación de la segunda barra cuando el menú está activo */
+.menu-toggle.active .bar:nth-child(2) {
+  opacity: 0; /* Hace desaparecer la segunda barra */
+}
+
+/* Transformación de la tercera barra cuando el menú está activo */
+.menu-toggle.active .bar:nth-child(3) {
+  transform: translateY(-10px) rotate(-45deg); /* Mueve y rota la barra */
+  width: 30px; /* Ajusta el ancho de la barra */
+}
+
+/* ------------------------- 
+ Estilos para el menú lateral (side menu)
+ ------------------------- */
+
+/* Estilo principal del menú lateral */
+.sidemenu {
+  /* Fondo con un gradiente lineal de colores */
+  background: linear-gradient(270deg, #03103A 0%, rgba(8, 25, 83, 0.6) 50.41%, rgba(13, 40, 132, 0.02) 97.16%);
+  /* Definición del ancho del menú, 18% del ancho de la ventana */
+  width: 20%;
+  /* El menú está oculto inicialmente, desplazado a la derecha */
+  right: -20%;
+  /* El menú ocupa toda la altura de la pantalla */
+  height: 100%;
+  /* Fijado en la pantalla */
+  position: fixed;
+  /* Alineación desde la parte superior */
+  top: 0;
+  /* Animación suave para el cambio de la propiedad 'right' */
+  transition: right 0.3s ease;
+  /* Se eliminan los espacios internos */
+  padding: 0;
+}
+
+/* El menú se desplaza hacia la vista cuando se le da la clase 'active' */
+.sidemenu.active {
+  right: 0; /* Cuando está activo, el menú se mueve a la posición visible */
+}
+
+/* ------------------------- 
+ Estilos para la lista de elementos (menu items)
+ ------------------------- */
+
+/* Elimina los puntos de la lista y establece el padding a cero */
+.sidemenu ul {
+  list-style-type: none; /* Sin puntos o marcas en la lista */
+  padding: 20px; /* agrega espacio dentro del contenedor */
+
+  height: 100%; /* Asegura que la lista ocupe todo el alto disponible */
+  justify-content: center; /* Centra los ítems verticalmente */
+  display: flex; /* Utiliza flexbox para la alineación */
+  flex-direction: column; /* Organiza los elementos en una columna */
+}
+
+/* Estilo de los enlaces dentro de la lista */
+.sidemenu ul li a {
+  color: #FFFEEE; /* Color del texto */
+  font-family: 'Noto Sans', sans-serif; /* Fuente utilizada */
+  font-size: 18px; /* Tamaño de fuente */
+  
+  /* Se define que los enlaces serán contenedores flexibles */
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos dentro del enlace */
+  gap: 20px; /* Espacio de 20px entre el icono y el texto */
+  
+  /* Elimina el subrayado de los enlaces */
+  text-decoration: none;
+  
+  /* Transición suave para el color al pasar el mouse */
+  transition: color 0.3s ease;
+}
+
+/* ------------------------- 
+ Estilos para los iconos
+ ------------------------- */
+
+/* Contenedor del icono en cada enlace */
+.icon-container {
+  width: 18px; /* Tamaño fijo del contenedor del icono */
+  height: 18px; /* Tamaño fijo del contenedor del icono */
+  
+  /* Usamos flexbox para centrar el icono dentro de su contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+}
+
+
+/* Estilo para cada icono dentro del contenedor */
+.icon-container .icon {
+  width: 18px; /* Establece el tamaño de cada icono */
+  height: 18px; /* Establece la altura del icono */
+}
+
+/* ------------------------- 
+ Efectos al pasar el mouse (hover) 
+ ------------------------- */
+
+/* Estilo de los enlaces cuando el mouse pasa sobre ellos */
+.sidemenu ul li a:hover {
+  color: #32CD32; /* Cambia el color del texto al pasar el mouse */
+}
+
+/* ------------------------- 
+ Línea animada debajo del texto
+ ------------------------- */
+
+/* Línea animada debajo del texto (no afecta a los iconos) */
+.sidemenu ul li a .text-container .text {
+  position: relative; /* Posiciona el texto relativo para que se pueda posicionar el pseudo-elemento 'after' en relación con él */
+  display: inline-block; /* Hace que el texto se comporte como un bloque en línea, permitiendo que el pseudo-elemento se posicione debajo */
+}
+
+/* Pseudo-elemento para la línea debajo del texto */
+.sidemenu ul li a .text-container .text::after {
+  content: ""; /* El pseudo-elemento no tiene contenido visible, pero es necesario para crear la línea debajo del texto */
+  position: absolute; /* El pseudo-elemento se posiciona absolutamente respecto al texto */
+  bottom: -2px; /* La línea se posiciona 2px por debajo del texto */
+  left: 0; /* Se alinea a la izquierda del contenedor del texto */
+  width: 0; /* Inicialmente, la línea tiene un ancho de 0 (no es visible) */
+  height: 2px; /* La línea tiene una altura de 2px */
+  background-color: #32CD32; 
+  transition: width 0.3s ease; /* Se anima el cambio de ancho de la línea durante el tiempo que se defina en segundos */
+}
+
+/* Espacio entre cada <li> */
+.sidemenu ul li {
+  margin-bottom: 15px; /* Añadir espacio entre cada ítem del menú */
+}
+
+/* Expansión de la línea cuando el texto es hover */
+.sidemenu ul li a:hover .text-container .text::after {
+  width: 100%; /* Cuando se pasa el mouse sobre el enlace, la línea se expande al 100% del ancho del texto */
+}
+
+.sidemenu {
+  transition: transform 0.3s ease;
+  transform: translateX(-100%); /* Inicialmente fuera de pantalla */
+}
+
+.sidemenu.open {
+  transform: translateX(0); /* Mover el Sidebar a la vista */
+}
