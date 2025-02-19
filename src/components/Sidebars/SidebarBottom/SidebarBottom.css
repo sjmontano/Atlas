@@ -1,0 +1,168 @@
+/* ===================================================
+   1. ESTRUCTURA DEL SIDEBAR INFERIOR
+=================================================== */
+
+/* 
+   Contenedor principal del sidebar inferior.
+   - Fijo en la parte inferior de la pantalla.
+   - Se extiende a lo largo de toda la pantalla.
+   - Contiene los elementos de navegación de capítulos.
+*/
+.sidebar-bottom {
+    position: fixed; /* Permanece fijo en la parte inferior */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    height: 80px; /* Altura fija del sidebar */
+    display: flex;
+    justify-content: center; /* Centra los ítems horizontalmente */
+    align-items: center; /* Alinea los ítems verticalmente */
+    gap: 10px; /* Espaciado entre los capítulos */
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+/* ===================================================
+   2. ESTILOS DE LOS ÍTEMS DEL SIDEBAR
+=================================================== */
+
+/* 
+   Ítems de navegación dentro del sidebar.
+   - Son los bloques individuales que representan cada capítulo.
+   - Incluyen el número romano, icono y contenido del capítulo.
+*/
+.sidebar-bottom-item {
+    position: relative; /* Permite posicionar elementos internos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer; /* Permite interacción con clics */
+    width: 120px; /* Ancho base del ítem */
+    height: 100px; /* Altura base del ítem */
+    background: linear-gradient(to top, rgba(42, 227, 255, 0) 0%, rgba(70, 255, 94, 0) 96.22%); /* Degradado de color con opacidad */
+    transition: 0.3s ease, width 0.3s ease, height 0.3s ease; /* Transiciones suaves al hacer hover */
+    overflow: hidden; /* Evita que los elementos internos se desborden */
+}
+
+/* 
+   Efecto de expansión al pasar el mouse sobre los ítems.
+   - El bloque crece para revelar más información.
+   - El fondo cambia a un degradado más intenso.
+*/
+.sidebar-bottom-item:hover {
+    background: linear-gradient(to top, #2AE3FF 0.07%, rgba(70, 255, 94, 0) 96.22%);
+    width: 240px; /* Aumenta el tamaño horizontal */
+    height: 350px; /* Aumenta el tamaño vertical */
+}
+
+/* ===================================================
+   3. NÚMERO ROMANO E ÍCONO
+=================================================== */
+
+/* 
+   Contenedor del número romano y el icono de navegación.
+   - Se sitúa en la parte superior del ítem.
+   - Ambos elementos están siempre visibles hasta que se active el hover.
+*/
+.sidebar-bottom-overlay {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+   Número romano del capítulo.
+   - Se mantiene visible hasta que el usuario interactúe con el ítem.
+*/
+.sidebar-bottom-number {
+    font-size: 22px;
+    font-weight: bold;
+    color: #46FF5E; /* Verde brillante */
+}
+
+/* 
+   Icono de flecha indicando navegación.
+   - Se mantiene visible por defecto.
+*/
+.sidebar-bottom-icon {
+    font-size: 36px;
+    color: #46FF5E;
+}
+
+/* 
+   Efecto hover sobre el overlay:
+   - El número romano y el icono desaparecen al hacer hover.
+   - Se ocultan para mostrar la imagen SVG y el contenido del capítulo.
+*/
+.sidebar-bottom-overlay:hover {
+    opacity: 0;
+}
+
+/* ===================================================
+   4. IMAGEN SVG Y TEXTO (OCULTOS POR DEFECTO)
+=================================================== */
+
+/* 
+   Imagen SVG representando la silueta del capítulo.
+   - Oculta por defecto.
+   - Aparece solo cuando el usuario pasa el mouse sobre el ítem.
+   - Se posiciona en el centro del bloque expandido.
+*/
+.sidebar-bottom-item img {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra la imagen */
+    max-width: 100%; /* Evita que la imagen sobrepase el bloque */
+    max-height: 100%; /* Mantiene proporciones */
+    width: auto;
+    height: auto;
+    opacity: 0; /* Oculta la imagen inicialmente */
+    object-fit: contain; /* Se ajusta sin recortar */
+    transition: opacity 0.3s ease-in-out; /* Transición suave de aparición */
+
+    shape-rendering: geometricPrecision;
+    image-rendering: optimizeQuality;
+}
+
+/* 
+   Texto del capítulo.
+   - Oculto por defecto.
+   - Aparece cuando el usuario interactúa con el bloque.
+*/
+.sidebar-bottom-text {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* ===================================================
+   5. EFECTOS HOVER PARA REVELAR CONTENIDO
+=================================================== */
+
+/* 
+   Al hacer hover en el ítem:
+   - La imagen SVG se vuelve visible.
+*/
+.sidebar-bottom-item:hover img {
+    opacity: 1;
+}
+
+/* 
+   Al hacer hover en el ítem:
+   - El texto del capítulo se muestra.
+*/
+.sidebar-bottom-item:hover .sidebar-bottom-text {
+    opacity: 1;
+}

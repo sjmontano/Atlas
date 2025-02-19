@@ -1,0 +1,224 @@
+/* ===================================================
+   1. ESTRUCTURA DEL SIDEBAR PRINCIPAL (MENÚ DERECHO)
+=================================================== */
+
+/*
+   - Sidebar principal que aparece desde la derecha.
+   - Oculto inicialmente con `right: -280px`.
+   - Se muestra cuando la clase `.active` es añadida dinámicamente.
+*/
+.sidebar-main {
+    position: fixed;
+    right: -280px; /* Inicialmente oculto fuera de la pantalla */
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    
+    /* Fondo con un degradado */
+    background: linear-gradient(to right, 
+        rgba(13, 40, 132, 0) 0%, 
+        rgba(8, 25, 83, 1) 100%, 
+        #03103A 100%);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 1000;
+
+    /* Transición suave para la animación de apertura y cierre */
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sidebar activo (cuando se abre) */
+.sidebar-main.active {
+    right: 0;
+}
+
+/* Lista de elementos dentro del sidebar */
+.sidebar-main-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+/* ===================================================
+   2. BOTÓN DE MENÚ HAMBURGUESA (TOGGLE)
+=================================================== */
+
+/*
+   - Botón flotante en la esquina superior derecha.
+   - Activa y desactiva la visibilidad del sidebar.
+   - Contiene dos iconos (menu y close).
+*/
+.menu-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    z-index: 1100; /* Se mantiene por encima del sidebar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: none; /* Elimina el borde predeterminado */
+}
+
+/* Estilos de los iconos dentro del botón */
+.menu-icon {
+    font-size: 32px;
+    color: white;
+    position: absolute;
+    
+    /* Animaciones suaves para los cambios de icono */
+    transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Efecto hover: cambia el color del icono */
+.menu-toggle:hover .menu-icon {
+    color: var(--verde-brillante); /* Color verde al pasar el mouse */
+}
+
+/* Ocultar el icono "close" por defecto */
+.menu-hide {
+    display: none;
+}
+
+/* ===================================================
+   3. EFECTO TOGGLE DEL MENÚ (ANIMACIÓN)
+=================================================== */
+
+/*
+   - Cuando el sidebar está activo:
+     * El icono "menu" se oculta.
+     * El icono "close" se muestra.
+*/
+.sidebar-main.active ~ .menu-toggle .menu-show {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+}
+
+.sidebar-main.active ~ .menu-toggle .menu-hide {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+/* ===================================================
+   4. ESTILOS DE LOS ÍTEMS DEL SIDEBAR
+=================================================== */
+
+/*
+   - Cada elemento dentro del sidebar es un botón interactivo.
+   - Contiene un icono o número y un texto descriptivo.
+*/
+.sidebar-main-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    padding: 6px 20px; /* Espaciado interno */
+    
+    /* Efecto de movimiento al hacer hover */
+    transition: transform 0.2s ease;
+}
+
+/* Contenedor fijo para los iconos y números */
+.sidebar-main-icon-container {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Iconos de Material Symbols dentro de los ítems */
+.sidebar-main-icon {
+    font-size: 24px;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+/* Números romanos dentro de los ítems */
+.sidebar-main-number {
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    transition: color 0.3s ease-in-out;
+}
+
+/* ===================================================
+   5. TEXTO Y LÍNEA ANIMADA EN LOS ÍTEMS
+=================================================== */
+
+/* Estilos del texto en cada ítem */
+.sidebar-main-text {
+    position: relative;
+    color: white;
+    font-size: 16px;
+    display: inline-block;
+    max-width: calc(100% - 60px); /* Ajuste responsivo */
+    width: fit-content;
+    transition: color 0.3s ease;
+    white-space: normal;
+    line-height: 1.4;
+}
+
+/* Línea animada debajo del texto */
+.sidebar-main-text::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #32CD32;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+}
+
+/* ===================================================
+   6. EFECTOS HOVER EN LOS ÍTEMS DEL SIDEBAR
+=================================================== */
+
+/*
+   - Cambia el color de los iconos y números al pasar el mouse.
+   - Aplica un ligero desplazamiento para mejorar la sensación de interactividad.
+*/
+.sidebar-main-item:hover .sidebar-main-text,
+.sidebar-main-item:hover .sidebar-main-icon,
+.sidebar-main-item:hover .sidebar-main-number {
+    color: #32CD32;
+}
+
+/* Efecto de desplazamiento lateral en hover */
+.sidebar-main-item:hover {
+    transform: translateX(6px);
+}
+
+/* Expande la línea animada en hover */
+.sidebar-main-item:hover .sidebar-main-text::after {
+    width: 100%;
+}
+
+/* ===================================================
+   7. PREVENCIÓN DE SELECCIÓN DE TEXTO
+=================================================== */
+
+/*
+   - Evita que los usuarios puedan copiar o resaltar texto en el sidebar.
+   - Se usa `user-select: none;` para impedir la selección en todos los navegadores.
+*/
+.sidebar-main, 
+.sidebar-main * {
+    user-select: none; /* Bloquea la selección de texto */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+}
