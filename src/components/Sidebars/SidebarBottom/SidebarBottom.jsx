@@ -1,80 +1,38 @@
 import React from 'react';
-import './SidebarBottom.css'; // Importa los estilos correspondientes
+import './SidebarBottom.css';
 
-// Importamos los archivos SVG
-import cap1 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-1.svg';
-import cap2 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-2.svg';
-import cap3 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-3.svg';
-import cap4 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-4.svg';
+// Importar imágenes SVG correctamente
+import MapaCap1 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-1.svg';
+import MapaCap2 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-2.svg';
+import MapaCap3 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-3.svg';
+import MapaCap4 from '../../../assets/svg/sidebar-resources/silueta-mapa-cap-4.svg';
 
 const SidebarBottom = () => {
-  return (
-    <aside className="sidebar-bottom">
-        
-      {/* Capítulo 1 */}
-      <div id="capitulo-1" className="sidebar-bottom-item">
-        <div className="sidebar-bottom-overlay">
-          <span className="sidebar-bottom-number">I</span>
-          <span className="sidebar-bottom-icon material-symbols-outlined">
-            keyboard_arrow_up
-          </span>
-        </div>
-        <img src={cap1} alt="Mapa Capítulo 1" />
-        <p className="sidebar-bottom-text">
-          <strong>I.</strong> El valle alto del río Cauca, <br />
-          <strong>su cuenca y sus mundos</strong>
-        </p>
-      </div>
+  // Lista de capítulos con su información <- Aqui se puede agregar más items
+  const chapters = [
+    { id: 'capitulo-1', number: 'I', image: MapaCap1, title: 'El valle alto del río Cauca, su cuenca y sus mundos' },
+    { id: 'capitulo-2', number: 'II', image: MapaCap2, title: 'Redes nodo y entramados territoriales' },
+    { id: 'capitulo-3', number: 'III', image: MapaCap3, title: 'Los caminos del río y el codiseño territorial' },
+    { id: 'capitulo-4', number: 'IV', image: MapaCap4, title: 'Poderes y acciones en el corredor afroalimentario' },
+  ];
 
-      {/* Capítulo 2 */}
-      <div id="capitulo-2" className="sidebar-bottom-item">
+return (
+  <aside className="sidebar-bottom">
+    {chapters.map((chapter) => (
+      <div key={chapter.id} id={chapter.id} className="sidebar-bottom-item">
         <div className="sidebar-bottom-overlay">
-          <span className="sidebar-bottom-number">II</span>
-          <span className="sidebar-bottom-icon material-symbols-outlined">
-            keyboard_arrow_up
-          </span>
+          <span className="sidebar-bottom-number">{chapter.number}</span>
+          <span className="sidebar-bottom-icon material-symbols-outlined">keyboard_arrow_up</span>
         </div>
-        <img src={cap2} alt="Mapa Capítulo 2" />
+        <img src={chapter.image} alt={`Mapa ${chapter.title}`} />
         <p className="sidebar-bottom-text">
-          <strong>II.</strong> Redes nodo y
-          <br />
-          <strong>entramados territoriales</strong>
+          <strong>{chapter.number}.</strong> 
+          <span style={{ borderBottom: '0.1px solid rgba(var(--cyan-rgb), 0.5)'}}>{chapter.title}</span>
         </p>
       </div>
-
-      {/* Capítulo 3 */}
-      <div id="capitulo-3" className="sidebar-bottom-item">
-        <div className="sidebar-bottom-overlay">
-          <span className="sidebar-bottom-number">III</span>
-          <span className="sidebar-bottom-icon material-symbols-outlined">
-            keyboard_arrow_up
-          </span>
-        </div>
-        <img src={cap3} alt="Mapa Capítulo 3" />
-        <p className="sidebar-bottom-text">
-          <strong>III.</strong> Los caminos del río y el
-          <br />
-          codiseño territorial en el valle alto.
-        </p>
-      </div>
-
-      {/* Capítulo 4 */}
-      <div id="capitulo-4" className="sidebar-bottom-item">
-        <div className="sidebar-bottom-overlay">
-          <span className="sidebar-bottom-number">IV</span>
-          <span className="sidebar-bottom-icon material-symbols-outlined">
-            keyboard_arrow_up
-          </span>
-        </div>
-        <img src={cap4} alt="Mapa Capítulo 4" />
-        <p className="sidebar-bottom-text">
-          <strong>IV.</strong> Poderes y acciones
-          <br />
-          <strong>en el corredor afroalimentario</strong>
-        </p>
-      </div>
-    </aside>
-  );
+    ))}
+  </aside>
+);
 };
 
 export default SidebarBottom;

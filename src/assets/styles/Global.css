@@ -32,11 +32,14 @@ body {
 
 /* Definición de colores globales usando variables CSS */
 :root {
-  /* Verde brillante, usado como el color principal de botones, iconos, etc. */
-  --verde-brillante: #46FF5E;
+  /* Colores de gradiente */
+  --screamin-green: #46FF5E;
+  --cyan: #2AE3FF;
 
-  /* Cian brillante, usado como color de hover o interacciones secundarias */
-  --cian-brillante: #33F7F7;
+ /* Nuevas versiones en RGB para usar con transparencias */
+  --screamin-green-rgb: 70, 255, 94;  /* RGB de #46FF5E */
+  --cyan-rgb: 42, 227, 255;           /* RGB de #2AE3FF */
+
 
   /* Fondo oscuro para la página */
   --fondo-oscuro: #03091e;
@@ -74,3 +77,4 @@ button {
 .fade-in {
   animation: fadeIn 1s ease-in-out; /* Aplica la animación con una duración de 1 segundo */
 }
+

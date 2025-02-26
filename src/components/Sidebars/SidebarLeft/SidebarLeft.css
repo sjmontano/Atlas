@@ -5,7 +5,7 @@
 /* Lista contenedora de los ítems dentro del sidebar */
 .sidebar-left-list {
     padding-inline-start: 0; /* Elimina el padding inicial del navegador en listas */
-    margin-top: 120px; /* Desplaza todo el listado hacia abajo en la pantalla */
+
   }
   
   /* Cada elemento (ítem) dentro del sidebar */
@@ -13,10 +13,9 @@
     display: flex; /* Activa Flexbox para organizar los elementos internos */
     flex-direction: row; /* Alinea los elementos en fila */
     align-items: center; /* Centra verticalmente los elementos */
-    gap: 14px; /* Espaciado entre el icono y el texto */
-    padding-inline-start: 30px; /* Espaciado interno desde el borde izquierdo */
+    gap: 22px; /* Espaciado entre el icono y el texto */
     position: relative; /* Establece posición relativa para manejar pseudo-elementos */
-    padding-bottom: 0px; /* Se mantiene sin padding inferior */
+    padding: 5px 30px; /* Se mantiene sin padding inferior */
     pointer-events: none; /* Desactiva eventos de clic en el ítem principal */
   }
   
@@ -30,28 +29,23 @@
     position: absolute; /* Posición absoluta para superponerla correctamente */
     left: 0; /* Alineación al borde izquierdo */
     bottom: 0; /* Se coloca en la parte inferior del ítem */
-    width: 100px; /* Longitud de la línea */
-    height: 2px; /* Grosor de la línea */
-    background: linear-gradient(90deg, #46FF5E 0%, #33F7F7 100%); /* Degradado de color verde a cian */
-  }
-  
-  /* Agrega más espacio entre el primer y segundo ítem */
-  .sidebar-left-item:first-child {
-    margin-bottom: 60px; /* Aumenta la separación entre el primer y segundo ítem */
+    width: 70px; /* Longitud de la línea */
+    height: 2.3px; /* Grosor de la línea */
+    background: linear-gradient(90deg, var(--screamin-green) 0%, var(--cyan) 100%);
   }
   
   /* Iconos dentro de los ítems */
   .sidebar-left-icon {
-    font-size: 26px; /* Tamaño del icono */
+    font-size: 32px; /* Tamaño del icono */
     color: rgba(255, 255, 255, 0.8); /* Color blanco con opacidad del 80% */
     cursor: pointer; /* Convierte el icono en un elemento clickeable */
     display: flex; /* Permite centrarlo con flexbox */
     justify-content: center; /* Centra el icono horizontalmente */
     align-items: center; /* Centra el icono verticalmente */
-    width: 35px; /* Define el ancho del icono */
-    height: 35px; /* Define la altura del icono */
-    border: 4px solid rgba(255, 255, 255, 0.8); /* Borde blanco con opacidad */
-    border-radius: 50%; /* Hace el borde completamente redondeado */
+    width: 20px; /* Define el ancho del icono */
+    height: 20px; /* Define la altura del icono */
+    /*border: 4px solid rgba(255, 255, 255, 0.8); /* Borde blanco con opacidad */
+    /*border-radius: 50%; /* Hace el borde completamente redondeado */
     pointer-events: auto; /* Reactiva los eventos de clic (porque su contenedor los bloquea) */
     position: relative; /* Permite que se sitúe encima de otros elementos */
     z-index: 2; /* Lo coloca en la capa superior para que sea visible */
@@ -76,7 +70,14 @@
     left: 0; /* Se alinea con el borde izquierdo */
     width: 320px; /* Ancho del efecto de fondo */
     height: 100%; /* Ocupa toda la altura del ítem */
-    background: linear-gradient(90deg, rgba(51, 247, 247, 0.4) 0%, rgba(70, 255, 94, 0.4) 60%, rgba(70, 255, 94, 0)); /* Degradado semitransparente */
+
+    background: linear-gradient(
+    90deg, /* Dirección del degradado de izquierda a derecha */
+    rgba(var(--cyan-rgb), 1) 0%, /* Color cyan con opacidad al inicio */
+    rgba(var(--screamin-green-rgb), 0.5) 50%, /* Color verde con opacidad 0.4 al 60% */
+    rgba(var(--screamin-green-rgb), 0) 100% /* Color verde que se desvanece completamente al final */
+);
+
     opacity: 0; /* Es invisible por defecto */
     transition: opacity 0.3s ease-in-out; /* Suaviza la aparición al hacer hover */
     z-index: -1; /* Se coloca detrás del contenido principal */

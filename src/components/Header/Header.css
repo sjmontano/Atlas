@@ -1,0 +1,72 @@
+/* ===================================================
+   1. ESTILOS GENERALES DEL HEADER
+=================================================== */
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0px 15px;
+    color: white;
+    height: 100px;
+}
+
+/* Contenedor para icono y título */
+.header-left-group {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre icono y título */
+    flex-grow: 1; /* Ocupa el espacio disponible */
+}
+
+/* ===================================================
+   2. ICONO DE REGRESO (FLECHA)
+=================================================== */
+.header-title h1::after {
+    width: 100%; /* Ahora el subrayado ocupa el 100% del título */
+}
+
+
+/* Icono de regresar al lado izquierdo */
+.header-back span {
+    font-size: 32px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    margin-right: 15px; /* Espaciado entre el icono de regreso y el título */
+}
+
+/* Efecto hover para el icono de regreso */
+.header-back:hover span {
+    color: #32CD32; /* Color verde cuando se pasa el cursor */
+}
+
+/* ===================================================
+   3. TÍTULO DEL HEADER
+=================================================== */
+
+/* El título se alineará a la izquierda */
+.header-title {
+    font-size: 24px;
+    color: white;
+    margin: 0;
+    display: flex; /* Flexbox para el título */
+    align-items: center; /* Alinea el texto verticalmente */
+}
+
+/* El texto en negrita */
+.header-title-bold {
+    font-weight: bold;
+}
+
+/* Texto normal */
+.header-title-normal {
+    font-weight: normal;
+}
+
+/* Línea con gradiente debajo del título usando ::after */
+.header-title h1::after {
+    content: "";
+    display: block;
+    width: 100%; /* 70% de la pantalla */
+    height: 2px; /* Grosor de la línea */
+    background-image: linear-gradient(90deg, #46FF5E 0%, #33F7F7 100%); /* Gradiente de color */
+    margin-top: 5px; /* Espaciado entre el título y la línea */
+}

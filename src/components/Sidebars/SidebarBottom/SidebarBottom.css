@@ -37,10 +37,18 @@
     align-items: center;
     text-align: center;
     cursor: pointer; /* Permite interacción con clics */
-    width: 120px; /* Ancho base del ítem */
-    height: 100px; /* Altura base del ítem */
-    background: linear-gradient(to top, rgba(42, 227, 255, 0) 0%, rgba(70, 255, 94, 0) 96.22%); /* Degradado de color con opacidad */
-    transition: 0.3s ease, width 0.3s ease, height 0.3s ease; /* Transiciones suaves al hacer hover */
+    width: 100px; /* Ancho base del ítem */
+    height: 120px; /* Altura base del ítem */
+    
+    background: linear-gradient(
+        to top,
+        rgba(var(--cyan-rgb), 0.1),
+        rgba(var(--screamin-green-rgb), 0.1),
+        rgba(var(--screamin-green-rgb), 0)
+    );
+
+    
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);/* Transiciones suaves al hacer hover */
     overflow: hidden; /* Evita que los elementos internos se desborden */
 }
 
@@ -50,9 +58,16 @@
    - El fondo cambia a un degradado más intenso.
 */
 .sidebar-bottom-item:hover {
-    background: linear-gradient(to top, #2AE3FF 0.07%, rgba(70, 255, 94, 0) 96.22%);
+
+    background: linear-gradient(
+      to top,
+      rgba(var(--cyan-rgb), 0.6) 33.33%,
+      rgba(var(--screamin-green-rgb), 0.3) 66.66%,
+      rgba(var(--screamin-green-rgb), 0) 100%
+  );
+    
     width: 240px; /* Aumenta el tamaño horizontal */
-    height: 350px; /* Aumenta el tamaño vertical */
+    height: 280px; /* Aumenta el tamaño vertical */
 }
 
 /* ===================================================
@@ -66,7 +81,6 @@
 */
 .sidebar-bottom-overlay {
     position: relative;
-    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -80,9 +94,9 @@
    - Se mantiene visible hasta que el usuario interactúe con el ítem.
 */
 .sidebar-bottom-number {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
-    color: #46FF5E; /* Verde brillante */
+    color: rgba(var(--screamin-green-rgb), 1)
 }
 
 /* 
@@ -90,8 +104,8 @@
    - Se mantiene visible por defecto.
 */
 .sidebar-bottom-icon {
-    font-size: 36px;
-    color: #46FF5E;
+    font-size: 32px;
+    color: var(--screamin-green);
 }
 
 /* 
@@ -115,7 +129,7 @@
 */
 .sidebar-bottom-item img {
     position: absolute;
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%); /* Centra la imagen */
     max-width: 100%; /* Evita que la imagen sobrepase el bloque */
@@ -125,7 +139,7 @@
     opacity: 0; /* Oculta la imagen inicialmente */
     object-fit: contain; /* Se ajusta sin recortar */
     transition: opacity 0.3s ease-in-out; /* Transición suave de aparición */
-
+   
     shape-rendering: geometricPrecision;
     image-rendering: optimizeQuality;
 }
@@ -145,6 +159,7 @@
     color: white;
     opacity: 0; /* Inicialmente oculto */
     transition: opacity 0.3s ease-in-out;
+    
 }
 
 /* ===================================================
@@ -155,14 +170,72 @@
    Al hacer hover en el ítem:
    - La imagen SVG se vuelve visible.
 */
-.sidebar-bottom-item:hover img {
-    opacity: 1;
+/* Oculta overlay al hacer hover en el ITEM (no en el overlay) */
+.sidebar-bottom-item:hover .sidebar-bottom-overlay {
+    opacity: 0;
+    transition: opacity 0.2s ease-in;
 }
 
 /* 
    Al hacer hover en el ítem:
    - El texto del capítulo se muestra.
 */
+/* Revela contenido con timing diferente */
+.sidebar-bottom-item:hover img,
 .sidebar-bottom-item:hover .sidebar-bottom-text {
     opacity: 1;
+    transition: opacity 0.3s ease-out 0.1s; /* Retraso para efecto escalonado */
 }
+
+/* Movimiento flotante para la imagen SVG */
+@keyframes float {
+   0% { transform: translate(-50%, -50%) translateY(0px); }  /* Posición inicial */
+   50% { transform: translate(-50%, -50%) translateY(10px); }  /* Flotación hacia arriba */
+   100% { transform: translate(-50%, -50%) translateY(0px); }  /* Regreso a la posición inicial */
+}
+
+.sidebar-bottom-item:hover img {
+   animation: float 3s ease-in-out infinite;  /* Animación de flotación */
+}
+
+/* ===================================================
+   6. EFECTOS BLINK ESCALONADOS
+=================================================== */
+
+/* Onda luminosa ascendiendo y desapareciendo completamente */
+.sidebar-bottom-item::before {
+   content: '';
+   position: absolute;
+   bottom: -120%; /* Inicia fuera de la vista */
+   left: 0;
+   width: 100%;
+   height: 80%; /* Se extiende más para un efecto gradual */
+   
+   background: linear-gradient(
+     to top, /* Dirección de la onda luminosa de abajo hacia arriba */
+     transparent 0%, /* Invisible al inicio */
+     rgba(var(--cyan-rgb), 0.15) 40%, /* Suave al inicio */
+     rgba(var(--cyan-rgb), 0.18) 60%, /* Máxima intensidad en el centro */
+     rgba(var(--cyan-rgb), 0.15) 80%, /* Comienza a suavizar */
+     transparent 100% /* Se desvanece completamente al final */
+   );
+   
+   opacity: 0; /* Inicia invisible */
+   animation: light-wave 6s ease-in-out infinite;
+   pointer-events: none; /* Evita interferencias en el hover */
+
+}
+
+@keyframes light-wave {
+   0% { bottom: 0; opacity: 0; }
+   25% { bottom: 10%; opacity: 1; } /* Máxima visibilidad en el centro */
+   50% { bottom: 15%; opacity: 0; } /* Se desvanece suavemente */
+   75% { bottom: 20%; opacity: 0; } /* Desaparece completamente */
+   100% { opacity: 0; }
+}
+
+/* Evitar que la onda afecte cuando el usuario hace hover */
+.sidebar-bottom-item:hover::before {
+   opacity: 0 !important; /* Oculta la onda luminosa durante el hover */
+}
+
