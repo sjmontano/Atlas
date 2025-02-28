@@ -1,6 +1,15 @@
 /* ===================================================
    1. ESTRUCTURA DEL SIDEBAR IZQUIERDO
 =================================================== */
+.sidebar-left {
+    position: fixed; /* Mantenerlo fijo en la pantalla */
+    top: 100px; /* Justo debajo del header */
+    left: 0;
+    width: 30%; /* Ajusta según necesidad */
+    height: calc(100vh - 100px); /* Resta la altura del header */
+    z-index: 900; /* Debajo del header, pero encima del mapa */
+    /*overflow-y: auto; /* Permite scroll si hay demasiados elementos */
+}
 
 /* Lista contenedora de los ítems dentro del sidebar */
 .sidebar-left-list {

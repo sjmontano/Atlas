@@ -3,7 +3,7 @@ import './SidebarLeft.css'; // Importa los estilos correspondientes
 
 const SidebarLeft = () => {
   // Estado para controlar el margen superior
-  const [topMargin, setTopMargin] = useState('20%'); // Valor inicial
+  const [topMargin, setTopMargin] = useState('10%'); // Valor inicial
 
   // Lista de capítulos y secciones del sidebar izquierdo
   const sidebarItems = [

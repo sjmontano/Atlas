@@ -2,11 +2,16 @@
    1. ESTILOS GENERALES DEL HEADER
 =================================================== */
 .header {
+    position: fixed; /* Fijar el header en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%; /* Que ocupe todo el ancho */
+    height: 100px;
+    z-index: 1000; /* Asegura que esté encima de otros elementos */
     display: flex;
     align-items: center;
-    padding: 0px 15px;
+    padding: 0 15px;
     color: white;
-    height: 100px;
 }
 
 /* Contenedor para icono y título */
