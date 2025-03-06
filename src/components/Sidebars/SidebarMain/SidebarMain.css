@@ -302,3 +302,10 @@
 .submenu-item:nth-child(3) { transition-delay: 0.2s; }
 .submenu-item:nth-child(4) { transition-delay: 0.25s; }
 
+.sidebar-main, 
+.sidebar-main * {
+    user-select: none; /* Bloquea la selección de texto */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+}

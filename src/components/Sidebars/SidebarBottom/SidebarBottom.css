@@ -13,10 +13,9 @@
     bottom: 0;
     left: 0;
     width: 100%; /* Ocupa todo el ancho de la pantalla */
-    height: 80px; /* Altura fija del sidebar */
     display: flex;
     justify-content: center; /* Centra los ítems horizontalmente */
-    align-items: center; /* Alinea los ítems verticalmente */
+    align-items: flex-start; /* Alinea los ítems verticalmente al inicio */
     gap: 10px; /* Espaciado entre los capítulos */
     z-index: 1000; /* Asegura que esté por encima de otros elementos */
 }
@@ -38,18 +37,25 @@
     text-align: center;
     cursor: pointer; /* Permite interacción con clics */
     width: 100px; /* Ancho base del ítem */
-    height: 120px; /* Altura base del ítem */
-    
+    padding: 10px; /* Espaciado interno */
     background: linear-gradient(
         to top,
         rgba(var(--cyan-rgb), 0.1),
         rgba(var(--screamin-green-rgb), 0.1),
         rgba(var(--screamin-green-rgb), 0)
     );
-
-    
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);/* Transiciones suaves al hacer hover */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transiciones suaves al hacer hover */
     overflow: hidden; /* Evita que los elementos internos se desborden */
+}
+
+/* Altura para ítems con imagen */
+.sidebar-bottom-item.with-image {
+    height: 200px; /* Ajusta según sea necesario */
+}
+
+/* Altura para ítems sin imagen */
+.sidebar-bottom-item.without-image {
+    height: 120px; /* Ajusta según sea necesario */
 }
 
 /* 
@@ -58,16 +64,13 @@
    - El fondo cambia a un degradado más intenso.
 */
 .sidebar-bottom-item:hover {
-
     background: linear-gradient(
       to top,
-      rgba(var(--cyan-rgb), 0.6) 33.33%,
-      rgba(var(--screamin-green-rgb), 0.3) 66.66%,
-      rgba(var(--screamin-green-rgb), 0) 100%
-  );
-    
+      rgba(var(--screamin-green-rgb), 0.5) 33.33%,
+      rgba(var(--cyan-rgb), 0.25) 66.66%,
+      rgba(var(--cyan-rgb), 0) 100%
+    );
     width: 240px; /* Aumenta el tamaño horizontal */
-    height: 280px; /* Aumenta el tamaño vertical */
 }
 
 /* ===================================================
@@ -96,7 +99,6 @@
 .sidebar-bottom-number {
     font-size: 18px;
     font-weight: bold;
-    color: rgba(var(--screamin-green-rgb), 1)
 }
 
 /* 
@@ -105,7 +107,6 @@
 */
 .sidebar-bottom-icon {
     font-size: 32px;
-    color: var(--screamin-green);
 }
 
 /* 
@@ -138,8 +139,7 @@
     height: auto;
     opacity: 0; /* Oculta la imagen inicialmente */
     object-fit: contain; /* Se ajusta sin recortar */
-    transition: opacity 0.3s ease-in-out; /* Transición suave de aparición */
-   
+    transition: opacity 0.5s ease-in-out; /* Transición suave de aparición */
     shape-rendering: geometricPrecision;
     image-rendering: optimizeQuality;
 }
@@ -151,15 +151,14 @@
 */
 .sidebar-bottom-text {
     position: absolute;
-    top: 0%;
-    left: 0%;
+    bottom: 10px;
+    left: 0;
     width: 100%;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     color: white;
     opacity: 0; /* Inicialmente oculto */
-    transition: opacity 0.3s ease-in-out;
-    
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* ===================================================
@@ -173,7 +172,7 @@
 /* Oculta overlay al hacer hover en el ITEM (no en el overlay) */
 .sidebar-bottom-item:hover .sidebar-bottom-overlay {
     opacity: 0;
-    transition: opacity 0.2s ease-in;
+    transition: opacity 0.5s ease-in-out;
 }
 
 /* 
@@ -184,58 +183,65 @@
 .sidebar-bottom-item:hover img,
 .sidebar-bottom-item:hover .sidebar-bottom-text {
     opacity: 1;
-    transition: opacity 0.3s ease-out 0.1s; /* Retraso para efecto escalonado */
+    transition: opacity 0.5s ease-in-out 0.1s; /* Retraso para efecto escalonado */
 }
 
 /* Movimiento flotante para la imagen SVG */
 @keyframes float {
-   0% { transform: translate(-50%, -50%) translateY(0px); }  /* Posición inicial */
-   50% { transform: translate(-50%, -50%) translateY(10px); }  /* Flotación hacia arriba */
-   100% { transform: translate(-50%, -50%) translateY(0px); }  /* Regreso a la posición inicial */
+  0% { transform: translate(-50%, -50%) translateY(0px); }  /* Posición inicial */
+  50% { transform: translate(-50%, -50%) translateY(10px); }  /* Flotación hacia arriba */
+  100% { transform: translate(-50%, -50%) translateY(0px); }  /* Regreso a la posición inicial */
 }
 
 .sidebar-bottom-item:hover img {
-   animation: float 3s ease-in-out infinite;  /* Animación de flotación */
+  animation: float 3s ease-in-out infinite;  /* Animación de flotación */
 }
 
 /* ===================================================
-   6. EFECTOS BLINK ESCALONADOS
+  6. EFECTOS BLINK ESCALONADOS
 =================================================== */
 
 /* Onda luminosa ascendiendo y desapareciendo completamente */
 .sidebar-bottom-item::before {
-   content: '';
-   position: absolute;
-   bottom: -120%; /* Inicia fuera de la vista */
-   left: 0;
-   width: 100%;
-   height: 80%; /* Se extiende más para un efecto gradual */
-   
-   background: linear-gradient(
-     to top, /* Dirección de la onda luminosa de abajo hacia arriba */
-     transparent 0%, /* Invisible al inicio */
-     rgba(var(--cyan-rgb), 0.15) 40%, /* Suave al inicio */
-     rgba(var(--cyan-rgb), 0.18) 60%, /* Máxima intensidad en el centro */
-     rgba(var(--cyan-rgb), 0.15) 80%, /* Comienza a suavizar */
-     transparent 100% /* Se desvanece completamente al final */
-   );
-   
-   opacity: 0; /* Inicia invisible */
-   animation: light-wave 6s ease-in-out infinite;
-   pointer-events: none; /* Evita interferencias en el hover */
+  content: '';
+  position: absolute;
+  bottom: -120%; /* Inicia fuera de la vista */
+  left: 0;
+  width: 100%;
+  height: 80%; /* Se extiende más para un efecto gradual */
+  
+  background: linear-gradient(
+    to top, /* Dirección de la onda luminosa de abajo hacia arriba */
+    transparent 0%, /* Invisible al inicio */
+    rgba(var(--cyan-rgb), 0.15) 40%, /* Suave al inicio */
+    rgba(var(--cyan-rgb), 0.18) 60%, /* Máxima intensidad en el centro */
+    rgba(var(--cyan-rgb), 0.15) 80%, /* Comienza a suavizar */
+    transparent 100% /* Se desvanece completamente al final */
+  );
+  
+  opacity: 0; /* Inicia invisible */
+  animation: light-wave 6s ease-in-out infinite;
+  pointer-events: none; /* Evita interferencias en el hover */
 
 }
 
 @keyframes light-wave {
-   0% { bottom: 0; opacity: 0; }
-   25% { bottom: 10%; opacity: 1; } /* Máxima visibilidad en el centro */
-   50% { bottom: 15%; opacity: 0; } /* Se desvanece suavemente */
-   75% { bottom: 20%; opacity: 0; } /* Desaparece completamente */
-   100% { opacity: 0; }
+  0% { bottom: 0; opacity: 0; }
+  25% { bottom: 10%; opacity: 1; } /* Máxima visibilidad en el centro */
+  50% { bottom: 15%; opacity: 0; } /* Se desvanece suavemente */
+  75% { bottom: 20%; opacity: 0; } /* Desaparece completamente */
+  100% { opacity: 0; }
 }
 
 /* Evitar que la onda afecte cuando el usuario hace hover */
 .sidebar-bottom-item:hover::before {
-   opacity: 0 !important; /* Oculta la onda luminosa durante el hover */
+  opacity: 0 !important; /* Oculta la onda luminosa durante el hover */
 }
 
+.sidebar-bottom,
+.sidebar-bottom * {
+  user-select: none; /* Bloquea la selección de texto */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+}

@@ -7,6 +7,7 @@ import Chapter2 from "./views/Chapters/Chapter2/Chapter2.jsx"; // Agrega más ca
 
 const App = () => {
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<Index />} /> {/* Ruta principal */}

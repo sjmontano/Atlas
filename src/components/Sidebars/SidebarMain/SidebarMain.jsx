@@ -32,8 +32,7 @@ const SidebarMain = () => {
     { id: 4, icon: '', number: 'II', title: 'Redes nodo y entramados territoriales' },
     { id: 5, icon: '', number: 'III', title: 'Los caminos del río en el valle alto' },
     { id: 6, icon: '', number: 'IV', title: 'Actores, acciones, capacidades y poderes' },
-    { id: 7, icon: '', number: 'V', title: 'Actores, acciones, capacidades y poderes' },
-    { id: 8, icon: 'sentiment_satisfied', number: '', title: 'Créditos' }
+    { id: 7, icon: 'sentiment_satisfied', number: '', title: 'Créditos' }
   ];
 
   return (
@@ -73,7 +72,7 @@ const SidebarMain = () => {
                     </span>
                   )}
                 </div>
-                <span className="sidebar-main-text">{item.title}</span>
+                <span className="sidebar-main-text"><strong>{item.title}</strong></span>
               </div>
 
               {/* Submenú */}

@@ -1,0 +1,140 @@
+/* Contenedor principal */
+.content-info__container {
+  width: 100vw;
+  height: 100vh; 
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  text-align: center;
+  overflow: hidden;
+  padding-top: 0px; /* Añadir espacio superior para bajar el conjunto */
+}
+
+/* Estilos para el header */
+.header-home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+
+/* Estilos para el logo */
+.header-home-logo {
+  width: 200px;
+  height: auto;
+}
+
+/* Estilos para el contenido */
+.content-info__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 50px; /* Bajar más el conjunto de título, subtítulo y texto */
+}
+
+/* Estilos para el título principal */
+.content-titles .home-title {
+  font-size: clamp(3rem, 8vw, 8.75rem); /* Ajuste con clamp para 140px */
+  font-weight: 900;
+  text-align: center;
+  color: var(--sea-green);
+  margin: 0;
+}
+
+/* Estilos para el subtítulo */
+.content-titles .home-subtitle {
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ajuste con clamp para 40px */
+  font-weight: 400; /* No en bold */
+  color: var(--sea-green);
+  margin: 0;
+}
+
+/* Estilos para la descripción */
+.content-info__content p {
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Ajuste con clamp para 24px */
+  line-height: 29.09px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--sea-green);
+  margin: 0;
+}
+
+/* Estilos para el botón de explorar */
+.explore-button {
+  padding: 1rem 3rem; /* Espaciado interno */
+  border: 3px solid transparent; /* Borde transparente para la animación */
+  border-radius: 6px; /* Bordes redondeados */
+  background: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  width: 198px;
+  height: 60px;
+  display: inline-block;
+  position: relative; /* Permite el uso de elementos pseudo */
+  transition: transform 0.3s ease-in-out; /* Suaviza el efecto hover */
+  overflow: hidden; /* Evita que la animación sobresalga */
+}
+
+.explore-button::before {
+  content: "";
+  position: absolute;
+  top: -3px; /* Ajuste para que cubra solo el borde */
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: inherit; /* Hereda el borde redondeado */
+  background: linear-gradient(90deg, var(--cyan), var(--screamin-green));
+  z-index: -1; /* Mantiene el borde detrás del botón */
+  background-clip: border-box; /* Aplica el gradiente solo al borde */
+  animation: borderMove 3s linear infinite; /* Animación continua */
+}
+
+.explore-button:hover {
+  transform: scale(1.05); /* Efecto sutil de escala */
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%; /* Punto inicial */
+  }
+  100% {
+    background-position: 100% 50%; /* Punto final */
+  }
+}
+
+
+/* Icono Tutorial */
+.btnInfoTutorial {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .header-home-logo {
+    width: 70px;
+  }
+
+  .content-titles .home-title {
+    font-size: 3rem;
+  }
+
+  .content-titles .home-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .explore-button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+  }
+}

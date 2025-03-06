@@ -1,164 +1,73 @@
 import { useEffect, useRef, useState } from "react";
-import CuencaCaucaLow from "../../../assets/maps/cuenca-cauca-low.webp";
-import CuencaCaucaMedium from "../../../assets/maps/cuenca-cauca-medium.webp";
-import CuencaCaucaHigh from "../../../assets/maps/cuenca-cauca-high.webp";
+import maplibregl from "maplibre-gl";
 
-const BaseMapImage = ({ map }) => {
-  const opacityRef = useRef({
-    low: 1,
-    medium: 0,
-    high: 0,
-  });
+const useMap = ({ imageBounds, regionZoomLimits }) => {
+  const mapContainerRef = useRef(null);
+  const [map, setMap] = useState(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Función de precarga de imágenes con manejo de errores
-  const loadImage = (src) =>
-    new Promise((resolve, reject) => {
-      const img = new Image();
-      img.src = src;
-      img.onload = resolve;
-      img.onerror = () => reject(new Error(`Error cargando: ${src}`));
-    });
-
-  const preloadImages = async () => {
-    try {
-      await Promise.all([
-        loadImage(CuencaCaucaLow),
-        loadImage(CuencaCaucaMedium),
-        loadImage(CuencaCaucaHigh),
-      ]);
-      console.log("✅ Todas las imágenes precargadas");
-    } catch (error) {
-      console.error("⚠️ Error en precarga de imágenes:", error.message);
-    }
+  const calculateZoom = () => {
+    const mapWidth = mapContainerRef.current.clientWidth;
+    const mapHeight = mapContainerRef.current.clientHeight;
+    const imageWidth = Math.abs(imageBounds[1][0] - imageBounds[0][0]);
+    const imageHeight = Math.abs(imageBounds[1][1] - imageBounds[0][1]);
+    const zoomX = Math.log2(mapWidth / imageWidth);
+    const zoomY = Math.log2(mapHeight / imageHeight);
+    return Math.min(zoomX, zoomY);
   };
 
   useEffect(() => {
-    if (!map) return;
-
-    const imageSources = [
-      { id: "lowQualityImage", url: CuencaCaucaLow, minzoom: 0, maxzoom: 7.01 },
-      {
-        id: "mediumQualityImage",
-        url: CuencaCaucaMedium,
-        minzoom: 7,
-        maxzoom: 8.5,
-      },
-      { id: "highQualityImage", url: CuencaCaucaHigh, minzoom: 8.5, maxzoom: 22 },
-    ];
-
-    const imageBounds = [
-      [-79.438011528289, 1.633123501103],
-      [
-        -79.438011528289 + 0.00195748206 * 3507,
-        1.633123501103 + 0.001957242876 * 4960,
-      ],
-    ];
-
-    // Función para calcular opacidades superpuestas de forma más fluida
-    const calculateOverlappingOpacity = (zoom) => {
-      const transitionRange = 0.5;
-      return {
-        low: Math.min(1, Math.max(0, (7.5 - zoom) / transitionRange)),
-        medium: Math.min(
-          1,
-          Math.max(0, Math.min((zoom - 6.5) / transitionRange, (8.5 - zoom) / transitionRange))
-        ),
-        high: Math.min(1, Math.max(0, (zoom - 8.0) / transitionRange)),
-      };
-    };
-
-    // Función para gestionar las capas con transiciones suaves
-    const addLayers = async () => {
-      await preloadImages();
-
-      imageSources.forEach(({ id, url, minzoom, maxzoom }) => {
-        if (!map.getSource(id)) {
-          map.addSource(id, {
-            type: "image",
-            url,
-            coordinates: [
-              [imageBounds[0][0], imageBounds[1][1]],
-              [imageBounds[1][0], imageBounds[1][1]],
-              [imageBounds[1][0], imageBounds[0][1]],
-              [imageBounds[0][0], imageBounds[0][1]],
-            ],
-          });
-
-          map.addLayer({
-            id: `${id}-layer`,
+    const initialZoom = calculateZoom();
+    const newMap = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: {
+        version: 8,
+        sources: {
+          "simple-tiles": {
             type: "raster",
-            source: id,
-            minzoom,
-            maxzoom,
-            paint: {
-              "raster-opacity": opacityRef.current[
-                id.replace("QualityImage", "").toLowerCase()
-              ],
-              "raster-fade-duration": 1000, // Transición suave de opacidad
-            },
-          });
-        }
-      });
-    };
+            tiles: [
+              "https://a.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              "https://b.tile.openstreetmap.org/{z}/{x}/{y}.png",
+              "https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            ],
+            tileSize: 256,
+            attribution: ''
+          }
+        },
+        layers: [
+          {
+            id: "simple-tiles",
+            type: "raster",
+            source: "simple-tiles",
+            minzoom: 0,
+            maxzoom: 22,
+          }
+        ]
+      },
+      center: [
+        imageBounds[0][0] + (imageBounds[1][0] - imageBounds[0][0]) / 2,
+        imageBounds[0][1] + (imageBounds[1][1] - imageBounds[0][1]) / 2,
+      ],
+      zoom: initialZoom,
+      maxZoom: regionZoomLimits.max,
+      minZoom: regionZoomLimits.min,
+      bearing: -90,
+      dragRotate: false,
+      touchZoomRotate: false,
+    });
 
-    // Actualización de opacidades con superposición
-    const updateOpacity = (zoom) => {
-      const newOpacity = calculateOverlappingOpacity(zoom);
-
-      opacityRef.current = newOpacity;
-
-      map.setPaintProperty("lowQualityImage-layer", "raster-opacity", newOpacity.low);
-      map.setPaintProperty("mediumQualityImage-layer", "raster-opacity", newOpacity.medium);
-      map.setPaintProperty("highQualityImage-layer", "raster-opacity", newOpacity.high);
-
-      console.log(`🔍 Zoom: ${zoom.toFixed(2)} | Opacidades: 
-        Low: ${newOpacity.low.toFixed(2)}, 
-        Medium: ${newOpacity.medium.toFixed(2)}, 
-        High: ${newOpacity.high.toFixed(2)}`);
-    };
-
-    // Evento de zoom optimizado
-    let lastZoom = null;
-    const onZoom = () => {
-      const currentZoom = map.getZoom();
-      if (lastZoom !== currentZoom) {
-        requestAnimationFrame(() => updateOpacity(currentZoom));
-        lastZoom = currentZoom;
-      }
-    };
-
-    addLayers().then(() => {
-      map.on("zoom", onZoom);
-      updateOpacity(map.getZoom());
+    newMap.on("load", () => {
+      setMap(newMap);
+      setMapLoaded(true);
+      newMap.setMaxBounds(imageBounds); // Establecer los límites máximos del mapa a los límites de la imagen
     });
 
     return () => {
-      map.off("zoom", onZoom);
-      imageSources.forEach(({ id }) => {
-        if (map.getSource(id)) {
-          map.removeLayer(`${id}-layer`);
-          map.removeSource(id);
-        }
-      });
+      if (newMap) newMap.remove();
     };
-  }, [map]);
+  }, [imageBounds, regionZoomLimits]);
 
-  return (
-    <div
-      style={{
-        position: "absolute",
-        bottom: 10,
-        left: 10,
-        background: "rgba(0,0,0,0.7)",
-        padding: "8px 12px",
-        borderRadius: 4,
-        color: "white",
-        fontSize: 14,
-      }}
-    >
-      🗺️ Calidad: {opacityRef.current.high > 0.5 ? "Alta" : opacityRef.current.medium > 0.5 ? "Media" : "Baja"}
-    </div>
-  );
+  return { map, mapLoaded, mapContainerRef };
 };
 
-export default BaseMapImage;
+export default useMap;

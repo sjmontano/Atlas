@@ -5,7 +5,7 @@
     position: fixed; /* Mantenerlo fijo en la pantalla */
     top: 100px; /* Justo debajo del header */
     left: 0;
-    width: 30%; /* Ajusta según necesidad */
+    width: 50%; /* Ajusta según necesidad */
     height: calc(100vh - 100px); /* Resta la altura del header */
     z-index: 900; /* Debajo del header, pero encima del mapa */
     /*overflow-y: auto; /* Permite scroll si hay demasiados elementos */
@@ -45,7 +45,7 @@
   
   /* Iconos dentro de los ítems */
   .sidebar-left-icon {
-    font-size: 32px; /* Tamaño del icono */
+    font-size: 36px; /* Tamaño del icono */
     color: rgba(255, 255, 255, 0.8); /* Color blanco con opacidad del 80% */
     cursor: pointer; /* Convierte el icono en un elemento clickeable */
     display: flex; /* Permite centrarlo con flexbox */
@@ -65,6 +65,7 @@
     opacity: 0; /* El texto es invisible por defecto */
     transition: opacity 0.3s ease-in-out; /* Efecto de aparición suave */
     color: rgba(255, 255, 255, 1); /* Color blanco sólido */
+    font-size: 18px; /* Tamaño del texto */
   }
   
   /* ===================================================
@@ -82,9 +83,9 @@
 
     background: linear-gradient(
     90deg, /* Dirección del degradado de izquierda a derecha */
-    rgba(var(--cyan-rgb), 1) 0%, /* Color cyan con opacidad al inicio */
-    rgba(var(--screamin-green-rgb), 0.5) 50%, /* Color verde con opacidad 0.4 al 60% */
-    rgba(var(--screamin-green-rgb), 0) 100% /* Color verde que se desvanece completamente al final */
+    rgba(var(--screamin-green-rgb), 0.7) 0%, /* Color cyan con opacidad al inicio */
+    rgba(var(--cyan-rgb), 0.5) 30%, /* Color verde con opacidad 0.4 al 60% */
+    rgba(var(--cyan-rgb), 0) 100% /* Color verde que se desvanece completamente al final */
 );
 
     opacity: 0; /* Es invisible por defecto */
@@ -108,3 +109,11 @@
     opacity: 1; /* Activa el efecto de fondo */
   }
   
+ 
+.sidebar-left, 
+.sidebar-left * {
+    user-select: none; /* Bloquea la selección de texto */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+}

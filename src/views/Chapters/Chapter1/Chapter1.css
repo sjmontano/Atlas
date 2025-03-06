@@ -1,0 +1,8 @@
+.screen-shadow {
+    position: absolute; /* Mantiene la sombra solo en el contenedor principal */
+    inset: 0; /* Ocupa todo el contenedor */
+    pointer-events: none; /* Permite la interacción debajo de la sombra */
+    z-index: 5; /* Por debajo del HUD pero por encima del mapa */
+    transition: box-shadow 0.5s ease-in-out; /* Suaviza la transición */
+  }
+  

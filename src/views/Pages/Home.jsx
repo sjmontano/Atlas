@@ -1,12 +1,13 @@
-import React from "react";
+import SidebarMain from "../../components/Sidebars/SidebarMain/SidebarMain";
+import Content from "../../components/Home/Content/Content";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Página de Inicio</h1>
-      <p>Bienvenido, esta es la página principal. (En construcción)</p>
+    <div className="home">
+      <SidebarMain />
+      <Content />
     </div>
   );
 };
 
-export default Home;
+export default Home; 

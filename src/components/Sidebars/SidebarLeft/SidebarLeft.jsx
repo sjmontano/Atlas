@@ -24,7 +24,7 @@ const SidebarLeft = () => {
           >
             <span className="sidebar-left-icon material-symbols-outlined">{item.icon}</span>
             <p className="sidebar-left-text">
-              <strong>{item.id}.</strong> {item.title} <br />
+              <strong>{item.title} </strong><br />
               {/* Añadir el subtítulo solo si está presente */}
               {item.subtitle && <strong className="has-subtitle">{item.subtitle}</strong>}
             </p>

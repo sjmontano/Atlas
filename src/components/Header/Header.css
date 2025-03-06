@@ -2,76 +2,61 @@
    1. ESTILOS GENERALES DEL HEADER
 =================================================== */
 .header {
-    position: fixed; /* Fijar el header en la parte superior */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Que ocupe todo el ancho */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
     height: 100px;
-    z-index: 1000; /* Asegura que esté encima de otros elementos */
+    z-index: 1000; /* Por encima de otros elementos */
     display: flex;
     align-items: center;
-    padding: 0 15px;
     color: white;
-}
-
-/* Contenedor para icono y título */
-.header-left-group {
-    display: flex;
+  }
+  
+  /* Contenedor para icono y título */
+  .header-left-group {
+    display: inline-flex; /* Solo ocupa el ancho necesario */
     align-items: center;
-    gap: 15px; /* Espacio entre icono y título */
-    flex-grow: 1; /* Ocupa el espacio disponible */
-}
-
-/* ===================================================
-   2. ICONO DE REGRESO (FLECHA)
-=================================================== */
-.header-title h1::after {
-    width: 100%; /* Ahora el subrayado ocupa el 100% del título */
-}
-
-
-/* Icono de regresar al lado izquierdo */
-.header-back span {
-    font-size: 32px;
+    gap: 20px;
+    position: relative; /* Permite usar ::after */
+  }
+  
+  .header-left-group::after {
+    content: "";
+    position: absolute;
+    bottom: 20px; /* Espaciado entre el texto y la línea */
+    left: 0;
+    width: 100%; /* Ocupa solo el ancho del contenido */
+    height: 3px;
+    background-image: linear-gradient(90deg, #46FF5E 0%, #33F7F7 100%);
+    display: block;
+    transition: width 0.4s ease-in-out; /* Suaviza la animación */
+  }
+  
+  /* Icono de regreso */
+  .header-back span {
+    font-size: 36px;
     cursor: pointer;
     transition: color 0.3s ease-in-out;
-    margin-right: 15px; /* Espaciado entre el icono de regreso y el título */
-}
-
-/* Efecto hover para el icono de regreso */
-.header-back:hover span {
-    color: #32CD32; /* Color verde cuando se pasa el cursor */
-}
-
-/* ===================================================
-   3. TÍTULO DEL HEADER
-=================================================== */
-
-/* El título se alineará a la izquierda */
-.header-title {
+    margin-left: 15px;
+  }
+  
+  .header-back:hover span {
+    color: #32CD32; /* Color verde al pasar el cursor */
+  }
+  
+  .header-title {
     font-size: 24px;
+    display: flex;
+    align-items: center;
     color: white;
-    margin: 0;
-    display: flex; /* Flexbox para el título */
-    align-items: center; /* Alinea el texto verticalmente */
-}
-
-/* El texto en negrita */
-.header-title-bold {
+  }
+  
+  .header-title-bold {
     font-weight: bold;
-}
-
-/* Texto normal */
-.header-title-normal {
+  }
+  
+  .header-title-normal {
     font-weight: normal;
-}
-
-/* Línea con gradiente debajo del título usando ::after */
-.header-title h1::after {
-    content: "";
-    display: block;
-    width: 100%; /* 70% de la pantalla */
-    height: 2px; /* Grosor de la línea */
-    background-image: linear-gradient(90deg, #46FF5E 0%, #33F7F7 100%); /* Gradiente de color */
-    margin-top: 5px; /* Espaciado entre el título y la línea */
-}
+  }
+  
