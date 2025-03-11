@@ -60,7 +60,6 @@ const Chapter1 = () => {
     <div id="cap1">
       <Header />
       <SidebarLeft />
-      <SidebarMain />
       <SidebarBottom onMapChange={handleMapChange} />
 
       <MapComponent

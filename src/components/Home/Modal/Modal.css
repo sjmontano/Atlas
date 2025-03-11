@@ -1,66 +1,132 @@
+/* Configuración principal del modal */
 .modal {
   width: 80%;
   height: 80%;
-  font-family: 'Noto Sans';
   padding: 0;
-  background-size: cover;
-  background-color: aliceblue;
-  background-repeat: no-repeat;
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) !important;
   z-index: 1000;
-  overflow-y: auto;
+  overflow: hidden;
   max-height: 100vh;
+  background-color: aliceblue;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
-.header-modal {
-  display: flex;
+/* Contenedor principal del contenido del modal */
+.modal-content {
   width: 100%;
-  height: 10%;
-  background-color: #d9dfdf;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
   background-size: cover;
   background-repeat: no-repeat;
-  align-items: center;
+  background-position: center;
 }
 
-.logo__modal {
-  width: 25%;
-  height: 80%;
-  margin-left: 2%;
+/* Estilos del título */
+.modal-title {
+  position: absolute;
+  width: 559px;
+  height: 27px;
+  top: 12%;
+  left: 8%;
+  color: #767575;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  z-index: 1;
 }
 
-.logo__modal img {
-  width: 60% !important;
-  height: 7vh !important;
+/* Línea decorativa debajo del título */
+.linea {
+  position: absolute;
+  width: 45%;
+  height: 0;
+  top: 20%;
+  border: 1px solid #0F6E50;
+  z-index: 1;
 }
 
+/* Estilos del texto descriptivo */
+.modal-text {
+  position: absolute;
+  width: 559px;
+  height: 195px;
+  top: 22%;
+  left: 8%;
+  color: #767575;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  z-index: 1;
+}
+
+/* Botón de cierre del modal */
 #botonSalir {
   position: absolute;
-  left: 95%;
-  top: 5%;
-  background-color: transparent;
-  border: 0;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  z-index: 2;
 }
 
+/* Botón para avanzar al siguiente modal */
 #btnDerecha {
   position: absolute;
-  left: 95%;
   top: 50%;
-  background-color: transparent;
-  border: 0;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
+/* Botón para retroceder al modal anterior */
 #btnIzquierda {
   position: absolute;
-  left: 1.5%;
   top: 50%;
-  background-color: transparent;
-  border: 0;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  transform: translateY(-50%);
+  z-index: 2;
 }
 
-.modal-content {
-  position: relative;
-  padding: 20px;
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    height: auto;
+  }
+
+  .modal-title, 
+  .modal-text {
+    width: 90%;
+    left: 5%;
+  }
+
+  #btnDerecha {
+    right: 5px;
+  }
+
+  #btnIzquierda {
+    left: 5px;
+  }
 }

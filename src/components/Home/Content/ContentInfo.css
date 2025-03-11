@@ -83,6 +83,7 @@
   position: relative; /* Permite el uso de elementos pseudo */
   transition: transform 0.3s ease-in-out; /* Suaviza el efecto hover */
   overflow: hidden; /* Evita que la animación sobresalga */
+  margin-top: 120%;
 }
 
 .explore-button::before {

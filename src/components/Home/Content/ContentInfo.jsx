@@ -21,7 +21,7 @@ const ContentInfo = ({ title, subtitle, description, image, logo }) => {
         </section>
         <p className="home-description">{description}</p>
         <section className="content-buttons">
-          <Link to="/mapa1" className="home-link">
+          <Link to="/chapter1" className="home-link">
             <button id="explore-button" className="explore-button">
               Explorar
             </button>

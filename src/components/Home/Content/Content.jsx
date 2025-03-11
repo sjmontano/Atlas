@@ -21,8 +21,8 @@ const Content = () => {
           openModal={openModal}
         />
       ))}
-
       <Modal isOpen={modalData.isOpen} onClose={closeModal} {...modalData} />
+
       <ContentInfo
         title="Atlas"
         subtitle="Un rio Cauca, muchos mundos"

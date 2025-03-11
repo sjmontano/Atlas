@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css"; // Importamos los estilos
 
 const Header = () => {
@@ -7,9 +8,9 @@ const Header = () => {
       {/* Grupo izquierdo: Icono + Título */}
       <div className="header-left-group">
         {/* Icono de regreso */}
-        <div className="header-back">
+        <Link to="/home" className="header-back" style={{ textDecoration: 'none', color: 'inherit' }}>
           <span className="material-symbols-outlined">arrow_back</span>
-        </div>
+        </Link>
 
         {/* Título */}
         <div className="header-title">
