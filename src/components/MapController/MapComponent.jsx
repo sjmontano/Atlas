@@ -7,7 +7,7 @@ const MapComponent = ({ imageBounds, regionZoomLimits, imageUrls }) => {
 
   return (
     <div ref={mapContainerRef} id="map" style={{ width: "100%", height: "100vh" }}>
-      {mapLoaded && (
+      {mapLoaded ? (
         <BaseMapImage
           map={map}
           imageUrls={imageUrls}
@@ -15,10 +15,11 @@ const MapComponent = ({ imageBounds, regionZoomLimits, imageUrls }) => {
           minzoom={regionZoomLimits.min}
           maxzoom={regionZoomLimits.max}
         />
+      ) : (
+        <p>⏳ Cargando mapa...</p>
       )}
     </div>
   );
 };
 
 export default MapComponent;
- 

@@ -1,0 +1,101 @@
+const mapLayers = [
+    {
+      name: "cuenca Cauca cap1",
+      id: "cuencaCaucaCap1",
+      url: "http://localhost:4000/api/v1/location/cuenca Cauca cap1",
+      color: "#000000",
+      zIndex: 20,
+    },
+    {
+      name: "rioMagdalena",
+      id: "rioMagdalena",
+      url: "http://localhost:4000/api/v1/location/Rio magdalena",
+      color: "#ff0000",
+      zIndex: 15,
+    },
+    {
+      name: "Cuenca Alta del Cauca",
+      id: "cuencaAltaRioCauca",
+      url: "http://localhost:4000/api/v1/location/Cuenca Alta Del Cauca",
+      color: "#4bcfff",
+      zIndex: 2,
+    },
+    {
+      name: "Sur Geográfico",
+      id: "surGeografico",
+      url: "http://localhost:4000/api/v1/location/Sur",
+      color: "#ff0000",
+    },
+    {
+      name: "Nodo Oriente Cali",
+      id: "NodoOrienteCaliCapa",
+      url: "http://localhost:4000/api/v1/location/nodoOrienteCali",
+      color: "#81c640",
+      zIndex: 3,
+    },
+    {
+      name: "Nodo Villa Rica",
+      id: "nodovilla",
+      url: "http://localhost:4000/api/v1/location/nodovilla",
+      color: "#ffea2b",
+      zIndex: 3,
+    },
+    {
+      name: "Nodo Suárez",
+      id: "NodoSuarez",
+      url: "http://localhost:4000/api/v1/location/nodoSuarez",
+      color: "#ffaf25",
+      zIndex: 1104,
+    },
+    {
+      name: "Bajo Cauca",
+      id: "bajoCauca",
+      url: "http://localhost:4000/api/v1/location/bajo%20cauca",
+      color: "#ffff03",
+      zIndex: 1105,
+    },
+    {
+      name: "Río San Jorge",
+      id: "rioSanJorge",
+      url: "http://localhost:4000/api/v1/location/Rio san Jorge",
+      color: "#ff0000",
+    },
+    {
+      name: "Río Cesar",
+      id: "rioCesar",
+      url: "http://localhost:4000/api/v1/location/Rio cesar",
+      color: "#ff0000",
+    },
+    {
+      name: "Río Nechí",
+      id: "rioNechi",
+      url: "http://localhost:4000/api/v1/location/Rio Nechi",
+      color: "#ff0000",
+    },
+    {
+      name: "Río Anchicayá",
+      id: "rioAnchicaya",
+      url: "http://localhost:4000/api/v1/location/Rio Anchicaya",
+      color: "#ff0000",
+    },
+    {
+      name: "Río San Juan",
+      id: "rioSanJuan",
+      url: "http://localhost:4000/api/v1/location/Rio San juan",
+      color: "#ff0000",
+    },
+    {
+      name: "Río Atrato",
+      id: "rioAtrato",
+      url: "http://localhost:4000/api/v1/location/Rio atrato",
+      color: "#ff0000",
+    },
+    {
+      name: "Nevados",
+      id: "nevados",
+      url: "http://localhost:4000/api/v1/location/Nevados",
+      color: "#ff0000",
+    },
+  ];
+  
+  export default mapLayers;

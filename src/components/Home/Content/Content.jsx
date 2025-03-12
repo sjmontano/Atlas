@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { useModal } from "../../../context/ContextModal";
 import Modal from "../Modal/Modal";
 import LocationMarker from "../MapMarker/LocationMarker";
@@ -9,23 +10,25 @@ import lugares from "../../../data/lugares";
 const Content = () => {
   const { modalData, openModal, closeModal } = useModal();
 
-  return (
-    <div className="content">     
-      {lugares.map(({ id, title, image, texto }) => (
-        <LocationMarker
-          key={id}
-          id={id}
-          title={title}
-          image={image}
-          texto={texto}
-          openModal={openModal}
-        />
-      ))}
-      <Modal isOpen={modalData.isOpen} onClose={closeModal} {...modalData} />
+  const markers = useMemo(() =>
+    lugares.map(({ id, title, image, texto }) => (
+      <LocationMarker
+        key={id}
+        id={id}
+        title={title}
+        image={image}
+        texto={texto}
+        openModal={openModal}
+      />
+    )), [openModal]);
 
+  return (
+    <div className="content">
+      {markers}
+      <Modal isOpen={modalData.isOpen} onClose={closeModal} {...modalData} />
       <ContentInfo
         title="Atlas"
-        subtitle="Un rio Cauca, muchos mundos"
+        subtitle="Un río Cauca, muchos mundos"
         description="¡Abrochen sus cinturones que vamos a transicionar!"
         image={img}
         logo={logo}

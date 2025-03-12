@@ -1,12 +1,9 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import useImageOpacity from "@hooks/useImageOpacity";
+import { calculateMapCenter } from "@utils/mapUtils";
 
 const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
-  const opacityRef = useRef({
-    base: 1,
-    low: 1,
-    medium: 0,
-    high: 0,
-  });
+  const { opacityRef, calculateOverlappingOpacity } = useImageOpacity(minzoom, maxzoom);
 
   useEffect(() => {
     if (!map) return;
@@ -19,20 +16,6 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
       { id: "mediumQualityImage", url: imageUrls.medium, minzoom: minzoom - 0.2, maxzoom: minzoom + 1.5 },
       { id: "highQualityImage", url: imageUrls.high, minzoom: maxzoom - 2, maxzoom: 22 },
     ];
-
-    const calculateOverlappingOpacity = (zoom) => {
-      const smoothStep = (start, end, value) => {
-        const x = Math.max(0, Math.min(1, (value - start) / (end - start)));
-        return Math.pow(x, 2) * (3 - 2 * x);
-      };
-
-      return {
-        base: 1,
-        low: zoom <= minzoom ? 1 : 1 - smoothStep(minzoom, minzoom + 0.5, zoom),
-        medium: smoothStep(minzoom, minzoom + 0.5, zoom) * (zoom <= maxzoom - 1.5 ? 1 : 0),
-        high: smoothStep(maxzoom - 2, maxzoom - 1.5, zoom),
-      };
-    };
 
     const addLayers = async () => {
       console.log("➕ Agregando capas al mapa...");
@@ -107,10 +90,7 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
     const centerOnZoomOut = (currentZoom) => {
       if (currentZoom <= minzoom + 0.3) {
         map.flyTo({
-          center: [
-            imageBounds[0][0] + (imageBounds[1][0] - imageBounds[0][0]) / 2,
-            imageBounds[0][1] + (imageBounds[1][1] - imageBounds[0][1]) / 2,
-          ],
+          center: calculateMapCenter(imageBounds),
           zoom: currentZoom,
           essential: true,
           speed: 0.3, // Suavidad adicional
