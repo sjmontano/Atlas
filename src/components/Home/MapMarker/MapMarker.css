@@ -6,6 +6,7 @@
   border: none;
   opacity: 0;
   animation: fadeIn 2s ease-in-out infinite;
+  padding: 0;
 }
 
 @keyframes fadeIn {
@@ -17,19 +18,9 @@
   }
 }
 
-.location-title {
-  font-family: 'Noto Sans', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14.54px;
-  letter-spacing: 0%;
-  text-align: center;
-  display: none;
-}
 
 .map-marker {
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
 }
 
 .map-marker:hover {
@@ -38,94 +29,105 @@
 
 #nevadoHuila {
   position: absolute;
-  top: 41vh;
-  left: 5.2%;
+  top: 39vh;
+  left: 6%;
   animation-delay: 0s;
 }
 
-#nevadoHuilaTitle {
-  position: absolute;
-  top: 35vh;
-  left: 4.5%;
-}
 
 #paramoDeMoras {
   position: absolute;
-  top: 40.5vh;
-  left: 16.5%;
+  top: 43.5vh;
+  left: 16.2%;
   animation-delay: 2s;
 }
 
-#paramoDeMorasTitle {
-  position: absolute;
-  top: 34.5vh;
-  left: 15.5%;
-}
 
 #paramoHermosas {
   position: absolute;
-  top: 61.5vh;
+  top: 65.5vh;
   left: 19.5%;
   animation-delay: 4s;
 }
 
-#paramoHermosasTitle {
-  position: absolute;
-  top: 58.5vh;
-  left: 14.5%;
-}
-
 #cerroMunchique {
   position: absolute;
-  top: 42.5vh;
-  left: 26.5%;
+  top: 49vh;
+  left: 28.5%;
   animation-delay: 6s;
 }
 
-#cerroMunchiqueTitle {
-  position: absolute;
-  top: 34.5vh;
-  left: 25.5%;
-}
 
 #cerroTeta {
   position: absolute;
-  top: 45vh;
-  left: 35.8%;
+  top: 48vh;
+  left: 36%;
   animation-delay: 8s;
 }
 
-#cerroTetaTitle {
-  position: absolute;
-  top: 42vh;
-  left: 33.3%;
-}
 
 #villarica {
   position: absolute;
-  top: 51vh;
-  left: 37.2%;
+  top: 55.2vh;
+  left: 37.8%;
   animation-delay: 10s;
-}
-
-#villaricaTitle {
-  position: absolute;
-  top: 49.2vh;
-  left: 34.8%;
 }
 
 #salvajina {
   position: absolute;
-  top: 44vh;
-  left: 40.2%;
+  top: 47.1vh;
+  left: 40.6%;
   animation-delay: 12s;
 }
 
-#salvajinaTitle {
+
+#orienteDeCali {
   position: absolute;
-  top: 39vh;
-  left: 39.2%;
+  top: 62vh;
+  left: 41.5%;
+  animation-delay: 18s;
 }
+
+
+#undefined1 {
+  position: absolute;
+  top: 60vh;
+  left: 43%;
+  animation-delay: 18s;
+}
+
+
+#undefined2 {
+  position: absolute;
+  top: 50vh;
+  left: 43.5%;
+  animation-delay: 18s;
+}
+
+
+#undefined3 {
+  position: absolute;
+  top: 42.8vh;
+  left: 49%;
+  animation-delay: 18s;
+}
+
+
+#undefined4 {
+  position: absolute;
+  top: 90vh;
+  left: 52.5%;
+  animation-delay: 18s;
+}
+
+
+#lagunaSonso {
+  position: absolute;
+  top: 83vh;
+  left: 47.8%;
+  animation-delay: 20s;
+}
+
 
 #suarez {
   position: absolute;
@@ -134,37 +136,6 @@
   animation-delay: 16s;
 }
 
-#suarezTitle {
-  position: absolute;
-  top: 44vh;
-  left: 44.5%;
-}
-
-#orienteDeCali {
-  position: absolute;
-  top: 57vh;
-  left: 43%;
-  animation-delay: 18s;
-}
-
-#orienteDeCaliTitle {
-  position: absolute;
-  top: 54vh;
-  left: 36%;
-}
-
-#lagunaSonso {
-  position: absolute;
-  top: 76.5vh;
-  left: 47.5%;
-  animation-delay: 20s;
-}
-
-#lagunaSonsoTitle {
-  position: absolute;
-  top: 74.7vh;
-  left: 41.5%;
-}
 
 #rioCauca {
   position: absolute;
@@ -173,11 +144,6 @@
   animation-delay: 22s;
 }
 
-#rioCaucaTitle {
-  position: absolute;
-  top: 83vh;
-  left: 55.2%;
-}
 
 #naturalMunchique {
   position: absolute;
@@ -186,49 +152,26 @@
   animation-delay: 24s;
 }
 
-#naturalMunchiqueTitle {
-  position: absolute;
-  top: 33.5vh;
-  left: 53.2%;
-}
-
 #losFarallones {
   position: absolute;
-  top: 46vh;
+  top: 42vh;
   left: 52.3%;
   animation-delay: 26s;
 }
 
-#losFarallonesTitle {
-  position: absolute;
-  top: 41.5vh;
-  left: 51.3%;
-}
 
 #lagoCalima {
   position: absolute;
-  top: 69.5vh;
+  top: 76.5vh;
   left: 64.3%;
   animation-delay: 28s;
 }
 
-#lagoCalimaTitle {
-  position: absolute;
-  top: 65vh;
-  left: 63.3%;
-}
-
 #buenaventura {
   position: absolute;
-  top: 62vh;
-  left: 93.3%;
+  top: 68vh;
+  left: 97%;
   animation-delay: 30s;
-}
-
-#buenaventuraTitle {
-  position: absolute;
-  top: 60vh;
-  left: 88.3%;
 }
 
 #purace {
@@ -244,4 +187,22 @@
 
 #pacifico {
   transform: translate(1200%, 100%); /* Centra el botón en el punto dado */
+}
+
+.tooltip-marker {
+  display: none; /* Inicialmente el texto está oculto */
+  position: absolute;
+  top: -100%; /* Muestra el texto justo debajo del icono */
+  left: 50%;
+  transform: translateX(-50%); /* Centra el texto */
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.location-marker-button:hover .tooltip-marker {
+  display: block; /* Muestra el texto cuando se pasa el mouse sobre el icono */
 }

@@ -3,23 +3,36 @@ import MapMarker from "./MapMarker";
 import "./MapMarker.css";
 
 const LocationMarker = ({ id, title, image, texto, openModal }) => {
+
+
+  const mouseEnter = ()=>{
+      var tool = document.getElementById("tooltip-marker");
+      tool.style.display = "block";
+      
+  }
+  const mouseLeave = ()=>{
+    var tool = document.getElementById("tooltip-marker");
+    tool.style.display = "none";
+    
+}
+
   return (
     <div key={id} className="location-marker">
-      <h4 id={`${id}Title`} className="location-title">{title.replace(" ", "\n")}</h4>
       <button
         id={id}
         className="location-marker-button"
         onClick={() => openModal(title, texto, image, id)}
-        onMouseEnter={() =>
-          (document.getElementById(`${id}Title`).style.display = "block")
+        onMouseEnter={() =>mouseEnter
         }
-        onMouseLeave={() =>
-          (document.getElementById(`${id}Title`).style.display = "none")
+        onMouseLeave={() =>mouseLeave
         }
       >
         <MapMarker size="15px" color="#167a4f" />
+        <span className="tooltip-marker" >{title.replace(" ", "\n")}</span>
       </button>
+      
     </div>
+    
   );
 };
 

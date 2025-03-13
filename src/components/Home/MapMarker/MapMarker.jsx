@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
-import { FaCircleDot } from "react-icons/fa6";
+import { TiLocation   } from "react-icons/ti";
 import "./MapMarker.css";
 
 const MapMarker = ({ color, size }) => {
   return (
     <div>
-      <FaCircleDot color={color} size={size} className="map-marker" />
+      <TiLocation   color="#7B3327" size="32px" className="map-marker" />
     </div>
   );
 };

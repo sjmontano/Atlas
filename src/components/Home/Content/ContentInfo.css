@@ -2,16 +2,18 @@
 .content-info__container {
   width: 100vw;
   height: 100vh; 
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   justify-content: start;
-  text-align: center;
-  overflow: hidden;
   padding-top: 0px; /* Añadir espacio superior para bajar el conjunto */
+}
+/* Ajustar imagen de fondo*/
+.content-info__container .img-fondo{
+  width: 100%;
+  height: 100vh;
+  z-index: -5;
+  position: absolute;
 }
 
 /* Estilos para el header */
@@ -34,16 +36,49 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  margin-top: 50px; /* Bajar más el conjunto de título, subtítulo y texto */
+  margin-top: 3%; /* Bajar más el conjunto de título, subtítulo y texto */
+  gap: 10px; 
 }
 
+
+
+.content-info__content .mapa-image-mini{
+    position: fixed;
+    top: 10%;
+    right: 15%;
+    transform: translateY(-50%);
+    width: 120px;
+    height: 160px; /* Ajustar la altura para que sea igual al ancho */
+    border-radius: 50%; /* Cambiar a 50% para que sea perfectamente redonda */
+    border: 2px solid white;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añadir box shadow */
+}
+/* Ajuste de la imagen */
+.mapa-image-mini img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Efecto de zoom al pasar el mouse */
+.mapa-image-mini:hover {
+  transform: translateX(0%) translateY(-50%) scale(1.4);
+}
+
+.content-titles{
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
 /* Estilos para el título principal */
 .content-titles .home-title {
-  font-size: clamp(3rem, 8vw, 8.75rem); /* Ajuste con clamp para 140px */
+  font-size: clamp(3rem, 8vw, 4.75rem); /* Ajuste con clamp para 140px */
   font-weight: 900;
+  transform: scaleY(1.2);
+  line-height: 99%;
   text-align: center;
-  color: var(--sea-green);
+  color: var(--steel-blue);
   margin: 0;
 }
 
@@ -51,7 +86,9 @@
 .content-titles .home-subtitle {
   font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ajuste con clamp para 40px */
   font-weight: 400; /* No en bold */
-  color: var(--sea-green);
+  transform: scaleY(1.2);
+  letter-spacing: 0%;
+  color: var(--steel-blue);
   margin: 0;
 }
 
@@ -63,7 +100,7 @@
   line-height: 29.09px;
   letter-spacing: 0%;
   text-align: center;
-  color: var(--sea-green);
+  color: var(--steel-blue);
   margin: 0;
 }
 
@@ -127,7 +164,6 @@
   }
 
   .content-titles .home-title {
-    font-size: 3rem;
   }
 
   .content-titles .home-subtitle {
