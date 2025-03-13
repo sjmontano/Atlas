@@ -18,6 +18,7 @@ const Chapter1 = () => {
       const generatedMaps = await getChapterMaps([
         { name: "intro" }, 
         { name: "encuadres" }, 
+        { name: "otro" }, 
       ]);
       setMaps(generatedMaps);
     };

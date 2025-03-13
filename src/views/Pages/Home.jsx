@@ -12,7 +12,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <SidebarMain />
       <Content />
     </div>
   );

@@ -1,9 +1,14 @@
 import { useEffect } from "react";
 import useImageOpacity from "@hooks/useImageOpacity";
 import { calculateMapCenter } from "@utils/mapUtils";
+import MapLayers from "./MapLayers";
+import mapLayers from "../../data/mapLayers";
 
 const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
-  const { opacityRef, calculateOverlappingOpacity } = useImageOpacity(minzoom, maxzoom);
+  const { opacityRef, calculateOverlappingOpacity } = useImageOpacity(
+    minzoom,
+    maxzoom
+  );
 
   useEffect(() => {
     if (!map) return;
@@ -12,9 +17,24 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
 
     const imageSources = [
       { id: "baseImage", url: imageUrls.base, minzoom: 0, maxzoom: 22 },
-      { id: "lowQualityImage", url: imageUrls.low, minzoom: 0, maxzoom: minzoom },
-      { id: "mediumQualityImage", url: imageUrls.medium, minzoom: minzoom - 0.2, maxzoom: minzoom + 1.5 },
-      { id: "highQualityImage", url: imageUrls.high, minzoom: maxzoom - 2, maxzoom: 22 },
+      {
+        id: "lowQualityImage",
+        url: imageUrls.low,
+        minzoom: 0,
+        maxzoom: minzoom,
+      },
+      {
+        id: "mediumQualityImage",
+        url: imageUrls.medium,
+        minzoom: minzoom - 0.2,
+        maxzoom: minzoom + 1.5,
+      },
+      {
+        id: "highQualityImage",
+        url: imageUrls.high,
+        minzoom: maxzoom - 2,
+        maxzoom: 22,
+      },
     ];
 
     const addLayers = async () => {
@@ -58,7 +78,9 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
         }
       }
 
-      console.log(`✅ Todas las capas agregadas correctamente: ${addedLayers.join(", ")}`);
+      console.log(
+        `✅ Todas las capas agregadas correctamente: ${addedLayers.join(", ")}`
+      );
 
       setTimeout(() => {
         updateOpacity(map.getZoom());
@@ -71,10 +93,23 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
       const newOpacity = calculateOverlappingOpacity(zoom);
       opacityRef.current = newOpacity;
 
-      ["baseImage-layer", "lowQualityImage-layer", "mediumQualityImage-layer", "highQualityImage-layer"].forEach((layer) => {
+      [
+        "baseImage-layer",
+        "lowQualityImage-layer",
+        "mediumQualityImage-layer",
+        "highQualityImage-layer",
+      ].forEach((layer) => {
         if (map.getLayer(layer)) {
-          map.setPaintProperty(layer, "raster-opacity", newOpacity[layer.split("-")[0]]);
-          console.log(`🛠️ Opacidad actualizada en ${layer}: ${newOpacity[layer.split("-")[0]]}`);
+          map.setPaintProperty(
+            layer,
+            "raster-opacity",
+            newOpacity[layer.split("-")[0]]
+          );
+          console.log(
+            `🛠️ Opacidad actualizada en ${layer}: ${
+              newOpacity[layer.split("-")[0]]
+            }`
+          );
         } else {
           console.warn(`⚠️ No se encontró la capa ${layer} en el mapa.`);
         }
@@ -117,6 +152,8 @@ const BaseMapImage = ({ map, imageUrls, imageBounds, minzoom, maxzoom }) => {
         });
       }, 1000);
     });
+
+
 
     return () => {
       map.off("zoom", onZoom);

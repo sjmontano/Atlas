@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap');
+:root {
+    --color-terracota: #5F2F21;
+    --color-verde-vivo: #298E39;
+    --color-verde-claro: #96C124;
+    --color-oro-terrenal: #AA7513;
+    --color-azul-profundo: #3A7FA5;
+    --color-arena: #EEECC9;
+    --color-amarillo-brillante: #FCC414;
+}
+
+
+
+/*Estilos globales*/
+
+/*Box Model Config*/
+html, body {
+    margin: 0;
+    padding: 0;
+    font-size: 62.5%;
+    box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
+    
+}
+
+
+h1{
+    font-size: 140px;
+}
+
+h3{
+  background-color: #0F6E50;
+    font-size: 5rem;
+}
+
+p{
+  margin: 0;
+  color: #0F6E50;
+    font-size: 24px;
+  font-style: italic;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+
+
+/* Home */
+.home{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.home img{
+  width: 100%;
+  height: 89.9vh;
+  z-index: 0;
+}
+
+.header {
+  position: absolute;
+  top: 0px;
+  height: 10vh;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:#f4f0e7;
+
+}
+
+.header .logo{
+  height: 6.9rem;
+  width: 20rem;
+  margin-left: 1.9rem;
+  margin-top: 10px;
+  margin-bottom: px;
+}
+
+
+.content {
+    position: absolute;
+    width: 100%;
+    height: 90vh;
+    padding: 0;
+}
+
+.content-info{
+  position: absolute;
+  top: -10px;
+  left: 33.2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+
+.content-titles h3{
+    margin: 0; 
+    background-size: cover;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 4rem;
+    
+
+}
+
+.content-titles{
+    text-align: center;
+}
+
+
+.titulo {
+  margin-top: 0;
+    margin-bottom: 0;
+    color: #0F6E50;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: 900;
+  
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  
+    opacity: 1;
+    font-weight: 900px;
+}
+
+@media (min-width: 768px) {
+  .titulo{
+    font-size: 140px;
+  }
+
+}
+
+
+
+
+
+.atlas-button-explorar{
+    outline: none;
+    padding: 1rem 2rem; 
+    border: 3px solid; 
+    border-image-source: linear-gradient(90deg, #2AE3FF 0%, #0CF814 100%); 
+    border-image-slice: 1; /* Asegura que el gradiente cubra todo el borde */
+    border-radius: 4px; 
+    background: none; 
+    color: black; 
+    background-color: #00000042; 
+    font-family: 'Noto Sans', sans-serif; /* Familia tipográfica */
+    font-size: 32px; /* Tamaño del texto */
+    font-weight: 500; /* Peso de la fuente */
+    line-height: 38.78px; /* Altura de línea */
+    text-align: center; /* Alineación del texto */
+    text-underline-position: from-font; /* Alineación del subrayado del texto */
+    text-decoration-skip-ink: none; /* Sin omisión de tinta en el subrayado */
+    text-decoration: none;
+    cursor: pointer; /* Cursor como puntero al pasar el mouse */
+    color: white;
+    /* Alineación del texto dentro del botón */
+}
+
+.btnInfoTutorial{
+  margin-left: 5%;
+}
+
+@media (min-width: 768px) {
+  .atlas-button-explorar{
+    width: auto;
+  }
+}
+
+
+.atlas-button-explorar:hover {
+    animation: borderMove 2s linear infinite; /* Animación del borde al hacer hover */
+    border-color: transparent; /* El borde es transparente al hacer hover para dejar ver el gradiente */
+    background-color: linear-gradient(90deg, #2AE3FF 0%, #0CF814 100%); 
+    
+
+}
+
+
+
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .sidebar-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: red;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .sidebar-toggle:hover {
+    background-color: #2980b9;
+  }
+  
+  
+  .content-shifted {
+    margin-right: 250px; /* El mismo valor que el ancho del sidebar */
+  }
+
+  .content-buttons{
+    margin-top: 35%;
+    display: flex;
+    align-items: center;
+  }
+
+.link{
+  outline: none;
+  box-shadow: none;
+}

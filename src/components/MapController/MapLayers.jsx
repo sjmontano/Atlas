@@ -23,7 +23,7 @@ const MapLayers = ({ map, layers }) => {
             return;
           }
 
-          map.addSource(idCapa, {
+          map.addSource(nombre, {
             type: "geojson",
             data: data.geoCollection,
           });

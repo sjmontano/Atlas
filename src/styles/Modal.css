@@ -1,0 +1,149 @@
+.modal {
+
+    width: 90%;
+    height: 80%;
+    font-family: 'Noto Sans';
+    padding: 0;
+    background-size: cover;
+    /* Hace que la imagen cubra toda el área del modal */
+
+    background-color: aliceblue;
+    background-repeat: no-repeat;
+    /* Centrado en pantalla */
+    position: fixed;
+    /* Fija el modal en la pantalla */
+    top: 50%;
+    /* Posiciona el modal verticalmente en el centro */
+    left: 50%;
+    /* Posiciona el modal horizontalmente en el centro */
+    transform: translate(-50%, -50%);
+    /* Ajusta la posición para centrar correctamente */
+    z-index: 1000;
+    /* Asegura que el modal se muestre encima de otros elementos */
+
+    /* Agregar scroll cuando se desborde */
+    overflow-y: auto;
+    /* Agrega scroll vertical si el contenido es más alto que el contenedor */
+    max-height: 100vh;
+    /* Asegura que el modal no sobrepase la altura de la ventana */
+}
+
+.header-modal {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    background-color: #d9dfdf;
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-items: center;
+}
+
+.logo__modal {
+    width: 25%;
+    height: 80%;
+    margin-left: 2%;
+
+}
+
+.logo__modal img {
+    width: 60% !important;
+    height: 7vh !important;
+}
+
+#botonSalir{
+    position: absolute;
+    left: 95%;
+    top: 5%;
+    background-color: transparent;
+    border: 0;
+}
+
+#btnDerecha{
+    position: absolute;
+    left: 97%;
+    top: 50%;
+    background-color: transparent;
+    border: 0;
+
+}
+
+#btnIzquierda{
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    background-color: transparent;
+    border: 0;
+}
+
+
+
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    /* Asegura que la imagen cubra todo el div */
+    background-repeat: no-repeat;
+    /* Evita que la imagen se repita */
+    background-position: center;
+    /* Centra la imagen dentro del div */
+    display: flex;
+}
+
+.modal-content h1 {
+
+    position: absolute;
+    width: 559px;
+    height: 27px;
+    top: 18%;
+    left: 8%;
+    gap: 0px;
+    opacity: 0px;
+
+
+
+    color: #767575;
+    font-family: Noto Sans;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+
+}
+
+.linea{
+    
+    position: absolute;
+    width: 45%;
+    height: 0;
+    top: 24%;
+    border: 1px solid #0F6E50
+}
+
+.modal-content span {
+
+    position: absolute;
+    width: 559px;
+    height: 195px;
+    top: 25%;
+    left: 8%;
+    gap: 0px;
+    opacity: 0px;
+
+
+    color: #767575;
+
+    font-family: Noto Sans;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0.5px;
+    text-align: left;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+
+}
