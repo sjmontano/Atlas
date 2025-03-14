@@ -11,12 +11,6 @@ const geoMapping = {
     medium: "/assets/img/maps/frames/frames-map-medium.webp",
     high: "/assets/img/maps/frames/frames-map-high.webp",
   },
-  otro: {
-    base: "/assets/img/maps/frames/frames-map-base.webp",
-    low: "/assets/img/maps/frames/frames-map-low.webp",
-    medium: "/assets/img/maps/frames/frames-map-medium.webp",
-    high: "/assets/img/maps/frames/frames-map-high.webp",
-  },
 };
 
 export default geoMapping;
