@@ -1,0 +1,313 @@
+/* ===================================================
+   1. ESTRUCTURA DEL SIDEBAR INFERIOR
+=================================================== */
+
+/* 
+   Contenedor principal del sidebar inferior.
+   - Fijo en la parte inferior de la pantalla.
+   - Se extiende a lo largo de toda la pantalla.
+   - Contiene los elementos de navegación de capítulos.
+*/
+.sidebar-bottom {
+    position: fixed; /* Permanece fijo en la parte inferior */
+    bottom: 0%; /* Se sitúa en la parte inferior */
+    left: 30%;
+    width: 40%; /* Ocupa todo el ancho de la pantalla */
+    display: flex;
+    justify-content: center; /* Centra los ítems horizontalmente */
+    align-items: flex-end; /* Alinea los ítems verticalmente al final (parte inferior) */
+    gap: 10px; /* Espaciado entre los capítulos */
+    z-index: 1; /* Asegura que esté por encima de otros elementos */
+}
+
+/* ===================================================
+   2. ESTILOS DE LOS ÍTEMS DEL SIDEBAR
+=================================================== */
+
+/* 
+   Ítems de navegación dentro del sidebar.
+   - Son los bloques individuales que representan cada capítulo.
+   - Incluyen el número romano, icono y contenido del capítulo.
+*/
+.sidebar-bottom-item {
+    position: relative; /* Permite posicionar elementos internos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer; /* Permite interacción con clics */
+    width: 150px; /* Ancho base del ítem */
+    height: 120px;
+
+    /*background: linear-gradient(
+        to top,
+        rgba(var(--cyan-rgb), 0.1),
+        rgba(var(--screamin-green-rgb), 0.1),
+        rgba(var(--screamin-green-rgb), 0)
+    );*/
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transiciones suaves al hacer hover */
+    overflow: hidden; /* Evita que los elementos internos se desborden */
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Altura para ítems con imagen */
+.sidebar-bottom-item.with-image {
+    height: 20px; /* Ajusta según sea necesario */
+}
+
+/* Altura para ítems sin imagen */
+.sidebar-bottom-item.without-image {
+    height: 20px; /* Ajusta según sea necesario */
+}
+
+/* 
+   Efecto de expansión al pasar el mouse sobre los ítems.
+   - El bloque crece para revelar más información.
+   - El fondo cambia a un degradado más intenso.
+   - El crecimiento se produce hacia arriba para mantener la base fija.
+*/
+.sidebar-bottom-item:hover  {
+   /*  
+   background: linear-gradient(
+      to top,
+      rgba(var(--screamin-green-rgb), 0.5) 33.33%,
+      rgba(var(--cyan-rgb), 0.25) 66.66%,
+      rgba(var(--cyan-rgb), 0) 100%
+    );*/
+    width: 300px; /* Aumenta el tamaño horizontal */
+    height: 300px;
+    transform-origin: bottom; /* El crecimiento se origina desde la parte inferior */
+}
+
+/* ===================================================
+   3. NÚMERO ROMANO E ÍCONO
+=================================================== */
+
+/* 
+   Contenedor del número romano y el icono de navegación.
+   - Se sitúa en la parte superior del ítem.
+   - Ambos elementos están siempre visibles hasta que se active el hover.
+*/
+.sidebar-bottom-overlay {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* 
+   Número romano del capítulo.
+   - Se mantiene visible hasta que el usuario interactúe con el ítem.
+*/
+.sidebar-bottom-number {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* 
+   Icono de flecha indicando navegación.
+   - Se mantiene visible por defecto.
+*/
+.sidebar-bottom-icon {
+    font-size: 24px;
+}
+
+/* 
+   Efecto hover sobre el overlay:
+   - El número romano y el icono desaparecen al hacer hover.
+   - Se ocultan para mostrar la imagen SVG y el contenido del capítulo.
+*/
+.sidebar-bottom-overlay:hover {
+    opacity: 0;
+}
+
+/* ===================================================
+   4. IMAGEN SVG Y TEXTO (OCULTOS POR DEFECTO)
+=================================================== */
+
+/* 
+   Imagen SVG representando la silueta del capítulo.
+   - Oculta por defecto.
+   - Aparece solo cuando el usuario pasa el mouse sobre el ítem.
+   - Se posiciona en el centro del bloque expandido.
+*/
+.sidebar-bottom-item .fondoItem {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra la imagen */
+    max-width: 100%; /* Evita que la imagen sobrepase el bloque */
+    max-height: 100%; /* Mantiene proporciones */
+    width: 100%;
+    height: 100%;
+    opacity: 1; /* Oculta la imagen inicialmente */
+    transition: opacity 0.5s ease-in-out; /* Transición suave de aparición */
+    shape-rendering: geometricPrecision;
+    image-rendering: optimizeQuality;
+}
+
+/* 
+   Texto del capítulo.
+   - Oculto por defecto.
+   - Aparece cuando el usuario interactúa con el bloque.
+*/
+.sidebar-bottom-text {
+   margin-bottom: 0;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.5s ease-in-out;
+    white-space: pre-line; /* Evita saltos de línea */
+    overflow: hidden; /* Evita desbordamiento */
+      text-overflow: ellipsis; /* Agrega puntos suspensivos si el texto es demasiado largo */
+}
+
+
+/* ===================================================
+   5. EFECTOS HOVER PARA REVELAR CONTENIDO
+=================================================== */
+
+/* 
+   Al hacer hover en el ítem:
+   - La imagen SVG se vuelve visible.
+*/
+/* Oculta overlay al hacer hover en el ITEM (no en el overlay) */
+.sidebar-bottom-item:hover .sidebar-bottom-overlay {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* 
+   Al hacer hover en el ítem:
+   - El texto del capítulo se muestra.
+*/
+/* Revela contenido con timing diferente */
+.sidebar-bottom-item:hover .fondoItem,
+.sidebar-bottom-item:hover .sidebar-bottom-text {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out 0.1s; /* Retraso para efecto escalonado */
+}
+
+/* Movimiento flotante para la imagen SVG */
+@keyframes float {
+  0% { transform: translate(-50%, -50%) translateY(0px); }  /* Posición inicial */
+  50% { transform: translate(-50%, -50%) translateY(10px); }  /* Flotación hacia arriba */
+  100% { transform: translate(-50%, -50%) translateY(0px); }  /* Regreso a la posición inicial */
+}
+
+.sidebar-bottom-item:hover .fondoItem {
+  animation: float 3s ease-in-out infinite;  /* Animación de flotación */
+}
+
+/* ===================================================
+  6. EFECTOS BLINK ESCALONADOS
+=================================================== */
+
+/* Onda luminosa ascendiendo y desapareciendo completamente */
+.sidebar-bottom-item::before {
+  content: '';
+  position: absolute;
+  bottom: -120%; /* Inicia fuera de la vista */
+  left: 0;
+  width: 100%;
+  height: 80%; /* Se extiende más para un efecto gradual */
+  
+  opacity: 0; /* Inicia invisible */
+  /*animation: light-wave 6s ease-in-out infinite;*/
+  pointer-events: none; /* Evita interferencias en el hover */
+
+}
+
+@keyframes light-wave {
+  0% { bottom: 0; opacity: 0; }
+  25% { bottom: 10%; opacity: 1; } /* Máxima visibilidad en el centro */
+  50% { bottom: 15%; opacity: 0; } /* Se desvanece suavemente */
+  75% { bottom: 20%; opacity: 0; } /* Desaparece completamente */
+  100% { opacity: 0; }
+}
+
+/* Evitar que la onda afecte cuando el usuario hace hover */
+.sidebar-bottom-item:hover::before {
+  opacity: 0 !important; /* Oculta la onda luminosa durante el hover */
+}
+
+.sidebar-bottom,
+.sidebar-bottom * {
+  user-select: none; /* Bloquea la selección de texto */
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+}
+
+
+.imagenHover{
+   width: 100%;
+   height: 100px;
+   z-index: 3;
+   margin-bottom: 30px;
+}
+
+/* ===================================================
+   7. ESTADO SELECCIONADO DEL CAPÍTULO
+=================================================== */
+
+/* 
+   Estilos para el capítulo actualmente seleccionado.
+   - El capítulo seleccionado se muestra en gris para indicar que está activo.
+   - Se deshabilitan los efectos de hover para el capítulo activo.
+*/
+.sidebar-bottom-item.selected {
+    
+    filter: saturate(0.7) hue-rotate(340deg);
+    cursor: default; /* Cambia el cursor para indicar que no es clickeable */
+}
+
+/* El número romano se muestra en gris cuando está seleccionado */
+.sidebar-bottom-item.selected .sidebar-bottom-number {
+    color: white;
+}
+
+/* El ícono se muestra en gris cuando está seleccionado */
+.sidebar-bottom-item.selected .sidebar-bottom-icon {
+    color: white;
+}
+
+/* Deshabilitar efectos de hover para el capítulo seleccionado */
+.sidebar-bottom-item.selected:hover {
+    width: 150px; /* Mantiene el tamaño original */
+    height: 120px; /* Mantiene la altura original */
+    transform: none; /* No aplica transformaciones */
+}
+
+/* El overlay no desaparece en hover cuando está seleccionado */
+.sidebar-bottom-item.selected:hover .sidebar-bottom-overlay {
+    opacity: 1; /* Mantiene el overlay visible */
+}
+
+/* La imagen y texto no aparecen en hover cuando está seleccionado */
+.sidebar-bottom-item.selected:hover .fondoItem {
+    opacity: 1; /* Mantiene la imagen de fondo visible */
+}
+.sidebar-bottom-item.selected:hover .sidebar-bottom-text {
+    opacity: 0; /* Mantiene ocultos la imagen y texto */
+}
+
+/* Deshabilitar la animación de flotación para el capítulo seleccionado */
+.sidebar-bottom-item.selected:hover .fondoItem {
+    animation: none;
+}
+
+/* Deshabilitar la onda luminosa para el capítulo seleccionado */
+.sidebar-bottom-item.selected::before {
+    animation: none;
+    opacity: 0;
+}

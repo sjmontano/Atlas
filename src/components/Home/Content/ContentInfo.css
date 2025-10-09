@@ -1,0 +1,306 @@
+/* Contenedor principal */
+.content-info__container {
+  width: 100vw;
+  height: 100vh; 
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: start;
+  padding-top: 0px; /* Añadir espacio superior para bajar el conjunto */
+}
+/* Ajustar imagen de fondo*/
+.content-info__container .img-fondo{
+  width: 100%;
+  height: 100vh;
+  z-index: -5;
+  position: absolute;
+}
+
+/* Estilos para el header */
+.header-home {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+/* Estilos para el logo */
+.header-home-logo {
+  width: 200px;
+  height: auto;
+  transition: none;
+}
+
+/* Estilos para el contenido */
+.content-info__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%; /* Bajar más el conjunto de título, subtítulo y texto */
+  gap: 0px; 
+}
+
+
+
+.content-info__content .mapa-image-mini{
+    position: absolute;
+    top: 15%;
+    right: 2%;
+    transform: translateY(-50%); /* Iniciar en la posición deseada */
+    width: 160px;
+    height: 160px; /* Ajustar la altura para que sea igual al ancho */
+    border-radius: 50%; /* Cambiar a 50% para que sea perfectamente redonda */
+    border: 0px solid white;
+    overflow: hidden;
+    transition: transform 1s ease-in-out; /* Ajustar la duración de la transición */
+}
+
+/* Ajuste de la imagen */
+.mapa-image-mini img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Redondear la imagen */
+}
+
+/* Efecto de zoom al pasar el mouse */
+.mapa-image-mini:hover {
+  transform: translateX(-80%) translateY(25%) scale(1.8);
+  transition: transform ease-in-out 0.5s;
+  transition-delay: 0.5s;
+}
+
+@keyframes slowReturn {
+  0% {
+    transform: translateX(-80%) translateY(25%) scale(1.8);
+  }
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}
+
+.content-titles{
+  display: flex;
+  gap: 0px;
+  flex-direction: column;
+}
+/* Estilos para el título principal */
+.content-titles .home-title {
+  font-size: clamp(3rem, 8vw, 4.75rem); /* Ajuste con clamp para 140px */
+  font-weight: 900;
+  transform: scaleY(1.2);
+  line-height: 140%;
+  text-align: center;
+  color: var(--steel-blue);
+  margin: 0;
+}
+
+/* Estilos para el subtítulo */
+.content-titles .home-subtitle {
+  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ajuste con clamp para 40px */
+  font-weight: 400; /* No en bold */
+  line-height: 140%;
+  transform: scaleY(1.2);
+  letter-spacing: 0%;
+  color: var(--steel-blue);
+  margin: 0;
+}
+
+/* Estilos para la descripción */
+.content-info__content p {
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* Ajuste con clamp para 24px */
+  line-height: 29.09px;
+  letter-spacing: 0%;
+  text-align: center;
+  color: var(--steel-blue);
+  margin: 0;
+}
+
+
+
+.btn_1, .btn_2, .btn_credits {
+  display: flex;
+  position: absolute;
+  width: 6%; /* Ajusta según sea necesario */
+  height: 10%; /* Ajusta según sea necesario */
+  border-start-end-radius: 20px;
+  border-start-start-radius: 20px;
+  z-index: 1;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.5s ease-in-out; /* Suaviza la transición del fondo */
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.buttons  img{
+  position: absolute;
+}
+
+.btn_1 {
+  top: 88%;
+  left: 83%;
+}
+
+.btn_2 {
+  top: 85.5%;
+  left: 90%;
+  height: 13%;
+}
+.btn_credits {
+  top: 86.6%;
+  left: 77%;
+  height: 13%;
+}
+
+.btn_1:hover, .btn_2:hover, .btn_credits:hover {
+  animation: gradientMove 3s linear infinite; /* Aplica la animación */
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Estilos para el botón de explorar */
+.explore-button {
+  padding: 1rem 3rem; /* Espaciado interno */
+  border: 3px solid transparent; /* Borde transparente para la animación */
+  border-radius: 6px; /* Bordes redondeados */
+  background: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
+  color: white;
+  font-size: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  width: 198px;
+  height: 60px;
+  display: inline-block;
+  position: relative; /* Permite el uso de elementos pseudo */
+  transition: transform 0.3s ease-in-out; /* Suaviza el efecto hover */
+  overflow: hidden; /* Evita que la animación sobresalga */
+  margin-top: 120%;
+}
+
+.explore-button::before {
+  content: "";
+  position: absolute;
+  top: -3px; /* Ajuste para que cubra solo el borde */
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: inherit; /* Hereda el borde redondeado */
+  background: linear-gradient(90deg, var(--cyan), var(--screamin-green));
+  z-index: -1; /* Mantiene el borde detrás del botón */
+  background-clip: border-box; /* Aplica el gradiente solo al borde */
+  animation: borderMove 3s linear infinite; /* Animación continua */
+}
+
+.explore-button:hover {
+  transform: scale(1.05); /* Efecto sutil de escala */
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%; /* Punto inicial */
+  }
+  100% {
+    background-position: 100% 50%; /* Punto final */
+  }
+}
+
+
+/* Icono Tutorial */
+.btnInfoTutorial {
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+/* --- TOOLTIP --- */
+.homeTooltip-marker {
+  position: absolute;
+  bottom: 100%;              /* justo arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;        /* pequeño espacio opcional */
+  display: none;
+
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 5;
+
+  background: rgba(0, 0, 0, 0.75); /* fondo oscuro visible */
+  align-items: center;
+  justify-content: center;
+
+  /* Si quieres que el texto e imagen estén superpuestos */
+  position: absolute;
+}
+
+/* Imagen decorativa de fondo */
+.homeTooltip-marker img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  border: 2px solid rgba(0, 110, 150, 1);         /* 🟢 AÑADIR BORDE AQUÍ */
+  border-radius: 6px;              /* Opcional: redondear las esquinas */
+}
+
+/* Mostrar al hacer hover sobre el botón */
+.btn_1:hover .homeTooltip-marker {
+  display: flex;
+}
+.btn_2:hover .homeTooltip-marker {
+  display: flex; /* Mostrar tooltip al hacer hover */
+}
+.btn_credits:hover .homeTooltip-marker {
+  display: flex; /* Mostrar tooltip al hacer hover */
+}
+
+
+
+.homeTooltip-marker::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: rgba(0, 110, 150, 1) transparent transparent transparent;
+}
+
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .header-home-logo {
+    width: 70px;
+  }
+
+ 
+  .content-titles .home-subtitle {
+    font-size: 1.5rem;
+  }
+
+  .explore-button {
+    font-size: 1.2rem;
+    padding: 0.8rem 2rem;
+  }
+}

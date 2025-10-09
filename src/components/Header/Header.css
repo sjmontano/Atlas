@@ -1,0 +1,98 @@
+/* =================================
+   HEADER DEL ATLAS 
+==================================== */
+
+.header {
+  position: fixed;
+  top: 2%;
+  left: 0;
+  width: auto;
+  height: 100px;
+  z-index: 5;
+  display: flex;
+  align-items: start;
+  padding-left: 2vw;
+  color: white;
+
+  /* No hay fondo */
+}
+
+/* Agrupación de ícono y título */
+.header-left-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Línea decorativa eliminada */
+/* 
+.header-left-group::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  opacity: 0.2;
+  display: block;
+  transition: width 0.4s ease-in-out;
+}
+*/
+
+/* Ícono SVG de regreso */
+.back-icon-img {
+  margin-top: 1.5vh;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  transform: translateY(-2vh);
+  cursor: pointer;
+  transition: filter 0.3s ease-in-out;
+}
+.back-icon-imgFondo{
+  position: absolute;
+  margin-top: 0vh;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  left: 5%;
+
+}
+
+.header-back:hover .back-icon-img {
+  filter: brightness(1.5);
+}
+
+/* Título único dinámico */
+.header-title {
+  font-weight: 500;
+  font-size: 3.3vh;
+  transform: translateY(-2.5vh);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* ===========================
+   RESPONSIVE: móvil y tablets
+=========================== */
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+    padding-left: 1rem;
+  }
+
+  .back-icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-title {
+    font-size: 2.4vh;
+  }
+}

@@ -1,0 +1,292 @@
+/* Configuración principal del modal */
+.modal {
+  width: 80%;
+  height: 90vh;
+  padding: 0;
+  position: fixed;
+  top: 5vh;
+  left: 10%;
+  z-index: 13;
+  overflow: hidden;
+  max-height: 100vh;
+  background-color: aliceblue;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* Modal específico para perfil con color de fondo personalizado */
+.modal-perfil {
+  background-color: #f2eee7;
+}
+
+.modal-perfil .modal-content {
+  background-color: #f2eee7;
+}
+
+/* Contenedor principal del contenido del modal */
+.modal-content {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+}
+
+
+
+/* Estilos del título */
+.modal-title {
+  margin: 0;
+  position: absolute;
+  width: 50%;
+  height: 27px;
+  top: 4%;
+  left: 4%;
+  color: #0599B7;
+  font-size: 3vh;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  z-index: 1;
+}
+
+/* Línea decorativa debajo del título */
+
+/* Estilos del texto descriptivo */
+.modal-text {
+  position: absolute;
+  top: 18%;
+  width: 54%;
+  left: 4%;
+  color: #767575;
+  display: block;
+  font-size: 2.15vh; /* Ajustado para mejor legibilidad */
+  font-weight: 400;
+  line-height: 3.1vh;
+  text-align: left;
+  z-index: 1;
+
+}
+
+/* Botón de cierre del modal */
+#botonSalir {
+  position: absolute;
+  top: 30px;
+  right: 35px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  z-index: 15; /* Mayor z-index para estar sobre la imagen */
+}
+
+/* Botón para avanzar al siguiente modal 
+#btnDerecha {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+ Botón para retroceder al modal anterior 
+#btnIzquierda {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #0F6E50;
+  transform: translateY(-50%);
+  z-index: 2;
+}*/
+
+/* Modal.css */
+
+.modal-align-left {
+  left: 6% !important;
+  text-align: left !important;
+}
+
+.modal-align-right {
+  left: 42% !important;
+  text-align: right !important;
+}
+
+.linea-align-left {
+  left: 6% !important;
+  top: 10.5vh !important;
+}
+
+.linea-align-right {
+  left: 82% !important;
+  top: 10.5vh !important;
+}
+
+.modal-title {
+  top: 10%;
+}
+
+.linea {
+  top: 25%;
+}
+
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    height: auto;
+  }
+
+  .modal-title, 
+  .modal-text {
+    width: 90%;
+    left: 5%;
+  }
+
+  #btnDerecha {
+    right: 5px;
+  }
+
+  #btnIzquierda {
+    left: 5px;
+  }
+}
+
+.imagenModalGrande {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  z-index: 0;
+}
+
+.fondoGota{
+  position: absolute;
+  top:3%;
+  left:4%;
+}
+.gotaModal{
+  position: absolute;
+  top:3.2vh;
+  left:4.6%;
+}
+.linea{
+  position: absolute;
+  top: 13.5vh;
+  left: 4%;
+}
+
+/* Estilos para el carrusel */
+
+/* Botones de navegación */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none; /* Sin fondo */
+  border: none;
+  border-radius: 0; /* Sin border-radius ya que no hay fondo */
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease; /* Solo animación de escala */
+}
+
+.carousel-btn:hover {
+  transform: translateY(-50%) scale(1.1); /* Solo efecto de escala al hover */
+}
+
+.carousel-btn img {
+  width: 38px;
+  height: 38px;
+  /* Removido el filtro para mantener la apariencia original del ícono */
+}
+
+.carousel-btn-prev {
+  left: 2.5%;
+}
+
+.carousel-btn-next {
+  right: 2.5%;
+}
+
+/* Indicadores de puntos */
+.carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 15; /* Mayor z-index para estar sobre la imagen */
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(173, 216, 230, 0.6);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  appearance: none;
+}
+
+.carousel-dot:hover {
+  transform: scale(1.1);
+}
+
+.carousel-dot.active {
+  background: #0599B7 !important; /* Azul oscuro */
+}
+
+/* Ajustes responsive para dispositivos móviles */
+@media (max-width: 768px) {
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-btn img {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .carousel-btn-prev {
+    left: 10px;
+  }
+  
+  .carousel-btn-next {
+    right: 10px;
+  }
+  
+  .carousel-indicators {
+    bottom: 15px;
+  }
+  
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+  }
+}

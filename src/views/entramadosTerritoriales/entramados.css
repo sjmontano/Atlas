@@ -1,0 +1,278 @@
+/* Variables y estilos globales */
+:root {
+  --color-primario: #03091e;
+  --color-secundario: #ffffff;
+  --degradado-linea: linear-gradient(
+    90deg,
+    #46ff5e 0%,
+    #5ffd74 30%,
+    #95faa2 60%,
+    #7bf8f8 90%,
+    #33f7f7 100%
+  );
+}
+
+/* Reset y estilos base */
+body {
+  background-color: var(--color-secundario);
+  margin: 0;
+  padding: 0;
+  font-family: "Arial", sans-serif;
+}
+
+/* Componentes principales */
+.entramados-content {
+  background-color: var(--color-secundario);
+}
+
+/* Navegación */
+.back-arrow {
+  color: var(--color-primario);
+  font-size: 1.8rem;
+  position: absolute;
+  top: 1.3rem;
+  left: 1.5rem;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  z-index: 10;
+  margin-bottom: 5%;
+}
+
+.back-arrow:hover {
+  transform: scale(1.1);
+}
+
+.aguasEntramados {
+  position: absolute;
+  z-index: 1;
+  width: 35%;
+  height: 13.3vh;
+}
+
+/* Encabezados */
+.h1MainEntramados {
+  color: #ffff;
+  font-family: "Noto Sans", italic;
+  font-size: 1.5rem;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  top: 1.8vh;
+  left: 4.8rem;
+  z-index: 1;
+}
+
+/* Secciones de contenido */
+.section {
+  margin-top: 1.2rem;
+  margin-bottom: 1.5%;
+}
+
+.section h2 {
+  font-size: 1.6rem;
+  color: var(--color-primario);
+  font-weight: 800;
+  font-family: "Noto Sans", bold;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.tejidoText {
+  font-size: 1.2rem;
+  position: relative;
+  color: #14b2d1;
+  font-weight: 1000;
+  font-family: "Noto Sans", bold;
+  text-align: center;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.6rem;
+  white-space: nowrap; /* Mantiene el texto en una sola línea */
+  width: auto; /* Elimina el ancho fijo */
+  max-width: 100%; /* Opcional: asegura que no se desborde */
+}
+.section h3 {
+  font-size: 1.4rem;
+  color: #041342;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.h3-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-weight: 800;
+  font-size: 1.8em;
+  color: #65888f;
+  margin: 24px 0;
+  justify-content: center;
+}
+
+.h3-line::before,
+.h3-line::after {
+  content: "";
+  flex: 0 0 100vh; /* Cambia el ancho de la línea */
+  max-width: 30vh; /* Máximo ancho de la línea */
+  border-bottom: 2px dashed #93b6bd;
+  margin: 0 16px;
+  opacity: 0.5;
+}
+
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.images img {
+  width: 100px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+
+.images img:hover {
+  transform: scale(1.2);
+}
+/* Estilos adicionales para el boton */
+.btn2Credits {
+  display: flex;
+  position: absolute;
+  width: 10%; /* Ajusta según sea necesario */
+
+  cursor: pointer;
+}
+
+a {
+  color: var(--color-secundario);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.btn2Credits {
+  top: 5%;
+  left: 80vw;
+  height: 13%;
+  z-index: 10;
+}
+.contenedor-inferior-entramados {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  top: 92vh;
+}
+.politicasBtn-entramados {
+  width: 36%;
+  height: 30%;
+  cursor: pointer;
+  margin-left: 80%;
+
+}
+
+.footer-img-entramados {
+  width: 100%;
+  display: block;
+
+}
+
+.footer-content-entramados {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 96%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between; /* separa izquierda y derecha */
+  align-items: center;
+  padding: 0 1%;
+  z-index: 2;
+}
+
+.footer-content-entramados p {
+
+  color: white;
+  font-size: 0.9rem;
+  margin-left: 3%;
+  white-space: nowrap; /* evita que se parta el texto en varias líneas */
+  margin-right: 3%;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.footer-links-entramados {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  bottom: -20px;
+}
+
+
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .entramados-content {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-left: 2%;
+  }
+
+  .linea-creditos {
+    top: 6%;
+    width: 65%;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+    margin-left: 1rem;
+  }
+
+  .linea-creditos {
+    top: 5%;
+    width: 75%;
+  }
+
+  .images img {
+    width: 80px;
+  }
+}

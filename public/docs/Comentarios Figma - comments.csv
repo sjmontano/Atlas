@@ -1,0 +1,469 @@
+dateTime,frameName,message,commentatorName,replies_message,replies_commentatorName,status
+2025-06-27T02:48:14.768Z,Mosaico de cuencas y aguas,"Este mapa también tiene las etiquetas de los ríos en una capa para poder manipular las propiedades desde programación, ya Marlon las envió.",Rafael Sarmiento,,,No
+2025-06-27T02:44:45.755Z,86,"toponímicos están en otra capa... Marlon ya la envió, para que esta capa quede al frente",Rafael Sarmiento,,,No
+2025-06-27T01:18:17.453Z,Índice,Recursos,Rafael Sarmiento,,,No
+2025-06-26T23:27:52.979Z,Créditos,Este botón se reubicó @Santiago Montaño por favor tener esto en cuenta en la programación.,Rafael Sarmiento,,,No
+2025-06-26T22:53:16.060Z,Créditos + Modal Términos y condiciones,Este modal es nuevo. @Stiv Rojas,Rafael Sarmiento,Aquí los recursos de íconos de creative commons  https://drive.google.com/drive/folders/1PF43mxQslyOewU3tOBqsCJuHNc8WljTi?usp=sharing,Rafael Sarmiento,No
+2025-06-26T22:25:08.230Z,Bienvenida,@Santiago Montaño Actualizar nombre en la versión en línea,Rafael Sarmiento,,,No
+2025-06-26T22:23:29.813Z,Bienvenida,"@Santiago Montaño este mapa de ubicación se cambió, el anterior tenia otro encuadre, este es el adecuado. Por favor tenerlo presente.",Rafael Sarmiento,,,No
+2025-06-26T22:21:55.377Z,Bienvenida,Actualizar en la versión en línea.,Rafael Sarmiento,,,No
+2025-06-20T01:49:43.673Z,Índice,Bienvenidos,Rafael Sarmiento,,,Yes
+2025-06-20T01:47:26.964Z,Índice,Introducción. Cambiar texto,Rafael Sarmiento,,,Yes
+2025-06-20T01:38:08.433Z,89,Reevaluar ojo cerrado como ícono capa,Rafael Sarmiento,,,No
+2025-06-20T01:24:31.034Z,Introducción / Índice,equipos de trabajo,Rafael Sarmiento,,,Yes
+2025-06-20T01:24:09.345Z,Bienvenida,lleva a ventana logos alts,Rafael Sarmiento,,,Yes
+2025-06-20T01:22:12.734Z,Créditos tejidos del atlas,equipos de trabajo,Rafael Sarmiento,,,Yes
+2025-06-19T23:51:32.617Z,Modal concepción producción cartográfica,Esto debería aparecer en todas las pantallas?,Rafael Sarmiento,,,No
+2025-06-19T23:32:36.052Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","@Mauricio esto está mal escrito Farallones no Farrallones... :sweat_smile:, porfa ajusta, También es un parque nacional, hay que nombrarlo así. Gracias",Rafael Sarmiento,,,No
+2025-06-17T01:49:50.150Z,Introducción / Índice,quitar botón para no confundirnos,Rafael Sarmiento,,,Yes
+2025-06-17T01:48:38.130Z,Introducción / Índice,Es posible mantener un botón al sitio web unriocauca.com?,Rafael Sarmiento,Esto se puede solucionar colocando el botón (marca campaña) en la parte inferior izquierda,Rafael Sarmiento,Yes
+2025-06-17T01:34:10.779Z,Créditos tejidos del atlas,"utilizar el mismo ícono y texto confunde, pensar alternativa para avanzar.",Rafael Sarmiento,,,Yes
+2025-06-17T01:32:59.291Z,Créditos tejidos del atlas,@Stiv Rojas y @camilo sotelo maya corregir el enlace al botón de incógnita. Esta es la primara parte de Tejidos para el atlas,Rafael Sarmiento,,,Yes
+2025-06-17T01:28:53.321Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Botón permanente que me lleve al índice o al Home.,Rafael Sarmiento,,,Yes
+2025-06-17T01:24:00.005Z,Introducción / Índice,Botón créditos permanente,Rafael Sarmiento,Para todas las pantallas,Rafael Sarmiento,Yes
+2025-06-17T01:22:47.410Z,Bienvenida,Incluir créditos desde la pantalla de inicio.,Rafael Sarmiento,,,Yes
+2025-06-17T01:22:24.442Z,Mosaico de cuencas y aguas,ícono de ojo (abierto y cerrado) debe tener mayor jerarquía,Rafael Sarmiento,,,No
+2025-06-17T01:21:23.746Z,Mosaico de cuencas y aguas,Cambiar orden textos en convención. Primero tipo de ecosistema y luego la altura,Rafael Sarmiento,,,No
+2025-06-17T01:20:09.360Z,84,"Revisar tamaño de este menú, y ajustar contraste para hacer más legible",Rafael Sarmiento,,,Yes
+2025-06-17T01:18:58.959Z,86,Buscar una manera de hacer más visible el botón de capas,Rafael Sarmiento,,,Yes
+2025-06-17T01:17:29.357Z,Bienvenida,Conversar la pertinencia del nombre metadata. Los usuarios no lo comprendieron.,Rafael Sarmiento,el nombre de este botón en todas las secciones es ficha técnica,Rafael Sarmiento,No
+2025-06-17T01:16:29.464Z,Equipos de trabajo,Según la prueba de usuario este nombre no se asocia a los créditos,Rafael Sarmiento,,,Yes
+2025-06-17T01:16:04.174Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Punto de vista más lejano para que el encuadre no quede tan al borde de la pantalla.,Rafael Sarmiento,,,No
+2025-06-17T01:11:35.090Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Colocar palabra capítulo. o la abreviación Cap.,Rafael Sarmiento,,,Yes
+2025-06-17T01:11:02.502Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Replantear norte, hace rpropuesta.",Rafael Sarmiento,,,Yes
+2025-06-17T00:39:43.561Z,105,"En cada parte de la cueca: Alta, media, baja. Al dar click se debe abrir un modal con la información de cada una.",Rafael Sarmiento,Aquí el documento dónde están los textos de cada una de las partes de la cuenca: https://docs.google.com/document/d/125V4maOu28Oqwq4uGbz0loai0jcfZxrcO_NSp3xwvHE/edit?usp=sharing,Rafael Sarmiento,No
+2025-06-14T15:37:48.395Z,Créditos tejidos del atlas,https://drive.google.com/drive/folders/1Hrd27_ooNDsZj-C6WW82EmhvYIGpr7l7?usp=drive_link Carpetas logos con tamaños uniformes,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-12T16:03:17.097Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Final linea Parque nacional Farallones de Cali,Olga Cecilia,,,No
+2025-06-12T16:03:02.382Z,Unknown Node,Incio linea Parque nacional Farallones de Cali,Olga Cecilia,,,No
+2025-06-12T15:58:30.828Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar esta línea,Olga Cecilia,,,No
+2025-06-12T15:46:24.905Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar estas líneas azules,Olga Cecilia,,,No
+2025-06-12T15:45:24.780Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Este color está bien, pero es muy parecido al de los páramos.",Olga Cecilia,,,Yes
+2025-06-12T02:59:09.601Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor Parammillo,Olga Cecilia,,,No
+2025-06-12T02:56:32.012Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor correr esta cota a Pinillos y poner 1350 Km,Olga Cecilia,,,No
+2025-06-12T02:42:06.227Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Canal Caregato,Olga Cecilia,,,No
+2025-06-12T02:36:43.053Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner acá Bolombolo,Olga Cecilia,,,No
+2025-06-12T02:35:12.266Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner acá a Medellín,Olga Cecilia,,,No
+2025-06-12T02:27:51.643Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Río Poblanco,Olga Cecilia,,,No
+2025-06-12T02:27:00.610Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner en este punto Río Aures,Olga Cecilia,,,No
+2025-06-12T02:24:03.058Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar La Virginia,Olga Cecilia,,,No
+2025-06-12T02:22:52.992Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor subir el ícono de Pereira a este punto,Olga Cecilia,,,No
+2025-06-12T02:18:15.878Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner acá Río Desbaratado,Olga Cecilia,,,No
+2025-06-12T02:00:23.597Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor poner acá Suárez, con línea punteada",Olga Cecilia,,,No
+2025-06-12T01:59:46.250Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner acá Villa Rica,Olga Cecilia,,,No
+2025-06-12T01:59:06.975Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor poner acá el Río Cauca, visible",Olga Cecilia,,,No
+2025-06-12T01:57:53.186Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor bajar este ícono < este punto,Olga Cecilia,,,No
+2025-06-12T01:56:55.808Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor entre el inicio del perfil hasta pasando una parte de la cordillera Occidental poner un fondo tenue de relieve que no sobrepase los picos de este primer plano, ni el segundo",Olga Cecilia,,,No
+2025-06-12T01:55:13.545Z,Unknown Node,Por favor quitar esta referencia,Olga Cecilia,,,No
+2025-06-12T01:53:32.648Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Cordilleras,Olga Cecilia,,,No
+2025-06-12T01:53:14.366Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor poner ""Perfil del valle alto del río Cauca y la costa del Pacífico.",Olga Cecilia,,,No
+2025-06-12T01:52:00.869Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar esta convención,Olga Cecilia,,,No
+2025-06-12T01:51:39.707Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor quitar este título, se repite",Olga Cecilia,,,No
+2025-06-12T01:47:21.570Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Cerro,Olga Cecilia,,,No
+2025-06-12T01:47:01.815Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar esta referencia,Olga Cecilia,,,No
+2025-06-12T01:45:29.670Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Volcán nevado Wila - del Huila,Olga Cecilia,,,No
+2025-06-12T01:45:09.120Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Serrucho,Olga Cecilia,,,No
+2025-06-12T01:44:53.895Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar este nombre,Olga Cecilia,,,No
+2025-06-12T01:44:18.958Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar este nombre,Olga Cecilia,,,No
+2025-06-12T01:39:38.103Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Río Cauca en la ecorregión de La Mojana y que coincida con Pinillos,Olga Cecilia,,,No
+2025-06-12T01:38:59.908Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar este nombre y poner Cáceres,Olga Cecilia,,,No
+2025-06-12T01:37:30.786Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner relieve tenue que no sobrepase los picos del primer plano.,Olga Cecilia,,,No
+2025-06-12T01:03:09.505Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor pasar este ícono a Río Nechi,Olga Cecilia,,,No
+2025-06-12T01:02:49.447Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor quitar a Caucasia y poner Ciénaga Palomar, Caucasia.",Olga Cecilia,,,No
+2025-06-12T01:00:30.057Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner aquí Río La Vieja,Olga Cecilia,,,No
+2025-06-11T23:47:19.151Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor poner aquí Laguna de Sonso sería un punto un poco más ancho, si gráficamente funciona",Olga Cecilia,,,No
+2025-06-11T23:09:45.326Z,Unknown Node,Por favor poner Candelaria - Palmira,Olga Cecilia,,,No
+2025-06-11T23:08:06.962Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner aquí Santander de Quilichao,Olga Cecilia,,,No
+2025-06-11T23:06:28.479Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar Cali y poner Puerto Tejada,Olga Cecilia,,,No
+2025-06-11T23:06:07.395Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner aquí al Río Palo,Olga Cecilia,,,No
+2025-06-11T23:02:01.725Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner solo Paramillo del Quindio. (no es volcán y ya desapareció el glaciar :melting_face:),Olga Cecilia,,,No
+2025-06-11T23:00:01.740Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Aquí por favor poner el Río Ovejas,Olga Cecilia,,,No
+2025-06-11T22:59:24.068Z,Unknown Node,Por favor subir el ícono sobre el río,Olga Cecilia,,,No
+2025-06-11T22:58:43.236Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor subir el ícono sobre el río,Olga Cecilia,,,No
+2025-06-11T22:57:19.349Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner en este punto a Morales (municipio),Olga Cecilia,,,No
+2025-06-11T22:48:56.474Z,Unknown Node,Por favor quitar Huila y poner Ruiz - Kumanday,Olga Cecilia,,,No
+2025-06-11T22:48:39.410Z,Unknown Node,Por favor poner Volcán nevado Poleka Kasue - Santa Isabel,Olga Cecilia,,,No
+2025-06-11T22:44:32.593Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Hermosas,Olga Cecilia,,,No
+2025-06-11T22:43:49.598Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este nombre así: Páramo de Pisxnu - Moras,Olga Cecilia,,,No
+2025-06-11T22:41:26.233Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Mauro, por favor tener en cuenta la imagen que te voy a enlazar para poner el volcán Nevado del Huila. Hay que dibujarlo porque no salió en el corte que te pasamos. La idea es aproximar.",Olga Cecilia,Por favor poner el nombre del Huila así: Volcán nevado Wila - del Huila,Olga Cecilia,No
+,,,,https://drive.google.com/file/d/16lG1PdRK4XJKxz_dlw--W7_tL7G6HGFm/view?usp=share_link,Olga Cecilia,
+2025-06-11T22:26:20.732Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Volcán nevado Puracé,Olga Cecilia,,,No
+2025-06-11T22:24:47.420Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Acará iría el punto azul del Río Man y abajo el nombre,Olga Cecilia,,,No
+2025-06-11T22:14:30.585Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Acará iría el punto azul del Río Risaralda y abajo el nombre,Olga Cecilia,,,No
+2025-06-11T22:06:54.019Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Acará iría el punto azul del Río Cali y abajo el nombre,Olga Cecilia,,,No
+2025-06-11T22:06:26.723Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Acará iría el punto azul del Río Jamundí y abajo el nombre,Olga Cecilia,,,No
+2025-06-11T22:05:26.179Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Acá iría el punto azul del Río Timba,Olga Cecilia,,,No
+2025-06-11T22:04:13.883Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Río Timba,Olga Cecilia,,,No
+2025-06-11T21:58:54.839Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor subir este ícono que quede entre el río y la línea de los 1000 msnm,Olga Cecilia,,,No
+2025-06-11T21:58:46.347Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor subir este ícono que quede entre el río y la línea de los 1000 msnm,Olga Cecilia,,,No
+2025-06-11T21:58:39.998Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor subir este ícono que quede entre el río y la línea de los 1000 msnm,Olga Cecilia,,,No
+2025-06-11T21:58:06.526Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor bajar este ícono que quede entre el río y la línea de los 1000 msnm,Olga Cecilia,,,No
+2025-06-11T21:57:37.140Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor subir este ícono, que quedé un poco más arriba del río.",Olga Cecilia,,,Yes
+2025-06-11T21:47:55.481Z,Créditos tejidos del atlas,"Como entra un logo adicional a Suárez, si les queda mejor poner primero los logos de Suárez, luego los de Villa Rica y al final los del Cali, estaría bien que Cali no fuera la primera... siempre está sobrerepresentada",Olga Cecilia,,,Yes
+2025-06-11T21:46:02.507Z,Unknown Node,Por favor poner en medio de estos dos logos el siguiente: https://drive.google.com/file/d/1nKMZO6uUnKv0z5LWuC3XaNH4VIokGyks/view?usp=share_link,Olga Cecilia,,,Yes
+2025-06-11T21:42:41.902Z,Créditos tejidos del atlas,Por favor cambiar éste logo por el de este enlace: https://drive.google.com/file/d/1r5FB8zpI75lIIIN3WgfI19l5uBHJY5rc/view?usp=share_link,Olga Cecilia,,,Yes
+2025-06-10T22:37:24.376Z,103,"El cursor solo indica un ejemplo de como se ven esos despliegues de información al pasar por el mapa y encontrase con una capa interactiva, en este caso la capa que indica la convención ""Amenazados y en estado vulnerable"" de un color verde marino o azul.",NEIDER YESID TIAFI RUIZ,,,No
+2025-06-10T22:33:28.968Z,103,Enlace a descripción de cada capa interactiva https://docs.google.com/document/d/172j3UBWLCFpfR-syFrtpajnQsl92hKhcdvI7aGRfnY0/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-10T20:08:53.558Z,89,Enlace fondo de capas https://drive.google.com/file/d/1UnmxnCAxoEhYn3o8P1-ryfYZuVOfE8pB/view?usp=drive_link,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-10T14:10:15.299Z,Créditos tejidos del atlas,Por favor quitar este logo,Olga Cecilia,,,Yes
+2025-06-10T05:19:28.060Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar Pereira,Olga Cecilia,,,No
+2025-06-10T05:11:52.384Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este punto sobre el río,Olga Cecilia,,,No
+2025-06-10T05:10:28.395Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner esta línea punteada (solo esta).,Olga Cecilia,,,No
+2025-06-10T05:10:15.158Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner esta línea punteada (solo esta).,Olga Cecilia,,,Yes
+2025-06-10T05:08:36.156Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor dejar solo las convenciones de Centros poblados y Ríos,Olga Cecilia,,,No
+2025-06-10T05:07:34.059Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor quitar este título, se repite",Olga Cecilia,,,No
+2025-06-10T05:06:45.553Z,Unknown Node,Por favor poner este nombre así: Perfil del río Cauca - cordillera Central. Quitar Longitudinales.,Olga Cecilia,,,No
+2025-06-10T05:05:05.832Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor hacer en esta parte final un fondo de relieve muy bajo y desvanecido, lejano",Olga Cecilia,,,No
+2025-06-10T04:59:32.971Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Abajo del nombre de Pinillos poner Ecorregión La Mojana,Olga Cecilia,,,No
+2025-06-10T04:56:38.849Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor correr el ícono de la represa a este punto,Olga Cecilia,,,Yes
+2025-06-10T04:55:29.024Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",.,Olga Cecilia,,,Yes
+2025-06-10T04:54:24.065Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor hacer un poco más gruesa la línea del río Cauca,Olga Cecilia,,,No
+2025-06-10T04:51:04.420Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner acá un marcador de !350 km y el nombre de Ecorregión La Mojana,Olga Cecilia,,,No
+2025-06-10T04:39:54.763Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor hacer que este punto coincida con el de Ecorregión de La Mojana (final línea),Olga Cecilia,,,No
+2025-06-10T04:35:37.057Z,Unknown Node,"Por favor quitar este texto y poner el siguiente: Laboratorio de Cartografías críticas y codiseño territorial: Alexander Alvarez, Álvaro Pedroza, Ana Maria Banguero, Ana Yerli Nazarit, Andrea Melenje, Ángela Patricia Aragón, Armando Vargas, Belen Labrada, Bryan Ortiz, Catherine Girón, Carolina Mina, Claudia Trujillo, Claudia Victoria, Consuelo Lasso, Cristian Valencia, Cristian David Vanegas, Katherintg Labrada, Deyanira Gonzalias, Diana Marcela Carabalí, Diego Hernández, Dora Infante, Edy Serrano, Eli Cuadros, Eliécer Balanta, Erley Ibarra, Ernesto David Cortes, Fallola Ibarguen, Gerson Castro, Gian Marlon Cifuentes, Juan David Macuace, Joan Orobio, Karem Correa, Karen Daniela Martinez, Katherine Girón, Lily Vanesa Hinestrosa, Luis Florez, María Campo, María Orlency Caicedo, Myriam Marín, Natalia Salazar, Natalia Viafara, Nora Lucia Victoria, Ofir Mina, Olga Cecilia Eusse, Patricia Botero, Renata Moreno y Viviana Balanta.",Olga Cecilia,,,Yes
+2025-06-10T04:34:08.375Z,Modal concepción producción cartográfica,"Por favor reemplazar este texto por el que está a continuación: Concepción y producción cartográfica: Álvaro Pedroza, Diego Hernández, Gian Marlon Cifuentes, Karem Correa, Myriam Marín, Olga Cecilia Eusse y Renata Moreno.",Olga Cecilia,,,Yes
+2025-06-10T04:31:38.856Z,Diseño gráfico y web,Por favor revisar este apellido,Olga Cecilia,,,Yes
+2025-06-10T04:30:58.734Z,Bienvenida,Por favor quitar Tejido y poner Nodo,Olga Cecilia,,,Yes
+2025-06-10T04:30:48.288Z,Bienvenida,Por favor quitar las piedras del río. el Cauca en esta parte es profundo,Olga Cecilia,Resuelto,Rafael Sarmiento,Yes
+2025-06-10T04:29:03.930Z,Bienvenida,Por favor quitar Tejido y poner Nodo,Olga Cecilia,,,Yes
+2025-06-10T04:28:26.042Z,Bienvenida,Por favor quitar Tejido y poner Nodo,Olga Cecilia,,,Yes
+2025-06-10T04:27:47.853Z,Bienvenida,Por favor poner Lagunas (plural),Olga Cecilia,,,Yes
+2025-06-10T04:25:21.241Z,Bienvenida,"Por favor intentar acercarse a lo que pasa en este entorno con dos cosas.  1. Agua: las dos lagunas tienen el agua contaminada, hay plantas, pero estas están sobrepoblando las lagunas y dejan sin oxígeno el agua, esto se suma a todas las aguas servidas que se vierten a ellas. 2. Las casas: son construcciones muy precarias, la gente no vive en buenas condiciones.",Olga Cecilia,Pendiente,Rafael Sarmiento,No
+2025-06-10T04:14:06.126Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Occidental (Mayúscula la O),Olga Cecilia,,,No
+2025-06-10T04:11:24.826Z,Bienvenida,Por favor oscurecer el color de piel,Olga Cecilia,Resuelto,Rafael Sarmiento,Yes
+2025-06-10T04:11:03.229Z,Bienvenida,"Por favor subir un poco esta fumarola, para que no se confunda con una nube.",Olga Cecilia,Revisar...,Rafael Sarmiento,Yes
+2025-06-10T01:02:03.162Z,Introducción / Índice,@Rafael Sarmiento compartir PDF con información,Rafael Sarmiento,Para montarlo como descargable,Rafael Sarmiento,No
+2025-06-10T01:00:14.739Z,Diseño gráfico y web,Verificar que el apellido de Jorge este correcto.,Rafael Sarmiento,,,Yes
+2025-06-10T00:56:56.365Z,Unknown Node,Utilizar este mapa de referenciación para la bienvenida.,Rafael Sarmiento,,,Yes
+2025-06-10T00:52:36.457Z,Unknown Node,"Cambiar este nombre en todas las ventanas de creditos: Atlas un río Cauca, muchos mundos.",Rafael Sarmiento,,,Yes
+2025-06-10T00:51:56.462Z,Unknown Node,En esta barra de créditos. Quitar esto de todos los derechos reservados. Esto iría en creative commons y se definirá esta semana.,Rafael Sarmiento,,,Yes
+2025-06-10T00:45:13.798Z,Bienvenida,colocar etiqueta para saber de que se trata el botón,Rafael Sarmiento,,,Yes
+2025-06-10T00:45:01.478Z,Bienvenida,Colocar etiqueta para saber de qué se trata el botón,Rafael Sarmiento,@NEIDER YESID TIAFI RUIZ hacer estas etiquetas por favor,Rafael Sarmiento,Yes
+2025-06-10T00:19:36.957Z,Mosaico de cuencas y aguas,"los textos de cada uno de los modales de los números ya se revisaron, hay que actualizarlos.",Rafael Sarmiento,,,Yes
+2025-06-10T00:17:59.366Z,99,"al hacer click en cada una de las capas, debe abrise un modal con información de cada una de las zonas",Rafael Sarmiento,,,No
+2025-06-10T00:16:46.928Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",El segundo plano debe tener algo de relieve hasta finalizar,Rafael Sarmiento,,,No
+2025-06-10T00:11:20.045Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",quitar este punto,Rafael Sarmiento,,,No
+2025-06-10T00:09:55.119Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Segundo plano cordillera de fondo que no sobrepase los Farallones y que se vaya difuminando.,Rafael Sarmiento,,,No
+2025-06-10T00:03:17.364Z,Equipos de trabajo,"Los textos de los créditos se actualizaron, volver a copiar y pegar en el texto general y cada uno de los botones de esta sección.",Rafael Sarmiento,,,Yes
+2025-06-09T23:58:26.494Z,Unknown Node,Por favor quitare este logo,Olga Cecilia,,,Yes
+2025-06-09T23:58:17.641Z,Créditos tejidos del atlas,Por favor poner este logo primero,Olga Cecilia,,,Yes
+2025-06-09T23:57:58.262Z,Créditos tejidos del atlas,Por favor poner primero este logo,Olga Cecilia,,,Yes
+2025-06-09T23:57:37.319Z,Créditos tejidos del atlas,Por favor quitar este logo,Olga Cecilia,,,Yes
+2025-06-09T23:52:24.431Z,Diseño gráfico y web,"Por favor poner Atlas Un río Cauca, muchos mundos.",Olga Cecilia,,,Yes
+2025-06-09T23:48:38.187Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Hasta este punto podemos mantener las líneas del río y el terreno café, irlas desvaneciendo",Olga Cecilia,,,No
+2025-06-09T23:30:24.863Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","Por favor quitar ""Desembocadura ..."" y poner: ""Llegada a la ecorregión de La Mojana""",Olga Cecilia,,,No
+2025-06-09T23:29:05.264Z,Unknown Node,Por favor quitar este nombre y el ícono de localización,Olga Cecilia,,,No
+2025-06-09T23:28:21.831Z,ATLAS_FINAL_CAP 1,Enlace a carpeta con manchas para títulos mapas: https://drive.google.com/drive/folders/1e7SWdG5BdIIe4ytyEQ2Z9zoFzIyuAeam?usp=drive_link,Rafael Sarmiento,,,No
+2025-06-09T23:27:53.418Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor en esta zona no llevar llevar el río hasta la línea de 0 msnm. Hay que mantener una franja café muy delgada debajo porque hasta la Mojana el río correo entre 40 y 30 msnm.,Olga Cecilia,,,No
+2025-06-09T23:25:27.322Z,Mosaico de cuencas y aguas,@SANTIAGO JOSE MONTANO BUITRON por favor verificar que los mapas sean las versiones actualizadas.,Rafael Sarmiento,,,No
+2025-06-09T23:24:09.153Z,102,@NEIDER YESID TIAFI RUIZ coloca el mapa que corresponde al que tiene las capas activas,Rafael Sarmiento,@Gian Marlon por favor nos puedes colocar el enlace al mapa que correspondería a las capas activas,Rafael Sarmiento,No
+,,,,No hay,NEIDER YESID TIAFI RUIZ,
+2025-06-09T23:21:57.231Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar esta referencia,Olga Cecilia,,,No
+2025-06-09T23:21:48.890Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este ícono pegado al río,Olga Cecilia,,,No
+2025-06-09T23:21:42.817Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este ícono pegado al río,Olga Cecilia,,,No
+2025-06-09T23:21:38.556Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este ícono pegado al río,Olga Cecilia,,,No
+2025-06-09T23:19:06.551Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Puerto Valdivia,Olga Cecilia,,,No
+2025-06-09T23:11:53.274Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner aquí Represa Hidroituango,Olga Cecilia,,,No
+2025-06-09T23:08:56.627Z,Unknown Node,Por favor poner aqui Santa Fe de Antioquía,Olga Cecilia,,,No
+2025-06-09T23:04:32.965Z,Unknown Node,Por favor quitar La Pintada,Olga Cecilia,,,No
+2025-06-09T23:01:14.224Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","En este mapa de los encuadres hay que revisar como se ven los botones de los capítulos con el hoover activo, para ver si estos se montan sobre los demás. @NEIDER YESID TIAFI RUIZ es importante verificar eso, y que las dimensiones de esos botones sean las adecuadas.",Rafael Sarmiento,,,Yes
+2025-06-09T22:50:29.020Z,Formas del paisaje,"@Gian Marlon confirmame por favor si este mapa ya se ajustó? los toponímicos debían estar sin ese borde blanco, deben quedar de acuerdo a lo que conversamos.",Rafael Sarmiento,,,No
+2025-06-09T22:46:05.377Z,Unknown Node,como se abre una emergente esta ventana no tendría mucho sentido. Es un click menos.,Rafael Sarmiento,,,Yes
+2025-06-09T22:19:49.513Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar Cartago y poner Ansemanuevo,Olga Cecilia,,,No
+2025-06-09T22:18:55.591Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor quitar Tuluá y poner Río Frío,Olga Cecilia,Es el municipio,Olga Cecilia,No
+,,,,El municipio? o hay un río con ese nombre?,Mauricio,
+2025-06-09T22:18:34.188Z,Unknown Node,Por favor quitar Buga y poner Yotoco,Olga Cecilia,,,No
+2025-06-09T22:17:33.461Z,Unknown Node,Por favor quitar Villa Rica,Olga Cecilia,y poner Jamundí,Olga Cecilia,No
+2025-06-09T22:17:03.691Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Represa Salvajina,Olga Cecilia,,,Yes
+2025-06-09T22:16:25.953Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner Munchique (mayúscula),Olga Cecilia,,,Yes
+2025-06-09T22:16:00.181Z,Unknown Node,"Por favor quitar este título, se repite",Olga Cecilia,,,No
+2025-06-09T22:15:38.557Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Por favor poner este nombre así: Perfil del río Cauca - cordillera Occidental. Quitar Longitudinales.,Olga Cecilia,,,No
+2025-06-09T22:14:25.536Z,Unknown Node,Por favor dejar solo las convenciones de Centros poblados y Ríos,Olga Cecilia,,,No
+2025-06-06T21:01:20.861Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Enlace de carpeta con estas formas de diferentes tamaños,NEIDER YESID TIAFI RUIZ,https://drive.google.com/drive/folders/1e7SWdG5BdIIe4ytyEQ2Z9zoFzIyuAeam?usp=drive_link,NEIDER YESID TIAFI RUIZ,No
+2025-06-06T02:47:49.890Z,Unknown Node,Enlace a carpeta con etiquetas: https://drive.google.com/drive/folders/1eb8ohNmSwlPhBFVOz_BTxxQp0-9LP8Ba?usp=drive_link,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-06T01:03:42.152Z,Bienvenida,Estas tambien se cambian? @Rafael Sarmiento,Mauricio,"Si Mauro, hay que verificar la coherencia en la imagen de ubicación y lo que se este presentando en cada caso.",Rafael Sarmiento,Yes
+2025-06-05T00:37:33.731Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",@SANTIAGO JOSE MONTANO BUITRON @Stiv Rojas @camilo sotelo maya aquí esta el enlace de la carpeta con el gráfico con toda la info. https://drive.google.com/drive/folders/1fwCG760UwKrMCm7SUD-5y1nmVCufIp6C,Rafael Sarmiento,@Olga y compañeros. Ya están resueltos los comentarios que se dejaron. Consultar en la carpeta que está en este hilo,Rafael Sarmiento,No
+2025-06-04T01:52:05.629Z,Introducción / Índice,Luego de esta imagen va la imagen 3,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-04T00:04:35.190Z,Mosaico de cuencas y aguas,"Si este es el modal que se abre al dar clic en el número, el número debería estar en el título, no? @NEIDER YESID TIAFI RUIZ y @Gian Marlon",Rafael Sarmiento,si,NEIDER YESID TIAFI RUIZ,Yes
+2025-06-02T22:33:33.038Z,Mosaico de cuencas y aguas,https://docs.google.com/document/d/1Sk2hJIep0kLFjY0a-WXJujW1k1UzicfC/edit,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-02T22:06:42.453Z,Equipos de trabajo,https://docs.google.com/document/d/1r1QDifDlA0-uD1PLuJmVGoT9btAiuDljFSXPD_mTSkk/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-06-02T21:41:39.467Z,ejemplo ventana acceso a nodos,"Así como ventana emergente de la página web, pero sin incluir el menú de arriba y asi limitar el uso de la pagina web dentro del atlas.",NEIDER YESID TIAFI RUIZ,@Stiv Rojas esto que dice Yesid es posible?,Rafael Sarmiento,Yes
+2025-06-02T21:39:40.309Z,Unknown Node,Podría ser el aviso de abandono,NEIDER YESID TIAFI RUIZ,Ajusté la redacción del texto. @NEIDER YESID TIAFI RUIZ por favor ajustalo a la pauta compositiva que estás desarrollando.,Rafael Sarmiento,Yes
+2025-05-29T02:46:49.366Z,Introducción / Índice,@Rafael Sarmiento en este modal mediano proporcionado queda de todos modos ese blanco. Si amplio las imagenes para rellenar ese blanco implica: 1. Hacer las manchas más largas en extensión y/o 2. Aumentar más el puntaje de la letra (cosa que no veo conveniente). Quedo atento.,NEIDER YESID TIAFI RUIZ,"@NEIDER YESID TIAFI RUIZ  creo que las fotos pueden tener el ancho de 8 columnas. Es decir, una columna más del tamaño que está. Creo que la línea de texto puede quedar mas larga, unas 11 o 12 palabras como mucho, sin modificar el tamaño de la letra. Alineado en bandera a la izquierda para evitar ese espacio entre palabras y carácter descontrolado que da la justificación en bloque. Así nos quedan 3 columnas flotantes que le den aire al modal",Rafael Sarmiento,Yes
+,,,,"Pensando claro, que la mancha quede alineada con la foto.",NEIDER YESID TIAFI RUIZ,
+2025-05-29T00:55:52.411Z,Unknown Node,https://docs.google.com/document/d/1Sk2hJIep0kLFjY0a-WXJujW1k1UzicfC/edit,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-29T00:45:15.722Z,Índice,@Mauricio ajustar estilisticamente este mapa de referenciación como el siguiente (cambio de colores),Rafael Sarmiento,@Mauricio,NEIDER YESID TIAFI RUIZ,Yes
+2025-05-29T00:43:46.029Z,97,@NEIDER YESID TIAFI RUIZ por favor realizar una pantalla ejemplificando el encendido de una de las capas.,Rafael Sarmiento,,,Yes
+2025-05-29T00:42:43.907Z,95,"Ajustar encuadre, que corresponda a la cuenca @NEIDER YESID TIAFI RUIZ o @Mauricio",Rafael Sarmiento,,,Yes
+2025-05-29T00:39:31.140Z,99,"@NEIDER YESID TIAFI RUIZ o @Mauricio Ajustar el encuadre, debe enmarcar la cuenca.",Rafael Sarmiento,,,No
+2025-05-29T00:32:42.383Z,Mosaico de cuencas y aguas,@NEIDER YESID TIAFI RUIZ  Cambiar imagen mapa por la vista previa,Rafael Sarmiento,,,Yes
+2025-05-29T00:31:22.648Z,Mosaico de cuencas y aguas,@NEIDER YESID TIAFI RUIZ Cambiar esta imagen por la vista previa,Rafael Sarmiento,,,Yes
+2025-05-29T00:28:31.919Z,Formas del paisaje,@Gian Marlon Por favor cambiar el estilo tipográfico de los elementos. Sin línea blanca.,Rafael Sarmiento,,,No
+2025-05-29T00:23:20.128Z,89,@NEIDER YESID TIAFI RUIZ ampliar el espacio horizontal del fondo de menú de capas. Se requiere más espacio para componer con íconos de activar visibilidad de las categorías grandes,Rafael Sarmiento,@NEIDER YESID TIAFI RUIZ este fondo del menú con ese ajuste en el espacio horizontal ya se realizó?,Rafael Sarmiento,Yes
+2025-05-29T00:18:14.135Z,84,@Stiv Rojas @camilo sotelo maya y @Santiago Montaño colocar la interacción con los números de formas del paisaje.,Rafael Sarmiento,,,No
+2025-05-29T00:16:36.306Z,84,@NEIDER YESID TIAFI RUIZ Quitar las regiones de este menú,Rafael Sarmiento,Y obviamente rediagramar capas :v,Rafael Sarmiento,Yes
+2025-05-29T00:04:01.701Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Ampliar el recuadro en toda la cuenca. @NEIDER YESID TIAFI RUIZ,Rafael Sarmiento,,,Yes
+2025-05-29T00:03:10.981Z,Unknown Node,Que la etiqueta no se superponga al encuadre,Rafael Sarmiento,,,Yes
+2025-05-29T00:02:16.225Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Colocar etiquetas actualizadas @Rafael Sarmiento,Rafael Sarmiento,,,Yes
+2025-05-28T23:42:42.206Z,Índice modal introducción imagen 1,Actualizar en todos nueva escala @Rafael Sarmiento,Rafael Sarmiento,,,Yes
+2025-05-28T23:37:42.364Z,Índice,@NEIDER YESID TIAFI RUIZ colocar relleno en archivo Ilustrator y actualizar en Figma a este tamaño,Rafael Sarmiento,,,Yes
+2025-05-28T23:34:22.331Z,Unknown Node,Enlace actualizado créditos: https://docs.google.com/document/d/1r1QDifDlA0-uD1PLuJmVGoT9btAiuDljFSXPD_mTSkk/edit?tab=t.0,Rafael Sarmiento,,,Yes
+2025-05-28T02:36:53.666Z,Loading 1,Pantallas de carga *PROPUESTAS*,NEIDER YESID TIAFI RUIZ,@NEIDER YESID TIAFI RUIZ hay que componer con la palabra cargando y la barra de estado de la carga... qué opina @Santiago Montaño,Rafael Sarmiento,Yes
+2025-05-27T02:23:27.042Z,Formas del paisaje,cuando hace hoover sale solo la etiqueta @NEIDER YESID TIAFI RUIZ,Rafael Sarmiento,,,Yes
+2025-05-27T02:16:41.637Z,Unknown Node,Bajar botones menú izquierdo,Rafael Sarmiento,,,Yes
+2025-05-27T02:15:48.853Z,Introducción / Índice,Hacer más pequeño botón de tutorial,Rafael Sarmiento,,,Yes
+2025-05-27T02:14:53.715Z,Introducción / Índice,Subir títulos un poco y regular la distancia entre el texto y el ícono,Rafael Sarmiento,,,Yes
+2025-05-27T02:10:53.413Z,Unknown Node,Tabla de metadata en pdf en otra pestaña para descargar.,Rafael Sarmiento,,,Yes
+2025-05-27T02:05:45.573Z,Unknown Node,@NEIDER YESID TIAFI RUIZ hacer mancha fondo para textos cortos y largos,Rafael Sarmiento,,,Yes
+2025-05-27T02:04:16.759Z,Unknown Node,quitar botones de texto completo,Rafael Sarmiento,,,Yes
+2025-05-27T02:02:33.975Z,Unknown Node,Hacer cuadro de diálogo o modal que avise que va a salir del atlas y va a la página de un río cauca,Rafael Sarmiento,,,Yes
+2025-05-27T02:01:45.914Z,17,Esto como ventana emergente,Rafael Sarmiento,,,Yes
+2025-05-27T02:01:00.811Z,Unknown Node,"Hacer más consistentes las margenes, la inferior se está perdiendo la referencia cuando se está programando",Rafael Sarmiento,,,Yes
+2025-05-27T02:00:31.272Z,Unknown Node,Foto del ancho de la caja tipográfica.,Rafael Sarmiento,,,Yes
+2025-05-27T01:58:43.784Z,Unknown Node,Mantener título cuando voy bajando en scroll,Rafael Sarmiento,,,Yes
+2025-05-27T01:55:52.716Z,Créditos tejidos del atlas,Barra en estilo acuarela,Rafael Sarmiento,,,Yes
+2025-05-27T01:54:55.705Z,Créditos tejidos del atlas,"Diseñar 3 manchas para las diferentes longitudes de título. Corta, larga y mediana.",Rafael Sarmiento,,,Yes
+2025-05-27T01:53:08.267Z,Introducción / Índice,@NEIDER YESID TIAFI RUIZ PLantear pantalla de loading (cargando),Rafael Sarmiento,,,Yes
+2025-05-27T01:51:50.144Z,Unknown Node,@NEIDER YESID TIAFI RUIZ tener cuidado con la posición para que no se superponga con los botones del menú inferior,Rafael Sarmiento,,,Yes
+2025-05-27T01:50:50.951Z,Bienvenida,"mantener la proporción 16/9 en el nuevo tamaño del modal, revisar",Rafael Sarmiento,,,Yes
+2025-05-27T01:49:13.905Z,Bienvenida,Que la línea de texto no quede de más de 11 palabras,Rafael Sarmiento,,,Yes
+2025-05-27T01:48:48.330Z,Bienvenida,Ajusta tamaño del modal @NEIDER YESID TIAFI RUIZ A uno mediano,Rafael Sarmiento,,,Yes
+2025-05-27T01:47:44.055Z,Bienvenida,El estilo de esta etiqueta no tiene ondas. Hay que actualizarlo en todas,Rafael Sarmiento,,,Yes
+2025-05-26T21:30:14.223Z,Unknown Node,@NEIDER YESID TIAFI RUIZ esta barra debería estar en estilo de acuarela,Rafael Sarmiento,,,Yes
+2025-05-26T17:21:03.250Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos","@NEIDER YESID TIAFI RUIZ ajustar posición  de estos botones del menú izquierdo  para  que no se den superposiciones. Revisa  que no se toque, cruce o se superponga  con algún otro elemento de la interfaz.",Rafael Sarmiento,,,Yes
+2025-05-26T16:40:37.661Z,Formas del paisaje,@SANTIAGO JOSE MONTANO BUITRON y  @Stiv Rojas por favor revisar la metadata para identificar los números que tienen  mayor tamaño.  @NEIDER YESID TIAFI RUIZ Por favor determina el estilo que debe  tener esos números que  son  más  grandes.,Rafael Sarmiento,,,No
+2025-05-26T15:37:54.309Z,85,"@NEIDER YESID TIAFI RUIZ puedes por favor probar un elemento similar a esta  barra  que simula la acuarela que sea  más angosta, para que los mapas tengan  mayor área visible",Rafael Sarmiento,"@NEIDER YESID TIAFI RUIZ acuerdate que hay que hacer una mancha de acuarela más pequeña para estos niveles de título, de manera que se cubra la menor superficie posible del mapa.",Rafael Sarmiento,Yes
+2025-05-26T15:30:34.250Z,85,"Aquí es importante que antes del  nombre  del mapa colocar el I en Romanos,  para  señalar que hace parte del Cap 1.   @NEIDER YESID TIAFI RUIZ puedes probar eso por  favor?",Rafael Sarmiento,,,Yes
+2025-05-26T15:06:31.260Z,ejemplo ventana acceso a nodos,"@Stiv Rojas recuerda que se habló sobre la posibilidad dar click en el botón de los nodos, y estos se abran una ventana emergente.  ¿Puedes probar esto por  favor?",Rafael Sarmiento,,,Yes
+2025-05-26T14:57:42.443Z,Unknown Node,@SANTIAGO JOSE MONTANO BUITRON y  @Stiv Rojas verificar que los textos de los  créditos estén montados  tal  cual  aparece en el documento en linea.,Rafael Sarmiento,,,No
+2025-05-26T14:55:44.230Z,Unknown Node,@Stiv Rojas y  @SANTIAGO JOSE MONTANO BUITRON colocar este botón que nos  lleva al home.,Rafael Sarmiento,,,Yes
+2025-05-26T14:46:58.982Z,Unknown Node,"@SANTIAGO JOSE MONTANO BUITRON y  @Stiv Rojas,  recuerden que es necesario  colocar las 3 imágenes. Creo que las imágenes deberían estar del ancho de  línea del párrafo.",Rafael Sarmiento,,,Yes
+2025-05-26T14:24:18.504Z,Introducción / Índice,@SANTIAGO JOSE MONTANO BUITRON y @Stiv Rojas es necesario que los textos de estos botones queden en una sola línea.  Por favor verificar que tengan el tamaño  que está acá en el Figma,Rafael Sarmiento,,,Yes
+2025-05-26T14:16:52.018Z,Bienvenida,"@Santiago Montaño y  @Stiv Rojas es  importante que el párrafo de estos  modales tenga los atributos que  tiene  acá en el  Figma.  Por favor revisar que  tenga el tamaño correcto y que el ancho  de línea tenga el largo de acá, este facilita la lectura.  Me imagino que se debe hacer  un estilo.",Rafael Sarmiento,,,Yes
+2025-05-25T22:09:22.395Z,99,https://drive.google.com/file/d/1TdPc76F125hnZWk5gq84cPJjkZb5zFpb/view,NEIDER YESID TIAFI RUIZ,"Este botón abre una pestaña con la tabla de los datos de la metadata, la imagen que esta a la izquierda, debería ser un PDF pero ellos no lo han subido como PDF, asi que por ahora como imagen.",NEIDER YESID TIAFI RUIZ,No
+2025-05-25T22:03:13.468Z,Índice,Botón recursos: https://docs.google.com/document/d/1LUyewuNLE8hTCgQojiZnNLAeheS43H4W6fgDYuVakDg/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-25T21:49:02.291Z,Unknown Node,https://docs.google.com/document/d/182HHKPxoVQEXAAqWJqeR9OJd756btBpN/edit,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-25T21:48:55.325Z,Introducción / Índice,https://drive.google.com/drive/folders/1W8mGbmp-km82mhx0YjC0KdtUe4FTPZXk,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-22T23:51:10.288Z,87,Solo dejar el nombre del mapa?,NEIDER YESID TIAFI RUIZ,"Si. en la barra superior se coloca el # de capitulo en romano y el nombre del mapa. en el modal capitulo I, con el nombre completo",Rafael Sarmiento,Yes
+,,,,"Si, y en el modal, donde dice capítulo, colocar nombre del capítulo",Rafael Sarmiento,
+2025-05-17T22:35:38.936Z,Bienvenida,"Hola, acabo de subir los cambios de las siguentes imagenes de la intro:  Paramo de las hermosas, paramo de moras, nevado del huila, pondaje y charco azul, y la del rio cauca",Mauricio,,,Yes
+2025-05-17T17:07:09.802Z,Unknown Node,"Bro, cuando acabes con esas imágenes me puedes compartir el drive, para ponerlas en el proyecto",Stiv Rojas,dale,Mauricio,Yes
+2025-05-10T23:52:22.447Z,ICONOS,https://drive.google.com/drive/folders/1GnBqyvzh3WGUnuPYjc5Dvd1Pt66nPXqd?usp=drive_link,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:49:09.126Z,97,https://docs.google.com/document/d/1j6z9JxIeHRzSVSw1xOd_j1nhmcOZWmmkhZBKD40xQrQ/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:47:43.613Z,94,https://docs.google.com/document/d/1Cn7Yuvl9riNxWAan3zHTjNsZ_xu0-1nD/edit,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:46:38.355Z,Unknown Node,https://www.figma.com/design/LbAsaJBuqLyaJlfFvBPr03?node-id=4109-6116#1250885577,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:46:35.034Z,Unknown Node,https://www.figma.com/design/LbAsaJBuqLyaJlfFvBPr03?node-id=4109-6116#1250885577,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:46:31.306Z,Unknown Node,https://www.figma.com/design/LbAsaJBuqLyaJlfFvBPr03?node-id=4109-6116#1250885577,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:46:15.303Z,Equipos de trabajo,Imagen fondo: https://drive.google.com/file/d/1gHSfDfhNFV6SuDIQ0Cg9OHN5eUz8rqqF/view,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:45:30.821Z,Unknown Node,https://docs.google.com/document/d/1Sk2hJIep0kLFjY0a-WXJujW1k1UzicfC/edit,NEIDER YESID TIAFI RUIZ,@NEIDER YESID TIAFI RUIZ Por favor colocar en cada punto el enlace que corresponde a la info de cada uno,Rafael Sarmiento,Yes
+2025-05-10T23:45:00.682Z,Unknown Node,https://docs.google.com/document/d/1Sk2hJIep0kLFjY0a-WXJujW1k1UzicfC/edit,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:44:42.480Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:44:32.583Z,Mosaico de cuencas y aguas,https://drive.google.com/file/d/1FV4jcrdxeRRdOmRuYUlaozv0t4Vq1Ocd/view,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:43:21.430Z,Unknown Node,https://docs.google.com/document/d/17rpG5LyoYjzFvorjMk2yLNUTR-b4cUOut8RgiBG9huc/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:43:11.842Z,Formas del paisaje,https://docs.google.com/document/d/184CEsgSIRMEmOvjVORmiC3zVQx2K2QOV5R0fkYkoJiI/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:42:26.170Z,85,https://drive.google.com/file/d/1n2rblpgp_p1_3a8uO5MBitZKTSqlpZeH/view,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:41:54.340Z,Unknown Node,https://docs.google.com/document/d/1T0DgYveqis3L-2b4ZeEDu7I08nEFzi-v4X5SLyJZQBs/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:41:37.526Z,Unknown Node,https://docs.google.com/document/d/12f6Q0-hi_vSGx3KQhPVhEh3A0B1iTU4_Kz_Ojf3_Mhg/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:39:22.394Z,"Capitulo 1: El valle alto del río Cauca, la cuenca y sus mundos",Esta información del perfil aun esta en elaboración,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:38:27.422Z,Unknown Node,Texto completo: https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:37:59.623Z,Unknown Node,https://docs.google.com/document/d/1q6i2rV2RvbUX7DL9vlulPsY1tM94Hq7VCUK22ynYS3Y/edit?tab=t.0#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,Creo que la pauta compositiva quedaría así. 8 col de ancho alineado en bandera a la izquierda. Dejando el espacio de una fila entre el título y cuerpo de texto. @NEIDER YESID TIAFI RUIZ avísame que te parece?,Rafael Sarmiento,Yes
+2025-05-10T23:36:12.301Z,ATLAS_FINAL_CAP 1,Texto completo https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:33:39.582Z,Unknown Node,Enlace a carpeta de logos: https://drive.google.com/drive/folders/1Hrd27_ooNDsZj-C6WW82EmhvYIGpr7l7?usp=drive_link,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:31:10.755Z,Unknown Node,https://drive.google.com/drive/folders/1W8mGbmp-km82mhx0YjC0KdtUe4FTPZXk,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T23:30:58.282Z,Unknown Node,https://docs.google.com/document/d/1b8t-bCbnQOOCKgBMKEWtUB0e9oru086TC7NiXr875RE/edit?tab=t.0#heading=h.tnmjedxlpq5w,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:29:13.215Z,Bienvenida,Textos ilustraciones: https://docs.google.com/document/d/16w2Vhq7EXltkaL5MXMyZ6d5tjKwau9eaqPpS81fusqU/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T23:27:39.070Z,Bienvenida,"Estos íconos tiene una edición desde aqui del figma, ya que al parecer al exportarlos como sgv los colores pierden saturación",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T22:16:22.140Z,96,https://docs.google.com/document/d/1Jdk7mhw4F3d4s4KTuwIfFI0WdqUDUdA-3C7xMLywpp0/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-05-10T15:31:35.208Z,92,Todas las capas encendidas,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T15:13:33.470Z,89,No están visualizados los colores establecidos de cada capa. No es práctico ponerlos aquí.,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-10T14:11:55.931Z,84,Estas formas sugiero sean las mismas que integran los mapas y no estas que simulo aquí en el figma,NEIDER YESID TIAFI RUIZ,"@NEIDER YESID TIAFI RUIZ esto ya se resolvió, se actualizó o no?",Rafael Sarmiento,Yes
+2025-05-10T02:32:05.486Z,Unknown Node,Texto doc créditos: https://docs.google.com/document/d/1r1QDifDlA0-uD1PLuJmVGoT9btAiuDljFSXPD_mTSkk/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-09T16:00:35.253Z,Unknown Node,"Creo que las gotas solo en línea se pierden en el paisaje, por lo tanto, hago una prueba con fondo",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-05-09T15:55:22.040Z,Bienvenida,Que estos botones tengan una variación mínima de tamaño al pasar el cursor por ellos.,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-04-28T20:52:04.196Z,Unknown Node,tres manchas,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-04-23T22:46:57.764Z,Unknown Node,Más cuadrada?,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-22T16:23:58.818Z,Unknown Node,"Habría que repensar estos, para la vista móvil y tamaños de pantalla, ya que desde mi punto de vista están anchos",Santiago Montaño,Vale,NEIDER YESID TIAFI RUIZ,Yes
+2025-04-22T16:22:57.245Z,Unknown Node,Este va superpuesto?,Santiago Montaño,Sí,NEIDER YESID TIAFI RUIZ,Yes
+2025-04-20T23:31:15.431Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T23:15:04.524Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T23:13:50.923Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T22:59:57.324Z,Unknown Node,https://docs.google.com/document/d/1Jdk7mhw4F3d4s4KTuwIfFI0WdqUDUdA-3C7xMLywpp0/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T21:32:00.556Z,Unknown Node,Flecha al contrario verticalmente cuando no esté desplegada,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T21:31:09.802Z,Unknown Node,Icono flecha: https://fonts.google.com/icons?selected=Material+Symbols+Outlined:arrow_drop_down:FILL@0;wght@400;GRAD@0;opsz@24&icon.query=arrow&icon.size=24&icon.color=%23e8eaed,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T21:15:15.947Z,Unknown Node,https://docs.google.com/document/d/1T0DgYveqis3L-2b4ZeEDu7I08nEFzi-v4X5SLyJZQBs/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-20T21:14:56.628Z,Unknown Node,https://docs.google.com/document/d/1T0DgYveqis3L-2b4ZeEDu7I08nEFzi-v4X5SLyJZQBs/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,Enlace a categorías y capas,NEIDER YESID TIAFI RUIZ,No
+2025-04-20T19:34:01.701Z,Unknown Node,Este mapa en el excel no tiene información para modales,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-19T23:12:47.601Z,Unknown Node,https://docs.google.com/document/d/17rpG5LyoYjzFvorjMk2yLNUTR-b4cUOut8RgiBG9huc/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,Lista completa de la información de los íconos,NEIDER YESID TIAFI RUIZ,No
+2025-04-18T16:34:07.844Z,Unknown Node,"Muestra de como se deberían ver los capítulos desplegados, obviamente no al mismo tiempo*",NEIDER YESID TIAFI RUIZ,,,No
+2025-04-18T16:12:01.404Z,Unknown Node,Texto síntesis: https://docs.google.com/document/d/1q6i2rV2RvbUX7DL9vlulPsY1tM94Hq7VCUK22ynYS3Y/edit?tab=t.0#heading=h.i142078ghvpa,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-18T16:11:37.509Z,Unknown Node,Texto completo: https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-18T15:07:50.708Z,Unknown Node,Ejemplo de como se ve desplegado,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-04-18T01:02:08.032Z,Unknown Node,"Bro, puedes dejar algo así como el sistema grafico, con los iconos en svg para que nos quede mas facil integrarlos al atlas?",Stiv Rojas,"Los íconos ya están abajo, pero no están en svg entonces no sé si hablan mejor con yeri, saludos.",NEIDER YESID TIAFI RUIZ,Yes
+,,,,"Listo, cuando los tengan los pueden aunar a una carpeta",Santiago Montaño,
+,,,,"Esos íconos no son los oficiales, porque yo no estoy encargado de los íconos, los hago así para tener una idea de como ya se verían con el color y forma adecuada.  Por ahora pueden ir trabajando con los que ya teníamos",NEIDER YESID TIAFI RUIZ,
+2025-04-18T00:27:15.477Z,Unknown Node,"Bro, que info debe llevar ese modal, es el mapa 1 cierto?
+Bredunco, Caucayaco o Cauca en la vertiente del Caribe",Stiv Rojas,,,Yes
+2025-04-10T01:18:02.805Z,Unknown Node,Estos logos ya estan ajustados a las medidas solicitadas por el equipo de programación,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-10T01:17:31.300Z,Unknown Node,Enlace a carpeta de logos: https://drive.google.com/drive/folders/1Hrd27_ooNDsZj-C6WW82EmhvYIGpr7l7?usp=drive_link,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-08T22:34:02.797Z,Unknown Node,https://docs.google.com/document/d/1Jdk7mhw4F3d4s4KTuwIfFI0WdqUDUdA-3C7xMLywpp0/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-08T22:19:50.161Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-08T22:19:43.651Z,Unknown Node,https://docs.google.com/document/d/1_UnvC6Kg4UuVfV35KJMY7VgFJo77Dq2Ps_cIAW6BucA/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-08T21:43:53.271Z,Unknown Node,https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,,,No
+2025-04-08T21:41:28.394Z,Unknown Node,https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,Texto completo,NEIDER YESID TIAFI RUIZ,No
+2025-04-08T02:08:28.892Z,Unknown Node,Lista completa de los íconos (números),NEIDER YESID TIAFI RUIZ,https://docs.google.com/document/d/17rpG5LyoYjzFvorjMk2yLNUTR-b4cUOut8RgiBG9huc/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,Yes
+2025-04-08T01:29:46.958Z,Unknown Node,"Este mapa espara la referencia de la ubicación de los números, ya que ponerlos todos es poco práctico",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-04-08T01:28:52.902Z,Unknown Node,https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.kll3oox24g7,NEIDER YESID TIAFI RUIZ,,,No
+2025-03-27T00:45:19.350Z,Unknown Node,https://docs.google.com/document/d/12f6Q0-hi_vSGx3KQhPVhEh3A0B1iTU4_Kz_Ojf3_Mhg/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,Texto sintético,NEIDER YESID TIAFI RUIZ,No
+2025-03-27T00:44:20.089Z,Unknown Node,https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-03-27T00:43:56.141Z,Unknown Node,https://docs.google.com/document/d/1q6i2rV2RvbUX7DL9vlulPsY1tM94Hq7VCUK22ynYS3Y/edit?tab=t.0#heading=h.i142078ghvpa,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-03-27T00:43:12.416Z,Unknown Node,https://docs.google.com/document/d/1r1QDifDlA0-uD1PLuJmVGoT9btAiuDljFSXPD_mTSkk/edit?tab=t.0,NEIDER YESID TIAFI RUIZ,,,No
+2025-03-27T00:42:16.716Z,Unknown Node,Texto completo: https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1&tab=t.0#heading=h.gf0xd13djafj,NEIDER YESID TIAFI RUIZ,,,No
+2025-03-27T00:41:40.905Z,Unknown Node,https://docs.google.com/document/d/1b8t-bCbnQOOCKgBMKEWtUB0e9oru086TC7NiXr875RE/edit?tab=t.0#heading=h.gf0xd13djafj,NEIDER YESID TIAFI RUIZ,,,No
+2025-03-23T22:17:55.936Z,Unknown Node,Esta medida es la de los logos,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-03-23T21:48:15.779Z,Unknown Node,poner enlace de icono de perfil de cuenca,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-03-11T04:22:58.495Z,Unknown Node,Agregar nombres al modal @@NEIDER YESID TIAFI RUIZ,camilo sotelo maya,,,Yes
+2025-03-04T20:59:52.797Z,Unknown Node,se ilumina cuando pasa el over,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-03-01T14:01:26.073Z,Unknown Node,Solo los mapas de cada capítulo van con este botón,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-28T23:02:16.947Z,Unknown Node,SOLO AL INICIO,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-28T23:02:11.273Z,Unknown Node,sOLO LOS MAPAS TIENEN MEDATDATA,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-24T22:59:10.855Z,Unknown Node,Etiquetas de encuadres,Stiv Rojas,,,Yes
+2025-02-24T22:51:23.285Z,Unknown Node,Cambiar atributos de color y nomenclatura,Stiv Rojas,,,Yes
+2025-02-24T22:38:58.363Z,Unknown Node,"nombre del mapa sobre la línea, tener en cuenta la altura de los botones laterales izquierdos",Stiv Rojas,,,Yes
+2025-02-24T22:35:24.878Z,Unknown Node,poner título al lado de la flecha,Stiv Rojas,,,Yes
+2025-02-23T20:43:54.294Z,Unknown Node,"Click aqui, para ir a la carpeta de Drive con las ilustraciones",Mauricio,,,Yes
+2025-02-20T01:00:57.416Z,Unknown Node,Título mas pequeño o quitar,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T01:00:45.439Z,Unknown Node,Botones más pequeños,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:55:49.358Z,Unknown Node,Solo la cuenca va en color,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:54:17.461Z,Unknown Node,Color de mapas en grises,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:53:52.459Z,Unknown Node,Estas interacciones no,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:50:42.207Z,Unknown Node,Quitar nombres y trabajar solo con pestañas,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:46:18.937Z,Unknown Node,Darle mas visibilidad a las alternativas en los créditos,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:44:11.298Z,Unknown Node,Revisar excel para artiuclar los logos de las alternativas transformadoras.,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:41:10.631Z,Unknown Node,Botones más pequeños antes de desplegarse,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:39:15.817Z,Unknown Node,"Poner ubicaciones al mapa, para asociar",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-20T00:38:17.414Z,Unknown Node,"Buscar el ícono más sencillo, sintético",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-14T16:06:46.768Z,Unknown Node,Recuerden  que hay  que ajustar  los  titulos  y  subtítulos  en  la  parte  superior,Rafael Sarmiento,"Pero en el inicio qué subtítulo va?
+((título y subtítulo ya fueron incorporados mas abajo.))",NEIDER YESID TIAFI RUIZ,Yes
+2025-02-14T16:04:26.296Z,Unknown Node,Hay  que ajustar  la  orientación  del  norte de  esa  rosa  de  los  vientos…  ahi  el  norte  esta  para  el oriente…  También  creo  que  hay  que escalarla,Rafael Sarmiento,,,Yes
+2025-02-14T15:23:24.010Z,Unknown Node,Tuve que modificar el puntaje de letra al ajustar título y subtítulo,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-14T15:07:49.765Z,Unknown Node,Requiere ajuste compositivo,Mauricio,,,Yes
+2025-02-14T14:45:04.047Z,Unknown Node,ubicaciones de la cuenca,Mauricio,,,Yes
+2025-02-11T01:52:51.350Z,Unknown Node,Quitar este boton,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:52:44.538Z,Unknown Node,Agregar estos botones a la visualización,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:52:16.881Z,Unknown Node,"Darle jerarquía a estos botones, que va primerp?+",NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:50:51.373Z,Unknown Node,Actualizar boton de créditos,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:50:20.154Z,Unknown Node,Hacer modales para cada boton (visualizar),NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:49:32.453Z,Unknown Node,Unifica botones,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:49:14.604Z,Unknown Node,Ajustar título y subitulo en la visualización a capítulo y mapas respectivamentre,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:48:32.979Z,Unknown Node,Mover rosa de los vientos,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:48:21.120Z,Unknown Node,Mover mapa de colombia y darle tratamiento similar a los mapas de abajo,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:47:47.554Z,Unknown Node,Mejorar la compresión de este botón como retroceder,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:47:20.876Z,Unknown Node,Que ese mismo boton sea el de retroceder,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:47:06.573Z,Unknown Node,Cambiar dirección de capas a vertical y adecuar,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:46:53.715Z,Unknown Node,Añadir boton de visualización de recuadros,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:46:35.844Z,Unknown Node,Añadir etqiueats a encuadres,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:46:19.575Z,Unknown Node,Quitar,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:46:05.464Z,Unknown Node,Hacer modal con otra composición de imagen,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-11T01:30:09.460Z,Unknown Node,DISEÑAR VISUALIZACIÓN DEL ATLAS EN RESOLUCIÓN MÓVIL,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-06T00:56:57.718Z,Unknown Node,"Agrupar botones generales, clasificar",NEIDER YESID TIAFI RUIZ,En el lado del boton de las capas,NEIDER YESID TIAFI RUIZ,Yes
+2025-02-06T00:45:48.014Z,Unknown Node,Buscar otro icono para metadata,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-06T00:35:34.472Z,Unknown Node,Pueden ir al icono en la pagina de icon dando click a la descripción del ícono,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-05T19:39:33.608Z,Unknown Node,Visualización descartada,NEIDER YESID TIAFI RUIZ,,,Yes
+2025-02-05T19:39:23.257Z,Unknown Node,esta visualización fue descartada,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:19:27.787Z,Unknown Node,"Adicionar colegio mayor, y dalre menos tamaño tipográfico",NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:17:46.936Z,Unknown Node,Suprimir botones de mapas,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:09:01.096Z,Unknown Node,Efecto de transparencia para el fondo de convenciones,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:07:57.269Z,Unknown Node,Poner ícono que despliegue,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:06:58.855Z,Unknown Node,Reducri distancia,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:06:11.089Z,Unknown Node,Cambiar ícono,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-12T00:05:14.910Z,Unknown Node,Correr este boton,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:54:53.133Z,Unknown Node,esta parte no aporta,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:48:11.955Z,Unknown Node,"tres niveles de menu: capas, mapoteca y menu general",NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:46:50.772Z,Unknown Node,reubicar,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:46:05.623Z,Unknown Node,Capas_ convenciones,NEIDER YESID TIAFI RUIZ,las capas son otro tipo de menú,NEIDER YESID TIAFI RUIZ,Yes
+2024-12-09T22:25:48.801Z,Unknown Node,Cambiar con los nombfer no siglas,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:25:19.312Z,Unknown Node,Nodos de la página de un río,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-09T22:18:32.807Z,Unknown Node,Articular al la zona derecha junto a la mapoteca,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-06T23:15:46.707Z,Unknown Node,añadir boton de créditos,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-06T23:15:08.239Z,Unknown Node,la metadata se mantiene en cada plano,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-12-06T22:53:37.225Z,Unknown Node,"no todos los botones son intuitivos, en responsiva este boton no funciona muy bien",NEIDER YESID TIAFI RUIZ,,,Yes
+2024-03-23T20:46:12.976Z,Unknown Node,Estos procesos formativos no va,NEIDER YESID TIAFI RUIZ,,,No
+2024-03-08T01:05:46.407Z,Unknown Node,¿cómo te registrarías?,Lina Rivera,,,No
+2024-03-08T01:01:46.816Z,Unknown Node,mejorar flecha,Lina Rivera,,,No
+2024-03-08T01:01:36.016Z,Unknown Node,Eliminar boton,Lina Rivera,,,No
+2024-03-08T00:59:25.071Z,Unknown Node,¿cómo descargarías algun documento del archivo?,Lina Rivera,,,No
+2024-03-08T00:47:35.472Z,Unknown Node,encuentr en el home les eventos de actualidad del proyecto,Lina Rivera,,,No
+2024-03-08T00:45:08.647Z,Unknown Node,¿encuentra la sección donde ubiques el proceso de creación de la plataforma web,Lina Rivera,,,No
+2024-03-08T00:41:50.102Z,Unknown Node,"¿es legible la informaciónde las caminarraciones?, cómo interpretan la información?",Lina Rivera,,,No
+2024-03-08T00:33:25.950Z,Unknown Node,?,Lina Rivera,,,No
+2024-03-08T00:31:16.154Z,Unknown Node,Ingresar al facebook del nodo Ortiente De Cali,Lina Rivera,,,No
+2024-03-08T00:28:31.735Z,Unknown Node,ELIMINA,Lina Rivera,,,No
+2024-03-08T00:28:22.079Z,Unknown Node,"Reestructurar los textos:  mas cortos, evocativos y al punto",Lina Rivera,,,No
+2024-03-08T00:23:22.559Z,Unknown Node,Actualizar info,Lina Rivera,,,No
+2024-03-08T00:21:01.257Z,Unknown Node,@actualizar información Suarez. Esto ya está hecho,Lina Rivera,,,No
+2024-03-08T00:19:13.669Z,Unknown Node,Redactar parrafo que explique qye es la mapoteca e invitar a consultar,Lina Rivera,,,No
+2024-03-08T00:18:39.268Z,Unknown Node,hacer párrafo invitando a explorar los resultados del proceso de codiseño en geonetwork,Lina Rivera,,,No
+2024-03-08T00:17:41.612Z,Unknown Node,Pregunta: identifica el botón para acceder a la aplicación geonetwork,Lina Rivera,,,No
+2024-03-08T00:16:55.556Z,Unknown Node,colocar título que invita a la acción,Lina Rivera,,,No
+2024-03-08T00:13:21.921Z,Unknown Node,Colocar elementos graficos que apoyen una guia intuitiva para el usuario (que sepa que eso es una función u no solo info.),Lina Rivera,,,No
+2024-03-08T00:11:17.469Z,Unknown Node,unificar estilo gráfico de botón,Lina Rivera,,,No
+2024-03-08T00:10:23.955Z,Unknown Node,pensar el titulo del botón,Lina Rivera,,,No
+2024-03-08T00:09:04.034Z,Unknown Node,Ubica el botón que lleva a los Nodos.,Lina Rivera,,,No
+2024-03-08T00:07:46.248Z,Unknown Node,* Encuentra el esquema de dinámicas y relacione sentre los actores del poryecto (Aprovechar para mapear el esquema),Lina Rivera,,,No
+2024-03-08T00:02:57.077Z,Unknown Node,Titulo que mencione los pilares,Lina Rivera,,,No
+2024-03-08T00:02:16.180Z,Unknown Node,"* Consulta, dirigete a los distintos pilares del proyecto",Lina Rivera,,,No
+2024-03-07T23:59:49.820Z,Unknown Node,"* Que le parece, o como percibe el texto de contextualización del proyecto",Lina Rivera,La ultima que se mapee en funcionalidades del HOME,Lina Rivera,Yes
+2024-03-07T23:56:57.559Z,Unknown Node,* Encuentra el botón que te redigira al esquema de los actores,Lina Rivera,,,No
+2024-03-07T23:55:47.239Z,Unknown Node,"* Dónde encontrarias las actividades realizadas alrededor del proyecto
+*",Lina Rivera,,,No
+2024-03-07T23:53:39.979Z,Unknown Node,* Dónde encuentras los actores que conforman el proyecto,Lina Rivera,,,Yes
+2024-03-07T23:51:55.944Z,Unknown Node,* Encuentra el contenido que te hable de nuestra trayectoria,Lina Rivera,,,No
+2024-02-14T13:39:53.799Z,Unknown Node,Añadir banner,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-02-14T13:29:43.415Z,Unknown Node,Entrevista con arturo,NEIDER YESID TIAFI RUIZ,,,No
+2024-02-14T13:18:10.392Z,Unknown Node,Añadir otras caminarracionrd,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-02-14T13:14:55.586Z,Unknown Node,Añadir ventana de formulario,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-02-14T13:11:28.356Z,Unknown Node,Añadir texturas de acuarelas,NEIDER YESID TIAFI RUIZ,,,No
+2024-02-02T19:25:09.490Z,Unknown Node,Poner img de descubriendo la experiencia,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-02-02T19:13:49.167Z,Unknown Node,El texto es de Cocreación sensible? (preguntar),NEIDER YESID TIAFI RUIZ,,,No
+2024-02-02T18:22:09.938Z,Unknown Node,Es necesario texto para la galería de integrantes,NEIDER YESID TIAFI RUIZ,,,No
+2024-02-01T00:00:42.377Z,Unknown Node,"Preguntar botón ""descargar""",NEIDER YESID TIAFI RUIZ,,,No
+2024-01-31T23:59:01.718Z,Unknown Node,Créditos: preguntar a alex,NEIDER YESID TIAFI RUIZ,,,No
+2024-01-31T23:51:26.767Z,Unknown Node,Qué botones estarán aquí? Hablar con Alex,NEIDER YESID TIAFI RUIZ,,,No
+2024-01-25T20:17:25.057Z,Unknown Node,Situar el con apoyo de sobre los signos marcarios,Rafael Sarmiento,,,Yes
+2024-01-24T23:49:38.560Z,Unknown Node,"@Alexander en lugar de un croquis dibujado, creo que sería mucho más funcional tener la ubicación en google maps. ¿Puedes vincular eso?",Rafael Sarmiento,,,No
+2024-01-23T23:10:12.422Z,Unknown Node,Ojo con las margenes,Rafael Sarmiento,,,No
+2024-01-23T23:10:07.528Z,Unknown Node,Hay que hacer un croquis de la ubicación de estos lugares. Esto se mencionó en la reunión de Cali,Rafael Sarmiento,,,No
+2024-01-23T22:58:25.508Z,Unknown Node,Ojo con las márgenes. Seguir la pauta de las páginas anteriores.,Rafael Sarmiento,,,Yes
+2024-01-23T22:54:23.617Z,Unknown Node,Frase/llamado,Rafael Sarmiento,,,No
+2024-01-23T22:51:22.378Z,Unknown Node,"carrusel. reducir número de imágenes, reubicar video.",Rafael Sarmiento,plantear versatilidad de carrusel,Rafael Sarmiento,No
+2024-01-23T22:38:13.560Z,Unknown Node,Revisar tamaño fuente en párrafo,Rafael Sarmiento,,,No
+2024-01-23T22:30:03.361Z,Unknown Node,Probar alineado en bandera y 2 pt menos.,Rafael Sarmiento,,,Yes
+2024-01-23T22:21:53.223Z,Unknown Node,Revisar contraste. Ojo con las opciones de accesibilidad.,Rafael Sarmiento,,,Yes
+2024-01-23T22:09:39.169Z,Unknown Node,guión de test. Lo que el usuario debe hacer.  operaciones concretas.,Rafael Sarmiento,,,No
+2024-01-23T22:08:24.855Z,Unknown Node,videollamada con c/u de los usuarios de cada perfil,Rafael Sarmiento,,,No
+2024-01-23T22:08:02.569Z,Unknown Node,la prueba de usuario no debe durar más de 30 min,Rafael Sarmiento,,,No
+2024-01-23T22:02:26.864Z,Unknown Node,La prueba de usuario se debe realizar con 5 personas de cada arquetipo (los dos principales),Rafael Sarmiento,,,No
+2024-01-23T22:01:43.437Z,Unknown Node,plantear una tabla con arquetipos para puntear cada una de las páginas,Rafael Sarmiento,,,No
+2024-01-23T22:00:00.152Z,Unknown Node,Pensar la utilidad de los dos botones,Rafael Sarmiento,,,No
+2024-01-23T21:58:24.072Z,Unknown Node,Identificar si se leen los 3 párrafos,Rafael Sarmiento,,,No
+2024-01-23T21:58:12.922Z,Unknown Node,test A/B,Rafael Sarmiento,,,No
+2024-01-23T21:51:38.766Z,Unknown Node,Probar posición...,Rafael Sarmiento,,,No
+2024-01-23T21:50:25.810Z,Unknown Node,Priorizar 2 o máx 3 pág para testear,Rafael Sarmiento,,,No
+2024-01-23T21:46:55.851Z,Unknown Node,ver cómo el usuario responde a estos botones.,Rafael Sarmiento,,,No
+2024-01-18T00:15:54.092Z,Unknown Node,logotipos de colaboradores,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T19:23:53.073Z,Unknown Node,Añadir audiovisuales,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T19:14:37.915Z,Unknown Node,"pestaña de plataforma: enucuentro entre universidad, activistas, que pemrite esa producción, es decir un maungaje.",NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T18:06:27.752Z,Unknown Node,que todos los nodos tengan mínimo un correo electrónico,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T17:58:01.668Z,Unknown Node,Mapa con la localización,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T17:53:27.231Z,Unknown Node,redibujar esquema,NEIDER YESID TIAFI RUIZ,Este ya está redibujado,Rafael Sarmiento,Yes
+2024-01-12T17:06:38.284Z,Unknown Node,Quitar el título de nuestro caminandar,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T16:56:05.860Z,Unknown Node,Botón de diagrama de galaxias,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-12T16:55:48.741Z,Unknown Node,pestañas paa los demás ítems,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-11T00:04:45.039Z,Unknown Node,ilustración de planta,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-11T00:02:05.284Z,Unknown Node,Ajustar recuadros con diagramas,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:33:40.289Z,Unknown Node,añadir imagen,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:33:36.953Z,Unknown Node,Añadir imágenes,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:32:29.327Z,Unknown Node,Enlace para descargar documento,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:26:16.207Z,Unknown Node,Reemplazar foto,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:21:59.300Z,Unknown Node,Texto que introduce el qué es el malungaje,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:18:22.374Z,Unknown Node,articular ilustración,NEIDER YESID TIAFI RUIZ,,,Yes
+2024-01-10T23:13:28.896Z,Unknown Node,"ilustraciones x mauro, no agotar texturas y aplicar pestañas o botones",NEIDER YESID TIAFI RUIZ,Mujer bailando,NEIDER YESID TIAFI RUIZ,Yes

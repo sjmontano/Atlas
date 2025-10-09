@@ -1,0 +1,193 @@
+/* Wrapper for the entire menu system */
+.layer-menu-wrapper {
+  position: absolute;
+  height: 19vh;
+  width: 6vw;
+  left: 94vw;
+  z-index: 15;
+  top: 81vh;
+}
+
+.layer-menu-wrapper svg {
+  padding-left: 1vh;
+  padding-right: 2vh;
+  padding-top: 0.6vh;
+  
+}
+
+.lineaCapas{
+  position: absolute;
+  top: 0;
+  left: 92vw;
+  width: 100%;
+  height: 100%;
+}
+/* Toggle button styles */
+.layer-menu-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: relative;
+  top: 9vh;
+  left: 2vw;
+  z-index: 12;
+}
+.layer-menu-toggle img {
+  height: 7vh;
+  width: 7vh;
+}
+
+/* Contenedor principal del control de capas */
+.layer-control-container {
+  position: absolute;
+  bottom: 0%; /* Ajusta según la posición deseada */
+  right: 0%; /* Ajusta según la posición deseada */
+  width: 25vw; /* Ancho del contenedor */
+  height: 100vh;
+  overflow-y: auto; /* Habilita el scroll vertical si hay muchas capas */
+  z-index: 11;
+  display: block;
+}
+
+/* Estilo para el contenedor interno */
+#layer-Control {
+  display: flex;
+  flex-direction: column; /* Alinea los elementos en columna */
+}
+
+#layer-Control img {
+  position: fixed;
+  z-index: -1;
+  height: 100vh;
+  width: 25vw;
+}
+
+.espacio {
+  margin-right: 10px;
+  width: 3vh;
+  height: 3vh;
+  padding-right: 1vh;
+  padding-left: 1vh;
+}
+.espacio-2 {
+  margin-right: 10px;
+  width: 1.5vw;
+  height: 3vh;
+}
+
+.subtitle {
+  padding-left: 10vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  font-size: 14px; /* Tamaño de fuente */
+  font-weight: 700;
+  color: #fffeee; /* Color del texto */
+  cursor: default; /* Cursor por defecto */
+  display: flex;
+  align-items: center;
+}
+.subtitle-2{
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-left: 2vh;
+  font-size: 14px; /* Tamaño de fuente */
+  font-weight: 700;
+  color: #fffeee; /* Color del texto */
+  cursor: default; /* Cursor por defecto */
+  display: flex;
+  align-items: start;
+  justify-content: start;
+}
+
+/* Estilo para cada capa */
+.layer-item {
+  padding: 8px 12px; /* Espaciado interno */
+  padding-left: 2vw;
+  font-size: 14px; /* Tamaño de fuente */
+  color: #fffeee; /* Color del texto */
+  cursor: default; /* Cursor por defecto */
+  display: flex;
+  align-items: start;
+}
+.layer-item span{
+  width: 14vw;
+}
+
+.subtitle-2 span{
+  width: 14vw;
+}
+
+/* Estilos para las etiquetas dentro del menú de capas */
+#layer-Control label {
+  display: flex;
+  align-items: center;
+  margin-top: 6%;
+  margin-bottom: 6%; /* Ajustar el margen en porcentaje */
+  color: white; /* Texto blanco */
+  font-size: 1.8rem; /* Tamaño de letra más grande */
+}
+
+/* Estilos para los iconos dentro del menú de capas */
+#layer-Control i {
+  margin-right: 5%; /* Ajustar el margen en porcentaje */
+  cursor: pointer;
+  font-size: 2.4rem; /* Tamaño del icono más grande */
+}
+
+/* Estilos para el botón de alternar el menú de capas */
+.layer-toggle {
+  background-color: #03103a;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 4%; /* Ajustar el padding en porcentaje */
+  cursor: pointer;
+  z-index: 1001;
+  margin-top: 1%; /* Espacio entre el botón y el menú */
+  align-self: flex-end; /* Alinear el botón a la izquierda */
+}
+.eye-icon {
+  margin-right: 10px;
+  cursor: pointer;
+  transition: opacity 0.2s, color 0.2s;
+}
+
+/* Capa visible: color sólido */
+.eye-icon.active {
+  opacity: 1;
+  color: #333;
+}
+
+/* Capa oculta: ojo “apagado” con menos intensidad */
+.eye-icon.inactive {
+  opacity: 0.3;
+  color: #999;
+}
+
+/* Tamaño del icono dentro del botón de alternar */
+.layer-toggle i {
+  font-size: 2.4rem; /* Tamaño del icono más grande */
+}
+
+/* Show menu on hover */
+.layer-menu-wrapper:hover .layer-control-container {
+  display: block;
+}
+
+/* Add transition for smooth appearance */
+.layer-menu-wrapper:hover .layer-control-container {
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

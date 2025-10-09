@@ -1,0 +1,390 @@
+/*
+============================================================================
+      MODAL DE INFORMACIÓN - SISTEMA DE DISEÑO OPTIMIZADO
+============================================================================
+*/
+
+/* ============================================================================
+   1. VARIABLES CSS - SISTEMA DE TOKENS DE DISEÑO
+   ============================================================================ */
+:root {
+  /* Paleta de colores */
+  --primary-blue: #0599B7;
+  --primary-green: #0f6e50;
+  --dark-green: #046c81;
+  --text-primary: #4b5563;
+  --text-secondary: #767575ea;
+  --modal-bg: #fffeee;
+  --scrollbar-track: #e0f7fa;
+  
+  /* Sistema de sombras */
+  --shadow-light: 0 0.4vh 0.8vh rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 0.8vh 1.6vh rgba(0, 0, 0, 0.2);
+  
+  /* Sistema de espaciado escalable */
+  --space-xs: 0.5vh;
+  --space-sm: 1vh;
+  --space-md: 2vh;
+  --space-lg: 3vh;
+  
+  /* Sistema tipográfico escalable */
+  --text-xs: 1.2vh;
+  --text-sm: 1.5vh;
+  --text-base: 2vh;
+  --text-lg: 2.59vh;
+  --text-xl: 3.2vh;
+  
+  /* Elementos escalables */
+  --icon-base: 3.2vh;
+  --border-radius: 0.8vh;
+  --scrollbar-width: 3vw;
+}
+
+/* ============================================================================
+   2. ESTRUCTURA PRINCIPAL DEL MODAL
+   ============================================================================ */
+.modal-info {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 65vw;
+  height: 75vh;
+  padding: 32px;
+  transform: translate(-50%, -50%);
+  background-color: var(--modal-bg);
+  border-radius: var(--border-radius);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.modal-content-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================================
+   3. HEADER FIJO
+   ============================================================================ */
+.modal-fixed-header {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  /* box-shadow: var(--shadow-light); */
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+/* Icono del modal */
+.icon-info-modal-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-icon,
+.icon-info-modal-container svg {
+  width: var(--icon-base);
+  height: var(--icon-base);
+}
+
+/* Título del modal */
+.title-container-modal-info {
+  font-family: "Noto Sans", sans-serif;
+  color: var(--primary-blue);
+  font-size: var(--text-lg);
+  flex: 1;
+}
+
+.title-container-modal-info h3 {
+  margin: 0 0 var(--space-xs) 0;
+  font-weight: normal;
+  font-size: inherit;
+}
+
+.highlight-modal-info {
+  font-weight: bold;
+  font-size: var(--text-lg);
+}
+
+.chapter-text-modal-info {
+  margin-left: 0.3vw;
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+/* Botón de cierre */
+.close-btn-modal-info {
+  position: absolute;
+  top: 30%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: var(--text-xl);
+  color: var(--primary-green);
+  padding: var(--space-xs);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  z-index: 1001;
+}
+
+.close-btn-modal-info:hover {
+  background-color: rgba(15, 110, 80, 0.1);
+}
+
+/* ============================================================================
+   4. CONTENIDO SCROLLEABLE
+   ============================================================================ */
+.modal-scrollable-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin: 0 0 0 calc(4.4vw);
+  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-blue) var(--scrollbar-track);
+  height: calc(75vh - 120px);
+}
+
+/* Scrollbar personalizado (Webkit) */
+.modal-scrollable-content::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+  background: var(--scrollbar-track);
+}
+
+.modal-scrollable-content::-webkit-scrollbar-thumb {
+  background: var(--primary-blue);
+  border-radius: calc(var(--scrollbar-width) * 0.8);
+}
+
+.modal-scrollable-content::-webkit-scrollbar-thumb:hover {
+  background: var(--dark-green);
+}
+
+/* ============================================================================
+   5. CONTENIDO DE TEXTO
+   ============================================================================ */
+.body-modal-info {
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0 calc(14vw) 0 0;
+  padding: var(--space-sm);
+  word-wrap: break-word;
+  white-space: break-spaces;
+}
+
+.blue-link {
+  color: var(--primary-blue);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* ============================================================================
+   6. IMÁGENES Y DESCRIPCIONES
+   ============================================================================ */
+.image-description-modal-info-group {
+  display: flex;
+  flex-direction: column;
+  width: 76%;
+}
+
+#image-description-modal-info-1,
+#image-description-modal-info-2,
+#image-description-modal-info-3 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm);
+  background: var(--modal-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-medium);
+  margin-bottom: calc(var(--space-lg) + var(--space-xs));
+  max-width: calc(45vw);
+}
+
+#image-description-modal-info-1 img,
+#image-description-modal-info-2 img,
+#image-description-modal-info-3 img {
+  max-width: 70%;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease;
+}
+
+#image-description-modal-info-1 img:hover,
+#image-description-modal-info-2 img:hover,
+#image-description-modal-info-3 img:hover {
+  transform: scale(1.03);
+}
+
+#image-description-modal-info-1 p,
+#image-description-modal-info-2 p,
+#image-description-modal-info-3 p {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0;
+  padding: 0 var(--space-sm);
+  font-style: italic;
+  border-radius: var(--border-radius);
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+/* ============================================================================
+   7. BOTONES
+   ============================================================================ */
+.btn-download-modal-info {
+  border: 0.3vw solid var(--dark-green);
+  padding: var(--space-sm);
+  border-radius: var(--border-radius);
+  background-color: var(--modal-bg);
+  color: var(--dark-green);
+  margin-top: var(--space-sm);
+  font-size: var(--text-base);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-width: calc(15vw);
+  max-width: calc(30vw);
+  transition: all 0.2s ease;
+}
+
+.btn-download-modal-info:hover {
+  background-color: var(--dark-green);
+  color: var(--modal-bg);
+}
+
+/* ============================================================================
+   ESTILOS PARA CARRUSEL DEL TALLER (InfoModal)
+   ============================================================================ */
+.carrusel-taller-container {
+  width: 80%;
+  margin: var(--space-md) 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.carrusel-taller-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.carrusel-taller-image-container {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background-color: #f8f9fa;
+  box-shadow: var(--shadow-medium); /* Agregada sombra */
+}
+
+.carrusel-taller-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Cambio a cover para mantener tamaño uniforme */
+  object-position: center; /* Centra la imagen */
+  display: block;
+}
+
+/* Descripción del carrusel */
+.carrusel-taller-description {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  background-color: rgba(173, 216, 230, 0.1);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-blue);
+  box-shadow: var(--shadow-light); /* Agregada sombra sutil */
+}
+
+.carrusel-taller-description p {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Reutilizamos los estilos del carrusel principal */
+.carrusel-taller-container .carousel-btn {
+  position: static;
+  background: none;
+  border: none;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.carrusel-taller-container .carousel-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carrusel-taller-container .carousel-btn img {
+  width: 38px;
+  height: 38px;
+}
+
+.carrusel-taller-container .carousel-btn-prev {
+  order: 0;
+}
+
+.carrusel-taller-container .carousel-btn-next {
+  order: 2;
+}
+
+.carrusel-taller-container .carousel-indicators {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 15;
+}
+
+.carrusel-taller-container .carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(173, 216, 230, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  outline: none;
+  appearance: none;
+  flex-shrink: 0;
+}
+
+.carrusel-taller-container .carousel-dot:hover {
+  transform: scale(1.1);
+}
+
+.carrusel-taller-container .carousel-dot.active {
+  background: #0599B7 !important;
+}
