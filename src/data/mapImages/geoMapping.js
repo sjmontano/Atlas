@@ -30,10 +30,10 @@ const geoMapping = {
     high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752359777/geoImages/xyrkeumf4kv6eixtzuoz.webp",
   },
   ecosistemas:{
-    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350981/geoImages/g9xrqxop5nmfciklng1b.webp", //"http://res.cloudinary.com/dvluvxfvn/image/upload/v1758059974/geoImages/yczzp6mfomu8bs03bhjx.webp",
-    low:  "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350981/geoImages/g9xrqxop5nmfciklng1b.webp", //"http://res.cloudinary.com/dvluvxfvn/image/upload/v1758060029/geoImages/nfncahi3vhbkaxdd9jx2.webp",
-    medium:"https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350945/geoImages/keozbw51ancathhw6cwk.webp",  //"http://res.cloudinary.com/dvluvxfvn/image/upload/v1758059974/geoImages/yczzp6mfomu8bs03bhjx.webp",
-    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350945/geoImages/keozbw51ancathhw6cwk.webp" //"http://res.cloudinary.com/dvluvxfvn/image/upload/v1758060060/geoImages/jx85km3ewc6a3r5fw2ch.webp" ,
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350981/geoImages/g9xrqxop5nmfciklng1b.webp", //"https://res.cloudinary.com/dvluvxfvn/image/upload/v1758059974/geoImages/yczzp6mfomu8bs03bhjx.webp",
+    low:  "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350981/geoImages/g9xrqxop5nmfciklng1b.webp", //"https://res.cloudinary.com/dvluvxfvn/image/upload/v1758060029/geoImages/nfncahi3vhbkaxdd9jx2.webp",
+    medium:"https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350945/geoImages/keozbw51ancathhw6cwk.webp",  //"https://res.cloudinary.com/dvluvxfvn/image/upload/v1758059974/geoImages/yczzp6mfomu8bs03bhjx.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1752350945/geoImages/keozbw51ancathhw6cwk.webp" //"https://res.cloudinary.com/dvluvxfvn/image/upload/v1758060060/geoImages/jx85km3ewc6a3r5fw2ch.webp" ,
   },
   tejidosDelAgua:{
     
@@ -45,59 +45,59 @@ const geoMapping = {
 
   TNATransformadoras:{
     
-    base: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759285334/geoImages/kbg62bjm983wn9p6xexl.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759285334/geoImages/kbg62bjm983wn9p6xexl.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759285303/geoImages/aarwqim4oyi0m4rpldua.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759285229/geoImages/nhbnbpekarmsu7ernhcj.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759285334/geoImages/kbg62bjm983wn9p6xexl.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759285334/geoImages/kbg62bjm983wn9p6xexl.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759285303/geoImages/aarwqim4oyi0m4rpldua.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759285229/geoImages/nhbnbpekarmsu7ernhcj.webp",
   },
 
   VDOrienteCali:{
     
-    base:  "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512015/geoImages/roog2p6gjo3dnnqpcfel.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512015/geoImages/roog2p6gjo3dnnqpcfel.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759511990/geoImages/iijobhmltqbao9stllmm.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759511931/geoImages/ku7ikq6ottmty9pl91u0.webp",
+    base:  "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512015/geoImages/roog2p6gjo3dnnqpcfel.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512015/geoImages/roog2p6gjo3dnnqpcfel.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759511990/geoImages/iijobhmltqbao9stllmm.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759511931/geoImages/ku7ikq6ottmty9pl91u0.webp",
   },
 
 
   AVillaRica:{
     
-    base: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512655/geoImages/pdxepthixmeebgei59yq.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512655/geoImages/pdxepthixmeebgei59yq.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512636/geoImages/thebiaojynk3vlbeliqy.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759512616/geoImages/sj5c6kcyz8oilmta1ra8.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512655/geoImages/pdxepthixmeebgei59yq.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512655/geoImages/pdxepthixmeebgei59yq.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512636/geoImages/thebiaojynk3vlbeliqy.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759512616/geoImages/sj5c6kcyz8oilmta1ra8.webp",
   },
    ASuarez:{
     
-    base: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759606210/geoImages/xtkpcwpuayqt7oaqapme.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759606178/geoImages/bnksnazia7wppgiyt5bz.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606210/geoImages/xtkpcwpuayqt7oaqapme.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606178/geoImages/bnksnazia7wppgiyt5bz.webp",
   },
 
 
   MOrienteCali:{
     
-    base:  "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759611033/geoImages/am5zps2ui4g4uob759u5.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759611033/geoImages/am5zps2ui4g4uob759u5.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759610977/geoImages/xe7nbuaibqplwdxyyxgr.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759610952/geoImages/d0hp3etfxmwi2ovm6fbp.webp",
+    base:  "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759611033/geoImages/am5zps2ui4g4uob759u5.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759611033/geoImages/am5zps2ui4g4uob759u5.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759610977/geoImages/xe7nbuaibqplwdxyyxgr.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759610952/geoImages/d0hp3etfxmwi2ovm6fbp.webp",
   },
 
   MVillaRica:{
     
-    base: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759612236/geoImages/bje0ak6zug1yauaqds76.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759612181/geoImages/hrqmjq5rgv9a23jrqaaj.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612236/geoImages/bje0ak6zug1yauaqds76.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612181/geoImages/hrqmjq5rgv9a23jrqaaj.webp",
   },
 
   MSuarez:{
     
-    base: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
-    low: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
-    medium: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759613323/geoImages/dkn1bsukdqdmljbclqmm.webp",
-    high: "http://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613323/geoImages/dkn1bsukdqdmljbclqmm.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp",
   },
 
 
