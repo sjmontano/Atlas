@@ -11,12 +11,14 @@ import perfil1 from "../../../../public/assets/img/perfil/perfil-1.svg";
 import perfil2 from "../../../../public/assets/img/perfil/perfil-2.svg";
 import perfil3 from "../../../../public/assets/img/perfil/perfil-3.svg";
 
+
 import Modal from "../../Home/Modal/Modal";
 const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
   const navigate = useNavigate();
   const [topMargin] = useState("4%");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMapoteca, setIsMapoteca] = useState(false);
+  
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // Array de imágenes del perfil para el carrusel

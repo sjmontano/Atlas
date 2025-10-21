@@ -69,10 +69,10 @@ const geoMapping = {
   },
    ASuarez:{
     
-    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
-    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606239/geoImages/k334wa6inycxrkfc3xwd.webp",
-    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606210/geoImages/xtkpcwpuayqt7oaqapme.webp",
-    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1759606178/geoImages/bnksnazia7wppgiyt5bz.webp",
+    base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1761061326/geoImages/mwz79qubfmr0x5zqtzto.webp",
+    low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1761061301/geoImages/aiga1m1bxg4yvmzfn7wc.webp",
+    medium: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1761061301/geoImages/aiga1m1bxg4yvmzfn7wc.webp",
+    high: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1761061249/geoImages/nkxiwrxtbovp66gobcdq.webp",
   },
 
 

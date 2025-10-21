@@ -211,7 +211,8 @@ const ToponimosLayer = ({ map, toponimos, selectedMap, onMapChange, mapName ="" 
         .setLngLat(toponimo.coords);
         
 
-        if (mapName=="ASuarez") {
+        console.log(mapName);
+        if (mapName=="ASuarez" || mapName=="AVillaRica"|| mapName=="VDOrienteCali") {
           const root = createRoot(popupNode);  // Usamos `createRoot` para React 18
         root.render(<ImageCircle angle={90} image="http://localhost:5173/assets/img/entramados/Asoyoge.webp" />);
       

@@ -88,6 +88,12 @@
   flex-shrink: 0;
 }
 
+.logoModal{
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
 .modal-icon,
 .icon-info-modal-container svg {
   width: var(--icon-base);
@@ -388,3 +394,22 @@
 .carrusel-taller-container .carousel-dot.active {
   background: #0599B7 !important;
 }
+
+/* ============================================================================
+   8. ESTILOS imagen de las alternativas en el modal
+   ============================================================================ */
+
+   .imgEntramadosModal {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    background-image: linear-gradient(#fff, #fff), 
+                     linear-gradient(45deg, #0599B7, #046c81);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    transition: transform 0.3s ease;
+    box-shadow: 0 9px 10px rgba(13, 13, 14, 0.8); /* Añadida sombra suave con el color primario */
+
+  }

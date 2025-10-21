@@ -69,12 +69,12 @@ const mapConfig = {
   
 ASuarez:{
     
-    initialZoom: 11.88,
+    initialZoom: 12,
     dragPan: false,
     scrollZoom: false,
     shadow: false,
-    minZoom:  11.88,
-    maxZoom:  11.88,
+    minZoom:  12,
+    maxZoom:  12,
   },
 
   AVillaRica:{
@@ -89,12 +89,12 @@ ASuarez:{
 
   VDOrienteCali:{
     
-    initialZoom: 12.7,
+    initialZoom: 12.9,
     dragPan: false,
     scrollZoom: false,
     shadow: false,
-    minZoom:  12.7,
-    maxZoom:  12.7,
+    minZoom:  12.9,
+    maxZoom:  12.9,
   },
 
   MOrienteCali:{

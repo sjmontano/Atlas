@@ -1097,7 +1097,7 @@ const modalsData = [
     texto: (
       <div className="texto-modal-container">
         <div>
-          <img src="assets/cap2/afroYogaCap2.svg" alt="" />
+          <img className="imgEntramadosModal" src="/assets/img/entramados/Afroyoga.webp" alt="" />
           <p>
             <strong>Localización:</strong> Encuentros en diferentes lugares
           </p>
@@ -1161,7 +1161,7 @@ const modalsData = [
     texto: (
       <div className="texto-modal-container">
         <div>
-          <img src="assets\img\entramados\El chontaduro.webp" alt="" />
+          <img className="imgEntramadosModal" src="assets\img\entramados\El chontaduro.webp" alt="" />
           <p>
             <strong>Localización:</strong> Barrio Marroquín III Dg. 26g 9 #72s
             32
@@ -1246,7 +1246,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\mujeresDelOriente.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\mujeresDelOriente.webp" alt="" />
         <p><strong>Localización:</strong> Diferentes casas</p>
         <p><strong>Incidencia:</strong> Oriente de Cali</p>
         <p><strong>Influencia:</strong> Pacífico Colombiano</p>
@@ -1313,7 +1313,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\chicasComunicativas.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\chicasComunicativas.webp" alt="" />
         <p><strong>Localización:</strong> Biblioteca Rigoberta Menchú</p>
         <p><strong>Incidencia:</strong> Comuna 15</p>
         <p><strong>Influencia:</strong> Oriente de Cali</p>
@@ -1367,7 +1367,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\matamba.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\matamba.webp" alt="" />
         <p><strong>Localización:</strong> Comuna 3</p>
         <p><strong>Incidencia:</strong> Barrio San Cayetano</p>
         <p><strong>Influencia:</strong> Comunas 3, 4 y 9 de Cali</p>
@@ -1417,7 +1417,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\la laguna.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\la laguna.webp" alt="" />
         <p><strong>Localización:</strong> Dg. 26g 4, Barrio Marroquín III</p>
         <p><strong>Incidencia:</strong> Oriente de Cali</p>
         <p><strong>Influencia:</strong> Santiago de Cali</p>
@@ -1477,7 +1477,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\ACCN.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\ACCN.webp" alt="" />
         <p><strong>Localización:</strong> Villa Rica, vía Puerto Tejada. Vereda Agua Azul</p>
         <p><strong>Incidencia:</strong> Centro, norte Tejada y Guachené</p>
         <p><strong>Influencia:</strong> Norte del Cauca</p>
@@ -1537,7 +1537,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Uoafroc.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\Uoafroc.webp" alt="" />
         <p><strong>Localización:</strong> Cra. 26 #9-18, Puerto Tejada, Barrio Santa Elena</p>
         <p><strong>Incidencia:</strong> Departamento del Cauca</p>
         <p><strong>Influencia:</strong> Departamento del Cauca</p>
@@ -1585,7 +1585,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Consejo comunitario territorio y.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\Consejo comunitario territorio y.webp" alt="" />
         <p><strong>Localización:</strong> Vereda Chalo, Villa Rica</p>
         <p><strong>Incidencia:</strong> Vereda Chalo, Villa Rica</p>
         <p><strong>Influencia:</strong> Villa Rica</p>
@@ -1639,7 +1639,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Casilda candumi.webp" alt="" />
+        <img  className="imgEntramadosModal" src="assets\img\entramados\Casilda candumi.webp" alt="" />
         <p><strong>Localización:</strong> Villa Rica, Puerto Tejada, Padilla, Miranda, Guachené y Santander de Quilichao</p>
         <p><strong>Incidencia:</strong> Zona plana del norte del Cauca</p>
         <p><strong>Influencia:</strong> Norte del Cauca</p>
@@ -1697,7 +1697,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\fundacionHuellas.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\fundacionHuellas.webp" alt="" />
         <p><strong>Localización:</strong> Villa Rica, Cauca, Barrio San Fernando</p>
         <p><strong>Incidencia:</strong> Villa Rica y Puerto Tejada</p>
         <p><strong>Influencia:</strong> Norte del Cauca</p>
@@ -1745,7 +1745,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\asocoms.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\asocoms.webp" alt="" />
         <p><strong>Localización:</strong> Suárez, Cauca, Barrio Las Brisas</p>
         <p><strong>Incidencia:</strong> Consejos comunitarios de La Toma, Asnazú, Benavista, Meseta, Pureto, Mindala, Brisas, Portugal y Cuenca Río Ovejas</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -1795,7 +1795,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Logo_Consejo_río_Ovejas.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\Logo_Consejo_río_Ovejas.webp" alt="" />
         <p><strong>Localización:</strong> Corregimiento de La Toma, Suárez, Cauca</p>
         <p><strong>Incidencia:</strong> Veredas de Yolombó, Gelima y Dos Aguas</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -1847,7 +1847,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Logo_Consejo_río_Ovejas.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\Logo_Consejo_río_Ovejas.webp" alt="" />
         <p><strong>Localización:</strong> Corregimiento de La Toma, Suárez, Cauca</p>
         <p><strong>Incidencia:</strong> Veredas de Yolombó, Gelima y Dos Aguas</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -1895,7 +1895,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\asomuafroyo.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\asomuafroyo.webp" alt="" />
         <p><strong>Localización:</strong>Vereda Yolombó. Suárez, Cauca.</p>
         <p><strong>Incidencia:</strong> Vereda Yolombó. Suárez, Cauca.</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -1943,7 +1943,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Guardia cimarrona.webp" alt="" />
+        <img  className="imgEntramadosModal" src="assets\img\entramados\Guardia cimarrona.webp" alt="" />
         <p><strong>Localización:</strong> Monte Redondo. Suárez, Cauca.</p>
         <p><strong>Incidencia:</strong> Consejo Comunitario Río Ovejas. Suárez, Cauca.</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -1992,7 +1992,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Asoyoge.webp" alt="" />
+        <img className="imgEntramadosModal"  src="assets\img\entramados\Asoyoge.webp" alt="" />
         <p><strong>Localización:</strong> Monte Redondo. Suárez, Cauca.</p>
         <p><strong>Incidencia:</strong>Veredas Yolombó y Gelima.</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>
@@ -2041,7 +2041,7 @@ const modalsData = [
   texto: (
     <div className="texto-modal-container">
       <div>
-        <img src="assets\img\entramados\Plataforma de juventudes.webp" alt="" />
+        <img className="imgEntramadosModal" src="assets\img\entramados\Plataforma de juventudes.webp" alt="" />
         <p><strong>Localización:</strong>  Barrio Los Almendros. Suárez, Cauca.</p>
         <p><strong>Incidencia:</strong>Zona urbana Suárez, Cauca.</p>
         <p><strong>Influencia:</strong> Suárez, Cauca</p>

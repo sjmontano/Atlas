@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => {
       react(),
       svgr() 
     ],
+    build: {
+    outDir: 'dist'
+  },
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'),

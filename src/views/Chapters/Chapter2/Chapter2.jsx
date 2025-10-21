@@ -15,13 +15,13 @@ import modalsData from "../../../components/Home/Modal/modalsData"; // Datos par
 import img1 from "../../../../public/assets/img/background/tituloMapa2.webp";
 import img2 from "../../../../public/assets/img/background/tituloPequeñoMapas.webp";
 
-import toponimosTejidosDelAgua from "../../../data/toponimos/tejidosDelAgua";
-import toponimosFormasDelPaisaje from "../../../data/toponimos/formasDelPaisaje";
 import toponimosTNATransformadoras from "../../../data/toponimos/TNATransformadoras";
+import toponimosACali from "../../../data/toponimos/ACali";
+import toponimosVillaRica from "../../../data/toponimos/AvillaRica";
+import toponimosASuarez from "../../../data/toponimos/ASuarez";
 
 
 //rasterTiles
-import rasterTilesEcosistemas from "../../../data/rasterTiles/rasterTilesEcosistemas";
 import rasterTilesUnRioCauca from "../../../data/rasterTiles/rasterTilesUnRioCauca";
 import rasterTilesTejidosDelAgua from "../../../data/rasterTiles/rasterTilesTejidosDelAgua";
 
@@ -101,7 +101,7 @@ const Chapter2 = ({acceso=false}) => {
     {
       nevados: [],
       encuadres: [],
-      toponimos: toponimosTNATransformadoras,
+      toponimos: toponimosASuarez,
       capas: [],
       rasterTiles: [],
       backLink: "/Chapter2",
@@ -109,7 +109,7 @@ const Chapter2 = ({acceso=false}) => {
     {
       nevados: [],
       encuadres: [],
-      toponimos: toponimosTNATransformadoras,
+      toponimos: toponimosVillaRica,
       capas: [],
       rasterTiles: [],
       backLink: "/Chapter2",
@@ -117,9 +117,9 @@ const Chapter2 = ({acceso=false}) => {
     {
       nevados: [],
       encuadres: [],
-      toponimos: toponimosTNATransformadoras,
+      toponimos: toponimosACali,
       capas: [],
-      rasterTiles: rasterTilesEcosistemas,
+      rasterTiles: [],
       backLink: "/Chapter2",
     },
     {
@@ -232,8 +232,8 @@ const Chapter2 = ({acceso=false}) => {
         { name: "TNATransformadoras" },
         { name: "ASuarez" },
         { name: "AVillaRica" },
-        { name: "VDOrienteCali" } /*ecosistemas */,
-        { name: "MOrienteCali" } /*tejidosDelAgua */,
+        { name: "VDOrienteCali" } ,
+        { name: "MOrienteCali" } ,
         { name: "MVillaRica" },
         { name: "MSuarez" },
         // ...Agregar más mapas según sea necesario
@@ -270,12 +270,16 @@ const Chapter2 = ({acceso=false}) => {
   return (
     <div id="cap1">
       {!showPage && <LoadingScreen />} {/* overlay */}
-      {selectedMap!==4 && (
+      {selectedMap!==6  && (
         <img className="aguas" src={img1} alt="" />
       ) || (
         <img className="aguasBienvenidos" src={img2} alt="" />
       )}
-      
+       {/* Añadir SidebarLeft aquí */}
+    <SidebarLeft 
+      icons={sidebarIconsChapter2[selectedMap]} 
+      onMapChange={handleMapChange}
+    />
       {/* Título principal */}
       <Header
         title={titlesChapter2[selectedMap]}
@@ -284,13 +288,7 @@ const Chapter2 = ({acceso=false}) => {
         backLink={selectedMap != 0 ? "/chapter1" : "/Bienvenidos"}
       />
       {/* Barra inferior - Solo visible en el mapa 0 (encuadres) */}
-      {selectedMap === 0 && (
-        <SidebarBottom
-          onMapChange={handleMapChange}
-          chapters={chapters}
-          selectedChapter={1}
-        />
-      )}
+      
       {/* Boton home */}
       <div className="homeChapter1">
         {/*<img className="homeImage" src={home} alt="" />*/}
@@ -314,36 +312,65 @@ const Chapter2 = ({acceso=false}) => {
       )}
       {/* Miniatura del mapa */}
 
-      {(selectedMap!==0 && selectedMap!==3&& selectedMap!==4) && (
+      {(selectedMap!==1 &&selectedMap !==2 &&selectedMap!==3 && selectedMap!==4 && selectedMap!==5 && selectedMap!==6) && (
         <div className="mapa-image-mini-chapter1">
         <img src="assets/img/background/miniMapCuenca.png" alt="" />
+      </div>
+      ) 
+      
+      
+      }
+       {selectedMap==1 &&(
+        <div className="mapa-image-mini-chapter1">
+        <img src="assets/img/background/suarez.webp" alt="" />
+      </div>
+      ) 
+      
+
+      }
+       {selectedMap==2  && (
+        <div className="mapa-image-mini-chapter1">
+        <img src="assets/img/background/villaRica.webp" alt="" />
       </div>
       ) 
       }
 
       {selectedMap==3  && (
         <div className="mapa-image-mini-chapter1">
-        <img src="assets/img/background/miniMapValle.webp" alt="" />
+        <img src="assets/img/background/cali.webp" alt="" />
+      </div>
+      ) 
+      }
+      {selectedMap==4  && (
+        <div className="mapa-image-mini-chapter1">
+        <img src="assets/img/background/cali.webp" alt="" />
+      </div>
+      ) 
+      }
+      {selectedMap==5  && (
+        <div className="mapa-image-mini-chapter1">
+        <img src="assets/img/background/villaRica.webp" alt="" />
       </div>
       ) 
       }
 
-      {selectedMap==4  && (
+      {selectedMap==6  && (
         <div className="mapa-image-mini-chapter1">
-        <img src="assets/img/background/miniMapSur.webp" alt="" />
+        <img src="assets/img/background/suarez.webp" alt="" />
       </div>
       ) 
       }
+      
 
       
       {/* Barra lateral izquierda */}
-      <SidebarLeft
-        datos={selectedModal}
-        img={selectedMap != 0 ? "" : ""}
-        icons={sidebarIconsChapter2[selectedMap]}
-        selectedMap={selectedMap}
-        onMapChange={handleMapChange}
-      />
+      {selectedMap === 0 && (
+        <SidebarBottom
+          onMapChange={handleMapChange}
+          chapters={chapters}
+          selectedChapter={2}  // Cambiado de 1 a 2 para seleccionar el Capítulo 2
+        />
+      )}
       {/* Icono del norte */}
       <div className="northIcon">
         <svg
