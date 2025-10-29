@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import './SidebarMain.css';
+import ModalEnConstruccion from '../../Home/Modal/ModalEnConstruccion';
 
 const SidebarMain = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [openSubmenuId, setOpenSubmenuId] = useState(null);
+  const [constructionModalOpen, setConstructionModalOpen] = useState(false);
+  const [constructionTitle, setConstructionTitle] = useState('');
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prevState) => !prevState);
@@ -11,6 +14,11 @@ const SidebarMain = () => {
 
   const toggleSubmenu = (id) => {
     setOpenSubmenuId(prevId => prevId === id ? null : id);
+  };
+
+  const handleConstructionClick = (title) => {
+    setConstructionTitle(title);
+    setConstructionModalOpen(true);
   };
 
   const sidebarItems = [
@@ -56,7 +64,14 @@ const SidebarMain = () => {
             <li
               key={item.id}
               className={`sidebar-main-item ${openSubmenuId === item.id ? 'active' : ''}`}
-              onClick={() => item.hasSubmenu && toggleSubmenu(item.id)}
+              onClick={() => {
+                // Cap. III (id: 5) y Cap. IV (id: 6) abren modal de construcción
+                if (item.id === 5 || item.id === 6) {
+                  handleConstructionClick(item.title);
+                } else if (item.hasSubmenu) {
+                  toggleSubmenu(item.id);
+                }
+              }}
             >
               {/* Contenido principal del ítem */}
               <div className="main-content">
@@ -91,6 +106,13 @@ const SidebarMain = () => {
           ))}
         </ul>
       </aside>
+
+      {/* Modal de construcción */}
+      <ModalEnConstruccion 
+        isOpen={constructionModalOpen}
+        onClose={() => setConstructionModalOpen(false)}
+        titulo={constructionTitle}
+      />
     </div>
   );
 };

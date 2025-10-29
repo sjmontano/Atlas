@@ -2,6 +2,55 @@ import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import mapDefaults from "../data/mapImages/mapDefaults";
 
+/**
+ * 🗺️ HOOK useMap - Sistema de mapas con límites automáticos
+ * ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+ * 
+ * 📌 CONFIGURAR LÍMITES RÍGIDOS:
+ * ────────────────────────────────────────────────────────────────
+ * Para activar los límites automáticos en un mapa:
+ * 
+ * 1. Ve a: src/data/mapImages/mapConfig.js
+ * 2. Añade la propiedad: maxBounds: 1
+ * 
+ * Ejemplo:
+ * ```javascript
+ * tejidosDelAgua: {
+ *   initialZoom: 9.17,
+ *   dragPan: true,
+ *   scrollZoom: true,
+ *   maxBounds: 1,  // ← Activa límites automáticos
+ * }
+ * ```
+ * 
+ * 🎯 AJUSTAR LÍMITES MANUALMENTE:
+ * ────────────────────────────────────────────────────────────────
+ * Busca en este archivo las líneas 210-220 (aprox):
+ * 
+ * ```javascript
+ * // 🔧 FACTORES DE EXPANSIÓN (ajusta estos valores):
+ * const expandWest = 1.0;   // Oeste (izquierda) - MÁS = más espacio
+ * const expandEast = 1.0;   // Este (derecha) - MÁS = más espacio
+ * const expandSouth = 0.5;  // Sur (abajo) - MÁS = más espacio
+ * const expandNorth = 0.5;  // Norte (arriba) - MÁS = más espacio
+ * ```
+ * 
+ * CÓMO USAR:
+ * - Valor 1.0 = sin expansión (límite exacto de la imagen)
+ * - Valor 0.5 = reduce el límite a la mitad (MÁS restrictivo)
+ * - Valor 1.5 = expande 50% más allá de la imagen (MÁS permisivo)
+ * 
+ * EJEMPLOS:
+ * - Se recorta ARRIBA → Aumenta expandNorth (ej: 0.7, 0.8, 1.0)
+ * - Se recorta ABAJO → Aumenta expandSouth (ej: 0.7, 0.8, 1.0)
+ * - Se recorta IZQUIERDA → Aumenta expandWest (ej: 1.2, 1.5)
+ * - Se recorta DERECHA → Aumenta expandEast (ej: 1.2, 1.5)
+ * 
+ * 🛠️ DEBUG:
+ * ────────────────────────────────────────────────────────────────
+ * En la consola del navegador (F12) verás los límites aplicados
+ */
+
 // 📐 Cálculo dinámico de minZoom basado en el tamaño geográfico de la imagen
 const calculateDynamicMinZoom = (imageBounds) => {
   const viewportWidth = window.innerWidth;
@@ -9,7 +58,7 @@ const calculateDynamicMinZoom = (imageBounds) => {
   const imageWidth = Math.abs(imageBounds[1][0] - imageBounds[0][0]);
 
   const minZoomFromImage = Math.log2((360 * viewportWidth) / (tileSize * imageWidth));
-  return Math.max(minZoomFromImage, mapDefaults.minZoom); // protección
+  return Math.max(minZoomFromImage, mapDefaults.minZoom);
 };
 
 const useMap = ({
@@ -26,6 +75,7 @@ const useMap = ({
   flyToSpeed,
   lockRotation,
   inertia,
+  mapName, // 🆕 Nombre del mapa para buscar configuración personalizada
 }) => {
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -65,14 +115,76 @@ const useMap = ({
       setMap(newMap);
       setMapLoaded(true);
 
+      // 🛠️ Exponer el mapa globalmente en desarrollo para debugging
+      if (typeof window !== 'undefined') {
+        window.map = newMap;
+        console.log('🗺️ Mapa disponible en consola. Usa: window.map o simplemente map');
+        console.log('📍 Comandos útiles:');
+        console.log('  - map.getCenter() → Obtener centro actual');
+        console.log('  - map.getBounds() → Obtener límites visibles');
+        console.log('  - map.getZoom() → Obtener nivel de zoom');
+        console.log('🖱️ Haz CLICK en el mapa para ver las coordenadas en ese punto');
+      }
+
+      // 🖱️ Mostrar coordenadas al hacer click en el mapa
+      newMap.on('click', (e) => {
+        const coords = e.lngLat;
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+        console.log('🖱️ COORDENADAS EN EL PUNTO CLICKEADO:');
+        console.log(`📍 Longitud: ${coords.lng.toFixed(6)}`);
+        console.log(`📍 Latitud: ${coords.lat.toFixed(6)}`);
+        console.log(`📋 Formato array: [${coords.lng.toFixed(6)}, ${coords.lat.toFixed(6)}]`);
+        console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+      });
+
+      // 🎯 Crear overlay visual para mostrar coordenadas del mouse en tiempo real
+      // Eliminar cualquier instancia previa para evitar superposición
+      const existingDisplay = document.getElementById('coords-display');
+      if (existingDisplay) {
+        existingDisplay.remove();
+      }
+
+      const coordsDisplay = document.createElement('div');
+      coordsDisplay.id = 'coords-display';
+      coordsDisplay.style.cssText = `
+        position: fixed;
+        top: 20%;
+        left: 1%;
+        background: rgba(61, 128, 165, 0.4);
+        color: #F2EEE7;
+        padding: 12px 18px;
+        border-radius: 6px;
+        font-family: 'Noto Sans', sans-serif;
+        font-size: 10px;
+        line-height: 1.6;
+        z-index: 0;
+        pointer-events: none;
+        display: none;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        border: 2px solid rgba(5, 153, 183, 0.5);
+      `;
+      document.body.appendChild(coordsDisplay);
+
+      // Mostrar coordenadas al mover el mouse
+      newMap.on('mousemove', (e) => {
+        const coords = e.lngLat;
+        coordsDisplay.style.display = 'block';
+        coordsDisplay.innerHTML = `
+          <div style="font-weight: 600; margin-bottom: 6px; color: #EFE3D6; font-size: 10px;">🖱️ Coordenadas</div>
+          <div style="font-size: 11px; color: #F2EEE7;"> Lng: <span style="font-weight: 500;">${coords.lng.toFixed(6)}</span></div>
+          <div style="font-size: 11px; color: #F2EEE7;"> Lat: <span style="font-weight: 500;">${coords.lat.toFixed(6)}</span></div>
+        `;
+      });
+
+      // Ocultar cuando el mouse sale del mapa
+      newMap.on('mouseleave', () => {
+        coordsDisplay.style.display = 'none';
+      });
+
       const bounds = [
         [imageBounds[0][0], imageBounds[0][1]],
         [imageBounds[1][0], imageBounds[1][1]],
       ];
-
-      if (shouldApplyMaxBounds) {
-        newMap.setMaxBounds(bounds); // 🧱 Límite duro
-      }
 
       // Encuadre inicial con bearing y sin animación
       newMap.fitBounds(bounds, {
@@ -81,9 +193,113 @@ const useMap = ({
         maxZoom: zoom,
         bearing,
       });
+
+      // 🔒 SISTEMA DE LÍMITES AUTOMÁTICOS (si maxBounds === 1)
+      if (shouldApplyMaxBounds) {
+        setTimeout(() => {
+          // 🔧 FACTORES DE EXPANSIÓN - AJUSTA ESTOS VALORES:
+          // ═════════════════════════════════════════════════════════════
+          // Valores: 0 = límite exacto | Números positivos = MÁS espacio
+          const expandWest = 0.45;   // 🔹 Oeste (izquierda) - Ej: 0.1 = 10% más espacio
+          const expandEast = 0.45;   // 🔹 Este (derecha) - Ej: 0.2 = 20% más espacio
+          const expandSouth = 0.0;  // 🔹 Sur (abajo) - Ej: 0.3 = 30% más espacio
+          const expandNorth = 0.0;  // 🔹 Norte (arriba) - Ej: 0.5 = 50% más espacio
+          // ═════════════════════════════════════════════════════════════
+          
+          // Obtener dimensiones del contenedor (viewport)
+          const container = mapContainerRef.current;
+          const viewportWidth = container.offsetWidth;
+          const viewportHeight = container.offsetHeight;
+          const viewportAspectRatio = viewportWidth / viewportHeight;
+
+          // Calcular dimensiones de la imagen en grados
+          const imageWidth = bounds[1][0] - bounds[0][0];  // este - oeste
+          const imageHeight = bounds[1][1] - bounds[0][1]; // norte - sur
+          const imageAspectRatio = imageWidth / imageHeight;
+
+          console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+          console.log('📐 CÁLCULO DE LÍMITES AUTOMÁTICOS:');
+          console.log(`  🖥️  Viewport: ${viewportWidth}×${viewportHeight} (ratio: ${viewportAspectRatio.toFixed(3)})`);
+          console.log(`  🗺️  Imagen ratio: ${imageAspectRatio.toFixed(3)}`);
+          console.log(`  � Límites originales de la imagen:`);
+          console.log(`     Oeste: ${bounds[0][0].toFixed(6)}, Este: ${bounds[1][0].toFixed(6)}`);
+          console.log(`     Sur: ${bounds[0][1].toFixed(6)}, Norte: ${bounds[1][1].toFixed(6)}`);
+
+          // Calcular límites expandidos (oeste/este son negativos, más negativo = más al oeste)
+          const west = bounds[0][0] - (imageWidth * expandWest);   // Restar hace más negativo (hacia izquierda)
+          const east = bounds[1][0] + (imageWidth * expandEast);   // Sumar hace menos negativo (hacia derecha)
+          const south = bounds[0][1] - (imageHeight * expandSouth); // Restar baja latitud (hacia abajo)
+          const north = bounds[1][1] + (imageHeight * expandNorth); // Sumar sube latitud (hacia arriba)
+
+          const finalBounds = [
+            [west, south],   // (oeste, sur)
+            [east, north]    // (este, norte)
+          ];
+
+          console.log(`  🔧 Factores de expansión aplicados:`);
+          console.log(`     Oeste: +${(expandWest*100).toFixed(0)}%, Este: +${(expandEast*100).toFixed(0)}%, Sur: +${(expandSouth*100).toFixed(0)}%, Norte: +${(expandNorth*100).toFixed(0)}%`);
+          console.log('  🔒 Límites finales aplicados:');
+          console.log(`     Oeste (izq): ${west.toFixed(6)}`);
+          console.log(`     Este (der):  ${east.toFixed(6)}`);
+          console.log(`     Sur (abajo): ${south.toFixed(6)}`);
+          console.log(`     Norte (arriba): ${north.toFixed(6)}`);
+          console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+          // Aplicar maxBounds calculados
+          newMap.setMaxBounds(finalBounds);
+
+          // 🛡️ RESTRICCIÓN DE MOVIMIENTO - Forzar límites exactos
+          const enforceStrictBounds = () => {
+            const currentBounds = newMap.getBounds();
+            const center = newMap.getCenter();
+            let needsCorrection = false;
+            let newLng = center.lng;
+            let newLat = center.lat;
+
+            // Verificar límite OESTE (izquierda)
+            if (currentBounds.getWest() < finalBounds[0][0]) {
+              newLng += (finalBounds[0][0] - currentBounds.getWest());
+              needsCorrection = true;
+            }
+            
+            // Verificar límite ESTE (derecha)
+            if (currentBounds.getEast() > finalBounds[1][0]) {
+              newLng -= (currentBounds.getEast() - finalBounds[1][0]);
+              needsCorrection = true;
+            }
+            
+            // Verificar límite SUR (abajo)
+            if (currentBounds.getSouth() < finalBounds[0][1]) {
+              newLat += (finalBounds[0][1] - currentBounds.getSouth());
+              needsCorrection = true;
+            }
+            
+            // Verificar límite NORTE (arriba)
+            if (currentBounds.getNorth() > finalBounds[1][1]) {
+              newLat -= (currentBounds.getNorth() - finalBounds[1][1]);
+              needsCorrection = true;
+            }
+
+            // Aplicar corrección inmediata
+            if (needsCorrection) {
+              newMap.setCenter([newLng, newLat]);
+            }
+          };
+
+          // Aplicar restricción en cada movimiento y zoom
+          newMap.on('move', enforceStrictBounds);
+          newMap.on('zoom', enforceStrictBounds);
+          
+        }, 100);
+      }
     });
 
     return () => {
+      // Limpiar el overlay de coordenadas al desmontar el mapa
+      const coordsDisplay = document.getElementById('coords-display');
+      if (coordsDisplay) {
+        coordsDisplay.remove();
+      }
       newMap.remove();
     };
   }, [

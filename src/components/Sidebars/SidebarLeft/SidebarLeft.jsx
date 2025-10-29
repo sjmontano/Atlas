@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./SidebarLeft.css";
 import InfoModal from "../../Home/Modal/modalinfo";
+import ModalGaleria from "../../Home/Modal/ModalGaleria";
 
 import fondoItem from "../../../../public/assets/img/background/sidebardLeftItem.webp";
 import fondoIcon from "../../../../public/assets/svg/todos/Hud/icons/icon-line-webp/icon-frame-1.webp";
@@ -13,21 +14,28 @@ import perfil3 from "../../../../public/assets/img/perfil/perfil-3.svg";
 
 
 import Modal from "../../Home/Modal/Modal";
-const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
+const SidebarLeft = ({ datos, icons = [] , onMapChange, selectedMap, galeriaData = null}) => {
   const navigate = useNavigate();
   const [topMargin] = useState("4%");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMapoteca, setIsMapoteca] = useState(false);
+  const [isGaleriaOpen, setIsGaleriaOpen] = useState(false);
   
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   // Array de imágenes del perfil para el carrusel
   const imagenesCarrusel = [perfil1, perfil2, perfil3];
 
-  const handleOpenModalClick = (id) => {
-    if (id === 1) {
+  const handleOpenModalClick = (id, title="") => {
+    if (title==="Presentación") {
+      
       setIsModalOpen(true);
-    } else if (id === 2) {
+    } else if (title==="Galería de imágenes") {
+      // Abrir galería de imágenes si hay datos disponibles
+      if (galeriaData && galeriaData.imagenes && galeriaData.imagenes.length > 0) {
+        setIsGaleriaOpen(true);
+      }
+    } else if (title==="Ficha técnica" || title==="Perfil cuenca") {
       const link = icons[1]?.link;
       if (link && link.includes("https://docs.google")) {
         window.open(link, "_blank", "noopener,noreferrer");
@@ -48,10 +56,11 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
       }
     }
   };
-
+ 
   const handleCloseModal = () => {
     setIsModalOpen(false);
     setIsMapoteca(false);
+    setIsGaleriaOpen(false);
   };
 
   return (
@@ -65,7 +74,7 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
           return (
             <li
               key={item.id}
-              onClick={() => handleOpenModalClick(item.id)}
+              onClick={() => handleOpenModalClick(item.id, item.title)}
               className="sidebar-left-item"
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
@@ -117,6 +126,15 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
           isPerfil={true}
         />
       )}
+      {isGaleriaOpen && galeriaData && (
+        <ModalGaleria
+          isOpen={isGaleriaOpen}
+          onClose={handleCloseModal}
+          titulo={galeriaData.titulo}
+          imagenes={galeriaData.imagenes}
+          descripciones={galeriaData.descripciones}
+        />
+      )}
     </aside>
   );
 };
@@ -124,6 +142,13 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange}) => {
 SidebarLeft.propTypes = {
   datos: PropTypes.object,
   icons: PropTypes.array,
+  onMapChange: PropTypes.func,
+  selectedMap: PropTypes.number,
+  galeriaData: PropTypes.shape({
+    titulo: PropTypes.string,
+    imagenes: PropTypes.arrayOf(PropTypes.string),
+    descripciones: PropTypes.arrayOf(PropTypes.string),
+  }),
 };
 
 export default SidebarLeft;

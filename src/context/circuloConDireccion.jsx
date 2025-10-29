@@ -16,15 +16,19 @@ const ImageCircle = ({ image, angle }) => {
     justifyContent: 'center',
     overflow: 'hidden', // Asegura que la imagen no sobresalga
   };
-
-  // SVG de la flecha
-  const svgStyle = {
-    transform: `rotate(${angle}deg)`, // Aplica la rotación al SVG
+ 
+  // Contenedor que permite rotar desde la punta de la gota
+  const containerStyle = {
+    transform: `rotate(${angle}deg)`, // Aplica la rotación desde la punta
+    transformOrigin: '100% 50%', // Rotación desde la punta derecha (100% en X, 50% en Y)
     transition: 'transform 0.3s ease', // Transición suave al rotar
+    position: 'relative',
+    // Ya no necesitamos compensación porque el origen está en la punta
   };
 
   return (
-        <svg style={svgStyle} width="129" height="107" viewBox="0 0 129 107" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div style={containerStyle}>
+        <svg width="90" height="107" viewBox="0 0 129 107" fill="none" xmlns="http://www.w3.org/2000/svg">
           
           <path d="M91.4298 91.4296C70.732 112.127 37.1743 112.127 16.4765 91.4296C-4.22132 70.7318 -4.22132 37.1741 16.4765 16.4763C37.1742 -4.2215 70.732 -4.22151 91.4298 16.4763L128.906 53.9529L91.4298 91.4296Z" fill="#03103A"/>
         <image
@@ -35,12 +39,13 @@ const ImageCircle = ({ image, angle }) => {
         href={image}  // URL de la imagen
         style={{
           clipPath: 'circle(50%)',  // Aplica el estilo CSS para hacer la imagen circular,
-    transform: `rotate(${angle*-1}deg)`,  // Aplica la rotación al SVG
-    transformOrigin: '50% 50%' ,
-    transformBox: 'fill-box',
+          transform: `rotate(${angle*-1}deg)`,  // Contra-rotación para mantener la imagen derecha
+          transformOrigin: '50% 50%',
+          transformBox: 'fill-box',
         }}
       />
         </svg>
+    </div>
   );
 };
 

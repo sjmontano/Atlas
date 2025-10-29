@@ -16,7 +16,7 @@ const MapComponent = ({
   nevados = [],
   encuadres = [],
   toponimos = [],
-  rasterTiles = [],
+  rasterTiles,
   selectedMap = 0,
   onMapReady, 
 }) => {
@@ -61,8 +61,9 @@ const MapComponent = ({
         )}
       </div>
 
-      {map && rasterTiles.length !== 0 ? (
+      {map && rasterTiles ? (
         <LayerMenu
+          mapName={props.name}
           map={map}
           layers={rasterTiles.map((tile) => ({
             id: tile.id,

@@ -1,0 +1,8 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 106 46" width="106" height="46">
+	<defs>
+		<image  width="70" height="2" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEYAAAACBAMAAAAXybfNAAAAAXNSR0IB2cksfwAAABVQTFRFNY/HNo7INo/INY/IN4/JN4/IN47JVyFdqQAAADBJREFUeJxjZGBgYPyv8IDB4AKQxfyXAcZnEPj0D8Z3YWCAiDP9A4p/AMkiAJjPCABQDA9ITT0yjwAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="Capa 3" href="#img1" x="18" y="22"/>
+</svg>

@@ -12,7 +12,7 @@ export const generateImageBounds = ({ initialCoordinates, width, height, scaleX,
     calculateCoordinates({ initialCoordinates, width, height, scaleX, scaleY }),
   ];
 
-  console.log("📍 `generateImageBounds` calculado:", bounds);
+  //console.log("📍 `generateImageBounds` calculado:", bounds);
   return bounds;
 };
 

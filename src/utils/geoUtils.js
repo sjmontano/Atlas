@@ -50,7 +50,7 @@ export const generateMapConfig = async ({ name, shadow = true, regionZoomLimits 
       scaleY,
     });
 
-    console.log(`🌍 Mapa generado: ${name} | 🖼️ ${width}x${height} | 📍 imageBounds:`, imageBounds);
+    //console.log(`🌍 Mapa generado: ${name} | 🖼️ ${width}x${height} | 📍 imageBounds:`, imageBounds);
 
     return {
       name,

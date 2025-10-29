@@ -8,6 +8,7 @@ const useMapProps = (selectedMap, maps) => {
     return {
       ...mapDefaults,
       ...maps[selectedMap],
+      mapName: maps[selectedMap].name, // 🆕 Agregar nombre del mapa para configuración de bounds
       imageUrls: maps[selectedMap].images || [], // Asegurar que imageUrls esté definida
       imageBounds: maps[selectedMap].imageBounds || [], // Asegurar que imageBounds esté definida
       regionZoomLimits: maps[selectedMap].regionZoomLimits || { min: 0, max: 20 }, // Asegurar que regionZoomLimits esté definida

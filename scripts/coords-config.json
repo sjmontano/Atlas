@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "file": "./src/data/toponimos/AvillaRica.js",
+      "scale": 1,
+      "tx": -0.05,
+      "ty": -0.05,
+      "inplace": true
+    },
+    {
+      "file": "./src/data/toponimos/ACali.js",
+      "scale": 1,
+      "tx": -0.005,
+      "ty": -0.005,
+      "inplace": true
+    },
+    {
+      "file": "./src/data/toponimos/ASuarez.js",
+      "scale": 1,
+      "tx": -0.02,
+      "ty": -0.005,
+      "inplace": true
+    }
+  ]
+}

@@ -98,7 +98,6 @@ const Chapter1 = ({acceso=false}) => {
       encuadres: Encuadres,
       toponimos: [],
       capas: [],
-      rasterTiles: [],
       backLink: "/Bienvenidos",
     },
     {
@@ -106,7 +105,6 @@ const Chapter1 = ({acceso=false}) => {
       encuadres: [],
       toponimos: [],
       capas: capasBredunco,
-      rasterTiles: [],
       backLink: "/Chapter1",
     },
     {
@@ -114,7 +112,6 @@ const Chapter1 = ({acceso=false}) => {
       encuadres: [],
       toponimos: toponimosFormasDelPaisaje,
       capas: capasFormasDelPaisaje,
-      rasterTiles: [],
       backLink: "/Chapter1",
     },
     {

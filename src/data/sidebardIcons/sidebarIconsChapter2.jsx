@@ -95,3 +95,4 @@ const sidebarIconsChapter2 = [
   ],
 ];
 export default sidebarIconsChapter2;
+ 

@@ -200,8 +200,8 @@
   background: none; /* Sin fondo */
   border: none;
   border-radius: 0; /* Sin border-radius ya que no hay fondo */
-  width: 50px;
-  height: 50px;
+  width: 15vh;
+  height: 15vh;
   cursor: pointer;
   z-index: 15;
   display: flex;
@@ -215,8 +215,8 @@
 }
 
 .carousel-btn img {
-  width: 38px;
-  height: 38px;
+  width: 8vh;
+  height: 8vh;
   /* Removido el filtro para mantener la apariencia original del ícono */
 }
 
@@ -288,5 +288,156 @@
   .carousel-dot {
     width: 6px;
     height: 6px;
+  }
+}
+/* ============================================
+  ESTILOS PARA GALERÍA DE IMÁGENES
+  ============================================ */
+
+/* Contenedor del header de la galería */
+.galeria-header {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  z-index: 10;
+}
+
+/* Icono de galería a la izquierda */
+.galeriaIcon {
+  width: 7vh;
+  height: 7vh;
+  flex-shrink: 0;
+}
+
+/* Contenedor del título y línea a la derecha */
+.galeria-title-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Título de la galería */
+.galeria-modal-title {
+  margin: 0;
+  color: #0599B7;
+  font-size: 3vh;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* Línea decoradora de la galería */
+.galeria-linea {
+  width: 100%;
+  max-width: 200px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+/* Imagen de la galería - centrada y 60% del ancho con tamaño consistente */
+.imagenModalGaleria {
+  position: absolute;
+  width: 70%;
+  height: 65vh;
+  object-fit: cover;
+  object-position: center;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Descripción de la imagen de galería */
+.galeria-descripcion {
+  position: absolute;
+  top: 23%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  background: rgba(255, 255, 255, 0.75);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+.galeria-descripcion p {
+  margin: 0;
+  font-size: 1.6vh;
+  line-height: 1.5;
+  color: #767575;
+  text-align: center;
+  font-style: italic;
+  word-wrap: break-word;
+}
+
+/* Contador de imágenes para la galería */
+.carousel-counter {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(5, 153, 183, 0.9);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 2vh;
+  font-weight: 600;
+  z-index: 15;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+}
+
+/* Ajustes responsive para galería */
+@media (max-width: 768px) {
+  .galeria-header {
+    top: 2%;
+    left: 3%;
+    gap: 10px;
+  }
+  
+  .galeriaIcon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .galeria-modal-title {
+    font-size: 2.2vh;
+  }
+  
+  .galeria-linea {
+    max-width: 150px;
+  }
+  
+  .imagenModalGaleria {
+    width: 85%;
+    height: 60vh;
+    object-fit: cover;
+  }
+  
+  .galeria-descripcion {
+    width: 80%;
+    bottom: 110px;
+    padding: 10px 16px;
+  }
+  
+  .galeria-descripcion p {
+    font-size: 1.4vh;
+  }
+  
+  .carousel-counter {
+    bottom: 70px;
+    font-size: 1.6vh;
+    padding: 6px 16px;
   }
 }

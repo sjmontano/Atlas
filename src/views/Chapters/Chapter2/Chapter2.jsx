@@ -19,7 +19,7 @@ import toponimosTNATransformadoras from "../../../data/toponimos/TNATransformado
 import toponimosACali from "../../../data/toponimos/ACali";
 import toponimosVillaRica from "../../../data/toponimos/AvillaRica";
 import toponimosASuarez from "../../../data/toponimos/ASuarez";
-
+ 
 
 //rasterTiles
 import rasterTilesUnRioCauca from "../../../data/rasterTiles/rasterTilesUnRioCauca";
@@ -27,6 +27,9 @@ import rasterTilesTejidosDelAgua from "../../../data/rasterTiles/rasterTilesTeji
 
 //iconos sidebard
 import sidebarIconsChapter2 from "../../../data/sidebardIcons/sidebarIconsChapter2";
+
+//galerias de imagenes
+import { galeriasChapter2, mapaToGaleria } from "../../../data/galeriasImagenes/galeriasChapter2";
 
 //titulos
 import titlesChapter2 from "../../../data/titles/titlesChapter2";
@@ -41,6 +44,8 @@ import siluetaChapter3 from "../../../../public/assets/img/background/iconos/cha
 import siluetaChapter4 from "../../../../public/assets/img/background/iconos/chapter4.svg";
 
 import homebtn from "../../../../public/assets/svg/inicio/logohome2.svg";
+
+
 
 
 //Loading
@@ -103,7 +108,6 @@ const Chapter2 = ({acceso=false}) => {
       encuadres: [],
       toponimos: toponimosASuarez,
       capas: [],
-      rasterTiles: [],
       backLink: "/Chapter2",
     },
     {
@@ -111,7 +115,6 @@ const Chapter2 = ({acceso=false}) => {
       encuadres: [],
       toponimos: toponimosVillaRica,
       capas: [],
-      rasterTiles: [],
       backLink: "/Chapter2",
     },
     {
@@ -119,6 +122,13 @@ const Chapter2 = ({acceso=false}) => {
       encuadres: [],
       toponimos: toponimosACali,
       capas: [],
+      backLink: "/Chapter2",
+    },
+    {
+      nevados: [],
+      encuadres: [],
+      toponimos: toponimosTNATransformadoras,
+      capas: [],
       rasterTiles: [],
       backLink: "/Chapter2",
     },
@@ -127,15 +137,7 @@ const Chapter2 = ({acceso=false}) => {
       encuadres: [],
       toponimos: toponimosTNATransformadoras,
       capas: [],
-      rasterTiles: rasterTilesTejidosDelAgua,
-      backLink: "/Chapter2",
-    },
-    {
-      nevados: [],
-      encuadres: [],
-      toponimos: toponimosTNATransformadoras,
-      capas: [],
-      rasterTiles: rasterTilesUnRioCauca,
+      rasterTiles: [],
       backLink: "/Chapter2",
     },
     {
@@ -199,6 +201,11 @@ const Chapter2 = ({acceso=false}) => {
   // Información de los mapas disponibles
   const mapas = [
   ];
+
+  // Obtener la galería actual según el mapa seleccionado
+  const galeriaActual = mapaToGaleria[selectedMap] 
+    ? galeriasChapter2[mapaToGaleria[selectedMap]] 
+    : null;
 
   // Títulos dinámicos para diferentes vistas
   
@@ -277,8 +284,11 @@ const Chapter2 = ({acceso=false}) => {
       )}
        {/* Añadir SidebarLeft aquí */}
     <SidebarLeft 
+        datos={selectedModal}
       icons={sidebarIconsChapter2[selectedMap]} 
       onMapChange={handleMapChange}
+      selectedMap={selectedMap}
+      galeriaData={galeriaActual}
     />
       {/* Título principal */}
       <Header

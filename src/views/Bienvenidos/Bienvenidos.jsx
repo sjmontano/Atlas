@@ -50,7 +50,7 @@ const Bienvenidos = ({ acceso = false }) => {
     { id: 1, icon: presentation, title: "Presentación" },
     { id: 2, icon: mapGallery, title: "Recursos", link: "https://drive.google.com/file/d/1AEAngJNFZ7GfjTYXwGPhhS2bbJGz9XCq/view?usp=sharing" },
     { id: 3, icon: credits, title: "Tejidos para el atlas", link: "/Entramados" },
-    { id: 4, icon: info, title: "Ayuda", link: "/entramados" },
+    //{ id: 4, icon: info, title: "Ayuda", link: "/entramados" },
   ];
 
   const capaBienvenidos = [

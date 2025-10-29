@@ -18,8 +18,6 @@ const agregarRasterTiles = async (map, rasterTiles) => {
 
     // Eliminar capa y fuente si existen
 
-    console.log(capa)
-    console.log(map)
     
     if (capa.id && map.getLayer(capa.id)) {
       map.removeLayer(capa.id);
