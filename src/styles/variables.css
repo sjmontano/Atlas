@@ -1,0 +1,124 @@
+/* ============================================================================
+   ATLAS PLURIVERSAL - VARIABLES CSS Y TOKENS DE DISEÑO
+   ============================================================================ */
+
+:root {
+  /* ========================================
+     PALETA DE COLORES DEL ATLAS
+     ======================================== */
+  
+  /* Colores principales */
+  --atlas-primary: #3D80A5;
+  --atlas-hover: #0599B7;
+  --atlas-accent: #0599B7;
+  --atlas-light-blue: #7EC8E3;
+  --atlas-turquoise: #4CC0C8;
+  --atlas-cream: #EFE3D6;
+  --atlas-off-white: #F2EEE7;
+  --atlas-deep-green: #3E6B3B;
+  --atlas-forest-green: #2F4F38;
+  --atlas-sky-blue: #87AFC7;
+  --atlas-dark-blue: #1A3B5D;
+  --atlas-gray-blue: #526B7C;
+  --atlas-white: #FFFFFF;
+  --atlas-text-body: #767575;
+  
+  /* Colores de estado */
+  --atlas-success: #10b981;
+  --atlas-warning: #f59e0b;
+  --atlas-error: #ef4444;
+  --atlas-info: var(--atlas-primary);
+  
+  /* Colores de fondo */
+  --atlas-bg-primary: var(--atlas-white);
+  --atlas-bg-secondary: var(--atlas-off-white);
+  --atlas-bg-tertiary: var(--atlas-cream);
+  
+  /* Colores de texto */
+  --atlas-text-primary: #767575;
+  --atlas-text-secondary: var(--atlas-text-body);
+  --atlas-text-muted: #94a3b8;
+
+  /* ========================================
+     TIPOGRAFÍA - TOKENS DE DISEÑO
+     ======================================== */
+  
+  /* Familia de fuentes */
+  --atlas-font-family: 'Noto Sans', sans-serif;
+  --atlas-font-family-display: 'Noto Sans Display', sans-serif;
+  
+  /* Tamaños de fuente */
+  --atlas-font-size-h1: 2.25rem;        /* 36px */
+  --atlas-font-size-h2: 1.5rem;         /* 24px */
+  --atlas-font-size-h3: 1.313rem;       /* 21px */
+  --atlas-font-size-body: 1.25rem;      /* 20px */
+  --atlas-font-size-footer: 1.063rem;   /* 17px */
+  --atlas-font-size-descriptor: 1.25rem; /* 20px */
+  --atlas-font-size-welcome-title: 6rem; /* 96px */
+  --atlas-font-size-welcome-subtitle: 4.5rem; /* 72px */
+  
+  /* Alturas de línea */
+  --atlas-line-height-h2: 2rem;         /* 32px */
+  --atlas-line-height-h3: 2rem;         /* 32px */
+  --atlas-line-height-body: 1.875rem;   /* 30px */
+  --atlas-line-height-footer: 1.75rem;  /* 28px */
+  --atlas-line-height-descriptor: 1.75rem; /* 28px */
+  
+  /* Espaciado entre letras */
+  --atlas-letter-spacing-h2: 0.5px;
+  --atlas-letter-spacing-descriptor: 0.5px;
+  --atlas-letter-spacing-default: 0px;
+
+  /* ========================================
+     ESPACIADO Y LAYOUT
+     ======================================== */
+  
+  /* Espaciado */
+  --atlas-spacing-xs: 0.25rem;
+  --atlas-spacing-sm: 0.5rem;
+  --atlas-spacing-md: 1rem;
+  --atlas-spacing-lg: 1.5rem;
+  --atlas-spacing-xl: 2rem;
+  --atlas-spacing-2xl: 3rem;
+  
+  /* Border radius */
+  --atlas-radius-sm: 0.125rem;
+  --atlas-radius-md: 0.375rem;
+  --atlas-radius-lg: 0.5rem;
+  --atlas-radius-xl: 0.75rem;
+  --border-radius-default: 6px;
+  --border-radius-small: 4px;
+
+  /* ========================================
+     SOMBRAS Y EFECTOS
+     ======================================== */
+  
+  /* Sombras */
+  --atlas-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --atlas-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --atlas-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --box-shadow-default: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  /* ========================================
+     TRANSICIONES Y ANIMACIONES
+     ======================================== */
+  
+  /* Transiciones */
+  --atlas-transition-fast: 150ms ease-in-out;
+  --atlas-transition-normal: 250ms ease-in-out;
+  --atlas-transition-slow: 350ms ease-in-out;
+  --transition-duration: 0.3s;
+  --transition-fast: 0.2s;
+
+  /* ========================================
+     Z-INDEX LAYERS
+     ======================================== */
+  
+  /* Z-index layers */
+  --atlas-z-background: -1;
+  --atlas-z-base: 1;
+  --atlas-z-elevated: 5;
+  --atlas-z-overlay: 10;
+  --atlas-z-modal: 1000;
+  --atlas-z-tooltip: 1100;
+}

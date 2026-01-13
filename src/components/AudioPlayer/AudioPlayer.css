@@ -1,0 +1,187 @@
+.audio-player-container {
+  position: fixed;
+  bottom: 80px; /* Encima del footer o barra inferior si existe */
+  left: 60px; /* A la derecha del sidebar izquierdo */
+  width: 230px;
+  background-color: rgba(5, 153, 183, 0.6); /* Color solicitado */
+  color: white;
+  border-radius: 12px;
+  padding: 10px; /* Reducido padding */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 6px; /* Reducido gap */
+  font-family: 'Noto Sans', Tahoma, Geneva, Verdana, sans-serif;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: visible;
+}
+
+
+
+.audio-player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 4px; /* Reducido padding */
+  margin-bottom: 0px; /* Reducido margin */
+}
+
+.audio-info-marquee {
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-right: 12px;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marquee-content {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 30s linear infinite;
+}
+
+.marquee-spacer {
+  display: inline-block;
+  width: 30px;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Mueve la mitad del contenido (original + duplicado) */
+  }
+}
+
+.close-btn {
+  background: transparent; /* Quitado fondo */
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  background: transparent; /* Quitado fondo hover */
+  transform: scale(1.2);
+  color: white;
+}
+
+.audio-player-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Reducido gap */
+}
+
+.control-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Reducido gap */
+  margin-bottom: 2px;
+}
+
+.play-pause-btn {
+  background: white;
+  color: #193965;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  padding: 7px; /* Ajuste fino para centrado visual */
+  will-change: transform; /* Optimización para evitar pixel shift */
+}
+
+.player-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Asegura que el SVG no tenga espacios extra */
+  vertical-align: middle; 
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.play-pause-btn:active {
+  transform: scale(0.95);
+}
+
+.skip-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 10px;
+  gap: 2px;
+  transition: color 0.2s;
+}
+
+.skip-btn:hover {
+  color: white;
+}
+
+.skip-text {
+  font-weight: bold;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: white;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.progress-bar::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.time-current, .time-duration {
+  min-width: 25px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}

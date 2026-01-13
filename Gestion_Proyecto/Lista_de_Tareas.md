@@ -1,0 +1,27 @@
+# Listado de Tareas y Correcciones
+
+- [x] 1. Ajustar tooltips superpuestos en la capa “Pliegues, llanuras y otras formas del paisaje”.
+- [ ] 2. Corregir capas truncadas en el mapa “Cali de seca”.
+- [x] 3. Ajustar manchas de fondo detrás de los textos, especialmente en “Cali de seca”.
+- [x] 4. Cambiar el texto de navegación a “Iniciamos nuestro recorrido”.
+- [ ] 5. Revisar y eliminar flecha de navegación redundante si ya existe botón Home.
+- [x] 6. Implementar el botón “Un río Cauca, muchos mundos” en todas las pantallas.
+- [x] 7. Ubicar el botón del Atlas a la izquierda, debajo de la mancha.
+- [x] 8. Reacomodar el recuadro de coordenadas para no interferir con el botón.
+- [x] 9. Ubicar el botón del Atlas en créditos junto a la casita.
+- [x] 10. Agregar en el modal de inicio un indicador de que hay más contenido abajo (flecha o difuminado que desaparezca al hacer scroll).
+- [ ] 11. Hacer el botón de inicio más visible (mayor tamaño y/o efecto visual).
+- [ ] 12. Corregir el desfase del mosaico de cuencas (GeoJSON).
+- [ ] 13. Corregir la correspondencia entre números y textos de cuencas.
+- [ ] 14. Eliminar la capa “Transformaciones sin información”.
+- [ ] 15. Ajustar el indicador de punto de vista del mapa (mantener vertical, usar línea/cone direccional, sin rotar).
+- [x] 16. Corregir el apellido de Álvaro en todos los modales donde aparece.
+- [ ] 17. Corregir la navegación por flechas en perfiles del capítulo 1.
+- [ ] 18. Definir y corregir el título del último perfil del capítulo 1.
+- [x] 19. Mejorar la visibilidad del ícono del ojo en el panel de capas (línea cruzada cuando está apagado, mayor contraste).
+- [ ] 20. Unificar convenciones visuales del panel de capas (círculo blanco/gris detrás de líneas y símbolos).
+- [ ] 21. Agregar hover/tooltip/mancha al botón de capas en capítulos iniciales.
+- [ ] 22. Revisar la sugerencia sobre tramos alto, medio y bajo de la cuenca (aclarar si aplica o descartar).
+- [ ] 23. Ajustar color del capítulo activo (verde ligeramente más encendido, si aplica).
+- [ ] 24. Re-diagramar información en estadísticas / monocultivos (en archivo descargable, no en el mapa).
+- [ ] 25. Definir e implementar tutorial / ayuda de navegación (posible audio por capítulo, para etapa final).

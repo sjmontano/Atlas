@@ -1,0 +1,176 @@
+/* ===================================================
+   1. IMPORTACIONES Y ESTILOS GENERALES
+=================================================== */
+
+/* Importamos la fuente "Noto Sans" desde Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;700&display=swap');
+
+/* Estilos generales para el cuerpo de la página */
+body {
+  /* Se establece la fuente principal para toda la aplicación */
+  font-family: 'Noto Sans', sans-serif;
+
+  /* Elimina márgenes y padding predeterminados del navegador */
+  margin: 0;
+  padding: 0;
+
+  /* Establece el color de fondo global de la aplicación */
+  background-color: rgba(10, 40, 56, 1);
+  /* Fondo oscuro (casi negro) */
+
+  /* Configuración del layout usando flexbox para asegurar una disposición en columna */
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Altura completa de la ventana */
+  
+  /* Establece el color de texto global como blanco */
+  color: white;
+  
+  overflow: hidden;  /* ← evita barras de scroll */
+}
+
+/* ===================================================
+   2. VARIABLES GLOBALES DE COLORES
+=================================================== */
+
+/* Definición de colores globales usando variables CSS */
+:root {
+  /* Colores de gradiente */
+  --screamin-green: #3bda50;
+  --cyan: #1dcae4;
+  --sea-green:#0f6e50;
+  --steel-blue: #3D80A5;
+
+
+ /* Nuevas versiones en RGB para usar con transparencias */
+  --screamin-green-rgb: 70, 255, 94;  /* RGB de #46FF5E */
+  --cyan-rgb: 42, 227, 255;           /* RGB de #2AE3FF */
+  --sea-green-rgb: 15, 110, 80; /* RGB de 0f6e50#
+
+  /* Fondo oscuro para la página */
+  --fondo-oscuro: #03091e;
+}
+
+/* ===================================================
+   3. ESTILOS DE BOTONES
+=================================================== */
+
+/* Estilos generales de los botones */
+button {
+  background: var(--verde-brillante); /* Fondo verde brillante */
+  border: none; /* Elimina el borde por defecto */
+  color: white; /* Texto blanco */
+  padding: 8px 16px; /* Relleno para los botones */
+  cursor: pointer; /* Cambio de cursor a mano para indicar interacción */
+  transition: background 0.3s ease; /* Transición suave en el fondo del botón */
+}
+
+/* ===================================================
+   4. ANIMACIONES GLOBALES
+=================================================== */
+
+/* Definición de la animación fadeIn */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Comienza invisible */
+  }
+  to {
+    opacity: 1; /* Termina visible */
+  }
+}
+
+/* Clase para aplicar la animación fadeIn */
+.fade-in {
+  animation: fadeIn 1s ease-in-out; /* Aplica la animación con una duración de 1 segundo */
+}
+
+.maplibregl-popup-content {
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;  /* Tamaño de la letra más pequeño */
+  color: #333;
+  background-color:transparent;
+  white-space: nowrap; /* Evita que el texto se divida */
+  color:  white; /* Texto blanco*/
+  padding : 2.5px 5px; /* Espaciado interno*/
+  box-shadow: none;
+  
+}
+
+.maplibregl-popup-content h3{
+  margin: 0;
+  color:  white; /* Texto blanco*/
+  font-size: 1.8vh;
+  
+}
+
+.imagenNumeros{
+  width: 10px;
+  height: 10px; 
+  position:absolute; 
+}
+
+.maplibregl-popup-tip {
+  display: none; /* Ocultar el triángulo del popup si no lo quieres */
+}
+
+.mapboxgl-popup, .maplibregl-popup {
+    display: flex
+;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    will-change: transform;
+    transform: none;
+}
+
+#map {
+  width: 100vw;
+  height: 100vh;
+  transform: scaleX(1.2); /* o el valor que necesites */
+  transform-origin: center center;
+  overflow: hidden;
+}
+.maplibregl-canvas{
+  left: 0;
+    position: absolute;
+    top: 0;
+  overflow: hidden;
+}
+
+
+
+/* Escritorio estándar (1440x900) */
+@media (max-width: 1444px) {
+  #map {
+    transform: scaleX(1);
+    transform: scaleY(1);
+  }
+}
+
+/* Laptop (1280x800) */
+@media (max-width: 1280px) {
+  #map {
+    transform: scaleX(1.05);
+  }
+}
+
+/* Tablet horizontal (1024x768) */
+@media (max-width: 1024px) {
+  #map {
+    transform: scaleX(1);
+  }
+}
+
+/* Tablet vertical (768x1024) */
+@media (max-width: 768px) {
+  #map {
+    transform: scaleX(0.95);
+  }
+}
+
+@media (max-width: 376) {
+  #map {
+    transform:scaleX(1);
+  }
+}

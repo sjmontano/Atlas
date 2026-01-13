@@ -1,0 +1,246 @@
+.screen-shadow {
+    position: absolute; /* Mantiene la sombra solo en el contenedor principal */
+    inset: 0; /* Ocupa todo el contenedor */
+    pointer-events: none; /* Permite la interacción debajo de la sombra */
+    z-index: 5; /* Por debajo del HUD pero por encima del mapa */
+    transition: box-shadow 0.5s ease-in-out; /* Suaviza la transición */
+  }
+
+  .bienvenidosMapa-image-mini{
+    position: absolute;
+    top: 15%;
+    right: 2%;
+    transform: translateY(-50%); /* Iniciar en la posición deseada */
+    width: 160px;
+    height: 160px; /* Ajustar la altura para que sea igual al ancho */
+    border-radius: 50%; /* Cambiar a 50% para que sea perfectamente redonda */
+
+    transition: transform 1s ease-in-out; /* Ajustar la duración de la transición */
+    z-index: 15; /* Por encima de la sombra */
+}
+
+/* Ajuste de la imagen */
+.bienvenidosMapa-image-mini img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Redondear la imagen */
+
+}
+
+/* Efecto de zoom al pasar el mouse */
+.bienvenidosMapa-image-mini:hover {
+  transform: translateX(-80%) translateY(25%) scale(1.8);
+  transition: transform ease-in-out 0.5s;
+  transition-delay: 0.5s;
+}
+
+.northIconBienvenidos{
+  position: absolute;
+    top: 3%;
+    z-index: 10;
+    right: 30.5%;
+}
+.homeCreditosBienvenidos{
+  position: absolute;
+  width: 15%;
+  height: 12vh;
+  left: 0.7%;
+  top: 87%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1001;
+}
+.btnHomeBienvenidos{
+  cursor: pointer;
+    z-index: 3;
+    width: 3.5vw;
+    height: auto;
+}
+
+.btnLogoAtlasBienvenidos {
+  position: relative;
+  width: 3.5vw;
+  height: 3.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnLogoBgBienvenidos {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.btnLogoImgBienvenidos {
+  position: relative;
+  width: 60%;
+  height: auto;
+  filter: brightness(0) invert(1);
+  z-index: 1;
+}
+
+/* --- TOOLTIP --- */
+.homeTooltip-marker {
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;
+  display: none;
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 1005;
+  background: rgba(0, 0, 0, 0.75);
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+}
+
+.homeTooltip-marker img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  border: 2px solid rgba(0, 110, 150, 1);
+  border-radius: 6px;
+}
+
+.btnHomeBienvenidos:hover .homeTooltip-marker,
+.btnLogoAtlasBienvenidos:hover .homeTooltip-marker {
+  display: flex;
+}
+
+.homeTooltip-marker::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: rgba(0, 110, 150, 1) transparent transparent transparent;
+}
+  /* Estilos adicionales para el boton */
+  .Bienvenidosbtn_2 {
+    display: flex;
+    position: absolute;
+    height: 12%;
+    width: 8%; /* Ajusta según sea necesario */
+    border-start-end-radius: 20px;
+    border-start-start-radius: 20px;
+    z-index: 1001;
+   align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+
+  .Bienvenidosbtn_2 {
+  top: 88%;
+  left: 88%;
+  height: 10%;
+}
+
+
+  .Bienvenidosbtn_2 svg {
+    color: white; /* Color del ícono */
+    font-size: 1.5rem; /* Tamaño del ícono */
+    cursor: pointer;
+  }
+
+
+  .Bienvenidosbtn_2:hover {
+    transform: scale(1.05) translateY(-2px); /* Combina crecimiento y elevación */
+  }
+
+  .Bienvenidosbtn_2:active {
+      transform: scale(0.98) translateY(0);
+  }
+
+  .Bienvenidosbtn_2::before {
+      /* ... (mantén el gradiente anterior) ... */
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .Bienvenidosbtn_2:hover::before {
+      opacity: 1;
+      transform: scale(1.02); /* Refuerza el efecto de crecimiento */
+  }
+
+
+
+
+  /* --- TOOLTIP --- */
+.homeTooltip-marker {
+  position: absolute;
+  bottom: 100%;              /* justo arriba del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 4px;        /* pequeño espacio opcional */
+  display: none;
+
+  padding: 4px 8px;
+  font-size: 0.9rem;
+  color: white;
+  border-radius: 4px;
+  white-space: nowrap;
+  z-index: 5;
+
+  background: rgba(0, 0, 0, 0.75); /* fondo oscuro visible */
+  align-items: center;
+  justify-content: center;
+
+  /* Si quieres que el texto e imagen estén superpuestos */
+  position: absolute;
+}
+
+/* Imagen decorativa de fondo */
+.homeTooltip-marker img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  top: 0;
+  left: 0;
+
+  border: 2px solid rgba(0, 110, 150, 1);         /* 🟢 AÑADIR BORDE AQUÍ */
+  border-radius: 6px;              /* Opcional: redondear las esquinas */
+}
+
+/* Mostrar al hacer hover sobre el botón */
+.Bienvenidosbtn_2:hover .homeTooltip-marker {
+  display: flex;
+}
+
+
+.homeTooltip-marker::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: rgba(0, 110, 150, 1) transparent transparent transparent;
+}
+
+
+@keyframes slowReturn {
+  0% {
+    transform: translateX(-80%) translateY(25%) scale(1.8);
+  }
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+}

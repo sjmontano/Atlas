@@ -1,0 +1,135 @@
+/* =================================
+   HEADER DEL ATLAS
+==================================== */
+
+.header {
+  position: fixed;
+  top: 0%;
+  left: 0;
+  width: auto;
+  height: 80px;
+  z-index: 5;
+  display: flex;
+  align-items: start;
+  padding-left: 0; /* Eliminamos el padding del contenedor principal para que la imagen llegue al borde */
+  color: white;
+
+  /* No hay fondo */
+}
+
+/* Agrupación de ícono y título */
+.header-left-group {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding-left: 0; /* Eliminamos padding para que la imagen empiece en el borde */
+  margin-left: 0;
+  
+}
+
+/* Ajustamos el margen del botón de regreso para compensar la eliminación del padding del grupo */
+.header-back {
+  margin-left: 2vw; 
+}
+
+/* Línea decorativa eliminada */
+/*
+.header-left-group::after {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  opacity: 0.2;
+  display: block;
+  transition: width 0.4s ease-in-out;
+}
+*/
+
+/* Ícono SVG de regreso */
+.back-icon-img {
+  margin-top: 1.5vh;
+  width: 24px;
+  height: 24px;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  transform: translateY(-2vh);
+  cursor: pointer;
+  transition: filter 0.3s ease-in-out;
+  position: relative; /* Necesario para que z-index funcione */
+  z-index: 10; /* Asegura que esté por encima de la imagen de fondo */
+}
+.back-icon-imgFondo{
+  position: absolute;
+  margin-top: 0vh;
+  width: 38px;
+  height: 38px;
+  cursor: pointer;
+  left: 5%;
+
+}
+
+.header-back:hover .back-icon-img {
+  filter: brightness(1.5);
+}
+
+/* Wrapper para el título y su fondo */
+.header-title-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transform: translateY(-2.5vh);
+  /* Padding para dar "aire" al texto dentro de la mancha */
+  padding: 1.5vh 4vw 1.5vh 1vw; 
+}
+
+/* Eliminamos la clase has-bg del wrapper ya que la imagen subió de nivel, 
+   pero mantenemos el padding si es necesario para el layout del texto */
+/* .header-title-wrapper.has-bg { ... } */
+
+.header-bg-image {
+  position: absolute;
+  top: 0;
+  left: 0; /* Alineamos a la izquierda del grupo (que empieza en el borde izquierdo + padding) */
+  width: 100%; /* Cubre todo el grupo (flecha + título) */
+  height: 100%;
+  z-index: -1;
+  object-fit: fill; 
+  transform-origin: left; /* Crecimiento desde la izquierda */
+}
+
+/* Título único dinámico */
+.header-title {
+  font-weight: 500;
+  font-size: 1.3vw;
+  /* transform: translateY(-2.5vh); Eliminado porque se movió al wrapper */
+  color: white;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+
+/* ===========================
+   RESPONSIVE: móvil y tablets
+=========================== */
+@media (max-width: 768px) {
+  .header {
+    height: 70px;
+    padding-left: 1rem;
+  }
+
+  .back-icon-img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .header-title {
+    font-size: 2.4vh;
+  }
+}

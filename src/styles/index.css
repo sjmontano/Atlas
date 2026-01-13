@@ -1,0 +1,358 @@
+/* ============================================================================
+   ATLAS PLURIVERSAL - SISTEMA DE ESTILOS PRINCIPAL
+   ============================================================================ 
+   
+   Archivo principal que importa todo el sistema de diseño Atlas.
+   Orden de importación:
+   1. Variables CSS (tokens de diseño)
+   2. Estilos base y reset
+   3. Clases utilitarias
+   4. Componentes reutilizables
+   5. Animaciones
+   
+   ============================================================================ */
+
+/* 1. Variables CSS y tokens de diseño */
+@import './variables.css';
+
+/* 2. Estilos base, reset y tipografía */
+@import './globals.css';
+
+/* 3. Clases utilitarias */
+@import './utilities.css';
+
+/* 4. Componentes base reutilizables */
+@import './components.css';
+
+/* 5. Animaciones globales */
+@import './animations.css';
+
+/* ============================================================================
+   CLASES ESPECÍFICAS DE LA ARQUITECTURA ATLAS
+   ============================================================================ */
+
+/* Tipografía específica Atlas */
+.atlas-panel-title {
+  font-family: var(--atlas-font-family);
+  font-weight: 900; /* Black */
+  font-size: var(--atlas-font-size-descriptor);
+  line-height: normal;
+  letter-spacing: var(--atlas-letter-spacing-default);
+  color: var(--atlas-text-primary);
+}
+
+.atlas-welcome-title {
+  font-family: var(--atlas-font-family-display);
+  font-weight: 100; /* ExtraCondensed equivalente */
+  font-size: var(--atlas-font-size-welcome-title);
+  line-height: normal;
+  letter-spacing: var(--atlas-letter-spacing-default);
+  color: var(--atlas-primary);
+}
+
+.atlas-welcome-subtitle {
+  font-family: var(--atlas-font-family-display);
+  font-weight: 200; /* Display ExtraCondensed equivalente */
+  font-size: var(--atlas-font-size-welcome-subtitle);
+  line-height: normal;
+  letter-spacing: var(--atlas-letter-spacing-default);
+  color: var(--atlas-primary);
+}
+
+.atlas-welcome-descriptor {
+  font-family: var(--atlas-font-family);
+  font-weight: 400; /* Regular */
+  font-style: italic;
+  font-size: var(--atlas-font-size-welcome-subtitle);
+  line-height: normal;
+  letter-spacing: var(--atlas-letter-spacing-default);
+  color: var(--atlas-primary);
+}
+
+/* ============================================================================
+   COMPONENTES ESPECÍFICOS DEL ATLAS
+   ============================================================================ */
+
+/* Iconos circulares */
+.icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--atlas-transition-fast);
+  background-color: var(--atlas-bg-secondary);
+  color: var(--atlas-primary);
+}
+
+.icon-circle:hover {
+  transform: scale(1.1);
+  background-color: var(--atlas-primary);
+  color: var(--atlas-white);
+}
+
+.icon-circle-sm {
+  width: 32px;
+  height: 32px;
+}
+
+.icon-circle-lg {
+  width: 48px;
+  height: 48px;
+}
+
+/* Miniaturas de imagen del Atlas */
+.image-mini {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: var(--atlas-shadow-md);
+  transition: var(--atlas-transition-normal);
+  object-fit: cover;
+}
+
+.image-mini:hover {
+  transform: translateX(-80%) translateY(25%) scale(1.8);
+  z-index: var(--atlas-z-elevated);
+}
+
+/* Gradientes específicos del Atlas */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--atlas-primary), var(--atlas-accent));
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--atlas-light-blue), var(--atlas-turquoise));
+}
+
+.gradient-earth {
+  background: linear-gradient(135deg, var(--atlas-deep-green), var(--atlas-forest-green));
+}
+
+.gradient-border {
+  background: linear-gradient(90deg, var(--atlas-primary) 0%, var(--atlas-accent) 100%);
+  background-size: 200% 200%;
+  animation: gradientMove 3s linear infinite;
+}
+
+/* Contenedor de mapa */
+.map-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--atlas-radius-md);
+}
+
+/* ============================================================================
+   PÁGINAS ESPECÍFICAS
+   ============================================================================ */
+
+/* Welcome Page Styles */
+.welcome-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--atlas-bg-primary) 0%, var(--atlas-bg-secondary) 100%);
+  padding: var(--atlas-spacing-xl) 0;
+}
+
+.welcome-header {
+  text-align: center;
+  margin-bottom: var(--atlas-spacing-2xl);
+}
+
+.welcome-header h1 {
+  font-size: var(--atlas-font-size-welcome-title);
+  color: var(--atlas-primary);
+  margin-bottom: var(--atlas-spacing-lg);
+  font-weight: 700;
+}
+
+.welcome-header p {
+  font-size: var(--atlas-font-size-body);
+  color: var(--atlas-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.welcome-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--atlas-spacing-xl);
+  margin-bottom: var(--atlas-spacing-2xl);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--atlas-spacing-lg);
+  background: var(--atlas-bg-primary);
+  border-radius: var(--atlas-radius-lg);
+  box-shadow: var(--atlas-shadow-md);
+  min-width: 120px;
+}
+
+.stat-number {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: var(--atlas-primary);
+  margin-bottom: var(--atlas-spacing-xs);
+}
+
+.stat-label {
+  font-size: var(--atlas-font-size-footer);
+  color: var(--atlas-text-secondary);
+  text-align: center;
+}
+
+.welcome-actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--atlas-spacing-md);
+  margin-bottom: var(--atlas-spacing-2xl);
+  flex-wrap: wrap;
+}
+
+.welcome-preview {
+  margin-top: var(--atlas-spacing-2xl);
+}
+
+.welcome-preview h3 {
+  text-align: center;
+  margin-bottom: var(--atlas-spacing-lg);
+  color: var(--atlas-text-primary);
+}
+
+.chapters-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--atlas-spacing-lg);
+  margin-top: var(--atlas-spacing-lg);
+}
+
+.preview-card {
+  background: var(--atlas-bg-primary);
+  padding: var(--atlas-spacing-lg);
+  border-radius: var(--atlas-radius-lg);
+  box-shadow: var(--atlas-shadow-md);
+  transition: transform var(--atlas-transition-fast);
+  position: relative;
+}
+
+.preview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--atlas-shadow-lg);
+}
+
+.preview-card--draft {
+  opacity: 0.7;
+  border: 2px dashed var(--atlas-text-muted);
+}
+
+.preview-card h4 {
+  color: var(--atlas-primary);
+  margin-bottom: var(--atlas-spacing-sm);
+  font-size: var(--atlas-font-size-h3);
+}
+
+.preview-card p {
+  color: var(--atlas-text-secondary);
+  font-size: var(--atlas-font-size-footer);
+  line-height: 1.5;
+}
+
+.draft-badge {
+  position: absolute;
+  top: var(--atlas-spacing-sm);
+  right: var(--atlas-spacing-sm);
+  background: var(--atlas-warning);
+  color: var(--atlas-white);
+  padding: var(--atlas-spacing-xs) var(--atlas-spacing-sm);
+  border-radius: var(--atlas-radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* ============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .welcome-header h1 {
+    font-size: 3rem;
+  }
+  
+  .welcome-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--atlas-spacing-md);
+  }
+  
+  .welcome-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .welcome-actions .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  
+  /* Ajustes tipográficos para móvil */
+  .atlas-welcome-title {
+    font-size: 3rem;
+  }
+  
+  .atlas-welcome-subtitle {
+    font-size: 2rem;
+  }
+  
+  .atlas-welcome-descriptor {
+    font-size: 2rem;
+  }
+  
+  .atlas-container {
+    padding: 0 var(--atlas-spacing-sm);
+  }
+  
+  .sidebar {
+    width: 280px;
+  }
+  
+  .modal-content {
+    margin: var(--atlas-spacing-sm);
+    max-width: calc(100vw - var(--atlas-spacing-md));
+  }
+}
+
+@media (max-width: 480px) {
+  .atlas-welcome-title {
+    font-size: 2rem;
+  }
+  
+  .atlas-welcome-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .chapters-preview-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================================
+   UTILIDADES DE DESARROLLO
+   ============================================================================ */
+
+/* Clases de debug (solo para desarrollo) */
+.debug-border {
+  border: 1px solid red !important;
+}
+
+.debug-bg {
+  background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
+.debug-outline {
+  outline: 2px solid blue !important;
+}
