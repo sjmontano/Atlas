@@ -23,7 +23,7 @@ const titlesChapter4 = [
   // Finca El Paso
   <h3 key="elPaso">
     <span className="header-title-bold">
-      Finca La Caicedo
+      Finca El Buhido
     </span>
   </h3>,
 

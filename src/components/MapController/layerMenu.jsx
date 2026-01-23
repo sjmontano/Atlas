@@ -181,7 +181,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
         className="lineaCapas"
        
       >
-        <img src={lineaCapas} alt="" />
+        <img src={lineaCapas} alt=""  style={{width:"100%"}}/>
       </div>
       <div
         className="layer-menu-wrapper"
@@ -6435,7 +6435,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                 </div>
               </div>
             )}
-            {mapName === "asoyoje" && (
+            {mapName === "asoyoge" && (
               <div
                 className="scroll-container"
                 style={{

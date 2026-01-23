@@ -29,7 +29,7 @@ const sidebarIconsChapter2 = [
       link: "https://drive.google.com/file/d/1ndp-Y4eOTq62w20vqb72DrwD8SfkjmNH/view",
     },
     {
-      id: 4,
+      id: 10,
       icon: modelo,
       title: "Síntesis",
       link: "6",
@@ -45,7 +45,7 @@ const sidebarIconsChapter2 = [
     { id: 2, icon: gallery, title: "Galería de imágenes" },
     { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/16zn-XhEFckoZe4zfEIZxPxzabGy1Z14D/view"},
     {
-      id: 4,
+      id: 10,
       icon: modelo,
       title: "Síntesis",
       link: "5",
@@ -63,7 +63,7 @@ const sidebarIconsChapter2 = [
       link: "https://drive.google.com/file/d/1y97OfUXrTP9R8mo2FZKOhBI_po8SFUoH/view",
     },
     {
-      id: 4,
+      id: 10,
       icon: modelo,
       title: "Síntesis",
       link: "4",

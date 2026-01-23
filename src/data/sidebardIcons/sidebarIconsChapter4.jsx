@@ -8,6 +8,7 @@ import presentation from "../../../public/assets/interface/icons/line/svg/presen
 import info from "../../../public/assets/img/background/iconos/info.svg";
 import datos from "../../../public/assets/img/background/iconos/datos.svg";
 import arbol from "../../../public/assets/img/background/iconos/arbol.svg";
+import gallery from "../../../public/assets/img/background/iconos/presentationCap4.svg";
 
 import { link } from "framer-motion/client";
 
@@ -21,7 +22,7 @@ const sidebarIconsChapter4 = [
         id: 2,
         icon: datos,
         title:"Datos",
-        link:"https://docs.google.com/spreadsheets/d/1TtjNpRPwglIfDh-EvJ6u3_XTIhzcpG-i/edit?usp=sharing&ouid=112200405745868632840&rtpof=true&sd=true",
+        link:"Datos",
       }
     ],
     //Centro agropecuario ASOYOGE
@@ -29,15 +30,9 @@ const sidebarIconsChapter4 = [
       {
         id: 1,
         icon: presentation,
-        title: "Presentación mapa1",
+        title: "Presentación",
       },
-      { id: 2, icon: metadata, title: "Ficha técnica", link: "" },
-      /* {
-        id: 3,
-        icon: download,
-        title: "Descargar",
-        link: "",
-      }, */
+      { id: 2, icon: metadata, title: "Ficha técnica", link: "https://drive.google.com/file/d/1zU1brROKItcLuutpzRhmLOoSCu_rPHL5/view?usp=sharing" },
       {
         id: 4,
         icon: levels,
@@ -48,13 +43,13 @@ const sidebarIconsChapter4 = [
         id: 5,
         icon: datos,
         title:"Datos",
-        link:"",
+        link:"Datos",
       },
       {
         id: 6,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/1x_8NCnjyVqVB1w0dvGSlGAhIWMOoajDc/view?usp=sharing",
       }
       
     ],
@@ -63,7 +58,7 @@ const sidebarIconsChapter4 = [
       {
         id: 1,
         icon: presentation,
-        title: "Presentación mapa2",
+        title: "Presentación",
       },
       { id: 2, icon: metadata, title: "Ficha técnica", link: "https://drive.google.com/file/d/1lPJsUwLxV2TTlGwkf_F1nEPkroixZxh3/view"},
       /* { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/1gIOicCrLnLeC3aoxVCsHSjPZdGmg4N6d/view?usp=drivesdk"}, */
@@ -71,20 +66,20 @@ const sidebarIconsChapter4 = [
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/1OPmhg55NhJSx4uxt2V1CwtiRjo-Gwfy5/view?usp=sharing",
       }
 
     ],
     //Bosque comestible
     [
       { id: 1, icon: presentation, title: "Presentación" },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:""},
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1WOTbHyYhsacU0OZOxny76qwoNNud02yH/view?usp=sharing"},
        /* {
         id: 3,
         icon: download,
@@ -92,16 +87,16 @@ const sidebarIconsChapter4 = [
         link: "",
       },  */
       {
-        id: 4,
+        id: 10,
         icon: modelo,
         title: "Síntesis",
-        link: "6",
+        link: "10",
       },
     ],
     //Finca Los Bajios
     [
       { id: 1, icon: presentation, title: "Presentación" },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1nvHvHBqucWGGzJEXpALQnVO-qmIRNCLO/view" },
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1lFIiuUV5eY1xvbxLIaS0Utn4xAnvUGBy/view?usp=sharing" },
       /* {
         id: 3,
         icon: download,
@@ -112,13 +107,13 @@ const sidebarIconsChapter4 = [
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/16JvxIx1Knpi8sfwjaFg1h1EZjBogHY7g/view?usp=sharing",
       }
     ],
     //Finca el paso
@@ -134,7 +129,7 @@ const sidebarIconsChapter4 = [
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
@@ -150,19 +145,19 @@ const sidebarIconsChapter4 = [
         icon: presentation,
         title: "Presentación",
       },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/17adqPeKCjtrKwjv0pHMZVat6UgEUnogH/view" },
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1r8Rf_oQ28OAvHxR7AxKvoE6D1rT_vhJo/view?usp=sharing" },
        /* { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/1FeTqSUT-m1D69gdRod8zZuEm6LKIgI3h/view?usp=drivesdk"}, */
       {
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/16kTxtOhAS3UEj_yd03QkCbFi_zGO61Mf/view?usp=sharing",
       }
     ],
     //Finca La Virginia
@@ -172,19 +167,19 @@ const sidebarIconsChapter4 = [
         icon: presentation,
         title: "Presentación",
       },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/17adqPeKCjtrKwjv0pHMZVat6UgEUnogH/view" },
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1MJJDDs-F_2J7zeGJ1nhWn4rCaErNXfew/view?usp=sharing" },
       /* { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/1FeTqSUT-m1D69gdRod8zZuEm6LKIgI3h/view?usp=drivesdk"}, */
       {
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/1YWcUXneLDUmt-W__G5wOlyfFfZQpRddJ/view?usp=sharing",
       }
     ],
     //Centro agropecuario villa rica
@@ -194,19 +189,19 @@ const sidebarIconsChapter4 = [
         icon: presentation,
         title: "Presentación",
       },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/17adqPeKCjtrKwjv0pHMZVat6UgEUnogH/view" },
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/1Kj6wFrSig47Sk_9WaD6hCek1k95cmohT/view?usp=sharing" },
       /* { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/1FeTqSUT-m1D69gdRod8zZuEm6LKIgI3h/view?usp=drivesdk"}, */
       {
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/1rMA6Z6tTE3aLwRKR2bxqUvmF7o4hH1VA/view?usp=sharing",
       }
     ],
     //Finca la caicedo
@@ -216,19 +211,19 @@ const sidebarIconsChapter4 = [
         icon: presentation,
         title: "Presentación",
       },
-      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/17adqPeKCjtrKwjv0pHMZVat6UgEUnogH/view" },
+      { id: 2, icon: metadata, title: "Ficha técnica", link:"https://drive.google.com/file/d/12KlWauZzbL7T44OGlV88imoofpFz3fP_/view?usp=sharing" },
       /* { id: 3, icon: download, title: "Descargar" , link:"https://drive.google.com/file/d/1FeTqSUT-m1D69gdRod8zZuEm6LKIgI3h/view?usp=drivesdk"}, */
       {
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,
         icon: arbol,
         title:"Mapa de árbol",
-        link:"",
+        link:"https://drive.google.com/file/d/1mC9qVkNbFV8tGbVTBTMzHajZz3mmoSgC/view?usp=sharing",
       }
     ],
     //Humedales problemáticas
@@ -244,7 +239,7 @@ const sidebarIconsChapter4 = [
         id: 4,
         icon: levels,
         title: "Perfil",
-        link: "",
+        link: "Datos",
       },
       {
         id: 5,

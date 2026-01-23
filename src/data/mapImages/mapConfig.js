@@ -159,7 +159,7 @@ ASuarez:{
     minZoom:  7.0,
   },
 
-  asoyoje:{
+  asoyoge:{
     dragPan: false,
     scrollZoom: true,
     shadow: false,

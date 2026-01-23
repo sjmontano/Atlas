@@ -157,7 +157,7 @@ const geoMapping = {
     high: "assets/img/maps/homeCap4-high.webp",
   },
 
-  asoyoje:{
+  asoyoge:{
 
     base: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1765986412/geoImages/u2dqe5dcdqzn1am0whlj.png",
     low: "https://res.cloudinary.com/dvluvxfvn/image/upload/v1765986412/geoImages/u2dqe5dcdqzn1am0whlj.png",

@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import ModalGaleria from "../../Home/Modal/ModalGaleria";
 import InfoModal from "../../Home/Modal/modalinfo";
 import Modal from "../../Home/Modal/Modal";
+import ModalImagen from "../../Home/Modal/ModalImagen";
+import "./SidebarLeft.css";
+import modalsData from "../../Home/Modal/modalsData";
 import "./SidebarLeft.css";
 
 import fondoItem from "../../../../public/assets/img/background/sidebardLeftItem.webp";
@@ -13,9 +16,12 @@ import perfil1 from "../../../../public/assets/img/perfil/perfil-1.svg";
 import perfil2 from "../../../../public/assets/img/perfil/perfil-2.svg";
 import perfil3 from "../../../../public/assets/img/perfil/perfil-3.svg";
 
-const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => {
+const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null , selectedMap=0}) => {
   const navigate = useNavigate();
   const [topMargin] = useState("4%");
+  console.log(datos)
+  
+  const [modalIndex, setModalIndex] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isMapoteca, setIsMapoteca] = useState(false);
   const [isGaleriaOpen, setIsGaleriaOpen] = useState(false);
@@ -59,8 +65,16 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => 
   const handleOpenModalClick = (id, title = "") => {
 
   // 👉 Si el título es "Presentación", se abre el modal principal
-  if (title === "Presentación") {
+  if (title === "Presentación" || title === "Perfil") {
     setIsModalOpen(true);
+    const iconItem = icons.find((item) => item.title === title);
+    const link = iconItem?.link;
+    
+     if (link==="Datos") {
+      setIsModalOpen(true);
+          setModalIndex(selectedMap + 63);
+          console.log(selectedMap)
+    } 
 
   // 👉 Si el título es "Galería de imágenes", se abre la galería si hay datos
   } else if (title === "Galería de imágenes") {
@@ -69,7 +83,7 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => 
     }
 
   // ✅ BLOQUE MODIFICADO: Maneja correctamente "Ficha técnica" y "Perfil cuenca"
-  } else if (title === "Ficha técnica" || title === "Perfil cuenca" || title === "Datos") {
+  } else if (title === "Ficha técnica" || title === "Perfil cuenca" || title === "Datos" || title==="Mapa de árbol") {
     // Busca el objeto correspondiente en el array de íconos
     const iconItem = icons.find((item) => item.title === title);
     const link = iconItem?.link;
@@ -77,6 +91,10 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => 
     // Si hay un link válido, lo abre en nueva pestaña
     if (link && (link.includes("https://docs.google") || link.includes("https://drive.google"))) {
       window.open(link, "_blank", "noopener,noreferrer");
+    }else if (link==="Datos") {
+      setIsModalOpen(true);
+          setModalIndex(selectedMap + 63);
+          console.log(selectedMap)
     } else if (link) {
       // Si hay link pero no es de Google, también lo abre (por si es un PDF u otra URL)
       window.open(link, "_blank", "noopener,noreferrer");
@@ -86,8 +104,8 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => 
     }
 
   // 👉 Si el id es 4, se ejecuta el cambio de mapa
-  } else if (id === 4) {
-    const mapId = parseInt(icons[id - 1].link);
+  } else if (id === 10) {
+    const mapId = parseInt(icons.find(u => u.id === 10).link);
     onMapChange(mapId);
 
   // 👉 Si el ítem tiene un link, se abre según el tipo (Drive o navegación interna)
@@ -166,7 +184,12 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null}) => 
 
       </ul>
 
-      {isModalOpen && <InfoModal onClose={handleCloseModal} datos={datos} />}
+        {(isModalOpen &&
+        modalIndex !== null) && (
+          <ModalImagen onClose={handleCloseModal} datos={modalsData[modalIndex]} />
+  ) }
+
+      {(isModalOpen && modalIndex === null) && <InfoModal onClose={handleCloseModal} datos={datos} />}
       {isMapoteca && (
         <Modal
           onClose={handleCloseModal}

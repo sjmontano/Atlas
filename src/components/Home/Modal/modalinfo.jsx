@@ -240,6 +240,7 @@ const InfoModal = ({ onClose, datos }) => {
   const [showBottomFade, setShowBottomFade] = useState(true);
 
   useEffect(() => {
+    console.log(datos)
     if (datos.layaut === "Luyaut2" && titleRef.current) {
       titleRef.current.style.flexDirection = "column";
       titleRef.current.style.alignItems = "start";
@@ -282,7 +283,7 @@ const InfoModal = ({ onClose, datos }) => {
 
   return (
     <div  className={`modal-info ${getSizeClass()}`} id="modal-info">
-      {datos.id!=55 && (
+      {(datos.id!=55 ) && (
 
       <div className="modal-content-info">
         {/* Header fijo con icono, título y botón de cierre */}

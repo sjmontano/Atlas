@@ -329,7 +329,7 @@ const Chapter4 = ({acceso=false}) => {
 
     // Busca el modal correspondiente en los datos de los modales
     const modalData = modalsData.find(
-      (modal) => modal.id === index+60
+      (modal) => modal.id === index+69
     );
     // Actualiza el estado con el modal correspondiente
     if (modalData) {
@@ -344,13 +344,13 @@ const Chapter4 = ({acceso=false}) => {
   // Efecto para cargar los mapas al inicio
   useEffect(() => {
     // Selecciona el modal inicial
-    setSelectedModal(modalsData[53]);
+    setSelectedModal(modalsData[64]);
 
     const loadMaps = async () => {
       // Obtiene mapas desde la utilidad geoUtils
       const generatedMaps = await getChapterMaps([
         { name: "introduccionCap4" },
-        { name: "asoyoje" },
+        { name: "asoyoge" },
         { name: "elBuhido" },
         { name: "bosqueComestible" } ,
         { name: "losBajios" } ,
@@ -412,6 +412,7 @@ const Chapter4 = ({acceso=false}) => {
       icons={sidebarIconsChapter4[selectedMap]}
       onMapChange={handleMapChange}
       galeriaData={galeriaActual}
+      selectedMap={selectedMap}
     />
       {/* Título principal */}
       <Header

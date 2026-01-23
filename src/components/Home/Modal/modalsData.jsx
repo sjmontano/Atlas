@@ -3142,7 +3142,185 @@ const modalsData = [
       </div>
     ),
   },
- 
+
+  //Modales tramo 4 con numeración
+  {
+    id: 70,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/datoIntroCap4.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 71,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/asoyogue-09.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 72,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/El buhido.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 73,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/oriente cali.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 74,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/villa rica.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 75,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/el paso.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 76,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/suarez.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 77,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/la virginia.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 78,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/guachene.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 79,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/La caicedo.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 80,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/asoyogue-09.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  
 
 
 ];

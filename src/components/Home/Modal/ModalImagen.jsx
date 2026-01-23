@@ -39,7 +39,7 @@ const ModalImagen = ({ onClose, datos }) => {
     
   
   return (
-    <div  className={`modal-info  modal-size-gigante`} style={{padding:"0"}} id="modal-info">
+    <div  className={`modal-info  modal-size-${datos.id>=70 ? "medium" : "gigante"}`} style={{padding:"0"}} id="modal-info">
       
           <CloseButton onClose={onClose} right={"1vw"} top={"3vw"} />
          {datos.texto}
