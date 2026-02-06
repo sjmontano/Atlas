@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
   animation: scaleAnimation 5s ease-in-out infinite, blinkAnimation 1.4s infinite;
+  pointer-events: all;
+  z-index: 5;
 }
 
 .map-marker {
@@ -14,7 +16,6 @@
   width: 100%;
   height: 100%;
   object-fit: contain;
-  pointer-events: none;
 }
 
 .map-marker.icono {
@@ -75,8 +76,12 @@
 }
 
 /* Mostrar al hacer hover sobre el botón */
-.location-marker-button:hover .homeTooltip-marker {
+.map-marker-wrapper:hover + .homeTooltip-marker {
   display: flex;
+}
+
+.location-marker-button{
+  pointer-events: none;
 }
 
 .homeTooltip-marker::after {

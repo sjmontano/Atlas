@@ -455,7 +455,7 @@ const Chapter4 = ({acceso=false}) => {
 
       </div>
 
-      {(selectedMap === 2 || selectedMap ===3 ) && (
+      {(selectedMap === 29 || selectedMap ===29 ) && (
         <div className="btnAudioPlay"
             style={{  top: selectedMap === 2?   "76vh": "73vh", left:   selectedMap === 2?  "67vw" : "55vw",}}>
           <img

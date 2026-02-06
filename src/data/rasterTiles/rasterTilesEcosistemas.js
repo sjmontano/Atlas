@@ -168,13 +168,6 @@ const rasterTilesEcosistemas = [
       opacity: 0.8,
     },
     {
-      name: "sinInformacion",
-      id: "sinInformacion-layer",
-      sourceId: "sinInformacion_",
-      url: "/assets/img/Capas/ecosistemas/webp/low/sin-informacion-low.webp",
-      opacity: 0.8,
-    },
-    {
       name: "subandinos",
       id: "subandinos-layer",
       sourceId: "subandinos_",

@@ -32,6 +32,7 @@ const ASuarez= [
     angle: 215,
     image:"https://res.cloudinary.com/dvluvxfvn/image/upload/v1761186036/geoImages/mbyeccjbklrgzx4c3824.webp",
   },
+  
    {
     numero:5,
     name: "ASOCOMS",

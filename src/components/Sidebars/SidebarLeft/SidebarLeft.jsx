@@ -13,8 +13,8 @@ import fondoItem from "../../../../public/assets/img/background/sidebardLeftItem
 import fondoIcon from "../../../../public/assets/svg/todos/Hud/icons/icon-line-webp/icon-frame-1.webp";
 
 import perfil1 from "../../../../public/assets/img/perfil/perfil-1.svg";
-import perfil2 from "../../../../public/assets/img/perfil/perfil-2.svg";
-import perfil3 from "../../../../public/assets/img/perfil/perfil-3.svg";
+import perfil2 from "../../../../public/assets/img/perfil/perfil-3.svg";
+import perfil3 from "../../../../public/assets/img/perfil/perfil-2.svg";
 
 const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null , selectedMap=0}) => {
   const navigate = useNavigate();
@@ -94,6 +94,10 @@ const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null , sel
     }else if (link==="Datos") {
       setIsModalOpen(true);
           setModalIndex(selectedMap + 63);
+          console.log(selectedMap)
+    }else if (link==="MapaArbol") {
+      setIsModalOpen(true);
+          setModalIndex(selectedMap + 72);
           console.log(selectedMap)
     } else if (link) {
       // Si hay link pero no es de Google, también lo abre (por si es un PDF u otra URL)

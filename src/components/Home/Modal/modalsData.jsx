@@ -3304,6 +3304,8 @@ const modalsData = [
       </div>
     ),
   },
+
+
   {
     id: 80,
     size: "large", // Tamaño medium para modal de bienvenida
@@ -3313,7 +3315,135 @@ const modalsData = [
       <div>
         <img
           className=""
-          src="assets/iconsCap4/asoyogue-09.png"
+          src="assets/iconsCap4/Centro Agropecuario SOYOGE.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 81,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca El Buhido.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 82,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Centro Agropecuario SOYOGE.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 83,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca Los Bajios.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 84,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca El Paso.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 85,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca Las Mercedes.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 86,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca La Virginia.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 87,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Centro Agropecuario.png"
+          alt=""
+          style={{ width: "65vw", height: "75vh" }}
+        />
+      </div>
+    ),
+  },
+  {
+    id: 88,
+    size: "large", // Tamaño medium para modal de bienvenida
+    highLight: "",
+    icono: "",
+    texto: (
+      <div>
+        <img
+          className=""
+          src="assets/iconsCap4/Finca La Caicedo.png"
           alt=""
           style={{ width: "65vw", height: "75vh" }}
         />

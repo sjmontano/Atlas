@@ -252,7 +252,7 @@ const useMap = ({
           console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
           // Aplicar maxBounds calculados
-          // newMap.setMaxBounds(finalBounds);
+           //newMap.setMaxBounds(finalBounds);
 
           // 🛡️ RESTRICCIÓN DE MOVIMIENTO - DESACTIVADA
           // La lógica de límites ahora se maneja de forma centralizada y dinámica en BaseMapImage.jsx

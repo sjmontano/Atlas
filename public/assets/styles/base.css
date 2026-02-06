@@ -127,7 +127,6 @@ button {
 #map {
   width: 100vw;
   height: 100vh;
-  transform: scaleX(1.2); /* o el valor que necesites */
   transform-origin: center center;
   overflow: hidden;
 }

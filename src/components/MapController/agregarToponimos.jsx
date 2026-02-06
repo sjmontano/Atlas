@@ -54,7 +54,7 @@ const ToponimosLayer = ({
       popupNode.innerHTML = `
          <div style="position: relative; display: flex; justify-content: center; align-items: center; cursor: pointer;">
             ${mapName == "introduccionCap4" ? "<div class='circuloPopup'>"  :""}
-            <img class="imagenNumeros" src="${mapName == "TNATransformadoras" ? fondoMarker  :image}"
+            <img class="imagenNumeros" src="${mapName == "TNATransformadoras" || mapName == "MOrienteCali" ? fondoMarker  :image}"
               style="width: ${
                 mapName == "bredunco" && [2, 3, 4, 1].includes(toponimo.numero)
                   ? "25px"
@@ -67,7 +67,7 @@ const ToponimosLayer = ({
 
               <img class="imagenNumeros" src="${marker}"
               style="display: ${
-                mapName == "TNATransformadoras"
+                mapName == "TNATransformadoras" || mapName == "MOrienteCali"
                   ? "flex"
                   : "none"
               }; z-index:10; width:2.5vh; height:2.5vh;" />
@@ -277,7 +277,7 @@ const ToponimosLayer = ({
           <ImageCircle  mapName ={mapName} angle={toponimo.angle} image={toponimo.image} tamaño={50} color={"#3D80A5"}
 
           />
-          : <ImageCircle angle={toponimo.angle} image={toponimo.image} />
+          : toponimo.name!=="ASOCOMS" && toponimo.name!=="Revista Afro Juvenil Matamba" && <ImageCircle angle={toponimo.angle} image={toponimo.image} />
         );
       }
 

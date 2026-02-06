@@ -5,7 +5,7 @@ import LocationMarker from "../MapMarker/LocationMarker";
 import ContentInfo from "./ContentInfo";
 import logo from "../../../../public/assets/img/logo/logo.webp";
 import placesWithMarkers from "../../../data/modalImages/placesWithMarkers"; // <- IMPORTANTE
-import img from "../../../../public/assets/img/background/home.webp";
+import img from "../../../../public/assets/img/background/home.png";
 
 const Content = () => {
   const { modalData, openModal, closeModal } = useModal();

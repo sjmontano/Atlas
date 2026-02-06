@@ -14,8 +14,8 @@ const SidebarBottom = ({ onMapChange, chapters=[], mapas=[], setIsChapterOpen, s
   const to=[
     {chapter:"/chapter1"},
     {chapter:"/chapter2"},
-    {chapter:null}, // Cap. III - en construcción
-    {chapter:null}, // Cap. IV - en construcción
+    {chapter:"/chapter3"}, // Cap. III - en construcción
+    {chapter:"/chapter4"}, // Cap. IV - en construcción
   ]
 
   return (
@@ -27,7 +27,7 @@ const SidebarBottom = ({ onMapChange, chapters=[], mapas=[], setIsChapterOpen, s
         const isSelected = index === selectedChapter - 1;
 
         // Verificar si es un capítulo en construcción (índices 2 y 3 = Cap. III y IV)
-        const isConstructionChapter = isChapterMode && (  index === 2 ||index === 3 || index === 4);
+        const isConstructionChapter = isChapterMode && (  index === 4);
         
         // Determinar el tipo de wrapper y sus props
         const Wrapper = (isChapterMode && !isSelected && !isConstructionChapter) ? Link : 'div';

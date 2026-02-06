@@ -86,6 +86,10 @@ const entramadosContent = () => {
                   src="assets\img\entramados\fundacionHuellas.webp"
                   alt="Colectivo socio juvenil huellas.webp"
                 />
+                <img
+                  src="assets\img\entramados\Redmunorca.png"
+                  alt="Redmunorca.png"
+                />
               </div>
 
               <div className="section">

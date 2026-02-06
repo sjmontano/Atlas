@@ -1,0 +1,8 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 20" width="21" height="20">
+	<defs>
+		<image  width="21" height="20" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAUCAMAAABVlYYBAAAAAXNSR0IB2cksfwAAAGZQTFRFAQAAAAAAAAABAAEAQIOuRoewRoavRoevR4avRoauRoawNnCYTImyVY60VY61VY+0VI60O3OYToqxTYmyO3OZTYqyTImxTYmxTImxQYOuR4awR4axRoawNm+VMEpdMEtcMUtcM0JSUoWnIgAAACJ0Uk5TAAAAAMnP0NDQ0M/G+///////+vv//P39/P7/////NDo6MjAqVGoAAADUSURBVHicTVDLDsIwDEuaSUjcgPG48P+/xYErYhfYADXBccdjyqrUdZw4KqohCH4lWqKaF897hgNBoqJieMq8VOmA3vGDvYRIssQqpLqrgmW+eokFRLyhQ9NdP7NhqQgULC6SZN1MqQC6JfrhbkcoBOlIysBusrtnebBbqeAq0cmlTS1f1KIf6WpG0Y3kfvw4lr/J+knIanvohuLpbTOJESq/yYrvb/RK1CpRON4+uMB0zHmxM3APOrdSruhMXTnqbwKUnBoaDPl7gkJ4ouqW9ZGnvgFw5nMwcM10GgAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use  href="#img1" x="0" y="0"/>
+</svg>

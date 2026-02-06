@@ -51,10 +51,12 @@ const mapConfig = {
 
 
   TNATransformadoras:{
+    dragPan: true,
+    scrollZoom: true,
     initialZoom: 8,
     shadow: false,
     minZoom:  8,
-    maxZoom:  8,
+    maxZoom:  12,
   },
 
 ASuarez:{

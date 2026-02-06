@@ -132,7 +132,7 @@ const Chapter2 = ({acceso=false}) => {
           numero:"",
           name: "Oriente de Cali",
           capa: "",
-          coords: [-76.444254, 3.316929]
+          coords: [-76.444254, 3.216929]
         }
       ],
       capas: [],

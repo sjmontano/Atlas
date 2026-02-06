@@ -11,7 +11,7 @@ const MapMarker = () => {
     </div>
   );
 };
-
+2
 MapMarker.propTypes = {
   color: PropTypes.string,
   size: PropTypes.string,

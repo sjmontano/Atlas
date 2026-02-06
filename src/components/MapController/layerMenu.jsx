@@ -7,14 +7,13 @@ import lineaCapas from "../../../public/assets/img/background/indice-capas-menu.
 import iconoCapas1 from "../../../public/assets/svg/todos/Hud/icons/icon-line-webp/iconoCapas1.webp";
 import fondoSidebarLeftItem from "../../../public/assets/img/background/sidebardLeftItem.webp";
 
-
 const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
   console.log(mapName);
   const [layerVisibility, setLayerVisibility] = useState(
     layers.reduce((acc, layer) => {
       acc[layer.id] = true;
       return acc;
-    }, {})
+    }, {}),
   );
 
   const toggleLayerVisibility = (layerId) => {
@@ -28,12 +27,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
       map.setLayoutProperty(
         layerId,
         "visibility",
-        newVisibility ? "none" : "visible"
+        newVisibility ? "none" : "visible",
       );
     }
   };
 
-   const toggleLayerGroupVisibility = (layersId, visible) => {
+  const toggleLayerGroupVisibility = (layersId, visible) => {
     layersId.forEach((item) => {
       if (map && map.getLayer(item)) {
         const itemVisibility = map.getLayoutProperty(item, "visibility");
@@ -60,8 +59,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-
-   useEffect(() => {
+  useEffect(() => {
     const icono = document.querySelector(".layer-menu-wrapper");
     const menu = document.querySelector(".layer-control-container");
     if (isHovered || isOpen) {
@@ -74,7 +72,6 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
       icono.style.left = "94vw";
     }
   }, [isHovered, isOpen]);
-
 
   const [isMenuOpen, setIsMenuOpen] = useState({
     uno: false,
@@ -176,17 +173,11 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
   };
 
   return (
-     <>
-      <div
-        className="lineaCapas"
-       
-      >
-        <img src={lineaCapas} alt=""  style={{width:"100%"}}/>
+    <>
+      <div className="lineaCapas">
+        <img src={lineaCapas} alt="" style={{ width: "100%" }} />
       </div>
-      <div
-        className="layer-menu-wrapper"
-       
-      >
+      <div className="layer-menu-wrapper">
         {/*<img className="menuAgregadosImage" src={menuAgregados} alt="" />*/}
 
         <div className="layer-menu-toggle" onClick={() => setIsOpen((v) => !v)}>
@@ -200,8 +191,6 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
           </div>
           <span className="layer-menu-label"> Menú de capas</span>
         </div>
-
-
 
         <div className="layer-control-container fade-in">
           <div id="layer-Control">
@@ -564,7 +553,6 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <EyeIcon
                     isHidden={layerVisibility["zonaDescarga-layer"]}
                     onClick={() => toggleLayerVisibility("zonaDescarga-layer")}
-                    
                   />
                   <svg
                     width="33"
@@ -675,9 +663,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                 <div className="layer-item">
                   <EyeIcon
                     isHidden={layerVisibility["zonaAcuifero-layer"]}
-                    onClick={() =>
-                      toggleLayerVisibility("zonaAcuifero-layer")
-                    }
+                    onClick={() => toggleLayerVisibility("zonaAcuifero-layer")}
                   />
                   <svg
                     width="40"
@@ -725,8 +711,6 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
 
                 <div className="subtitle-3">
                   <div className="espacio-2"></div>
-
-                  
 
                   {isMenuOpen.uno ? (
                     <svg
@@ -810,7 +794,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.unoUno;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.unoUno,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -829,10 +813,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("sedimentosSubmarinos-layer")}
+                            isHidden={getLayerVisibility(
+                              "sedimentosSubmarinos-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility(
-                                "sedimentosSubmarinos-layer"
+                                "sedimentosSubmarinos-layer",
                               )
                             }
                           />
@@ -977,7 +963,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.unoDos;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.unoDos,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -996,7 +982,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("rocasExpuestas-layer")}
+                            isHidden={getLayerVisibility(
+                              "rocasExpuestas-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("rocasExpuestas-layer")
                             }
@@ -1059,7 +1047,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("herbazalPastos-layer")}
+                            isHidden={getLayerVisibility(
+                              "herbazalPastos-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("herbazalPastos-layer")
                             }
@@ -1121,7 +1111,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.unoTres;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.unoTres,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -1181,7 +1171,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio-2"></div>
                           <EyeIcon
                             isHidden={getLayerVisibility("inundables-layer")}
-                            onClick={() => toggleLayerVisibility("inundables-layer")}
+                            onClick={() =>
+                              toggleLayerVisibility("inundables-layer")
+                            }
                             style={{
                               padding: "0",
                               marginRight: "10px",
@@ -1206,8 +1198,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("secosTropicales-layer")}
-                            onClick={() => toggleLayerVisibility("secosTropicales-layer")}
+                            isHidden={getLayerVisibility(
+                              "secosTropicales-layer",
+                            )}
+                            onClick={() =>
+                              toggleLayerVisibility("secosTropicales-layer")
+                            }
                             style={{
                               padding: "0",
                               marginRight: "10px",
@@ -1231,7 +1227,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("humedosTropicales-layer")}
+                            isHidden={getLayerVisibility(
+                              "humedosTropicales-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("humedosTropicales-layer")
                             }
@@ -1354,7 +1352,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.unoCuatro;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.unoCuatro,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -1435,7 +1433,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("glaciaresNivales-layer")}
+                            isHidden={getLayerVisibility(
+                              "glaciaresNivales-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("glaciaresNivales-layer")
                             }
@@ -1542,7 +1542,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.dosUno;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.dosUno,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -1561,7 +1561,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("bosqueFragmentado-layer")}
+                            isHidden={getLayerVisibility(
+                              "bosqueFragmentado-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("bosqueFragmentado-layer")
                             }
@@ -1581,7 +1583,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("regeneracionVegetal-layer")}
+                            isHidden={getLayerVisibility(
+                              "regeneracionVegetal-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("regeneracionVegetal-layer")
                             }
@@ -1642,7 +1646,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                         onClick={() => {
                           toggleLayerGroupVisibility(
                             capasAgrupadas.dosDos,
-                            !isMenuActive.dosDos ? "visible" : "none"
+                            !isMenuActive.dosDos ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -1668,8 +1672,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("agriculturaMixta-layer")}
-                            onClick={() => toggleLayerVisibility("agriculturaMixta-layer")}
+                            isHidden={getLayerVisibility(
+                              "agriculturaMixta-layer",
+                            )}
+                            onClick={() =>
+                              toggleLayerVisibility("agriculturaMixta-layer")
+                            }
                             style={{
                               padding: "0",
                               marginRight: "10px",
@@ -1693,7 +1701,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio"></div>
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("areasInundacion-layer")}
+                            isHidden={getLayerVisibility(
+                              "areasInundacion-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("areasInundacion-layer")
                             }
@@ -1795,7 +1805,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           const newVisibility = !isMenuActive.dosTres;
                           toggleLayerGroupVisibility(
                             capasAgrupadas.dosTres,
-                            newVisibility ? "visible" : "none"
+                            newVisibility ? "visible" : "none",
                           );
 
                           setIsMenuActive({
@@ -1815,10 +1825,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
 
                           <div className="espacio-2"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("zonaUrbanaIndustrial-layer")}
+                            isHidden={getLayerVisibility(
+                              "zonaUrbanaIndustrial-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility(
-                                "zonaUrbanaIndustrial-layer"
+                                "zonaUrbanaIndustrial-layer",
                               )
                             }
                           />
@@ -1841,7 +1853,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           <div className="espacio-2"></div>
                           <div className="espacio"></div>
                           <EyeIcon
-                            isHidden={getLayerVisibility("aguaSuperficial-layer")}
+                            isHidden={getLayerVisibility(
+                              "aguaSuperficial-layer",
+                            )}
                             onClick={() =>
                               toggleLayerVisibility("aguaSuperficial-layer")
                             }
@@ -1940,8 +1954,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -1960,7 +1974,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       objectFit: "cover",
@@ -1984,8 +1998,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2009,7 +2023,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2030,8 +2044,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2055,7 +2069,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2076,8 +2090,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2101,7 +2115,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2122,8 +2136,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2147,7 +2161,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2168,8 +2182,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2194,7 +2208,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2215,8 +2229,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2240,7 +2254,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2262,8 +2276,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2287,7 +2301,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "22.5%",
@@ -2310,8 +2324,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2335,7 +2349,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4.5%",
@@ -2358,8 +2372,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2384,7 +2398,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "5%",
@@ -2406,8 +2420,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2431,7 +2445,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2453,8 +2467,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "1%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2478,7 +2492,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "6%",
@@ -2500,8 +2514,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-7%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2525,7 +2539,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2546,8 +2560,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-7%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2573,7 +2587,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2628,8 +2642,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-6.5%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2653,7 +2667,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2674,8 +2688,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2701,7 +2715,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2723,8 +2737,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2748,7 +2762,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -2782,8 +2796,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2808,7 +2822,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -2842,8 +2856,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2867,7 +2881,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -2889,8 +2903,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2915,7 +2929,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -2938,8 +2952,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "3%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -2965,7 +2979,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "18px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -2998,8 +3012,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3025,7 +3039,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -3047,8 +3061,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3075,7 +3089,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3108,8 +3122,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3133,7 +3147,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3156,8 +3170,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3176,7 +3190,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3200,8 +3214,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3226,7 +3240,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3268,8 +3282,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "4%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3293,7 +3307,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -3316,8 +3330,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "4%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3341,7 +3355,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -3363,8 +3377,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "4%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3388,7 +3402,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3421,8 +3435,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-13.5%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3446,7 +3460,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3480,8 +3494,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3506,7 +3520,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -3528,8 +3542,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3554,7 +3568,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3588,8 +3602,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3613,7 +3627,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3636,8 +3650,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3661,7 +3675,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3684,8 +3698,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3709,7 +3723,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3732,8 +3746,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3758,7 +3772,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3781,8 +3795,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3806,7 +3820,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3829,8 +3843,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-0.6%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3854,7 +3868,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3877,8 +3891,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "1%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3902,7 +3916,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -3937,8 +3951,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-7%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -3963,7 +3977,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -3985,8 +3999,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-5.5%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4012,7 +4026,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4035,8 +4049,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4061,7 +4075,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4116,8 +4130,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4141,7 +4155,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4164,8 +4178,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4184,7 +4198,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4217,8 +4231,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%  ",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4243,7 +4257,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4277,8 +4291,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "1%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4302,7 +4316,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4344,7 +4358,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "-5px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4378,8 +4392,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "-8%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4403,7 +4417,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4425,8 +4439,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4450,7 +4464,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4484,8 +4498,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4509,7 +4523,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4532,8 +4546,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4602,16 +4616,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                           margin: "0%",
                           marginLeft: "5%",
                           marginTop: "0.4vw",
-                          fontSize: "16px",
+                          fontSize: "1.04vw",
                           fontFamily: "Noto Sans, sans-serif",
                           fontWeight: "600",
                         }}
                       >
                         1970
                       </h4>
-
                     </div>
-
                   ))}{" "}
                 </div>
                 <div
@@ -4628,8 +4640,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginBottom: "-24%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4653,7 +4665,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4664,7 +4676,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                 <h4
                   style={{
                     marginLeft: "27%",
-                    fontSize: "16px",
+                    fontSize: "1.04vw",
                     fontFamily: "Noto Sans, sans-serif",
                     fontWeight: "600",
                     marginBottom: "-3%",
@@ -4686,8 +4698,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "4%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4711,7 +4723,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginBottom: "-5px",
@@ -4733,8 +4745,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4760,7 +4772,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4781,8 +4793,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4806,7 +4818,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4828,8 +4840,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4853,7 +4865,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4875,8 +4887,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4890,8 +4902,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/zonasUrbana.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -4900,7 +4912,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "15px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -4921,8 +4933,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4947,7 +4959,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -4969,8 +4981,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "3%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -4994,7 +5006,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "18px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -5025,7 +5037,6 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       isHidden={layerVisibility[layer.id]}
                       onClick={() => toggleLayerVisibility(layer.id)}
                       style={{
-                        
                         margin: "0",
                         marginLeft: "-10.5vw",
                         marginTop: "-0.2vw",
@@ -5036,24 +5047,20 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     />
 
                     <h4
-                  style={{
-                    marginTop: "0%",
-                    marginLeft: "7%",
-                    fontSize: "16px",
-                    fontFamily: "Noto Sans, sans-serif",
-                    fontWeight: "600",
-                    marginBottom: "-2%",
-                  }}
-                >
-                  1970
-                </h4>
-
-                    
-                    
-
+                      style={{
+                        marginTop: "0%",
+                        marginLeft: "7%",
+                        fontSize: "1.04vw",
+                        fontFamily: "Noto Sans, sans-serif",
+                        fontWeight: "600",
+                        marginBottom: "-2%",
+                      }}
+                    >
+                      1970
+                    </h4>
                   </div>
                 ))}{" "}
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
@@ -5066,8 +5073,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "4%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5091,7 +5098,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginBottom: "-5px",
@@ -5112,8 +5119,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5137,7 +5144,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5158,8 +5165,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5183,7 +5190,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -5192,7 +5199,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Quebradas
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
@@ -5205,8 +5212,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "5%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5230,7 +5237,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -5243,7 +5250,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     marginTop: "3%",
                     marginLeft: "28%",
-                    fontSize: "16px",
+                    fontSize: "1.04vw",
                     fontFamily: "Noto Sans, sans-serif",
                     fontWeight: "600",
                     marginBottom: "-2%",
@@ -5264,8 +5271,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "4%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5289,7 +5296,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginBottom: "-5px",
@@ -5310,8 +5317,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5335,7 +5342,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5356,8 +5363,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "3%",
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5381,7 +5388,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "12px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "4px",
@@ -5493,8 +5500,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       marginTop: "1vw",
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5539,8 +5546,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5599,8 +5606,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5624,7 +5631,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5644,8 +5651,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5669,7 +5676,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5689,8 +5696,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5714,7 +5721,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5734,8 +5741,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5760,7 +5767,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5780,8 +5787,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5805,7 +5812,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5825,8 +5832,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5840,8 +5847,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/fincaTra.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -5850,7 +5857,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "1vw",
@@ -5872,8 +5879,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5887,8 +5894,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/zonaVerde.svg"
                       alt="Represas"
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                         marginTop: "2px",
@@ -5898,7 +5905,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -5919,8 +5926,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "5%",
                       marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -5934,8 +5941,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/cañaAzucar.svg"
                       alt="Represas"
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -5944,7 +5951,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "16px",
@@ -5965,66 +5972,88 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   display: "flex",
                   flexDirection: "column",
                   height: "86vh",
-                  overflow: "scroll"
+                  overflow: "scroll",
                 }}
               >
-
-                <h4 style={{
-                  marginLeft: "26%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"3%",
-                }}
-                >Lagos de mineria de arcillas </h4>
-
-
+                <h4
+                  style={{
+                    marginLeft: "26%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "3%",
+                  }}
+                >
+                  Lagos de mineria de arcillas{" "}
+                </h4>
                 {layers.map((layer) => (
                   <div key={layer.id} className="layer-item">
                     <EyeIcon
                       isHidden={layerVisibility[layer.id]}
                       onClick={() => toggleLayerVisibility(layer.id)}
-                      style={{ margin: "0", marginLeft: "-0.5vw", marginTop: "-0.2vw", cursor: "pointer" , width: "1.5vw",
-                        height: "1.5vw",}}
+                      style={{
+                        margin: "0",
+                        marginLeft: "-0.5vw",
+                        marginTop: "-0.2vw",
+                        cursor: "pointer",
+                        width: "1.5vw",
+                        height: "1.5vw",
+                      }}
                     />
 
-
-                  <div
-                    style={{
-                      marginLeft: "0%",
-                      marginRight: "0.5vw",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src={layer.icono}
-                      alt=""
-                      style={{ width: "50%", height: "50%",  objectFit: "cover", objectPosition: "center" }}
-                    />
+                    <div
+                      style={{
+                        marginLeft: "0%",
+                        marginRight: "0.5vw",
+                        width: "25px",
+                        height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        backdropFilter: "blur(2px)",
+                        backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                        borderRadius: "50%", // hace el div circular
+                        overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                      }}
+                    >
+                      <img
+                        src={layer.icono}
+                        alt=""
+                        style={{
+                          width: "50%",
+                          height: "50%",
+                          objectFit: "cover",
+                          objectPosition: "center",
+                        }}
+                      />
+                    </div>
+                    <span
+                      style={{
+                        marginLeft: "0",
+                        fontSize: "1.2vw",
+                        fontFamily: "Noto Sans, sans-serif",
+                        fontWeight: "300",
+                      }}
+                    >
+                      {layer.texto}
+                    </span>
                   </div>
-                  <span style={{ marginLeft: "0", fontSize: "1.2vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "300" }}>
-                    {layer.texto}
-                  </span>
-                </div>
-
                 ))}{" "}
-
-
                 <div
                   className="layer-item"
-                  style={{ display: "flex", alignItems: "center", marginTop: "-7%" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "-7%",
+                  }}
                 >
                   <div
                     style={{
                       marginTop: "1vw",
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6037,25 +6066,41 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     <img
                       src="assets/mapasMenuCap2/fincaTradi.svg"
                       alt="Río Cauca"
-                      style={{ width: "50%", height: "50%", objectFit: "cover", objectPosition: "center" }}
+                      style={{
+                        width: "50%",
+                        height: "50%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
                     />
                   </div>
-                  <span style={{ marginLeft: "12px", fontSize: "1.2vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "300", marginBottom: "1px", marginTop:"20%" }}>
-                    Fincas tradicionales, cultivos
-                    diversos y bosques.
+                  <span
+                    style={{
+                      marginLeft: "12px",
+                      fontSize: "1.2vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                      marginBottom: "1px",
+                      marginTop: "20%",
+                    }}
+                  >
+                    Fincas tradicionales, cultivos diversos y bosques.
                   </span>
                 </div>
-
                 <div
                   className="layer-item"
-                  style={{ display: "flex", alignItems: "center", marginTop: "-4%" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "-4%",
+                  }}
                 >
                   <div
                     style={{
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6068,23 +6113,39 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     <img
                       src="assets/mapasMenuCap2/tituloMinero.svg"
                       alt=""
-                      style={{ width: "50%", height: "50%",  objectFit: "cover", objectPosition: "center" }}
+                      style={{
+                        width: "50%",
+                        height: "50%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
                     />
                   </div>
-                  <span style={{ marginLeft: "12px", fontSize: "1.2vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "300" }}>
+                  <span
+                    style={{
+                      marginLeft: "12px",
+                      fontSize: "1.2vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
                     Título minero vigente
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
-                  style={{ display: "flex", alignItems: "center", marginTop: "-4%" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "-4%",
+                  }}
                 >
                   <div
                     style={{
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6097,23 +6158,39 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     <img
                       src="assets/mapasMenuCap2/veredas.svg"
                       alt=""
-                      style={{ width: "60%", height: "60%",  objectFit: "cover", objectPosition: "center" }}
+                      style={{
+                        width: "60%",
+                        height: "60%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
                     />
                   </div>
-                  <span style={{ marginLeft: "12px", fontSize: "1.2vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "300" }}>
+                  <span
+                    style={{
+                      marginLeft: "12px",
+                      fontSize: "1.2vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
                     Veredas
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
-                  style={{ display: "flex", alignItems: "center", marginTop: "-4%" }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "-4%",
+                  }}
                 >
                   <div
                     style={{
                       marginLeft: "13%",
                       marginRight: "0%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6126,24 +6203,34 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     <img
                       src="assets/mapasMenuCap2/quebradas.svg"
                       alt=""
-                      style={{ width: "100%", height: "15%",  objectFit: "cover", objectPosition: "center" }}
+                      style={{
+                        width: "100%",
+                        height: "15%",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
                     />
                   </div>
-                  <span style={{ marginLeft: "12px", fontSize: "1.2vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "300" }}>
+                  <span
+                    style={{
+                      marginLeft: "12px",
+                      fontSize: "1.2vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
                     Ríos y quebradas
                   </span>
                 </div>
               </div>
             )}
 
-
-
-             {/*Capas cap 4 */}
+            {/*Capas cap 4 */}
             {mapName === "introduccionCap4" && (
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -6157,17 +6244,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                     marginTop: "2%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "0vw",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6191,7 +6276,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6204,16 +6289,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                     marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6237,7 +6321,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6250,17 +6334,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                     marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      alignSelf:"start",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6284,7 +6366,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6297,16 +6379,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                     marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6331,7 +6412,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6344,17 +6425,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                     marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      alignSelf:"start",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6378,12 +6457,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                   Curvas de nivel
+                    Curvas de nivel
                   </span>
                 </div>
                 <div
@@ -6397,11 +6476,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      alignSelf:"start",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6425,7 +6502,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6439,7 +6516,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -6448,25 +6525,30 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginTop:"3%",
-                }}
-                >Zonificación </h4>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginTop: "3%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
                 <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "-12%",
-                    marginBottom: "-12%",
+                    marginBottom: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6480,8 +6562,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6490,14 +6572,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "18px",
                     }}
                   >
-                    1.Vivienda y espacios
-                    asociados
+                    1.Vivienda y espacios asociados
                   </span>
                 </div>
                 <div
@@ -6506,15 +6586,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     marginTop: "5%",
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
+                    marginBottom: "2%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6528,8 +6607,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/transformacionProductiva.svg"
                       alt="Represas"
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                         marginTop: "2px",
@@ -6539,14 +6618,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "16px",
                     }}
                   >
-                    5.Transformación
-                    productiva
+                    5.Transformación productiva
                   </span>
                 </div>
                 <div
@@ -6554,16 +6631,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-18%",
+                    marginBottom: "-14%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "4%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6577,9 +6652,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/delimitacion.svg"
                       alt="Represas"
                       style={{
-
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6588,10 +6662,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "8px",
                     }}
                   >
                     Delimitación
@@ -6602,15 +6675,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                   marginTop: "16%",
+                    marginTop: "16%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6634,10 +6706,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-
                     }}
                   >
                     Trocha
@@ -6649,7 +6720,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -6658,26 +6729,29 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"6%",
-                }}
-                >Zonificación </h4>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "6%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
                 <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-2%",
                   }}
                 >
-
                   <div
                     style={{
-                      marginTop: "-6%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6691,8 +6765,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/aljibe.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6701,12 +6775,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    3.Cuerpos de agua - Aljibe
+                    Cuerpos de agua - Aljibe
                   </span>
                 </div>
                 <div
@@ -6714,16 +6788,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "-1%",
-                    marginBottom: "-2%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6737,8 +6808,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/huertas.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6747,12 +6818,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    1.Huerta
+                    Huerta
                   </span>
                 </div>
                 <div
@@ -6760,18 +6831,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-2%",
-                      marginBottom: "2%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6785,8 +6851,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/construccion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6795,31 +6861,26 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-10px",
                     }}
                   >
                     Construcción
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6833,8 +6894,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/cultivoDiverso.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6842,9 +6903,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   </div>
                   <span
                     style={{
-                      marginTop: "-8%",
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6852,21 +6912,18 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Cultivos diversos
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6880,8 +6937,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/delimitacion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -6890,7 +6947,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6898,21 +6955,18 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Delimitación
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6936,7 +6990,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -6950,7 +7004,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -6959,25 +7013,30 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"-0.5%",
-                }}
-                >Zonificación </h4>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "5%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
                 <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-0.5%",
+                    marginBottom: "3%",
                   }}
                 >
-
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -6991,8 +7050,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/charcoBaño.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7001,7 +7060,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7014,16 +7073,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-4%",
+                    marginBottom: "3%",
                     marginTop: "-1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7037,8 +7095,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/zocabonOro.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7047,7 +7105,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7060,17 +7118,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
+                    marginBottom: "3%",
                     marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginBottom: "2%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7084,8 +7140,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/entradaPredio.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7094,11 +7150,10 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                       marginTop: "-6px",
-
                     }}
                   >
                     Entradas al predio
@@ -7109,16 +7164,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7132,8 +7185,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/extraccionOro.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7142,13 +7195,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Extracción de oro
-                    Aluvión
+                    Extracción de oro Aluvión
                   </span>
                 </div>
                 <div
@@ -7156,17 +7208,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7180,8 +7228,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/bosqueAreaExtracion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7190,13 +7238,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    6.bosques y áreas
-                    de conservación
+                    6.bosques y áreas de conservación
                   </span>
                 </div>
                 <div
@@ -7204,17 +7251,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
+                    marginBottom: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "14%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7228,8 +7272,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/zonaTransicion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7238,30 +7282,28 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "15%",
                     }}
                   >
                     Zonas en transición
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     marginTop: "8%",
-                    marginBottom: "-12%",
+                    marginBottom: "3%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7275,8 +7317,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/pastoreo.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7285,7 +7327,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7293,21 +7335,19 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     8.Pastoreo
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
+                    marginBottom: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7321,8 +7361,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/mineria.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7331,7 +7371,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7339,21 +7379,20 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Mineria
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
+                    marginTop: "6%",
+                    marginBottom: "-33%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7377,7 +7416,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7391,7 +7430,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -7400,26 +7439,29 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",
-                }}
-                >Zonificación  </h4>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
                 <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
+                    marginBottom: "3%",
                   }}
                 >
-
                   <div
                     style={{
-                      marginBottom: "-4%",
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "Start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7433,8 +7475,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/entradaPredio.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7443,10 +7485,10 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-5%",
+                      marginTop: "-3%",
                     }}
                   >
                     1.Entrada a la finca
@@ -7457,17 +7499,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-4%",
-                    marginTop: "-3%",
+                    marginBottom: "5%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7481,8 +7520,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/estanque.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7491,13 +7530,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Estanque para peces
-                    que se dañó
+                    Estanque para peces que se dañó
                   </span>
                 </div>
                 <div
@@ -7505,17 +7543,15 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
+                    marginBottom: "3%",
+                    alignSelf: "start",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-21%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7529,8 +7565,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/zonaDesecho.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7539,16 +7575,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-4%",
-
                     }}
                   >
-                    Zonas con desechos de
-                    plastico y botellas
-                    de alcohol
+                    Zonas con desechos de plastico y botellas de alcohol
                   </span>
                 </div>
                 <div
@@ -7556,16 +7588,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
+                    marginBottom: "3%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7579,8 +7609,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7589,13 +7619,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Vivienda y espacios
-                    asociados
+                    Vivienda y espacios asociados
                   </span>
                 </div>
                 <div
@@ -7603,16 +7632,14 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
+                    marginBottom: "-20%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7626,8 +7653,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/criaAnimales.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7636,28 +7663,28 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                   Cría de animales
+                    Cría de animales
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     marginTop: "24%",
+                    marginBottom: "3%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7671,8 +7698,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/zonaTransicion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7682,7 +7709,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "10px",
                       marginTop: "-2%",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7690,20 +7717,19 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Zonas en transición
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-26%",
+                    marginBottom: "-16%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7717,8 +7743,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/cultivoDiverso2.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7728,7 +7754,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "10px",
                       marginTop: "-2%",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7736,20 +7762,20 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Cultivos diversos
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "24%",
+                    marginTop: "20%",
+                    marginBottom: "8%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7763,8 +7789,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/productivasEspeciales.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7774,7 +7800,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginLeft: "10px",
                       marginTop: "-2%",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7783,20 +7809,20 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   </span>
                 </div>
 
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     marginTop: "-4%",
+                    marginBottom: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7810,8 +7836,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/delimitacion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7820,29 +7846,28 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Finca Las Mercedes:
-                    límite
+                    Finca Las Mercedes: límite
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     marginTop: "-3%",
+                    marginBottom: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7867,7 +7892,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginTop: "-1%",
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -7881,7 +7906,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -7890,31 +7915,41 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"1%",
-                }}
-                >Zonificación  </h4>
-                <h3 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"12%",
-                }}
-                >1.Vestigios de Casa</h3>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "1%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
+                <h3
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "8%",
+                  }}
+                >
+                  1.Vestigios de Casa
+                </h3>
                 <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-0.5%",
+                    marginBottom: "3%",
                   }}
                 >
-
                   <div
                     style={{
-                      marginBottom: "-4%",
-                      marginTop: "-12%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7928,8 +7963,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/entradaPredio.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7938,13 +7973,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-10%",
                     }}
                   >
-                    1.Entrada finca
+                    Entrada finca
                   </span>
                 </div>
                 <div
@@ -7952,17 +7986,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-4%",
-                    marginTop: "-4%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-6%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -7976,8 +8006,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/sistemaRiego.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -7986,14 +8016,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "2%",
                     }}
                   >
-                    3.Cuerpo de agua -
-                    sistema de riego
+                    Cuerpo de agua - sistema de riego
                   </span>
                 </div>
                 <div
@@ -8001,17 +8029,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-2%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8025,8 +8049,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/burilico.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8035,14 +8059,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-4%",
-
                     }}
                   >
-                    6.Burilico
+                    Burilico
                   </span>
                 </div>
                 <div
@@ -8050,16 +8072,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "2%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8073,8 +8092,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/semillero.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8083,7 +8102,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -8096,16 +8115,56 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/cultivoDiverso.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Cultivos diversos
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8119,8 +8178,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/cultivoDiverso2.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8129,75 +8188,27 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                   9.Cultivos diversos
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "24%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/cultivoDiverso.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    10.Productivos especiales
+                    Productivos especiales
                   </span>
                 </div>
 
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "-4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8211,8 +8222,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/delimitacion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8221,7 +8232,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -8229,20 +8240,18 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Delimitación
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8265,9 +8274,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   </div>
                   <span
                     style={{
-                      marginTop: "-1%",
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -8281,7 +8289,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
               <div
                 className="scroll-container"
                 style={{
-                  marginLeft: "15%",
+                  marginLeft: "18%",
                   display: "flex",
                   flexDirection: "column",
                   marginTop: "7vh",
@@ -8290,10 +8298,16 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   overflow: "scroll",
                 }}
               >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",
-                }}
-                >Zonificación  </h4>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
                 <div
                   className="layer-item"
                   style={{
@@ -8301,15 +8315,11 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     alignItems: "center",
                   }}
                 >
-
                   <div
                     style={{
-                      marginBottom: "-4%",
-                      marginTop: "-17%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8323,8 +8333,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/aljibe2.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8333,14 +8343,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-5%",
                     }}
                   >
-                    3.Cuerpos de agua -
-                    Aljibe
+                    Cuerpos de agua - Aljibe
                   </span>
                 </div>
                 <div
@@ -8348,17 +8356,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-4%",
-                    marginTop: "-3%",
                   }}
                 >
                   <div
                     style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8372,8 +8376,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/nidoHormiga.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8382,13 +8386,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Nido de hormiga
-                    arriera
+                    Nido de hormiga arriera
                   </span>
                 </div>
                 <div
@@ -8396,17 +8399,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-13%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8420,8 +8419,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8430,15 +8429,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-4%",
-
                     }}
                   >
-                    1.Vivienda y espacios
-                    asociados
+                    Vivienda y espacios asociados
                   </span>
                 </div>
                 <div
@@ -8446,16 +8442,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-3%",
                   }}
                 >
                   <div
                     style={{
-
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8469,8 +8462,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/criaAnimales.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8479,12 +8472,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                   4.Cría de animales
+                    Cría de animales
                   </span>
                 </div>
                 <div
@@ -8492,17 +8485,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-13%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8516,8 +8505,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/bosqueAreaExtracion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8526,15 +8515,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-4%",
-
                     }}
                   >
-                    Bosques y áreas
-                    de conservación
+                    Bosques y áreas de conservación
                   </span>
                 </div>
                 <div
@@ -8542,16 +8528,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8565,8 +8548,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/zonaTransicion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8575,28 +8558,26 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                  7.Zonas de transición
+                    Zonas de transición
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "24%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8607,11 +8588,11 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     }}
                   >
                     <img
-                      src="assets/iconsCap4/cultivoDiver.svg"
+                      src="assets/iconsCap4/cultivoDiverso.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8620,13 +8601,12 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      marginTop: "-2%",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    9.Cultivos diversos
+                    Cultivos diversos
                   </span>
                 </div>
                 <div
@@ -8634,17 +8614,13 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-14%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8658,8 +8634,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/productivasEspeciales.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8668,30 +8644,26 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
-                      marginTop: "-8%",
-
                     }}
                   >
-                    10.Productivas especiales
+                    Productivas especiales
                   </span>
                 </div>
-                 <div
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "2%",
                   }}
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8705,8 +8677,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/delimitacion.svg"
                       alt=""
                       style={{
-                        width: "15px",
-                        height: "15px",
+                        width: "0.97vw",
+                        height: "2.05vh",
                         objectFit: "cover",
                         objectPosition: "center",
                       }}
@@ -8715,7 +8687,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   <span
                     style={{
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
@@ -8723,7 +8695,1644 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     Delimitación
                   </span>
                 </div>
-                 <div
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/trocha.svg"
+                      alt=""
+                      style={{
+                        width: "25px",
+                        height: "2px",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Trocha
+                  </span>
+                </div>
+              </div>
+            )}
+            {mapName === "elBuhido" && (
+              <div
+                className="scroll-container"
+                style={{
+                  marginLeft: "18%",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "7vh",
+                  marginBottom: "7vh",
+                  height: "86vh",
+                  overflow: "scroll",
+                }}
+              >
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "4%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/disposicionResiduos.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginTop: "6%",
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    2.Disposición de residuos
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "3%",
+                    marginTop: "-1%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/entradaPredio.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    1.Entrada
+                  </span>
+                </div>
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "1%",
+                    marginTop: "4%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "4%",
+                    marginTop: "1%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                      marginTop: "12px",
+                    }}
+                  >
+                    1.Vivienda y espacios asociados
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "4%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/criaAnimales.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    4.Cría de animales
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "-3%",
+                    marginTop: "1%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/bosqueAreaExtracion.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    6.bosques y áreas de conservación
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "8%",
+                    marginBottom: "-3%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/cultivoDiverso.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    9.Cultivos diversos
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "8%",
+                    marginBottom: "-2%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/zonaTransicion.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    7.Zonas en transición
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "8%",
+                    marginBottom: "-4%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/productivasEspeciales.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    10.Productivas especiales
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "8%",
+                    marginBottom: "-3%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/delimitacion.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Delimitación
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "8%",
+                    marginBottom: "-12%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/trocha.svg"
+                      alt=""
+                      style={{
+                        width: "25px",
+                        height: "2px",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Trocha
+                  </span>
+                </div>
+              </div>
+            )}
+            {mapName === "bosqueComestible" && (
+              <div
+                className="scroll-container"
+                style={{
+                  marginLeft: "18%",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "7vh",
+                  marginBottom: "7vh",
+                  height: "86vh",
+                  overflow: "scroll",
+                }}
+              >
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/botaderoColchon.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Botadero de colchones y escombros
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4//botaderoEscombro.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Botadero de escombros y basura
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/compuertaVertedero.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Compuerta de vertimiento de aguas residuales
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/zonaBasura.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Quema de basuras
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/cuerpoAgua2.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Cuerpo de agua
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alingSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/zonaColmatada.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Zona colmatada
+                  </span>
+                </div>
+              </div>
+            )}
+            {mapName === "problematicas" && (
+                  <div
+                    className="scroll-container"
+                    style={{
+                      marginLeft: "18%",
+                      display: "flex",
+                      flexDirection: "column",
+                      marginTop: "7vh",
+                      marginBottom: "7vh",
+                      height: "86vh",
+                      overflow: "scroll",
+                    }}
+                  >
+                    <h4
+                      style={{
+                        marginLeft: "18%",
+                        fontSize: "1.3vw",
+                        fontFamily: "Noto Sans, sans-serif",
+                        fontWeight: "600",
+                        marginBottom: "6%",
+                      }}
+                    >
+                      Problematicas{" "}
+                    </h4>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/areaUrbanaNueva.svg"
+                          alt=""
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Áreas urbanas nuevas
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/disposicionResiduos.svg"
+                          alt=""
+                          style={{
+                            width: "25px",
+                            height: "25px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Disposición de residuos y escombros
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/ocupacionFranjas.svg"
+                          alt=""
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                          marginTop: "-10px",
+                        }}
+                      >
+                        Ocupación de las franjas de protección del humedal
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/palenke.svg"
+                          alt=""
+                          style={{
+                            width: "15px",
+                            height: "15px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Verimiento de aguas residuales
+                      </span>
+                    </div>
+                    <h4
+                      style={{
+                        
+                        marginTop: "2vh",
+                        marginBottom: "2vh",
+                        marginLeft: "18%",
+                        fontSize: "1.3vw",
+                        fontFamily: "Noto Sans, sans-serif",
+                        fontWeight: "600",
+                      }}
+                    >
+                      Agua{" "}
+                    </h4>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/Canales.svg"
+                          alt=""
+                          style={{
+                            width: "15px",
+                            height: "1px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Canales
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/aljibe.svg"
+                          alt=""
+                          style={{
+                            width: "18px",
+                            height: "18px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Humedales y actualidad
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/humedalesPot.svg"
+                          alt=""
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Humedales  POT 2000-2014
+                      </span>
+                    </div>
+                    <h4
+                      style={{
+                        marginLeft: "18%",
+                        
+                        marginTop: "2vh",
+                        marginBottom: "2vh",
+                        fontSize: "1.3vw",
+                        fontFamily: "Noto Sans, sans-serif",
+                        fontWeight: "600",
+                      }}
+                    >
+                      Elementos{" "}
+                    </h4>
+                     <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/areaUrbana.svg"
+                          alt=""
+                          style={{
+                            width: "18px",
+                            height: "18px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Área urbana 2022
+                      </span>
+                    </div>
+                    <div
+                      className="layer-item"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <div
+                        style={{
+                          alignSelf: "start",
+                          width: "25px",
+                          height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          backdropFilter: "blur(2px)",
+                          backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                          borderRadius: "50%", // hace el div circular
+                          overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                        }}
+                      >
+                        <img
+                          src="assets/iconsCap4/zonaVerdes2014.svg"
+                          alt=""
+                          style={{
+                            width: "20px",
+                            height: "20px",
+                            objectFit: "cover",
+                            objectPosition: "center",
+                          }}
+                        />
+                      </div>
+                      <span
+                        style={{
+                          marginLeft: "10px",
+                          fontSize: "1.04vw",
+                          fontFamily: "Noto Sans, sans-serif",
+                          fontWeight: "300",
+                        }}
+                      >
+                        Zonas verdes 2014
+                      </span>
+                    </div>
+                  </div>
+                )}
+            {mapName === "laCaicedo" && (
+              <div
+                className="scroll-container"
+                style={{
+                  marginLeft: "18%",
+                  display: "flex",
+                  flexDirection: "column",
+                  marginTop: "7vh",
+                  marginBottom: "7vh",
+                  height: "86vh",
+                  overflow: "scroll",
+                }}
+              >
+                <h4
+                  style={{
+                    marginLeft: "18%",
+                    fontSize: "1.3vw",
+                    fontFamily: "Noto Sans, sans-serif",
+                    fontWeight: "600",
+                    marginBottom: "8%",
+                  }}
+                >
+                  Zonificación{" "}
+                </h4>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "3%",
+                    marginTop: "-4%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/dispocisionResiduos2.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    2.Disposición de residuos
+                  </span>
+                </div>
+
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "3%",
+                    marginTop: "-4%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/entradaPredio.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    1.Entrada finca
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    1.Vivienda y espacios asociados
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "3%",
+                    marginTop: "4%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/criaAnimales.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    4.Cría de animales
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "3%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/transformacionProductiva.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    5.Transformación productiva
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "-18%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/zonaTransicion.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    7.Zonas en transición
+                  </span>
+                </div>
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "22%",
+                    marginBottom: "6%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/cultivoDiverso.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    9.Cultivos diversos
+                  </span>
+                </div>
+
+                <div
+                  className="layer-item"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "-4%",
+                    marginBottom: "8%",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      backdropFilter: "blur(2px)",
+                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
+                      borderRadius: "50%", // hace el div circular
+                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
+                    }}
+                  >
+                    <img
+                      src="assets/iconsCap4/delimitacion.svg"
+                      alt=""
+                      style={{
+                        width: "0.97vw",
+                        height: "2.05vh",
+                        objectFit: "cover",
+                        objectPosition: "center",
+                      }}
+                    />
+                  </div>
+                  <span
+                    style={{
+                      marginLeft: "10px",
+                      fontSize: "1.04vw",
+                      fontFamily: "Noto Sans, sans-serif",
+                      fontWeight: "300",
+                    }}
+                  >
+                    Delimitación
+                  </span>
+                </div>
+                <div
                   className="layer-item"
                   style={{
                     display: "flex",
@@ -8733,10 +10342,9 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                 >
                   <div
                     style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
+                      alignSelf: "start",
+                      width: "1.63vw",
+                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -8761,816 +10369,17 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     style={{
                       marginTop: "-1%",
                       marginLeft: "10px",
-                      fontSize: "16px",
+                      fontSize: "1.04vw",
                       fontFamily: "Noto Sans, sans-serif",
                       fontWeight: "300",
                     }}
                   >
-                    Trocha
-                  </span>
-                </div>
-
-              </div>
-            )}
-            {mapName === "laCaicedo" && (
-              <div
-                className="scroll-container"
-                style={{
-                  marginLeft: "15%",
-                  display: "flex",
-                  flexDirection: "column",
-                  marginTop: "7vh",
-                  marginBottom: "7vh",
-                  height: "86vh",
-                  overflow: "scroll",
-                }}
-              >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"6%",
-                }}
-                >Zonificación </h4>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-0.5%",
-                  }}
-                >
-
-                  <div
-                    style={{
-                      marginTop: "-6%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/disposicionResiduos.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    2.Disposición de
-                    residuos
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-4%",
-                    marginTop: "-1%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/entradaPredio.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    1.Entrada
-                  </span>
-                </div>
-                <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",  marginBottom:"6%",
-                }}
-                >Zonificación </h4>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "1%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-10%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/viviendaEspaciosAsociados.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                      marginTop: "-6px",
-
-                    }}
-                  >
-                    1.Vivienda y espacios
-                    asociados
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-3%",
-                  }}
-                >
-                  <div
-                    style={{
-
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/criaAnimales.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    4.Cría de animales
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/bosqueAreaExtracion.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    6.bosques y áreas
-                    de conservación
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginTop: "14%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/cultivoDiverso.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                      marginTop: "15%",
-                    }}
-                  >
-                    9.Cultivos diversos
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/zonaTransicion.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    7.Zonas en transición
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/productivasEspeciales.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    10.Productivas especiales
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/delimitacion.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Delimitación
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "8%",
-                    marginBottom: "-12%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/trocha.svg"
-                      alt=""
-                      style={{
-                        width: "25px",
-                        height: "2px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Trocha
+                    Vía
                   </span>
                 </div>
               </div>
             )}
-            {mapName === "bosqueComestible" && (
-              <div
-                className="scroll-container"
-                style={{
-                  marginLeft: "15%",
-                  display: "flex",
-                  flexDirection: "column",
-                  marginTop: "7vh",
-                  marginBottom: "7vh",
-                  height: "86vh",
-                  overflow: "scroll",
-                }}
-              >
-                 <h4 style={{
-                  marginLeft: "27%", fontSize: "1.3vw", fontFamily: "Noto Sans, sans-serif", fontWeight: "600",
-                }}
-                >Zonificación  </h4>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-
-                  <div
-                    style={{
-                      marginBottom: "-4%",
-                      marginTop: "-17%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/botaderoColchon.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                      marginTop: "-5%",
-                    }}
-                  >
-                    Botadero de colchones
-                    y escombros
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-4%",
-                    marginTop: "-3%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginTop: "-8%",
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/estanque.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Botadero de escombros
-                    y basura
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-5%",
-                    marginTop: "4%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      marginTop: "-21%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/zonaDesecho.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                      marginTop: "-4%",
-
-                    }}
-                  >
-                    Compuerta de vertimiento
-                    de aguas residuales
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-3%",
-                  }}
-                >
-                  <div
-                    style={{
-
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/zonaBasura.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Quema de basuras
-                  </span>
-                </div>
-                <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginBottom: "-26%",
-                    marginTop: "1%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/cuerpoAgua2.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                   Cuerpo de agua
-                  </span>
-                </div>
-                 <div
-                  className="layer-item"
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "24%",
-                  }}
-                >
-                  <div
-                    style={{
-                      marginLeft: "5%",
-                      marginRight: "6%",
-                      width: "25px",
-                      height: "25px", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/zonaColmatada.svg"
-                      alt=""
-                      style={{
-                        width: "15px",
-                        height: "15px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      marginTop: "-2%",
-                      fontSize: "16px",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Zona colmatada
-                  </span>
-                </div>
-              </div>
-            )}
-
+            
           </div>
         </div>
       </div>
@@ -9585,7 +10394,7 @@ LayerMenu.propTypes = {
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
       texto: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
 };
 
