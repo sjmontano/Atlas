@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "types": ["vite/client"],
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Path aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@map": ["src/domains/map"],
+      "@map/*": ["src/domains/map/*"],
+      "@layers": ["src/domains/layers"],
+      "@layers/*": ["src/domains/layers/*"],
+      "@chapters": ["src/domains/chapters"],
+      "@chapters/*": ["src/domains/chapters/*"],
+      "@media": ["src/domains/media"],
+      "@media/*": ["src/domains/media/*"],
+      "@spatial": ["src/domains/spatial"],
+      "@spatial/*": ["src/domains/spatial/*"],
+      "@state": ["src/state"],
+      "@state/*": ["src/state/*"],
+      "@ui": ["src/ui"],
+      "@ui/*": ["src/ui/*"],
+      "@lib": ["src/lib"],
+      "@lib/*": ["src/lib/*"],
+      "@shared": ["src/shared"],
+      "@shared/*": ["src/shared/*"]
+    },
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src"]
+}

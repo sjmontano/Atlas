@@ -1,0 +1,111 @@
+# =============================================================================
+# Atlas 2.0 — atlas.unriocauca.com
+# LiteSpeed / Apache — cPanel hosting compartido
+# =============================================================================
+
+# ─── SPA: React Router — redirigir todo a index.html ─────────────────────────
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Archivos y carpetas existentes se sirven directamente
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+
+  # Todo lo demás → index.html (React Router maneja las rutas)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# ─── Expiración de assets ─────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Tiles WebP/PNG — nunca cambian (si cambian = nueva generación = ruta distinta)
+  <FilesMatch "\.(webp|png)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+
+  # JS y CSS con hash de Vite — immutable por definición
+  <FilesMatch "\.(js|css)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+
+  # Fuentes
+  <FilesMatch "\.(woff2|woff|ttf|otf)$">
+    ExpiresDefault "access plus 1 year"
+  </FilesMatch>
+
+  # GeoJSON de capas — puede actualizarse al exportar desde MongoDB
+  <FilesMatch "\.json$">
+    ExpiresDefault "access plus 1 week"
+  </FilesMatch>
+
+  # HTML — nunca cachear: es el punto de entrada de la SPA
+  <FilesMatch "\.html$">
+    ExpiresDefault "access plus 0 seconds"
+  </FilesMatch>
+</IfModule>
+
+# ─── Cache-Control headers ────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+
+  # Tiles e imágenes base — immutable
+  <FilesMatch "\.(webp|png|jpg|jpeg|avif)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # JS/CSS con hash Vite — immutable
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # Fuentes — immutable
+  <FilesMatch "\.(woff2|woff|ttf|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # GeoJSON — revalidar cada semana
+  <FilesMatch "\.json$">
+    Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400"
+  </FilesMatch>
+
+  # HTML — sin cache
+  <FilesMatch "\.html$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </FilesMatch>
+
+  # CORS — necesario para que MapLibre cargue tiles desde el subdominio
+  <FilesMatch "\.(webp|png|json|js|css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+
+  # Seguridad básica
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+</IfModule>
+
+# ─── Compresión (texto solamente — imágenes ya están comprimidas) ─────────────
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+
+# ─── MIME types correctos ─────────────────────────────────────────────────────
+<IfModule mod_mime.c>
+  AddType image/webp            .webp
+  AddType image/avif            .avif
+  AddType application/json      .json
+  AddType application/javascript .js
+  AddType font/woff2            .woff2
+</IfModule>
+
+# ─── Páginas de error ─────────────────────────────────────────────────────────
+ErrorDocument 404 /index.html

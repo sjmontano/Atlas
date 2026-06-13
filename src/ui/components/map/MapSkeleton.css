@@ -1,0 +1,70 @@
+/* =========================================================
+   MAP SKELETON – Suspense fallback
+   ========================================================= */
+
+.map-skeleton {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #12181f; /* mismo tono que el fondo oscuro del visor */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Brillo animado que recorre el fondo */
+.map-skeleton__shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.04) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-sweep 2s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes skeleton-sweep {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Contenido centrado: spinner + texto */
+.map-skeleton__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+/* Spinner minimalista */
+.map-skeleton__spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid rgba(255, 255, 255, 0.08);
+  border-top-color: rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  animation: skeleton-spin 0.9s linear infinite;
+}
+
+@keyframes skeleton-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.map-skeleton__label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+}
