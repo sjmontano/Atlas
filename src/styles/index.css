@@ -332,13 +332,14 @@
   }
   
   .atlas-welcome-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.56vw;
   }
   
   .chapters-preview-grid {
     grid-template-columns: 1fr;
   }
 }
+
 
 /* ============================================================================
    UTILIDADES DE DESARROLLO

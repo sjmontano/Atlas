@@ -1,259 +1,312 @@
 const mapConfig = {
   intro: {
-    initialZoom: 6.39,
-    dragPan: false,
-    scrollZoom: false,
+    initialZoom: 7.8,
+    dragPan: true,
+    scrollZoom: true,
     initialBearing: -90,
     shadow: false,
-    minZoom:   6.39,
-    maxZoom:   6.39,
+    minZoom: 7.8,
+    maxZoom: 9,
+    maxBounds: 1,
+    streetViewEnabled: true,
+    debugMapOpacity: 0.5,
+    // 🔒 Constrain bearing-aware (reemplaza setMaxBounds para bearing=-90)
+    useTransformConstrain: true,
+    viewportMaxBounds: [-78.908544263897, -0.02089838124, -72.289352185258, 12.879198862123],
+    // 📐 boundsPadding: expansión por lado (0=justo en la imagen, >0=más espacio)
+    //    Con bearing=-90: top↑≈east, bottom↓≈west, left←≈north, right→≈south
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
   encuadres: {
     initialZoom: 6.06,
-    dragPan: false,
-    scrollZoom: false,
-    minZoom:   6.06,
-    maxZoom:   6.06,
-  },
-  unRioCaucaMuchosMundos:{
-    dragPan: false,
+    dragPan: true,
     scrollZoom: true,
-    maxZoom:   10,
+    initialBearing: -90,
+    minZoom: 2,
+    maxZoom: 12,
     maxBounds: 1,
-    minZoom:   6.16,
+    streetViewEnabled: true,
+    //debugMapOpacity: 0.5,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-78.908544263897, -0.02089838124, -71.289352185258, 12.879198862123],
+    //boundsPadding: { top: 0.5, bottom: 0.5, left: 0.5, right: 0.5 },
+  },
+  unRioCaucaMuchosMundos: {
+    dragPan: true,
+    scrollZoom: true,
+    initialBearing: -90,
+    maxZoom: 10,
+    maxBounds: 1,
+    minZoom: 5,
+    streetViewEnabled: true,
+    debugMapOpacity: 0.5,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-79.451, -0.585, -66.108, 6.911],
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
   bredunco: {
-    dragPan: false,
+    dragPan: true,
     scrollZoom: true,
+    initialZoom: 7.1,
+    minZoom: 7.1,
+    initialBearing: -90,
     maxZoom: 9.5,
     maxBounds: 1,
-    minZoom: 6.33,
+    minZoom: 5,
+    streetViewEnabled: true,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-78.908544263897, -0.02089838124, -72.289352185258, 12.879198862123],
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
   fomasDelPaisaje: {
-    dragPan: false,
+    dragPan: true,
     scrollZoom: true,
+    initialBearing: -90,
     maxZoom: 9.5,
     maxBounds: 1,
-    minZoom: 6.23,
+    minZoom: 5,
+    streetViewEnabled: true,
+    debugMapOpacity: 0.5,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-79.131, -0.006, -66.445, 7.117],
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
   ecosistemas: {
-    dragPan: false,
+    dragPan: true,
     scrollZoom: true,
+    initialBearing: -90,
     maxZoom: 9.5,
     maxBounds: 1,
+    minZoom: 5,
+    streetViewEnabled: true,
+    debugMapOpacity: 0.5,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-77.718, 1.506, -72.824, 4.258],
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
-  tejidosDelAgua:{
-    dragPan: false,
+  tejidosDelAgua: {
+    dragPan: true,
     scrollZoom: true,
-    maxZoom: 9.5,
+    initialBearing: -90,
+    maxZoom: 10,
     maxBounds: 1,
+    minZoom: 5,
+    streetViewEnabled: true,
+    debugMapOpacity: 0.5,
+    useTransformConstrain: true,
+    viewportMaxBounds: [-76.968, 2.162, -74.243, 3.695],
+    boundsPadding: { top: -0.25, bottom: -0.25, left: 0.35, right: 0.35 },
   },
 
 
-  TNATransformadoras:{
+  TNATransformadoras: {
     dragPan: true,
     scrollZoom: true,
     initialZoom: 8,
     shadow: false,
-    minZoom:  8,
-    maxZoom:  12,
+    minZoom: 8,
+    maxZoom: 12,
   },
 
-ASuarez:{
+  ASuarez: {
+    dragPan: true,
+    scrollZoom: true,
+    minZoom: 6,
+    maxZoom: 11,
+    maxBounds: 0,
+  },
+
+  AVillaRica: {
     dragPan: false,
     scrollZoom: true,
-    maxZoom:  15,
+    maxZoom: 15,
     maxBounds: 1,
   },
 
-  AVillaRica:{
+  VDOrienteCali: {
     dragPan: false,
     scrollZoom: true,
-    maxZoom:  15,
+    maxZoom: 15,
     maxBounds: 1,
   },
 
-  VDOrienteCali:{
-    dragPan: false,
-    scrollZoom: true,
-    maxZoom:  15,
-    maxBounds: 1,
-  },
-
-  MOrienteCali:{
+  MOrienteCali: {
 
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  15,
+    maxZoom: 15,
     maxBounds: 1,
   },
 
-  MVillaRica:{
+  MVillaRica: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  15,
+    maxZoom: 15,
     maxBounds: 1,
   },
 
-  MSuarez:{
+  MSuarez: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  15,
+    maxZoom: 15,
     maxBounds: 1,
   },
 
 
-  introduccionCap3:{
-    dragPan: false,
+  introduccionCap3: {
+    dragPan: true,
     scrollZoom: true,
-    shadow: false,
-    maxZoom:  8.4,
-  },
-
-  monocultivo:{
-    dragPan: false,
-    scrollZoom: true,
-    shadow: false,
-    maxZoom:  11,
+    maxZoom: 11,
+    initialZoom: 8.8,
+    minZoom: 8.8,
     maxBounds: 1,
   },
 
-  nosEncharcaronElRio:{
+  monocultivo: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  15,
-    maxBounds: 1,
-  },
-  humedalesCap3:{
-    dragPan: false,
-    scrollZoom: true,
-    shadow: false,
-    maxZoom:  11,
+    maxZoom: 11,
     maxBounds: 1,
   },
 
-  arcilla:{
+  nosEncharcaronElRio: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  18,
+    maxZoom: 15,
+    maxBounds: 1,
+  },
+  humedalesCap3: {
+    dragPan: true,
+    scrollZoom: true,
+    shadow: false,
+    maxZoom: 11,
     maxBounds: 1,
   },
 
-   caliDeseca:{
+  arcilla: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    maxZoom:  15,
+    maxZoom: 18,
     maxBounds: 1,
   },
 
-  introduccionCap4:{
+  caliDeseca: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  7.0,
-    maxZoom:  15.4,
-    minZoom:  7.0,
+    maxZoom: 15,
+    maxBounds: 1,
   },
 
-  asoyoge:{
+  introduccionCap4: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  17.4,
-    maxZoom:  17.4,
-    maxBounds: 1,
-    showCoordinates: false,
+    initialZoom: 7.0,
+    maxZoom: 15.4,
+    minZoom: 7.0,
   },
-  elBuhido:{
+
+  asoyoge: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  17.4,
-    maxZoom:  17.4,
+    initialZoom: 17.4,
+    maxZoom: 17.4,
     maxBounds: 1,
     showCoordinates: false,
   },
-  bosqueComestible:{
+  elBuhido: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  17.4,
-    maxZoom:  17.4,
+    initialZoom: 17.4,
+    maxZoom: 17.4,
     maxBounds: 1,
     showCoordinates: false,
   },
-  losBajios:{
-    dragPan: false,
+  bosqueComestible: {
+    dragPan: true,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 17.4,
+    minZoom: 17.4,
+    maxZoom: 17.4,
     maxBounds: 1,
     showCoordinates: false,
   },
-  elPaso:{
+  losBajios: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
     showCoordinates: false,
   },
-
-  lasMercedes:{
+  elPaso: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
     showCoordinates: false,
   },
 
-  laVirginia:{
+  lasMercedes: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
     showCoordinates: false,
   },
 
-  centroAgropecuario:{
+  laVirginia: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
     showCoordinates: false,
   },
 
-  laCaicedo:{
+  centroAgropecuario: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
+    maxBounds: 1,
+    showCoordinates: false,
+  },
+
+  laCaicedo: {
+    dragPan: false,
+    scrollZoom: true,
+    shadow: false,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
     showCoordinates: false,
   },
 
 
-  problematicas:{
+  problematicas: {
     dragPan: false,
     scrollZoom: true,
     shadow: false,
-    initialZoom:  18.4,
-    maxZoom:  18.4,
+    initialZoom: 18.4,
+    maxZoom: 18.4,
     maxBounds: 1,
   },
 

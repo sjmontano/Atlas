@@ -75,52 +75,15 @@ const modalsData = [
             minWidth: "410px",
           }}
         >
-          Este atlas surge de dos procesos solidarios desarrollados por el
-          Tejido de transicionantes del valle alto del río Cauca entre el 2023 y
-          2024. El primero es la creación de tres entramados territoriales a
-          partir de un diagnóstico de Paz territorial pluriversal realizado
-          entre las personas que hemos consolidado en juntanzas de muchos tipos,
-          alternativas transformadoras (ATs) en los municipios de Suárez y Villa
-          Rica, en el norte de Cauca y en el oriente de Cali, en el Valle del
-          Cauca. Las ATs, como mingas de pensamiento y acción, dan cuenta del
-          potencial que tenemos como habitantes de esta cuenca, de este río
-          Cauca, para invocar y convocar alrededor de nuestras capacidades y
-          saberes y producir posibilidades emergentes, valientes y contundentes
-          para hacerle frente a los conflictos territoriales creados por el
-          modelo de desarrollo extractivista. El segundo es una juntanza
-          formativa y creativa que tomó la forma de Colaboratorio de
-          cartografías críticas y codiseño territorial donde nos propusimos
-          poner en juego la intuición espacial, el vínculo afectivo y el
-          conocimiento geográfico académico y cotidiano con las representaciones
-          sensibles y técnicas del territorio. Las representaciones gráficas de
-          los lugares de la vida toda en el sur del valle alto del río Cauca nos
-          está permitiendo, a través de dibujos, esquemas, mapas y textos
-          construir herramientas para reconocer, interpretar, analizar y disoñar
-          las transiciones eco sociales justas de los territorios de los que
-          hacemos parte. <br /> <br />
-          La organización de este atlas consta de cuatro partes que abordan
-          aspectos bioculturales relevantes del sur del valle alto del río
-          Cauca. La primera parte está centrada en el tema de la gran cuenca del
-          río, sus partes, formas de paisajes, relaciones ecosistémicas y el
-          mosaico de cuencas pequeñas y tejidos del agua que conforman nuestro
-          territorio. En la segunda parte nos ubicamos en los entramados
-          territoriales, portadores de saberes y capacidades que se tejen en
-          Suárez, entre los territorios de varios de los consejos de comunidades
-          negras, con Villa Rica y cuatro municipios cercanos; Puerto Tejada,
-          Miranda, Guachené y Padilla; y el Oriente de Cali, donde nos enfocamos
-          en una zona urbana. En la tercera parte, hacemos énfasis en las formas
-          en las que el río Cauca se manifiesta en el valle alto de su cuenca,
-          el flujo y dinámica de lo acuático y los cambios en el tiempo causados
-          por las intervenciones del modelo de desarrollo extractivista que nos
-          tiene, desde hace generaciones, enfrentando conflictos y violencias de
-          diversa índole. Finalmente, presentamos casos concretos que conjugan
-          acciones, capacidades y saberes para hacer frente a los conflictos
-          territoriales que ponen en riesgo la soberanía alimentaria, el cuidado
-          del agua y el buen vivir o el vivir sabroso y que dan pautas para
-          desencadenar procesos de pensamiento, imaginación y acción que hagan
-          posibles la transformación productiva, la restauración ecológica y
-          ontológica de los ecosistemas y la reparación de las desigualdades e
-          injusticias históricas en el sur del valle alto del río Cauca.
+          Este atlas surge de dos procesos solidarios desarrollados por el Tejido de transicionantes por el valle geográfico del río Cauca entre el 2023 y 2025. El primero es la creación de tres entramados territoriales a partir de un diagnóstico de Paz territorial pluriversal realizado entre las personas que hemos consolidado en juntanzas de muchos tipos, alternativas transformadoras (ATs) en los municipios de Suárez y Villa Rica, en el norte de Cauca y en el oriente de Cali, en el Valle del Cauca. Las ATs, como mingas de pensamiento y acción, nos invocan y convocan como habitantes del río Cauca, alrededor de nuestras capacidades y saberes para producir posibilidades emergentes, audaces y contundentes con las que se enfrentan los conflictos territoriales creados por el modelo de desarrollo extractivista.<br /> <br />
+
+El segundo es una juntanza formativa y creativa que tomó la forma de tres colaboratorios: Pensamiento y diseño para las transiciones, Narrativas para las transiciones y Cartografías críticas y codiseño territorial. En estos nos propusimos la deconstrucción de narrativas hegemónicas, la creación y activación de la campaña Un río Cauca, muchos mundos y, a partir de la intuición espacial, el vínculo afectivo y el conocimiento geográfico académico y cotidiano, crear un relato propio con representaciones sensibles y técnicas de los lugares de la vida en el sur del valle alto del río Cauca. Nuestra juntanza está orientada a disoñar transiciones eco sociales justas para el codiseño de territorialidades acua, agro y multipolitanas a través de acciones de transformación productiva, restauración eco-ontológica de los ecosistemas y reparación de las desigualdades e injusticias históricas.<br /> <br />
+
+La organización de este atlas consta de cuatro capítulos que abordan aspectos bioculturales relevantes del sur del valle alto del río Cauca. <br /> <br />
+- El primer capítulo está centrado en la gran cuenca del río, sus partes, formas de paisajes, relaciones ecosistémicas y el mosaico de cuencas pequeñas y tejidos del agua que conforman nuestro territorio.<br /> <br />
+- En el segundo nos ubicamos en los entramados territoriales que se tejen en Suárez, entre los territorios de varios de los consejos comunitarios de comunidades negras; en Villa Rica y cuatro municipios cercanos: Puerto Tejada, Miranda, Guachené y Padilla; y en el Oriente de Cali.<br /> <br />
+- En el tercero hacemos énfasis en las formas en las que el río Cauca se manifiesta en el valle alto de su cuenca, el flujo y dinámica de lo acuático y los cambios en el tiempo causados por las intervenciones del modelo de desarrollo extractivista que nos tiene, desde hace generaciones, enfrentando conflictos y violencias de diversa índole.<br /> <br />
+Finalmente, presentamos casos concretos de alternativas productivas en transición que hacen posible la soberanía alimentaria, el cuidado del agua y el buen vivir o el vivir sabroso en el sur del valle alto del río Cauca.
         </div>
         <div
           style={{
@@ -175,8 +138,7 @@ const modalsData = [
       </div>
     ),
 
-    texto:
-      "El valle alto del río Cauca en el suroccidente colombiano es una planicie fértil de 300.000 hectáreas y está bordeada por las cordilleras Central y Occidental, presenta rastros de poblamiento desde hace más de 9000 años y su paisaje actual es tiene menos de un siglo de conformado. Allí predomina un extenso sistema agroindustrial creado a partir del monocultivo de la caña de azúcar, acompañado por una red urbana a ambos lados del río que conserva algo del rastro del poblamiento de las diferentes culturas nativas de Abya Yala y del que se consolidó con la irrupción colonizadora ibérica. En esta red sobresale Cali, una de las ciudades más antiguas del sur occidente colombiano y, actualmente, la más poblada y extensa de este valle. Desde esta ciudad se irradia un intenso proyecto metropolitanizante que agudiza las desigualdades históricas de la región y se articulan varias de las dinámicas que están creando graves desequilibrios ecoterritoriales. \n\nAl valle alto del Cauca, antes de la construcción de varios jarillones en el curso del río (1958 - 1972) y del represamiento de sus aguas con La Salvajina (1985) justo antes de conformarse la planicie, llegaba apresurado el río Cauca desde el Macizo Colombiano. Sobre esta planicie, la más extensa del río en su cuenca alta, el Cauca regaba sus aguas nutriendo con vigor los suelos fertilizados por la actividad volcánica regional hace miles de años e incrementaba la vida en cientos de cuerpos acuáticos como ciénagas, madreviejas, zanjones, caños, humedales, charcos y lagunas. Poco a poco, el diseño del territorio concebido desde la perspectiva de la producción de alto rendimiento económico, ha transformado el panorama de esta planicie y se han creado unas condiciones de riesgo para muchos seres que la habitan y para los distintos ciclos y tejidos de la vida. \n\nLos mapas de este capítulo, toman el hilo de los saberes y las poéticas de las comunidades pobladoras del río y los articulan con el conocimiento geográfico para reconocer el territorio que habitamos y para presentarlo en la cartografía con unas particularidades. Una de ellas es la rotación de la composición convencional de la cartografía que dispone todo lo que está al norte, en la parte superior del mapa. En lugar de esto, preferimos que fuera la costa y el océano Pacífico, al occidente, lo que aparece arriba. De esta forma, su presencia imponente cobra relevancia y es un llamado al vínculo estrecho que tiene el sur del valle con este litoral. Con el cambio de orientación, se facilita la lectura del mapa de izquierda a derecha, hecho que refuerza el sentido sur a norte, que es el que lleva el curso del río Cauca desde su nacimiento en el páramo de Paletará, en el Macizo Colombiano, hasta su disolución en La Mojana. \n\nSe construyeron cinco mapas para este capítulo e iniciamos con los dos primeros, reconociendo la cuenca del río Cauca en toda su extensión y como parte de un sistema más amplio: la vertiente del Caribe, también como tributario, no del río Magdalena, sino de La Mojana. El río Cauca, antes que desembocar en el Magdalena, como tradicionalmente se ha dicho, llega a ser partícipe del impresionante conjunto de aguas pulsantes de la Depresión Momposina. Hecha esta provocación al relato geográfico hegemónico, presentamos los múltiples paisajes de la cuenca y su contexto y una reflexión cartográfica sobre las transformaciones ecosistémicas en el sur del valle alto del río Cauca y en la parte de la región Pacífica que le corresponde al otro lado de la cordillera Occidental. Finalizamos con un mapa del mosaico de las aguas en el sur del valle alto. Este se compone de las aguas presentes, desde las atmosféricas hasta la subterráneas, y de las 11 cuencas que nutren al río Cauca en esta parte de su recorrido.",
+    texto: "Este mapa presenta una síntesis de las estructuras geográficas que componen el entorno de la cuenca del río Cauca, desde su afloramiento en el Macizo Colombiano, hasta su desembocadura en el Brazo de Loba en La Mojana, depresión Momposina. \n\nLas estructuras convocadas a narrar el río Cauca comprende los paisajes altos de las dos cordilleras, Central y Occidental, entre las que se crea la cuenca interandina del río Cauca. A lo largo de los parteaguas de esta sucesión de gigantes montañosos localizamos las estrellas fluviales de las que brotan los ríos de varias cuencas prominentes del país: una amazónica, la del Caquetá;  una pacífica, la del Patía;  dos caribeñas, las del San Jorge y Sinú; y dos andinas, las del Magdalena y Cauca. \n\nComo nuestro interés está centrado en el río Cauca, a través de este mapa destacamos los tres tramos de su cuenca; sus principales afluentes: Ovejas, Palo, Risaralda y Nechí; las planicies que llaman al río a la lentitud en varios puntos de su cuenca; los caminos y carreteras generatrices del sistema vial y las áreas metropolitanas. Llamamos la atención sobre dos asuntos: el primero está relacionado con los cuerpos de agua libre asociados a las zonas planas del valle alto y la depresión Momposina, que toman las múltiples formas de los humedales, cada vez más escasos. El segundo, las aguas superficiales confinadas y represadas en zonas montañosas que dan cuenta de varias de las acciones violentas contra el río y que son, en buena parte, causa de la agonía de los cuerpos de agua libre de las planicies.",
     boton: true,
     link: "https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus",
     image: "",
@@ -198,8 +160,8 @@ const modalsData = [
         />
       </div>
     ),
-    texto:
-      "En el flujo de las aguas que surcan a Colombia, dos ríos que nacen en el macizo colombiano recorren los Andes, separados en tres cordilleras, hasta llegar a La Mojana. Uno de ellos, el Magdalena, ponderado como el río más importante de Colombia, se dirige apresurado al nororiente, entre las cordilleras Central y Oriental. El otro, el Cauca, discurre hacia el occidente, tallando valles y cañones entre las cordilleras Central y Occidental. Es conocido en tiempos milenarios por pueblos ancestrales como el Bredunco aquí, como Caucayaco allá; ha determinado las formas de vida en las altas montañas y en el extenso valle de su cuenca alta, en la estrechez de su cuenca media y en la plana inmensidad del Caribe, su cuenca baja se va diluyendo en las aguas de la Depresión Mompoxina con los ríos San Jorge, Magdalena y César. \n\nEl río Bredunco, o Cauca, recorre aproximadamente 1350 kilómetros, desde su nacimiento cerca de la laguna del Buey hasta su desembocadura en La Mojana; bañan de vitalidad, abundancia y fertilidad los asentamientos a lo largo de sus riberas; irriga con sus aguas los departamentos de Cauca, Valle, Risaralda, Caldas, Antioquia, Sucre y Bolívar y concentra más del 20% de la población del país a lo largo de sus orillas. Este río imponente se ha consolidado, junto con el Magdalena y otros tantos, como vertebrador de la nación colombiana. Ambos son hilos vitales que articulan las relaciones económicas, sociales, culturales y en los que sobreviven las cosmovisiones de pobladores de memoria ancestral. \n\nA pesar de la abundancia que brinda el río Cauca a las poblaciones asentadas en su cuenca, su vitalidad se ha visto diezmada por las concepciones que reducen al agua a un simple recurso, y que no la reconocen como lo que realmente es: un tejido de vida, un ser vivo que da vida. La relación establecida entre este ser y las comunidades es una clara muestra de ello. Para muchas personas, el río es visto como una banda transportadora de desechos; y aunque se abastecen de sus aguas, paradójicamente, le vierten contaminantes provenientes de los grandes centros urbanos como: desechos tóxicos de industrias extractivistas, del cemento, de plantas de asfalto, de la minería de oro y químicos agrícolas de la industria azucarera en el Valle del Cauca. Estos múltiples contaminantes han hecho que el Cauca sea uno de los ríos más contaminados de Colombia. Como si esto no fuera suficiente, su flujo vital es contenido por la construcción de represas como La Salvajina en Cauca (o Salvajada, para las comunidades de Suárez), e Hidroituango, en Antioquia. Las represas han llevado a la desaparición de decenas de especies del río y con ellas, a los ecosistemas presentes en él. \n\nEn el contexto de la crisis climática se nos convoca a pensar, no solo en la reparación de la deuda histórica y la restauración de los ecosistemas que ha destruido el desarrollo a lo largo de este ser vivo, sino también a cambiar nuestra relación con el río a partir del sentir, pensar y disoñar transiciones eco sociales justas, conectándonos con el mundo de manera más respetuosa y reconociendo la profunda y radical relacionalidad que tenemos con todo lo que nos rodea.",
+    texto:"En el flujo de las aguas que surcan a Colombia, dos ríos que nacen en el macizo colombiano recorren los Andes, separados en tres cordilleras, hasta llegar a La Mojana. Uno de ellos, el Magdalena, ponderado como el río más importante de Colombia, se dirige apresurado al nororiente, entre las cordilleras Central y Oriental. El otro, el Cauca, discurre hacia el occidente, tallando valles y cañones entre las cordilleras Central y Occidental. Es conocido en tiempos milenarios por pueblos ancestrales como el Bredunco aquí, como Caucayaco allá; ha determinado las formas de vida en las altas montañas y en el extenso valle de su cuenca alta, en la estrechez de su cuenca media y en la plana inmensidad del Caribe, su cuenca baja se va diluyendo en las aguas de la Depresión Mompoxina con los ríos San Jorge, Magdalena y César. \n\nEl río Bredunco, o Cauca, recorre aproximadamente 1350 kilómetros, baña de vitalidad, abundancia y fertilidad los asentamientos a lo largo de sus riberas; irriga con sus aguas los departamentos de Cauca, Valle, Risaralda, Caldas, Antioquia, Sucre y Bolívar y concentra más del 20% de la población del país a lo largo de sus riveras. Este río imponente se ha consolidado, junto con el Magdalena y otros tantos, como hilos vitales que articulan las relaciones económicas, sociales, culturales y en los que sobreviven las cosmovisiones de sus pobladores. \n\nA pesar de la abundancia que brinda el río Cauca a las poblaciones asentadas en su cuenca, su vitalidad se ha visto diezmada por las concepciones que reducen al agua a un simple recurso, y que no la reconocen como lo que realmente es: un tejido de vida, un ser vivo que da vida. Su flujo vital es contenido por la construcción de represas como La Salvajina en Cauca (o Salvajada, para las comunidades de Suárez), e Hidroituango, en Antioquia. Las represas han ocasionado la desaparición de ecosistemas y de especies en la cuenca.\n\nPara muchas personas, el río es visto como una banda transportadora de desechos; y aunque se abastecen de sus aguas, paradójicamente, le vierten contaminantes provenientes de: desechos tóxicos de industrias extractivistas (cemento, asfalto, minería de oro) y químicos agrícolas de la industria azucarera en el Valle del Cauca, convirtiendo al Cauca en uno de los ríos más contaminados de Colombia.  \n\nEl contexto de la crisis climática nos convoca a pensar en la reparación de la deuda histórica y la restauración de los ecosistemas para transformar nuestra relación con el río a partir del sentir, pensar y disoñar transiciones eco sociales justas, conectándonos con el mundo de manera más respetuosa y reconociendo la profunda y radical relacionalidad que tenemos con todo lo que nos rodea.",
+    
     boton: false,
     link: "",
     image: "",
@@ -221,8 +183,8 @@ const modalsData = [
         />
       </div>
     ),
-    texto:
-      "Este mapa tiene como objetivo representar las formas del paisaje presentes en las regiones naturales que conforman la cuenca del río Cauca: Andina y Caribe y la del Pacífico que, como hemos mencionado antes, tiene un fuerte vínculo cultural y de poblamiento, sobre todo por procesos de migradestierro con el valle alto del río. Las regiones naturales se establecen por sus paisajes, climas y geologías particulares que, en conjunto, definen características ecológicas y geográficas únicas. \n\nEn el caso específico de los tres entramados territoriales que conforman el Tejido de transicionantes  del valle alto del río Cauca destacamos los dos paisajes asociados al sur del valle alto: el Altiplano de Popayán (Ver mapa forma del paisaje N° 11) y el Valle geográfico del Cauca (Ver mapa forma del paisaje N° 8). El primer paisaje se caracteriza por su clima templado, consecuencia de su altitud media (1730 m s. n m). Su topografía está marcada por pequeños accidentes orográficos, como colinas suaves y mesetas, que van disminuyendo gradualmente en magnitud hasta fusionarse con el valle alto del río Cauca, específicamente en las inmediaciones de los municipios de Suárez, Buenos Aires y Santander de Quilichao. En contraste, el Valle alto del río Cauca presenta un perfil muy diferente. Su clima es cálido, con variaciones entre húmedo y seco, según las zonas, está influenciado por su baja altitud (1000 a 900 m s.n. m.) y su posición entre las cordilleras Central y Occidental. La característica geomorfológica más notable de esta región es su terreno predominantemente plano, resultado de milenios de deposición de material volcánico y sedimentos de los afluentes del río Cauca. \n\nEs importante señalar que este mapa de formas del paisaje se articula estrechamente con el mapa de existencias y transformaciones ecosistémicas, el cual muestra la biodiversidad que caracteriza estos paisajes. Esta correspondencia entre regiones naturales, formas del paisaje y ecosistemas no es casual debido a que es el resultado de una larga historia evolutiva y geológica, donde las condiciones geográficas han accionado como filtros, moldeando la vida para adaptarse a cada contexto específico.",
+    texto:"Este mapa tiene como objetivo representar las formas del paisaje presentes en las regiones naturales. Estas se establecen por sus paisajes, climas y geologías particulares que, en conjunto, definen características ecológicas y geográficas únicas.  La cuenca del río Cauca atraviesa las regiones Andina y Caribe y, está atada a la del Pacífico por su fuerte vínculo cultural y de poblamiento, sobre todo por procesos de migradestierro. \n\nEn el caso específico de los tres entramados territoriales que conforman nuestro Tejido de transicionantes destacamos los dos paisajes asociados al sur del valle alto: el altiplano de Popayán (Ver forma del paisaje N° 11) y el valle geográfico del Cauca (Ver forma del paisaje N° 8). Inicialmente el paisaje se caracteriza por su clima templado, consecuencia de su altitud media (1730 msnm). Su topografía está marcada por colinas suaves y mesetas, que van disminuyendo gradualmente hasta fusionarse con el valle alto del río Cauca, específicamente en las inmediaciones de los municipios de Suárez, Buenos Aires y Santander de Quilichao. En contraste, el valle alto del río Cauca presenta un perfil caracterizado por las cordilleras Central y Occidental y una planicie de casi 300 km de longitud y amplitudes entre 32 y 12 km, resultado de milenios de deposición de material volcánico y sedimentos de los afluentes del río Cauca. Presenta un clima cálido, que varía entre húmedo y seco, influenciado por su baja altitud (1000 a 900 msnm). \n\nEs importante señalar que este mapa de formas del paisaje se articula estrechamente con el mapa de existencias y transformaciones ecosistémicas, el cual muestra la biodiversidad que caracteriza estos paisajes. Esta correspondencia entre regiones naturales, formas del paisaje y ecosistemas no es casual debido a que es el resultado de una larga historia evolutiva y geológica, donde las condiciones geográficas han accionado como filtros, moldeando la vida para adaptarse a cada contexto específico.",
+    
     boton: true,
     link: "https://docs.google.com/document/d/1b8t-bCbnQOOCKgBMKEWtUB0e9oru086TC7NiXr875RE/edit?usp=sharing",
     image: "",
@@ -233,7 +195,7 @@ const modalsData = [
     title: "",
     layaut: "Luyaut2",
     size: "medium", // Tamaño medium para capítulos
-    highLight: "Existencias y transformaciones ecosistémicas",
+    highLight: "Existencias y transformaciones ecosistémicas en la cuenca alta \ndel río Cauca y en los valles y llanuras costeras del Pacífico",
     icono: (
       <div className="icon-info-modal-container">
         <img
@@ -244,7 +206,7 @@ const modalsData = [
       </div>
     ),
     texto:
-      "Este mapa tiene como punto de partida la caracterización de ecosistemas continentales, costeros y marinos de Colombia elaborada por el IDEAM (2017); para los 30 ecosistemas presentes en los paisajes de la cuenca alta del río Cauca y en la zona de la Región Pacífica que le corresponde al otro lado de la Cordillera Occidental. Proponemos no considerar como ecosistemas los entornos humanos que surgen de la intensidad de actividades económicas extractivas como el monocultivo, la ganadería de grandes extensiones y la urbanización. De esta manera, se puede reconocer a través del mapa el relativo estado de conservación de la región Pacífica, con bosques densos y ricos en relaciones que albergan una gran porción de la biodiversidad, no solo de Colombia, sino del mundo. El mapa evidencia también las crecientes presiones que las actividades humanas ejercen sobre los ecosistemas de la región Andina al punto que varios están cerca de su desaparición. Entre estos destacamos dos casos: el del Bosque Seco Tropical, necesario para la regulación hídrica del río Cauca en el valle alto; y la cuenca baja y los bosques Subandino, de Niebla y Alto Andino en la cordillera Central que, con su estratificación compleja y alta biodiversidad, funcionan como corredores ecológicos, nacederos de agua y sumideros de carbono.\n\nEl mapa también revela la fragilidad de los ecosistemas; los bosques fragmentados que se observan son un testimonio claro de la intervención humana, donde la cobertura arbórea original ha sido interrumpida por distintas actividades económicas, muchas de ellas extractivas. Estas áreas, aunque aún conservan parte de su biodiversidad, han visto reducida su capacidad para sostener poblaciones estables de muchas especies; pero quizás, el aspecto más llamativo y preocupante que este mapa pone de manifiesto es la expansión de los ecosistemas intervenidos para labores agrícolas. Estas áreas, dominadas por cultivos diversos, pero sobre todo por monocultivos y pastizales para ganadería, se están extendiendo cada vez más. Ésta avanzada de la frontera productiva está transformando los mosaicos de bosques, páramos y arbustales en paisajes homogéneos, extensiones uniformes de monocultivos o potreros producidos por la acción humana",
+      "Este mapa tiene como punto de partida la caracterización de ecosistemas continentales, costeros y marinos de Colombia elaborada por el IDEAM (2017); para los 30 ecosistemas presentes en los paisajes de la cuenca alta del río Cauca y en la zona de la región Pacífica que le corresponde al otro lado de la cordillera Occidental. La región Pacífica, con bosques densos y ricos en relaciones que albergan una gran porción de la biodiversidad, no solo de Colombia, sino del mundo. El mapa evidencia también las crecientes presiones que las actividades humanas ejercen sobre los ecosistemas de la región Andina al punto que varios están cerca de su desaparición. Entre estos destacamos dos casos: el del bosque seco tropical, necesario para la regulación hídrica del río Cauca en el valle alto y la cuenca baja; y los bosques subandino, de niebla y alto andino en la cordillera Central que, con su estratificación compleja y alta biodiversidad, funcionan como corredores ecológicos, nacederos de agua y sumideros de carbono. \n\nEl mapa también revela la fragilidad de los ecosistemas por la expansión urbana y la ampliación de la frontera agropecuaria. Los mosaicos de bosques, páramos y arbustales se están transformando cada vez más en paisajes homogéneos, dominados por monocultivos y pastizales para la ganadería. Proponemos no considerar como ecosistemas los entornos humanos que surgen de la intensidad de actividades económicas extractivas.",
     boton: true,
     link: "https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus",
     image: "",
@@ -266,7 +228,7 @@ const modalsData = [
       </div>
     ),
     texto:
-      "Este mapa está compuesto por las 11 cuencas principales que nutren al río Cauca en el sur del valle alto. En el contexto de las cuencas se revelan las formas y espacios en los que se encuentra el agua, desde la atmosférica hasta la subterránea y la relación de cada cuenca con los ecosistemas de nevados, páramos y bosques Alto andino, de Niebla y Sub andino que los nutren;  además de los cursos superficiales, el mapa también visibiliza los acuíferos presentes en la zona. Estos reservorios subterráneos, a menudo ignorados en la cartografía tradicional, son en realidad grandes depósitos de agua que juegan un papel crucial en el equilibrio hídrico del territorio, actuando como reservas estratégicas y reguladores naturales del ciclo del agua que suplen de este líquido vital a gran parte de las comunidades del norte del Cauca. \n\nLa elaboración de este mapa trasciende la mera representación geográfica, se realizó con el propósito de retratar el agua como un cuerpo vivo, dinámico y complejo. En esta visión, el conjunto de nubosidad, cada río y cada quebrada, los humedales visibles y los tres acuíferos destacados no son simplemente recursos, sino entidades con sus propias dinámicas, historias y roles ecológicos y culturales.",
+      "Este mapa está compuesto por las 11 cuencas principales que nutren al río Cauca en el sur del valle alto. En el contexto de las cuencas se revelan las formas y espacios en los que se encuentra el agua, desde la atmosférica hasta la subterránea y la relación de cada cuenca con los ecosistemas de nevados, páramos y bosques - Alto andino, de Niebla y Sub andino - que los nutren;  además de los cursos superficiales, el mapa visibiliza los acuíferos presentes en la zona. Estos reservorios subterráneos, a menudo ignorados en la cartografía tradicional, son en realidad grandes depósitos de agua que juegan un papel crucial en el equilibrio hídrico del territorio, actuando como reservas estratégicas y reguladores naturales del ciclo del agua que suplen de este líquido vital a gran parte de las comunidades del norte del Cauca. \n\nLa elaboración de este mapa trasciende la mera representación geográfica, se realizó con el propósito de retratar el agua como un cuerpo vivo, dinámico y complejo. En esta visión, nubes, ríos, quebradas, humedales y los tres acuíferos destacados no son simplemente recursos, sino entidades con sus propias dinámicas, historias y roles ecológicos y culturales.",
     boton: true,
     link: "https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus",
     image: "",
@@ -288,7 +250,7 @@ const modalsData = [
       </div>
     ),
     texto:
-      "Este mapa presenta una síntesis de las estructuras geográficas que componen el entorno de la cuenca del río Cauca, desde su afloramiento, gota a gota cerca a la laguna del Buey en el páramo de Paletará, Macizo Colombiano hasta su desembocadura en el Brazo de Loba en La Mojana, Depresión Mompoxina. Las estructuras convocadas a narrar el río Cauca comprende los paisajes altos de las dos cordilleras, Central y Occidental, entre las que se crea la cuenca interandina del río Cauca. A lo largo de los parteaguas de esta sucesión de gigantes montañosos localizamos los nevados, volcanes y páramos a partir de los cuales se conforman las estrellas fluviales de las que brotan los ríos de varias cuencas prominentes del país: una amazónica: la del Caquetá, una pacífica: la del Patía, dos caribeñas: las del San Jorge y Sinú y dos andinas, las del Magdalena y Cauca.\n\nComo nuestro interés está centrado en el río Cauca, a través de este mapa destacamos los tres tramos de su cuenca; sus principales afluentes: Ovejas, Palo, Risaralda y Nechí; las planicies que llaman las aguas del río a la lentitud en varios puntos de su cuenca; los caminos y carreteras generatrices del sistema vial y las áreas metropolitanas. Llamamos la atención sobre dos asuntos insinuados en las aguas superficiales que aparecen en este mapa: el primero está relacionado con los cuerpos de agua libre asociados a las zonas planas del valle alto y la depresión Momposina, estas toman las múltiples formas de los humedales, cada vez más escasos. En contraste, las aguas superficiales confinadas y represadas en zonas montañosas dan cuenta de varias de las violencias que ha sufrido el río y que son en parte causa de la agonía de los cuerpos de agua libre de las planicies.",
+      "Este mapa presenta una síntesis de las estructuras geográficas que componen el entorno de la cuenca del río Cauca, desde su afloramiento, gota a gota cerca a la laguna del Buey en el páramo de Paletará, Macizo Colombiano hasta su desembocadura en el Brazo de Loba en La Mojana, Depresión Momposina. Las estructuras convocadas a narrar el río Cauca comprende los paisajes altos de las dos cordilleras, Central y Occidental, entre las que se crea la cuenca interandina del río Cauca. A lo largo de los parteaguas de esta sucesión de gigantes montañosos localizamos los nevados, volcanes y páramos a partir de los cuales se conforman las estrellas fluviales de las que brotan los ríos de varias cuencas prominentes del país: una amazónica: la del Caquetá, una pacífica: la del Patía, dos caribeñas: las del San Jorge y Sinú y dos andinas, las del Magdalena y Cauca.\n\nComo nuestro interés está centrado en el río Cauca, a través de este mapa destacamos los tres tramos de su cuenca; sus principales afluentes: Ovejas, Palo, Risaralda y Nechí; las planicies que llaman las aguas del río a la lentitud en varios puntos de su cuenca; los caminos y carreteras generatrices del sistema vial y las áreas metropolitanas. Llamamos la atención sobre dos asuntos insinuados en las aguas superficiales que aparecen en este mapa: el primero está relacionado con los cuerpos de agua libre asociados a las zonas planas del valle alto y la depresión Momposina, estas toman las múltiples formas de los humedales, cada vez más escasos. En contraste, las aguas superficiales confinadas y represadas en zonas montañosas dan cuenta de varias de las violencias que ha sufrido el río y que son en parte causa de la agonía de los cuerpos de agua libre de las planicies.",
     boton: true,
     link: "https://docs.google.com/document/d/1uDWBiK19UN8G_1yVICTFgG-4jnbrp1vv/edit?pli=1#heading=h.y1bwv3ismpus",
     image: "",
@@ -610,7 +572,7 @@ const modalsData = [
       </div>
     ),
     texto:
-      "Álvaro Pedrosa, Diego Hernández, Gian Marlon Cifuentes, Karem Yuliana Correa, Myriam Daniela Marín, Olga Cecilia Eusse y Renata Moreno. \n\nRegistros sonoros: Carlos Rodríguez. Fotografías: Anthony Soto.",
+      "Álvaro Pedrosa, Diego Hernández, Gian Marlon Cifuentes, Karem Yuliana Correa, María Campo, Myriam Daniela Marín, Olga Cecilia Eusse y Renata Moreno. \n\nRegistros sonoros: Carlos Rodríguez. Fotografías: Anthony Soto y Karem Yuliana Correa.",
     boton: false,
     link: "",
     image: "",
@@ -987,45 +949,27 @@ const modalsData = [
             lineHeight: "1.4",
           }}
         >
-          Redes nodo y entramados territoriales: portadores de capacidades y
-          saberes para las transiciones regionales sistémicas
+          Tejidos, entramados territoriales y alternativas transformadoras
+en el sur del valle alto del río Cauca
         </strong>
-        Las transiciones regionales sistémicas justas surgen como una respuesta
-        integral a las crisis ecológicas y sociales generadas por el modelo de
-        desarrollo desigual dominante centrado en la ocupación física y
-        mono-ontológica de los territorios. Este modelo refuerza una visión
-        unificada del mundo que desmantela los mundos relacionales. En
-        contraposición, las transiciones promueven una transformación cultural,
-        económica y política que reconoce la interdependencia de todos los
-        seres, defendiendo la idea de un pluriverso, es decir, “un mundo donde
-        quepan muchos mundos”, fomentando una reconexión de la vida
-        toda.
-        <br />
-        <br />
-        Estas transiciones, que ya ocurren en cientos de casos en el
-        planeta, visibilizan los efectos destructivos de las sociedades
-        globalizadas contemporáneas y plantean un llamado decidido a un sentir,
-        pensar y actuar basado en la defensa y permanencia en los territorios
-        desde una perspectiva material, epistémica, cultural y ontológica que
-        pone la vida en el centro. Esto implica fortalecer los proyectos de vida
-        comunitaria, asegurar la soberanía alimentaria y establecer redes de
-        solidaridad entre organizaciones étnico-territoriales. Así, estas
-        estrategias representan un cambio radical hacia relaciones más justas,
-        equitativas y sostenibles con la naturaleza y entre las personas, como
-        parte de una resistencia activa al paradigma dominante.
-        <br />
-        <br />
-        En el valle alto del río Cauca, estamos conformando un tejido entre transiciones se
-        están materializando en tres nodos o entramados territoriales situados
-        en Suárez y Villa Rica en el Cauca y en el oriente de Cali, en el Valle
-        del Cauca. Estos nodos conforman unos entramados territoriales de
-        alternativas transformadoras que contrarrestan los efectos del sistema
-        dominante, priorizando la reconstrucción del relacionalidad de la vida.
-        A través de mapas y modelos elaborados en el Diagnóstico de Paz
-        Territorial Pluriversal y los talleres del Colaboratorio de Cartografías
-        Críticas y Codiseño Territorial presentamos nuestros territorios en
-        términos de su localización en la cuenca del río Cauca y nuestros
-        empeños y retos.
+        
+        Las transiciones regionales sistémicas justas surgen como una respuesta integral a las crisis ecológicas y 
+        sociales generadas por el modelo de desarrollo desigual dominante centrado en la ocupación física y mono-ontológica 
+        de los territorios. Este modelo refuerza una visión unificada del mundo que desmantela los mundos relacionales. 
+        En contraposición, las transiciones promueven una transformación cultural, económica y política que reconoce la 
+        interdependencia de todos lo vivo y lo no vivo, defendiendo la idea de un pluriverso, es decir, “un mundo donde quepan 
+        muchos mundos”.
+          <br />
+          <br />
+        Estas transiciones, que ya ocurren en cientos de casos en el mundo plantean un llamado decidido a un sentir, 
+        pensar y actuar basado en la defensa y permanencia en los territorios desde una perspectiva material, epistémica, 
+        cultural y ontológica que pone la vida en el centro; a la vez que visibilizan los efectos destructivos de las sociedades 
+        globalizadas contemporáneas. Esto implica fortalecer los proyectos de vida comunitaria, asegurar la autonomía y 
+        soberanía alimentaria y establecer redes de solidaridad entre alternativas transformadoras. 
+          <br />
+          <br />
+        En el valle alto del río Cauca, en medio de la violencia del monocultivo de la caña de azúcar, estamos conformando un tejido de transiciones ecosociales justas que se estructura en tres entramados territoriales situados en Suárez y Villa Rica en el Cauca y en el oriente de Cali, en el Valle del Cauca. Estos articulan alternativas transformadoras que contrarrestan los efectos del sistema dominante y extractivista, priorizando la reconstrucción de la relacionalidad de la vida. Basadas en la escribanía del Diagnóstico de Paz Territorial Pluriversal y los talleres del colaboratorio de Cartografías críticas y codiseño territorial presentamos los problemas y los caminos de reexistencia que desplegamos en nuestros territorios.
+
       </span>
     ),
 
@@ -1503,18 +1447,12 @@ const modalsData = [
 
         <div>
           <p>
-            Somos jóvenes del municipio de Suárez que desarrollan procesos
-            juveniles basados en la participación por medio del reconocimiento
-            de nuestras diferencias, la creación y seguimiento de agendas,
-            control social y veeduría de recursos públicos locales y promoción
-            de procesos y prácticas organizativas a fin de poder aportar al
-            desarrollo territorial por medio de liderazgos juveniles que
-            impacten de forma positiva a sus comunidades y al municipio.
-            Acogemos los principios orientadores dispuestos en la Constitución
-            Política de Colombia y en el Estatuto de Ciudadanía Juvenil,
-            especialmente los de autonomía, corresponsabilidad, concertación,
-            dignidad, diversidad, interés juvenil, participación,
-            territorialidad, respeto, compromiso, inclusión y autocuidado.
+            Somos jóvenes que desarrollamos procesos basados en la participación por medio del reconocimiento de nuestras 
+            diferencias, la creación y seguimiento de agendas, control social y veeduría de recursos públicos locales y 
+            promoción de procesos y prácticas organizativas, a fin de poder aportar al desarrollo territorial. Acogemos los 
+            principios orientadores dispuestos en la Constitución Política de Colombia y en el Estatuto de Ciudadanía Juvenil, 
+            especialmente los de autonomía, corresponsabilidad, concertación, dignidad, diversidad, interés juvenil, participación,
+             territorialidad, respeto, compromiso, inclusión y autocuidado.
           </p>
         </div>
 

@@ -1,9 +1,9 @@
 .sidebar-left {
   position: fixed;
-  top: 32%;
+  top: 32vh;
   left: 0;
   width: 7%;
-  height: calc(100vh - 100px);
+  height: 59vh;
   z-index: 15;
 }
 

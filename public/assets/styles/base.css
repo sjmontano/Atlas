@@ -150,7 +150,6 @@ button {
 /* Laptop (1280x800) */
 @media (max-width: 1280px) {
   #map {
-    transform: scaleX(1.05);
   }
 }
 

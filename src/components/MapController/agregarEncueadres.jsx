@@ -1,6 +1,6 @@
 // Este será el mapa 3
 
-
+import maplibregl from "maplibre-gl";
 import { useState } from "react";
 import FondoTooltip3 from "../../../public/assets/svg/sidebar-resources/FondoTooltip3.webp";
 import FondoTooltip4 from "../../../public/assets/svg/sidebar-resources/FondoTooltip4.webp";
@@ -9,6 +9,8 @@ import modalData from "../Home/Modal/modalsData";
 import ModalImagen from "../Home/Modal/ModalImagen";
 
 const agregarEncuadres = ({map, setIsChapterOpen, onMapChange, Encuadres, names,mapName, selectedMap}) => {
+
+  
  
   
     // Estado para controlar la apertura del modal de información
@@ -309,6 +311,8 @@ const agregarEncuadres = ({map, setIsChapterOpen, onMapChange, Encuadres, names,
   } else {
     console.log("no");
   }
+
+  
 
 
   return (

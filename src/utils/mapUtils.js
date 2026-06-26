@@ -1,15 +1,78 @@
-import calculateCoordinates from "./calculateCoordinates";
+import { processBounds } from "./boundsCalculator";
+
+export const generateImageCoordinates = ({ pgwData, width, height }) => {
+  if (
+    !Array.isArray(pgwData) ||
+    pgwData.length !== 6 ||
+    isNaN(width) ||
+    isNaN(height)
+  ) {
+    return null;
+  }
+
+  const result = processBounds(pgwData, width, height);
+  if (!result.isValid || !Array.isArray(result.imageCoordinates)) {
+    return null;
+  }
+
+  return result.imageCoordinates;
+};
 
 // 📌 Genera los límites de la imagen basados en la georreferenciación
-export const generateImageBounds = ({ initialCoordinates, width, height, scaleX, scaleY }) => {
-  if (!initialCoordinates || isNaN(scaleX) || isNaN(scaleY) || isNaN(width) || isNaN(height)) {
-    console.warn("⚠️ Datos inválidos en `generateImageBounds`:", { initialCoordinates, width, height, scaleX, scaleY });
+export const generateImageBounds = ({
+  pgwData,
+  initialCoordinates,
+  width,
+  height,
+  scaleX,
+  scaleY,
+}) => {
+  if (isNaN(width) || isNaN(height)) {
+    console.warn("⚠️ Datos inválidos en `generateImageBounds`:", {
+      width,
+      height,
+    });
+    return null;
+  }
+
+  // Preferred path: complete affine PGW [a, d, b, e, c, f].
+  if (Array.isArray(pgwData) && pgwData.length === 6) {
+    const result = processBounds(pgwData, width, height);
+    if (!result.isValid) {
+      console.warn("⚠️ Bounds inválidos desde PGW afín:", {
+        pgwData,
+        width,
+        height,
+      });
+      return null;
+    }
+
+    // Keep compatibility with current consumers expecting [[west,south],[east,north]].
+    return [
+      [result.bounds[0], result.bounds[1]],
+      [result.bounds[2], result.bounds[3]],
+    ];
+  }
+
+  // Legacy fallback for older scale-only data shape.
+  if (!initialCoordinates || isNaN(scaleX) || isNaN(scaleY)) {
+    console.warn("⚠️ Datos inválidos en `generateImageBounds`:", {
+      pgwData,
+      initialCoordinates,
+      width,
+      height,
+      scaleX,
+      scaleY,
+    });
     return null;
   }
 
   const bounds = [
     initialCoordinates,
-    calculateCoordinates({ initialCoordinates, width, height, scaleX, scaleY }),
+    [
+      initialCoordinates[0] + scaleX * width,
+      initialCoordinates[1] + scaleY * height,
+    ],
   ];
 
   //console.log("📍 `generateImageBounds` calculado:", bounds);
@@ -19,7 +82,10 @@ export const generateImageBounds = ({ initialCoordinates, width, height, scaleX,
 // 📌 Calcula el centro del mapa
 export const calculateMapCenter = (imageBounds) => {
   if (!imageBounds || !Array.isArray(imageBounds) || imageBounds.length !== 2) {
-    console.warn("⚠️ `calculateMapCenter` recibió `imageBounds` inválido:", imageBounds);
+    console.warn(
+      "⚠️ `calculateMapCenter` recibió `imageBounds` inválido:",
+      imageBounds,
+    );
     return [0, 0];
   }
 
@@ -30,9 +96,16 @@ export const calculateMapCenter = (imageBounds) => {
 };
 
 // 📌 Calcula la opacidad de las imágenes según el zoom
-export const calculateOverlappingOpacity = (zoom, minzoom, maxzoom, availableLayers = []) => {
+export const calculateOverlappingOpacity = (
+  zoom,
+  minzoom,
+  maxzoom,
+  availableLayers = [],
+) => {
   if (!Array.isArray(availableLayers) || availableLayers.length === 0) {
-    console.warn("⚠️ No se pasaron capas disponibles. Se usará solo `base` por defecto.");
+    console.warn(
+      "⚠️ No se pasaron capas disponibles. Se usará solo `base` por defecto.",
+    );
     return { base: 1, low: 0, medium: 0, high: 0 };
   }
 
@@ -45,7 +118,8 @@ export const calculateOverlappingOpacity = (zoom, minzoom, maxzoom, availableLay
   let lastVisibleLayer = availableLayers[availableLayers.length - 1];
 
   if (availableLayers.includes("low")) {
-    opacity.low = zoom <= minzoom ? 1 : 1 - smoothStep(minzoom, minzoom + 1, zoom);
+    opacity.low =
+      zoom <= minzoom ? 1 : 1 - smoothStep(minzoom, minzoom + 1, zoom);
     lastVisibleLayer = "low";
   }
 

@@ -8,6 +8,9 @@ import iconoCapas1 from "../../../public/assets/svg/todos/Hud/icons/icon-line-we
 import fondoSidebarLeftItem from "../../../public/assets/img/background/sidebardLeftItem.webp";
 
 const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
+
+  
+
   console.log(mapName);
   const [layerVisibility, setLayerVisibility] = useState(
     layers.reduce((acc, layer) => {
@@ -1876,7 +1879,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   </div>
                 )}
 
-                <div className="subtitle-3">
+                {/*<div className="subtitle-3">
                   <div className="espacio-2"></div>
 
                   <EyeIcon
@@ -1897,7 +1900,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                   </svg>
 
                   <span>3. Sin información y otras áreas</span>
-                </div>
+                </div>*/}
 
                 <div className="margen2"></div>
               </div>
@@ -1968,7 +1971,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     <img
                       src="assets/mapasMenuCap2/image.svg"
                       alt="Río Cauca"
-                      style={{ width: "32px", height: "15px" }}
+                      style={{ width: "2.08vw", height: "15px" }}
                     />
                   </div>
                   <span
@@ -5180,7 +5183,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/riosPrincipales.svg"
                       alt=""
                       style={{
-                        width: "32px",
+                        width: "2.08vw",
                         height: "6px",
                         objectFit: "cover",
                         objectPosition: "center",
@@ -5378,7 +5381,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/mapasMenuCap2/riosPrincipales.svg"
                       alt=""
                       style={{
-                        width: "32px",
+                        width: "2.08vw",
                         height: "6px",
                         objectFit: "cover",
                         objectPosition: "center",
@@ -6266,7 +6269,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/monocultivoAzucar.svg"
                       alt=""
                       style={{
-                        width: "32px",
+                        width: "2.08vw",
                         height: "12px",
                         objectFit: "cover",
                         objectPosition: "center",
@@ -6447,7 +6450,7 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                       src="assets/iconsCap4/curvaNivel.svg"
                       alt=""
                       style={{
-                        width: "32px",
+                        width: "2.08vw",
                         height: "2px",
                         objectFit: "cover",
                         objectPosition: "center",
@@ -6474,41 +6477,8 @@ const LayerMenu = ({ layers, map, selectedMap, mapName }) => {
                     marginTop: "1%",
                   }}
                 >
-                  <div
-                    style={{
-                      alignSelf: "start",
-                      width: "1.63vw",
-                      height: "3.42vh", // igual ancho y alto para que el círculo sea perfecto
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      backdropFilter: "blur(2px)",
-                      backgroundColor: "rgba(255, 255, 255, 0.6)", // blanco con transparencia
-                      borderRadius: "50%", // hace el div circular
-                      overflow: "hidden", // asegura que la imagen no sobresalga del círculo
-                    }}
-                  >
-                    <img
-                      src="assets/iconsCap4/palenke.svg"
-                      alt=""
-                      style={{
-                        width: "25px",
-                        height: "25px",
-                        objectFit: "cover",
-                        objectPosition: "center",
-                      }}
-                    />
-                  </div>
-                  <span
-                    style={{
-                      marginLeft: "10px",
-                      fontSize: "1.04vw",
-                      fontFamily: "Noto Sans, sans-serif",
-                      fontWeight: "300",
-                    }}
-                  >
-                    Fincas tradicionales Agropalenke soberanía de vida
-                  </span>
+                  
+                  
                 </div>
               </div>
             )}

@@ -150,7 +150,7 @@ const TitleContainer = ({ maintitle, highLight, titleRef }) => (
   <div className="title-container-modal-info" ref={titleRef}>
     <div style={{ display: 'flex', alignItems: 'center' }}>
       <h3>{maintitle}</h3>
-      <span className="highlight-modal-info">{highLight}</span>
+      <span className="highlight-modal-info" style={{whiteSpace:"pre-line"}}>{highLight}</span>
     </div>
     <img src={linea} className="" alt="Línea decorativa" />
   </div>

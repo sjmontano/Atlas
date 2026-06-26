@@ -53,7 +53,7 @@ body {
 .h1MainEntramados {
   color: #ffff;
   font-family: "Noto Sans", italic;
-  font-size: 1.5rem;
+  font-size: 1.56vw;
   display: inline-block;
   position: relative;
   margin: 0;
@@ -69,16 +69,16 @@ body {
 }
 
 .section h2 {
-  font-size: 1.6rem;
+  font-size: 1.67vw;
   color: var(--color-primario);
   font-weight: 800;
   font-family: "Noto Sans", bold;
   text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2.19vh;
+  margin-bottom: 2.19vh;
 }
 .tejidoText {
-  font-size: 1.2rem;
+  font-size: 1.25vw;
   position: relative;
   color: #14b2d1;
   font-weight: 1000;
@@ -92,11 +92,11 @@ body {
   max-width: 100%; /* Opcional: asegura que no se desborde */
 }
 .section h3 {
-  font-size: 1.4rem;
+  font-size: 1.46vw;
   color: #041342;
   text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: 2.19vh;
+  margin-bottom: 2.19vh;
 }
 .h3-line {
   display: flex;
@@ -127,7 +127,7 @@ body {
 }
 
 .images img {
-  width: 100px;
+  width: 6.51vw;
   height: auto;
   transition: transform 0.3s ease;
 }
@@ -147,7 +147,7 @@ body {
 a {
   color: var(--color-secundario);
   text-decoration: none;
-  font-size: 1.2rem;
+  font-size: 1.25vw;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -240,9 +240,7 @@ a {
     font-size: 2.5rem;
   }
 
-  .section h2 {
-    font-size: 1.3rem;
-  }
+  
 }
 
 @media (max-width: 768px) {

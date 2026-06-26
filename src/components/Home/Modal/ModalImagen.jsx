@@ -15,11 +15,11 @@ import { Padding } from "maplibre-gl";
 // Componente de carrusel para el InfoModal
 
 // Componente para el botón de cierre del modal
-const CloseButton = ({ onClose, right="0vw", top="30%"}) => (
+const CloseButton = ({ onClose, right="0vw", top="30%", idModal =0}) => (
   <img
     src={salir}
     className="close-btn-modal-info"
-    style={{left:right, top:top}}
+    style={{right:right, top:top}}
     id="closeModal-info"
     onClick={onClose}
     alt="Cerrar modal"
@@ -41,7 +41,7 @@ const ModalImagen = ({ onClose, datos }) => {
   return (
     <div  className={`modal-info  modal-size-${datos.id>=70 ? "medium" : "gigante"}`} style={{padding:"0"}} id="modal-info">
       
-          <CloseButton onClose={onClose} right={"1vw"} top={"3vw"} />
+          <CloseButton onClose={onClose} right={"1vw"} top={"3vw"} idModal={datos.id}/>
          {datos.texto}
           
     </div>

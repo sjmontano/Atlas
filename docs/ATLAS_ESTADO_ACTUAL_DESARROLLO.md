@@ -191,7 +191,7 @@ const projectStructure = {
 
 @media (min-width: 769px) and (max-width: 1024px) {
   /* Tablet: Experiencia intermedia */
-  .carousel-btn { width: 38px; height: 38px; }
+  .carousel-btn { width: 2.47vw; height: 2.47vw; }
   .carousel-dot { width: 11px; height: 11px; }
 }
 
@@ -521,8 +521,8 @@ const CarruselTaller = () => {
 }
 
 .carrusel-taller-container .carousel-btn img {
-  width: 38px;
-  height: 38px;
+  width: 2.47vw;
+  height: 2.47vw;
 }
 ```
 

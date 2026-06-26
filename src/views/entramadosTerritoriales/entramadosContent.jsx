@@ -46,10 +46,10 @@ const entramadosContent = () => {
                   src="assets\img\entramados\Logo_Consejo_río_Ovejas.webp"
                   alt="Logo_Consejo_río_Ovejas.webp"
                 />
-                <img
+                {/*<img
                   src="assets\img\entramados\Consejo municipal de juventud.webp"
                   alt="Consejo municipal de juventud.webp"
-                />
+                />*/}
                 <img
                   src="assets\img\entramados\asomuafroyo.webp"
                   alt="asomuafroyo.webp"
@@ -143,7 +143,7 @@ const entramadosContent = () => {
             className="footer-img-entramados"
           />
           <div className="footer-content-entramados">
-            <p>2025 Atlas Sur del Valle del Alto del Rio Cauca.</p>
+            <p>2025 Atlas sur del valle del alto del río Cauca.</p>
             <div className="footer-links-entramados">
               <button>
                 <img

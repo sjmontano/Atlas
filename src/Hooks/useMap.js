@@ -1,6 +1,89 @@
-import maplibregl from "maplibre-gl";
+import maplibregl, { LngLat } from "maplibre-gl";
 import { useEffect, useRef, useState } from "react";
 import mapDefaults from "../data/mapImages/mapDefaults";
+
+/**
+ * Crea un TransformConstrain bearing-aware para reemplazar setMaxBounds.
+ *
+ * Con bearing=-90 los ejes de pantalla estan invertidos:
+ *   - Ancho de pantalla W cubre latitud (sur → norte)
+ *   - Alto de pantalla H cubre longitud (oeste → este)
+ *
+ * La funcion recibe el centro propuesto y lo fija para que las esquinas
+ * del viewport nunca escapen de viewportMaxBounds (vmb).
+ */
+function createBearingAwareConstrain(getCanvas, vmb, bearing) {
+  const [west, south, east, north] = vmb;
+  const normalized = ((bearing % 360) + 360) % 360;
+  const isQuarterTurn = normalized === 90 || normalized === 270;
+  const latSpan = north - south;
+  const lonSpan = east - west;
+
+  return (lngLat, zoom) => {
+    const canvas = getCanvas();
+    const W = canvas.clientWidth;
+    const H = canvas.clientHeight;
+
+    // ── Paso A: minZoom bearing-aware ───────────────────────
+    let minZoom;
+    if (isQuarterTurn) {
+      const minZoomW = latSpan > 0 ? Math.log2(W * 360 / (512 * latSpan)) : 0;
+      const minZoomH = lonSpan > 0 ? Math.log2(H * 360 / (512 * lonSpan)) : 0;
+      minZoom = Math.max(minZoomW, minZoomH);
+    } else {
+      const minZoomW = lonSpan > 0 ? Math.log2(W * 360 / (512 * lonSpan)) : 0;
+      const minZoomH = latSpan > 0 ? Math.log2(H * 360 / (512 * latSpan)) : 0;
+      minZoom = Math.max(minZoomW, minZoomH);
+    }
+
+    // ── Paso B: clampear zoom ──────────────────────────────
+    const clampedZoom = Math.max(minZoom, zoom);
+
+    // ── Paso C: dpp con zoom ya corregido ──────────────────
+    const dpp = 360 / (512 * Math.pow(2, clampedZoom));
+
+    // ── Paso D: clampear centro con half-extent del viewport
+    let clampedLng = lngLat.lng;
+    let clampedLat = lngLat.lat;
+
+    if (isQuarterTurn) {
+      const halfLat = (W / 2) * dpp;
+      const halfLon = (H / 2) * dpp;
+      const minLat = south + halfLat;
+      const maxLat = north - halfLat;
+      const minLon = west + halfLon;
+      const maxLon = east - halfLon;
+      clampedLat = minLat <= maxLat
+        ? Math.max(minLat, Math.min(maxLat, clampedLat))
+        : (south + north) / 2;
+      clampedLng = minLon <= maxLon
+        ? Math.max(minLon, Math.min(maxLon, clampedLng))
+        : (west + east) / 2;
+    } else {
+      const halfLon = (W / 2) * dpp;
+      const halfLat = (H / 2) * dpp;
+      const minLon = west + halfLon;
+      const maxLon = east - halfLon;
+      const minLat = south + halfLat;
+      const maxLat = north - halfLat;
+      clampedLng = minLon <= maxLon
+        ? Math.max(minLon, Math.min(maxLon, clampedLng))
+        : (west + east) / 2;
+      clampedLat = minLat <= maxLat
+        ? Math.max(minLat, Math.min(maxLat, clampedLat))
+        : (south + north) / 2;
+    }
+
+    // Guardrail: coordenadas siempre validas
+    clampedLat = Math.max(-89.9, Math.min(89.9, clampedLat));
+    clampedLng = Math.max(-179.9, Math.min(179.9, clampedLng));
+
+    return {
+      center: new maplibregl.LngLat(clampedLng, clampedLat),
+      zoom: clampedZoom,
+    };
+  };
+}
 
 /**
  * 🗺️ HOOK useMap - Sistema de mapas con límites automáticos
@@ -77,6 +160,9 @@ const useMap = ({
   inertia,
   mapName, // 🆕 Nombre del mapa para buscar configuración personalizada
   showCoordinates = true, // 🆕 Flag para mostrar/ocultar coordenadas
+  streetViewEnabled = false, // 🗺️ Mapa base OSM para verificar georreferenciacion
+  useTransformConstrain = false, // 🔒 Constrain bearing-aware (reemplaza setMaxBounds)
+  viewportMaxBounds = null, // [west, south, east, north] para el constrain
 }) => {
   const mapContainerRef = useRef(null);
   const [map, setMap] = useState(null);
@@ -89,14 +175,37 @@ const useMap = ({
   const minZoomValue = minZoom ?? calculateDynamicMinZoom(imageBounds);
   const maxZoomValue = maxZoom ?? mapDefaults.maxZoom;
 
-  useEffect(() => {
-    const newMap = new maplibregl.Map({
-      container: mapContainerRef.current,
-      style: {
+  // Estilo del mapa: con o sin capa base OSM (street view)
+  const mapStyle = streetViewEnabled
+    ? {
+        version: 8,
+        sources: {
+          "street-view-source": {
+            type: "raster",
+            tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
+            tileSize: 256,
+            attribution: "© OpenStreetMap contributors",
+          },
+        },
+        layers: [
+          {
+            id: "street-view-layer",
+            type: "raster",
+            source: "street-view-source",
+            paint: { "raster-opacity": 0.7 },
+          },
+        ],
+      }
+    : {
         version: 8,
         sources: {},
         layers: [],
-      },
+      };
+
+  useEffect(() => {
+    const newMap = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: mapStyle,
 
       dragRotate: dragRotate ?? mapDefaults.dragRotate,
       touchZoomRotate: touchZoomRotate ?? mapDefaults.touchZoomRotate,
@@ -200,6 +309,30 @@ const useMap = ({
         bearing,
       });
 
+      // 🔒 Activar constrain bearing-aware si esta configurado
+      if (useTransformConstrain && viewportMaxBounds) {
+        console.log('🔒 useTransformConstrain:', { useTransformConstrain, viewportMaxBounds, bearing });
+        console.log('🔒 maplibregl version:', maplibregl.version || 'unknown');
+        console.log('🔒 setTransformConstrain available:', typeof newMap.setTransformConstrain === 'function');
+        
+        if (typeof newMap.setTransformConstrain === 'function') {
+          try {
+            newMap.setTransformConstrain(
+              createBearingAwareConstrain(
+                () => newMap.getContainer(),
+                viewportMaxBounds,
+                bearing,
+              ),
+            );
+            console.log('🔒 setTransformConstrain ACTIVADO');
+          } catch (e) {
+            console.error('❌ setTransformConstrain falló:', e);
+          }
+        } else {
+          console.warn('⚠️ setTransformConstrain NO DISPONIBLE en esta version de MapLibre');
+        }
+      }
+
       // 🔒 SISTEMA DE LÍMITES AUTOMÁTICOS (si maxBounds === 1)
       if (shouldApplyMaxBounds) {
         setTimeout(() => {
@@ -214,6 +347,7 @@ const useMap = ({
 
           // Obtener dimensiones del contenedor (viewport)
           const container = mapContainerRef.current;
+          if (!container) return;
           const viewportWidth = container.offsetWidth;
           const viewportHeight = container.offsetHeight;
           const viewportAspectRatio = viewportWidth / viewportHeight;
@@ -243,7 +377,7 @@ const useMap = ({
           ];
 
           console.log(`  🔧 Factores de expansión aplicados:`);
-          console.log(`     Oeste: +${(expandWest*100).toFixed(0)}%, Este: +${(expandEast*100).toFixed(0)}%, Sur: +${(expandSouth*100).toFixed(0)}%, Norte: +${(expandNorth*100).toFixed(0)}%`);
+          console.log(`     Oeste: +${(expandWest * 100).toFixed(0)}%, Este: +${(expandEast * 100).toFixed(0)}%, Sur: +${(expandSouth * 100).toFixed(0)}%, Norte: +${(expandNorth * 100).toFixed(0)}%`);
           console.log('  🔒 Límites finales aplicados:');
           console.log(`     Oeste (izq): ${west.toFixed(6)}`);
           console.log(`     Este (der):  ${east.toFixed(6)}`);
@@ -252,7 +386,7 @@ const useMap = ({
           console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 
           // Aplicar maxBounds calculados
-           //newMap.setMaxBounds(finalBounds);
+          //newMap.setMaxBounds(finalBounds);
 
           // 🛡️ RESTRICCIÓN DE MOVIMIENTO - DESACTIVADA
           // La lógica de límites ahora se maneja de forma centralizada y dinámica en BaseMapImage.jsx
@@ -294,6 +428,9 @@ const useMap = ({
     inertia,
     shouldApplyMaxBounds,
     showCoordinates,
+    streetViewEnabled,
+    useTransformConstrain,
+    viewportMaxBounds,
   ]);
 
   return { map, mapLoaded, mapContainerRef };

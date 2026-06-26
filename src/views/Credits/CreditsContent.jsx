@@ -54,9 +54,9 @@ const CreditsContent = () => {
       <div className="homeCreditos">
         {/*<img className="homeImage" src={home} alt="" />*/}
         <div className="btnHomeContainer" onClick={clickHome} style={{cursor: 'pointer', position: 'relative'}}>
-          <img className="btnHome" src={homebtn} alt="Casa" />
+          <img className="btnHome" src={homebtn} alt="Inicio" />
           <div className="homeTooltip-marker">
-            <span>Casa</span>
+            <span>Inicio</span>
             <img src={tooltipBg} alt="" />
           </div>
         </div>

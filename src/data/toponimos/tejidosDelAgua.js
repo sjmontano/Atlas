@@ -23,7 +23,7 @@ const toponimosTejidosDelAgua=[
   {
     numero:5,
     name:"Cuenca río Quinamayó",
-    capa:"y otros directos al Cuenca río Cauca",
+    capa:"y otros directos a la cuenca río Cauca",
     coords: [-76.494,	3.023] // Coincidencia con "Peninsula de la Guajira" (sin acento)
   },
   {
@@ -71,7 +71,7 @@ const toponimosTejidosDelAgua=[
   {
     numero:2,
     name:"Cuenca río Salado",
-    capa:"Y otros directos al Cuenca Cuenca río Cauca",
+    capa:"y otros directos a la cuenca río Cauca",
     coords: [-76.816,	2.828] // Coincidencia con "Peninsula de la Guajira" (sin acento)
   },
 

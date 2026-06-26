@@ -18,7 +18,7 @@ import perfil3 from "../../../../public/assets/img/perfil/perfil-2.svg";
 
 const SidebarLeft = ({ datos, icons = [] , onMapChange, galeriaData = null , selectedMap=0}) => {
   const navigate = useNavigate();
-  const [topMargin] = useState("4%");
+  const [topMargin] = useState("8.4vh");
   console.log(datos)
   
   const [modalIndex, setModalIndex] = useState(null);

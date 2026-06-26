@@ -4,9 +4,8 @@ const titlesChapter2 = [
     <span className="header-title-bold">II.</span>
     <span className="l">
       {" "}
-      Tejidos, nodos y alternativas transformadoras 
-      en el sur <br />
-      del valle alto del río Cauca
+      Tejidos, entramados territoriales y alternativas transformadoras <br />
+      en el sur del valle alto del río Cauca
     </span>
   </h3>,
 
@@ -34,15 +33,15 @@ const titlesChapter2 = [
   </h3>,
   <h3>
     <span className="header-title-bold">
-      Síntesis territorial del  Oriente de Cali
+      Síntesis territorial participativa del  Oriente de Cali
     </span>
   </h3>,
   <h3>
-    <span className="header-title-bold">Síntesis territorial de Vila Rica</span>
+    <span className="header-title-bold">Síntesis territorial participativa de Vila Rica</span>
   </h3>,
 
   <h3>
-    <span className="header-title-bold">Síntesis territorial de Suárez</span>
+    <span className="header-title-bold">Síntesis territorial participativa de Suárez</span>
   </h3>,
 ];
 

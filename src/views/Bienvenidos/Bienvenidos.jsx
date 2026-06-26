@@ -44,7 +44,7 @@ const Bienvenidos = ({ acceso = false }) => {
 
   const iconsBienvenidos = [
     { id: 1, icon: presentation, title: "Presentación" },
-    { id: 2, icon: mapGallery, title: "Recursos", link: "https://drive.google.com/file/d/1AEAngJNFZ7GfjTYXwGPhhS2bbJGz9XCq/view?usp=sharing" },
+    { id: 2, icon: mapGallery, title: "Recursos", link: "https://drive.google.com/file/d/1VZGZ8vKAtGbHL5_BRkeDReke6s-Sr27G/view" },
     { id: 3, icon: credits, title: "Tejidos para el atlas", link: "/Entramados" },
     //{ id: 4, icon: info, title: "Ayuda", link: "/entramados" },
   ];
@@ -139,7 +139,7 @@ const Bienvenidos = ({ acceso = false }) => {
       id: "capitulo-2",
       number: "Cap. II",
       title:
-        "Tejidos, nodos y alternativas \ntransformadoras en el sur\n del valle alto del río Cauca",
+        "Tejidos, entramados territoriales y alternativas transformadoras",
       img: capitulo1,
       image: siluetaChapter2,
     },
@@ -237,7 +237,7 @@ const Bienvenidos = ({ acceso = false }) => {
       <div className="homeCreditosBienvenidos">
         {/*<img className="homeImage" src={home} alt="" />*/}
         <div className="btnHomeBienvenidos" onClick={clickHome} style={{cursor: 'pointer', position: 'relative'}}>
-          <img style={{width: '100%', height: 'auto'}} src={homebtn} alt="Casa" />
+          <img style={{width: '100%', height: 'auto'}} src={homebtn} alt="Inicio" />
           <div className="homeTooltip-marker">
             <span>Inicio</span>
             <img src={tooltipBg} alt="" />

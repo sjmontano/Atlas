@@ -19,14 +19,14 @@
 /* Estilos para el header */
 .header-home {
   position: absolute;
-  top: 20px;
-  left: 20px;
+  top: 1.3vw;
+  left: 1.3vw;
   z-index: 10;
 }
 
 /* Estilos para el logo */
 .header-home-logo {
-  width: 200px;
+  width: 13.02vw;
   height: auto;
   transition: none;
 }
@@ -48,8 +48,8 @@
     top: 15%;
     right: 2%;
     transform: translateY(-50%); /* Iniciar en la posición deseada */
-    width: 160px;
-    height: 160px; /* Ajustar la altura para que sea igual al ancho */
+    width: 10.42vw;
+    height: 10.42vw; /* Ajustar la altura para que sea igual al ancho */
     border-radius: 50%; /* Cambiar a 50% para que sea perfectamente redonda */
     border: 0px solid white;
     overflow: hidden;
@@ -86,7 +86,7 @@
 }
 /* Estilos para el título principal */
 .content-titles .home-title {
-  font-size: clamp(3rem, 8vw, 4.75rem); /* Ajuste con clamp para 140px */
+  font-size: 4.95vw; /* Ajuste con clamp para 140px */
   font-weight: 900;
   transform: scaleY(1.2);
   line-height: 140%;
@@ -97,7 +97,7 @@
 
 /* Estilos para el subtítulo */
 .content-titles .home-subtitle {
-  font-size: clamp(1.5rem, 5vw, 2.5rem); /* Ajuste con clamp para 40px */
+  font-size: 2.6vw; /* Ajuste con clamp para 40px */
   font-weight: 400; /* No en bold */
   line-height: 140%;
   transform: scaleY(1.2);
@@ -179,7 +179,7 @@
   border-radius: 6px; /* Bordes redondeados */
   background: rgba(0, 0, 0, 0.3); /* Fondo semi-transparente */
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.56vw;
   text-align: center;
   cursor: pointer;
   width: 198px;
@@ -296,11 +296,11 @@
 
  
   .content-titles .home-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.56vw;
   }
 
   .explore-button {
-    font-size: 1.2rem;
+    font-size: 1.25vw;
     padding: 0.8rem 2rem;
   }
 }

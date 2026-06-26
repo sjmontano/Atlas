@@ -1,6 +1,43 @@
-const calculateCoordinates = ({ initialCoordinates, width, height, scaleX, scaleY }) => {
-  if (!initialCoordinates || isNaN(scaleX) || isNaN(scaleY) || isNaN(width) || isNaN(height)) {
-    console.warn(`⚠️ calculateCoordinates recibió valores inválidos:`, { initialCoordinates, width, height, scaleX, scaleY });
+const calculateCoordinates = ({
+  initialCoordinates,
+  width,
+  height,
+  scaleX,
+  scaleY,
+  pgwData,
+  x,
+  y,
+}) => {
+  const pixelX = Number.isFinite(x) ? x : width;
+  const pixelY = Number.isFinite(y) ? y : height;
+
+  if (
+    Array.isArray(pgwData) &&
+    pgwData.length === 6 &&
+    Number.isFinite(pixelX) &&
+    Number.isFinite(pixelY)
+  ) {
+    const [a, d, b, e, c, f] = pgwData;
+    return [a * pixelX + b * pixelY + c, d * pixelX + e * pixelY + f];
+  }
+
+  if (
+    !initialCoordinates ||
+    isNaN(scaleX) ||
+    isNaN(scaleY) ||
+    isNaN(width) ||
+    isNaN(height)
+  ) {
+    console.warn(`⚠️ calculateCoordinates recibió valores inválidos:`, {
+      initialCoordinates,
+      width,
+      height,
+      scaleX,
+      scaleY,
+      pgwData,
+      x,
+      y,
+    });
     return initialCoordinates; // Retornar coordenadas originales en caso de error
   }
 

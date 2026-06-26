@@ -59,8 +59,9 @@ main {
 /* Título principal */
 .h1MainCreditos {
   font-family: "Noto Sans", bold;
+  font-size: 2.08vw;
   position: relative;
-  max-width: 37.5rem;
+  max-width: 39.06vw;
   display: inline-block;
   z-index: 2;
   left: 3%;
@@ -84,14 +85,14 @@ main {
   margin-top: 4vh;
   position: relative;
   z-index: 1;
-  max-width: 38rem;
+  max-width: 39.58vw;
 
 }
 
 
 .description p {
   margin-left: 6.5%;
-  font-size: 12.8px;
+  font-size: 0.83vw;
   line-height: 1.6;
   color: var(--color-secundario);
   opacity: 0.9;
@@ -118,7 +119,7 @@ main {
   cursor: pointer;
   font-weight: bold;
   position: relative;
-  border-radius: 5vh;
+  border-radius: 0.65vw;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
@@ -132,7 +133,7 @@ main {
   display: block;
   border: 2px solid rgba(0, 110, 150, 1);
   /* 🟢 AÑADIR BORDE AQUÍ */
-  border-radius: 10px;
+  border-radius: 0.65vw;
   /* Opcional: redondear las esquinas */
 }
 
@@ -143,7 +144,7 @@ main {
 
 .text-overlay {
   position: absolute;
-  font-size: 0.85rem;
+  font-size: 0.89vw;
   /* O ajusta el tamaño que prefieras */
   top: 50%;
   left: 50%;
@@ -152,7 +153,7 @@ main {
   font-weight: bold;
   white-space: nowrap;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 0.33vw;
 }
 
 /* Sección de marquesina moderna */
@@ -223,6 +224,7 @@ main {
   white-space: nowrap;
   text-align: center;
   border-radius: 5px;
+  font-size: 1.04vw;
 }
 
 .textoConocer {
@@ -230,7 +232,7 @@ main {
   position: absolute;
   font-family: sans-serif;
   color: white;
-  font-size: 1rem;
+  font-size: 1.04vw;
   font-weight: 200;
 }
 
@@ -463,10 +465,7 @@ main {
     /* Corregido 'right' a 'left' y puesto en 'auto' */
   }
 
-  h1 {
-    font-size: 2rem;
-    margin: 1rem 0;
-  }
+ 
 
   .description p {
     font-size: 0.8rem;

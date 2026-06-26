@@ -184,7 +184,7 @@ const Chapter2 = ({acceso=false}) => {
       id: "capitulo-2",
       number: "Cap. II",
       title:
-        "Tejidos, nodos y alternativas \ntransformadoras en el sur del \nvalle alto del río Cauca",
+        "Tejidos, entramados territoriales y alternativas transformadoras \nen el sur del valle alto del río Cauca",
       img: capitulo1,
       image: siluetaChapter2,
     },
@@ -320,9 +320,9 @@ const Chapter2 = ({acceso=false}) => {
       <div className="homeChapter1">
         {/*<img className="homeImage" src={home} alt="" />*/}
         <div className="btnHomeContainer" onClick={clickHome}>
-          <img className="btnHomeChapter1" src={homebtn} alt="Casa" />
+          <img className="btnHomeChapter1" src={homebtn} alt="Inicio" />
           <div className="homeTooltip-marker">
-            <span>Casa</span>
+            <span>Inicio</span>
             <img src={tooltipBg} alt="" />
           </div>
         </div>

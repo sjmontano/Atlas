@@ -48,14 +48,6 @@ const ASuarez= [
     coords: [-76.698, 2.953],
     angle: 105,
     image:"https://res.cloudinary.com/dvluvxfvn/image/upload/v1761186274/geoImages/nlbvtqpoldaecg2ym9ls.webp",
-  },
-  {
-    numero:7,
-    name: "Consejo Municipal de Juventud",
-    capa: "Nodo Suarez",
-    coords: [-76.698, 2.962],
-    angle: 105,
-    image:"https://res.cloudinary.com/dvluvxfvn/image/upload/v1761186247/geoImages/ul3u7hmi5jzvmwgars7z.webp",
   }
 
 ];

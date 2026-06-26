@@ -1,7 +1,7 @@
 /* --- MARCADORES --- */
 .map-marker-wrapper {
   position: relative;
-  width: 38px;
+  width: 2.47vw;
   aspect-ratio: 1;
   display: flex;
   align-items: center;
