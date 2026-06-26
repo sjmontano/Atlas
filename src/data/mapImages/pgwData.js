@@ -32,13 +32,14 @@ const pgwData = {
     12.878607862918,
   ],
   fomasDelPaisaje: [
-    // PGW estándar. Convertido 90° horario. W_portrait=3389
+    // PGW estándar. Convertido 90° horario. F calibrado (desplazamiento sur).
+    // W_portrait=3389, H_portrait=6035
     0.002102102561,
     0.000000000000,
     0.000000000000,
     -0.002101779729,
     -79.131272642526,
-    7.117096885075,
+    12.647097,
   ],
   ecosistemas: [
     // PGW estándar. Convertido 90° horario. W_portrait=5848
@@ -47,7 +48,7 @@ const pgwData = {
     0.000000000000,
     -(0.000231853160 * rangoEcosistemas),
     -77.717574036785,
-    1.505615411172 + (0.000231853160 * rangoEcosistemas) * 5848,
+    3.592615411172 + (0.000231853160 * rangoEcosistemas) * 5848,
   ],
 
   tejidosDelAgua: [
