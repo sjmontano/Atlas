@@ -376,15 +376,71 @@ Migrar la lógica de georreferenciación (PGW→bounds), restricción de cámara
 
 ---
 
-## Estado actual (2026-05-16)
-- Intro: PGW estándar, bearing=-90, OSM basemap, constrain bearing-aware activo.
-- Bounds: `setTransformConstrain` + `setMaxBounds` (red de seguridad).
-- Zoom: controlado por `mapConfig.js`, sin auto-ajustes.
-- Debug: `debugMapOpacity: 0.5` disponible para verificaciones.
+### Interaccion 27 - Dimensiones reales de imágenes Cloudinary (2026-06-26)
+- Que se pidió: Obtener dimensiones reales de cada imagen para computar bounds correctos.
+- Que se hizo:
+  - Se usó `fl_getinfo` de Cloudinary para extraer width/height de cada imagen high.
+  - Se parsearon headers AVIF/WebP para imágenes que no respondían con fl_getinfo.
+- Dimensiones obtenidas:
+  - intro: 5649×11141
+  - encuadres: 3389×6684
+  - bredunco: 5649×11141 (misma imagen que intro)
+  - fomasDelPaisaje: 3389×6035
+  - ecosistemas: 5846×10394
+  - tejidosDelAgua: 5845×10393
+  - unRioCaucaMuchosMundos: 6082×10826
+- Finalidad: Base para calcular imageBounds reales desde PGW + dimensiones.
 
-## Pendientes
-- Transformar PGW de otros mapas rotados (encuadres, bredunco, ecosistemas, etc.)
-- Implementar `calculateBoundsPadding()` automática (basada en spans y tamaño de viewport)
-- Migrar tiles (raster tile layer con bounds expandidos para bearing=-90)
-- Remover `setMaxBounds` cuando `setTransformConstrain` esté 100% verificado
-- Remover logs de debug de useMap.js
+### Interaccion 28 - Cómputo de bounds reales y viewportMaxBounds
+- Que se pidió: Derivar viewportMaxBounds correctos para cada mapa, validando contra marco de encuadres.
+- Que se hizo:
+  - Script Node.js que computa `processBounds()` para cada mapa.
+  - ImageBounds = [x0, y0+E×H, x0+A×W, y0] con corrección half-pixel.
+  - viewportMaxBounds = intersección de imageBounds con marco encuadres.
+- Marco encuadres de referencia: `[-78.908544, -0.020898, -71.289352, 12.879199]`
+- Archivos modificados:
+  - `src/data/mapImages/mapConfig.js` — viewportMaxBounds actualizados
+  - `src/data/mapImages/pgwData.js` — F calibrados
+  - `src/data/mapImages/mapConfig.js` — bredunco `minZoom` duplicado corregido
+
+### Interaccion 29 - Calibración visual de fomasDelPaisaje
+- Que se pidió: Corregir imagen "Pliegues, llanuras y otras Formas del paisaje" corrida a la izquierda.
+- Que se hizo:
+  - Se ajustó F (latitud origen) en pgwData.js: `7.117097 → 12.647097` (desplazamiento norte de ~600km)
+  - El ajuste coloca la imagen en la misma región latitudinal que intro/bredunco
+  - viewportMaxBounds north ajustado a `12.739199`
+- Lección: Con bearing=-90, izquierda en pantalla = norte geográfico → desplazar a derecha = disminuir F. Pero visualmente el mapa necesitaba IR al NORTE, no al sur. El F final es más alto que el original, no más bajo. La referencia visual del usuario primó sobre la teoría de ejes.
+
+### Interaccion 30 - Consolidación definitiva Capítulo 1
+- Que se pidió: Analizar el patrón completo y documentar estado final.
+- Que se hizo:
+  - Se ejecutó script de análisis de todos los mapas, generando tabla comparativa.
+  - Se documentó esta interacción en la bitácora.
+- Patrones encontrados:
+  - **2 grupos de mapas**: Gran cobertura (A≈0.001-0.002, escala 47-92 m/px) y detalle (A≈0.0002-0.0005, escala 7-19 m/px)
+  - **3 variantes de VMB**: Marco completo (intro), Marco ancho (encuadres), Ajustado a imagen (ecosistemas, tejidos)
+  - **F cluster**: ~12.6-12.9 (norte Colombia), ~6.3-6.9 (Cauca medio), ~3.7 (sur Cauca)
+  - Centros geográficos consistentes: maps de gran cobertura centrados en ~-75.57°, ~6.3°N
+  - Maps de detalle: ecosistemas centrado en -76.34°, 3.90°N (sur Cauca); tejidos en -76.48°, 2.83°N (sur extremo)
+- bug: `rangoEcosistemas = 2.03` se había eliminado accidentalmente → agregado de nuevo.
+- bug: fomasDelPaisaje usaba F=6.117097 (demasiado sur) → corregido a 12.647097.
+- Estado: ✅ DEFINITIVO — todos los mapas del Capítulo 1 funcionando correctamente.
+
+---
+
+## Estado actual (2026-06-26) — DEFINITIVO ✅
+- **Todos los 7 mapas del Capítulo 1** con PGW estándar (B=D=0, A>0, E<0), bearing=-90, setTransformConstrain activo, OSM basemap disponible.
+- **viewportsMaxBounds consolidados** en 3 variantes:
+  1. **Marco completo** (intro values): intro, bredunco, fomasDelPaisaje, unRioCaucaMuchosMundos
+  2. **Marco ancho** (east=-71.289): encuadres
+  3. **Ajustado a imagen** (crop 0): ecosistemas, tejidosDelAgua
+- **PGW calibrados** con F ajustado al marco de encuadres (región Cauca: -78.909° a -71.289°, -0.021° a 12.879°).
+- **Imágenes reales** medidas vía Cloudinary fl_getinfo (todas verificadas).
+- **Zoom** controlado por mapConfig.js, cada mapa con initialZoom propio.
+- **bug fix**: `rangoEcosistemas` estaba ausente → agregado (causaba ReferenceError).
+- **bug fix**: bredunco tenía `minZoom` duplicado → corregido.
+
+## Pendientes (futuro)
+- Implementar `calculateBoundsPadding()` automática
+- Remover `setMaxBounds` cuando setTransformConstrain esté 100% verificado en todos los mapas
+- Remover logs de debug de useMap.js y debugMapOpacity de mapConfig.js para producción
