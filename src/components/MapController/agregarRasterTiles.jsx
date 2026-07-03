@@ -16,9 +16,18 @@ const agregarRasterTiles = async (map, rasterTiles) => {
 
     const bounds = capaData.imageBounds;
 
-    // Eliminar capa y fuente si existen
+    // Usar imageCoordinates (esquinas reales transformadas) si están disponibles,
+    // para respetar rotación del PGW. Fallback a bounds axis-aligned.
 
-    
+    const coordinates = Array.isArray(capaData.imageCoordinates) && capaData.imageCoordinates.length === 4
+      ? capaData.imageCoordinates
+      : [
+          [bounds[0][0], bounds[1][1]],
+          [bounds[1][0], bounds[1][1]],
+          [bounds[1][0], bounds[0][1]],
+          [bounds[0][0], bounds[0][1]],
+        ];
+
     if (capa.id && map.getLayer(capa.id)) {
       map.removeLayer(capa.id);
     }
@@ -31,12 +40,7 @@ const agregarRasterTiles = async (map, rasterTiles) => {
     map.addSource(capa.sourceId, {
       type: "image",
       url: capa.url,
-      coordinates: [
-        [bounds[0][0], bounds[1][1]],
-        [bounds[1][0] , bounds[1][1]],
-        [bounds[1][0], bounds[0][1]],
-        [bounds[0][0], bounds[0][1]],
-      ],
+      coordinates,
     });
 
     // Agregar capa raster
