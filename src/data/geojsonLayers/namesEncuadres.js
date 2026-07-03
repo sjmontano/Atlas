@@ -5,7 +5,7 @@ const names = [
     texto: "Mosaico de <br>cuencas y aguas",
   },
   {
-    coords:[-78.095, 9.25],
+    coords: [-78.095, 9.25],
     texto: "Bredunco, Caucayaco o <br>Cauca en la vertiente del Caribe",
   },
   {
@@ -17,7 +17,7 @@ const names = [
     texto: "Existencias y transformaciones ecosistémicas",
   },
   {
-    coords:[-67.14, 1.69],
+    coords: [-69.5, 2.2],
     texto: "Un río Cauca, muchos mundos... <br>en transición",
   },
 
