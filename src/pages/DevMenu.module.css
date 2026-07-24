@@ -1,0 +1,63 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.title {
+  font-size: var(--text-xl);
+  color: var(--primary-blue);
+  margin-bottom: var(--space-xs);
+}
+
+.subtitle {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-lg);
+}
+
+.chapter {
+  margin-bottom: var(--space-lg);
+}
+
+.chapterTitle {
+  font-size: var(--text-base);
+  color: var(--primary-green);
+  margin-bottom: var(--space-sm);
+  padding-bottom: var(--space-xs);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-sm);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.card:hover {
+  background: rgba(5, 153, 183, 0.15);
+  border-color: var(--primary-blue);
+}
+
+.mapId {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.mapTitle {
+  font-size: var(--text-sm);
+}
