@@ -22,6 +22,9 @@ export const CHAPTERS = [
       { mapId: 'chapter2-suarez', title: 'Suárez' },
       { mapId: 'chapter2-cali', title: 'Oriente de Cali' },
       { mapId: 'chapter2-villa-rica', title: 'Villa Rica' },
+      { mapId: 'chapter2-m-oriente-cali', title: 'Oriente de Cali (M)' },
+      { mapId: 'chapter2-m-villa-rica', title: 'Villa Rica (M)' },
+      { mapId: 'chapter2-m-suarez', title: 'Suárez (M)' },
     ],
   },
   {

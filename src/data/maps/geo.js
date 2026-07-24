@@ -1,36 +1,10 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// GEO — Datos geográficos de mapas (PGW + dimensiones)
-// ─────────────────────────────────────────────────────────────────────────────
-//
-// FUENTE DE VERDAD para georreferenciación.
-//
-// PGW en formato ROTADO original de v17:
-//   [A, D, B, E, C, F] donde A=0, E=0, D≠0, B≠0
-//
-//   Con PGW rotado:
-//     lng = B·row + C   (la longitud depende de la FILA del píxel)
-//     lat = D·col + F   (la latitud depende de la COLUMNA del píxel)
-//
-//   La imagen tiene el norte geográfico "a la derecha".
-//   MapLibre la alinea con bearing: -90 (rotación del viewport, no de datos).
-//
-// DIMENSIONES: portrait ORIGINALES (width < height), medidas vía Cloudinary
-// fl_getinfo (bitácora Interacción 27). NO usar las landscape rotadas de
-// atlasMapData.ts de 3.0 — esas corresponden a imágenes rotadas con GDAL.
-//
-// C/F son el CENTRO del píxel (0,0), no la esquina. BoundsCalculator aplica
-// la corrección half-pixel automáticamente.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const MAP_GEO = {
-  // ─── Intro ─────────────────────────────────────────────────────────────
   intro: {
     pgw: [0, 0.001181998411, 0.001182047579, 0, -78.907953240108, -0.290036434033],
     width: 5649,
     height: 11141,
   },
 
-  // ─── Capítulo 1 ────────────────────────────────────────────────────────
   'chapter1-encuadres': {
     pgw: [0, 0.002291904891, 0.002292263474, 0, -79.441458743296, -1.354624163443],
     width: 3389,
@@ -38,7 +12,6 @@ export const MAP_GEO = {
   },
 
   'chapter1-ecosistemas': {
-    // v17: D/B base × rangoEcosistemas (2.03) — valores ya multiplicados
     pgw: [0, 0.0004706619148, 0.0004706895898, 0, -77.717574036785, 1.505615411172],
     width: 5846,
     height: 10394,
@@ -66,5 +39,149 @@ export const MAP_GEO = {
     pgw: [0, 0.001232510189, 0.001232559561, 0, -79.451453386908, -0.584715652220],
     width: 6082,
     height: 10826,
+  },
+
+  'chapter2-valle': {
+    pgw: [0, 0.000328128994, 0.000328152382, 0, -77.548017107743, 1.870309514817],
+    width: 1754,
+    height: 3118,
+  },
+
+  'chapter2-suarez': {
+    pgw: [0, 0.0000220378935, 0.000022038657, 0, -76.771441329681, 2.758437617084],
+    width: 6300,
+    height: 11200,
+  },
+
+  'chapter2-cali': {
+    pgw: [0, 0.000015918409, 0.000015918925, 0, -76.533768208220, 3.348181582808],
+    width: 4960,
+    height: 8822,
+  },
+
+  'chapter2-villa-rica': {
+    pgw: [0, 0.000055581180, 0.000055587544, 0, -76.549878031544, 2.974893043424],
+    width: 4960,
+    height: 8818,
+  },
+
+  'chapter2-m-oriente-cali': {
+    pgw: [0, 0.000600802103, 0.000600804878, 0, -79.061542883750, 1.452291939426],
+    width: 4921,
+    height: 8661,
+  },
+
+  'chapter2-m-villa-rica': {
+    pgw: [0, 0.000036518263, 0.000036520866, 0, -76.537247333922, 2.967564078024],
+    width: 3508,
+    height: 6236,
+  },
+
+  'chapter2-m-suarez': {
+    pgw: [0, 0.000079124151, 0.000079131596, 0, -76.326626783196, 2.698352784653],
+    width: 1329,
+    height: 2362,
+  },
+
+  'chapter3-introduccion': {
+    pgw: [0, 0.000239511553, 0.000239528625, 0, -77.387345555000, 2.198599777777],
+    width: 1754,
+    height: 3118,
+  },
+
+  'chapter3-monocultivo': {
+    pgw: [0, 0.000307843615, 0.0003078655575, 0, -76.939551386912, 2.497068728525],
+    width: 2806,
+    height: 4989,
+  },
+
+  'chapter3-encharcaron': {
+    pgw: [0, 0.000035559180, 0.000035560332, 0, -76.801058760121, 2.743972429392],
+    width: 4960,
+    height: 8822,
+  },
+
+  'chapter3-cali-deseca': {
+    pgw: [0, 0.000065247158, 0.000065249271, 0, -76.744923302940, 3.108582581431],
+    width: 4960,
+    height: 8822,
+  },
+
+  'chapter3-humedales': {
+    pgw: [0.000045062232, 0.000247614932, 0.000247615558, -0.000045062346, -77.374311108763, 2.939066887422],
+    width: 2559,
+    height: 4557,
+  },
+
+  'chapter3-arcilla': {
+    pgw: [0, 0.000020719422, 0.000020719464, 0, -76.462515214762, 3.159866654268],
+    width: 1969,
+    height: 3500,
+  },
+
+  'chapter4-introduccion': {
+    pgw: [0, 0.000105655592, 0.000105661672, 0, -76.847071012304, 2.747088048609],
+    width: 2938,
+    height: 3304,
+  },
+
+  'chapter4-asoyoge': {
+    pgw: [0, 0.000000506536, 0.000000506572, 0, -76.684872187963, 2.935823099203],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-el-buhido': {
+    pgw: [0, 0.000000316606, 0.000000316628, 0, -76.683480669945, 2.941142661121],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-bosque-comestible': {
+    pgw: [0, 0.000003502344, 0.000003502596, 0, -76.493310517943, 3.436209577738],
+    width: 1754,
+    height: 2482,
+  },
+
+  'chapter4-los-bajios': {
+    pgw: [0, 0.000000198448, 0.000000198462, 0, -76.440746853991, 3.191915474352],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-el-paso': {
+    pgw: [0, 0.000000490819, 0.000000490854, 0, -76.672701593938, 2.954357565787],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-las-mercedes': {
+    pgw: [0, 0.000000237423, 0.000000237440, 0, -76.686255595443, 2.929905948165],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-la-virginia': {
+    pgw: [0, 0.000000238227, 0.000000238244, 0, -76.290182678552, 3.224314692774],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-centro-agropecuario': {
+    pgw: [0, 0.000000515928, 0.000000515965, 0, -76.431442736216, 3.183919659299],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-la-caicedo': {
+    pgw: [0, 0.000000317488, 0.000000317511, 0, -76.428345083992, 3.183675940229],
+    width: 7015,
+    height: 9929,
+  },
+
+  'chapter4-problematicas': {
+    pgw: [0.000002068153, 0.000001194048, 0.000001194087, -0.000002068220, -76.502131435663, 3.432317001490],
+    width: 4960,
+    height: 7016,
   },
 }

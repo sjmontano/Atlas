@@ -1,16 +1,4 @@
-// ─────────────────────────────────────────────────────────────────────────────
-// CONFIGS — Configuración de cámara e interacción por mapa
-// ─────────────────────────────────────────────────────────────────────────────
-//
-//   initialBearing: -90  → rota el viewport para alinear el PGW rotado.
-//   useTransformConstrain → solo en mapas interactivos. En mapas bloqueados
-//                           (vista fija) no hay nada que restringir, y el
-//                           minZoom del constrain (dependiente del canvas)
-//                           podría recortar la imagen.
-// ─────────────────────────────────────────────────────────────────────────────
-
 export const MAP_CONFIGS = {
-  // ─── Mapas BLOQUEADOS (vista fija, sin pan ni zoom) ──────────────────────
   intro: {
     initialZoom: 6.39,
     minZoom: 6.39,
@@ -33,7 +21,6 @@ export const MAP_CONFIGS = {
     scrollZoom: false,
   },
 
-  // ─── Mapas INTERACTIVOS (pan + zoom habilitados) ─────────────────────────
   'chapter1-ecosistemas': {
     initialZoom: 6.4,
     minZoom: 6.4,
@@ -82,6 +69,270 @@ export const MAP_CONFIGS = {
     initialZoom: 6.5,
     minZoom: 6.5,
     maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-valle': {
+    initialZoom: 7.5,
+    minZoom: 7.5,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-suarez': {
+    initialZoom: 7,
+    minZoom: 7,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-cali': {
+    initialZoom: 7,
+    minZoom: 7,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-villa-rica': {
+    initialZoom: 7.5,
+    minZoom: 7.5,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-m-oriente-cali': {
+    initialZoom: 5.5,
+    minZoom: 5.5,
+    maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-m-villa-rica': {
+    initialZoom: 8.5,
+    minZoom: 8.5,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter2-m-suarez': {
+    initialZoom: 9,
+    minZoom: 9,
+    maxZoom: 12,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-introduccion': {
+    initialZoom: 7.5,
+    minZoom: 7.5,
+    maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-monocultivo': {
+    initialZoom: 7.5,
+    minZoom: 7.5,
+    maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-encharcaron': {
+    initialZoom: 7,
+    minZoom: 7,
+    maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-cali-deseca': {
+    initialZoom: 7,
+    minZoom: 7,
+    maxZoom: 10,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-humedales': {
+    initialZoom: 8,
+    minZoom: 8,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter3-arcilla': {
+    initialZoom: 9,
+    minZoom: 9,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-introduccion': {
+    initialZoom: 8,
+    minZoom: 8,
+    maxZoom: 11,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-asoyoge': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-el-buhido': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-bosque-comestible': {
+    initialZoom: 12,
+    minZoom: 12,
+    maxZoom: 15,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-los-bajios': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-el-paso': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-las-mercedes': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-la-virginia': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-centro-agropecuario': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-la-caicedo': {
+    initialZoom: 11,
+    minZoom: 11,
+    maxZoom: 14,
+    initialBearing: -90,
+    useTransformConstrain: true,
+    viewportMaxBounds: null,
+    dragPan: true,
+    scrollZoom: true,
+  },
+
+  'chapter4-problematicas': {
+    initialZoom: 10,
+    minZoom: 10,
+    maxZoom: 13,
     initialBearing: -90,
     useTransformConstrain: true,
     viewportMaxBounds: null,
