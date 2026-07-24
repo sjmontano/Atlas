@@ -440,7 +440,95 @@ Migrar la lógica de georreferenciación (PGW→bounds), restricción de cámara
 - **bug fix**: `rangoEcosistemas` estaba ausente → agregado (causaba ReferenceError).
 - **bug fix**: bredunco tenía `minZoom` duplicado → corregido.
 
+---
+ 
+### Interacción 31 - Transformación PGW sub‑capas raster: rotado → estándar (2026-07-03)
+- **Qué se pidió:** Sub‑capas raster tiles de ecosistemas (29), tejidosDelAgua (18) y unRioCauca (7) no se alineaban con su mapa base — estaban en formato PGW rotado.
+- **Qué se hizo:**
+  - Se transformaron ~54 entradas PGW de **rotado** (A=0, B≠0, D≠0, E=0) a **estándar** (A>0, E<0, B=D=0) con:
+    - `A_new = D_old`, `E_new = -B_old`
+    - `C_new = C_old`
+    - `F_new = F_old + B_old × W_image`
+  - `agregarRasterTiles.jsx` modificado para usar `capaData.imageCoordinates` (4 esquinas affine‑transformadas) en vez de `imageBounds` axis‑aligned.
+  - Dimensiones de imágenes obtenidas vía Cloudinary `fl_getinfo`:
+    - ecosistemas/tejidos sub‑capas: **1462×2599 px**
+    - unRioCauca sub‑capas: **1521×2707 px** (no usado, sub‑capas usan A/E del mapa base)
+- **Archivos modificados:**
+  - `src/data/mapImages/pgwData.js` — ~54 entradas transformadas a PGW estándar
+  - `src/components/MapController/agregarRasterTiles.jsx` — usa `imageCoordinates`
+- **Patrón descubierto:** Sub‑capas heredan el marco geográfico del grupo pero pueden tener A/E y C/F ajustados independientemente. La transformación es determinista: solo depende de B_old, D_old, y el ancho de la imagen.
+
+### Interacción 32 - Calibración C/F de sub‑capas por grupo (2026-07-03)
+- **Qué se pidió:** Ajustar C/F de cada grupo de sub‑capas para coincidencia visual.
+- **Qué se hizo:**
+  - **Ecosistemas (29 capas):** `C = -77.623835248587`, `F_base = 5.49530180558 + (0.000217454076 × rangoEcosistemas) × 1462`
+    - `rangoEcosistemas = 2.03` (multiplicador de escala, re‑agregado tras eliminación accidental)
+  - **Tejidos del Agua (18 capas):** `C = -76.968456199726` (mismo que mapa base), `F_base = 3.451908918459 + (0.000083191365 × rangoTejidosDelAgua) × 1462`
+    - `rangoTejidosDelAgua = 2`
+  - **Un Río Cauca (7 capas):** Valores originales erróneos (`C=-79.63, F=5.09`). Reemplazados con PGW del mapa base como referencia:
+    - Se copiaron valores de `bredunco` inicialmente, luego se calibró `C=-79.45795, F=12.71141` para el mapa base
+    - Sub‑capas: `A/E = 0.00123256 × 0.957 = 0.00117956` (reducción 4.3%), `C=-79.25795, F=12.11141`
+    - `aguasSuperficiales` mantiene C/F propios (`-79.28795 / 12.16541`)
+- **Lección general:** Sub‑capas no deben asumir A/E idénticos al mapa base. La relación es: `A_sub = A_main × factor_escala`, `C_sub = C_main + Δ_lon`, `F_sub = F_main + Δ_lat`. Cada grupo tiene su propio factor y offset determinados por el área que cubre la sub‑capa individual.
+- **Archivos modificados:**
+  - `src/data/mapImages/pgwData.js` — C/F calibrados para los 3 grupos
+
+### Interacción 33 - Popup encuadre invisible + calibración final unRioCauca (2026-07-03)
+- **Qué se pidió:** Popup de "Un río Cauca, muchos mundos..." no visible en mapa de encuadres. Mapa base desalineado.
+- **Qué se hizo:**
+  - **Popup:** `namesEncuadres.js:21` coordenadas `[-67.14, 1.69]` (Amazonas) → `[-76.0, 5.0]` (centro cuenca Cauca).
+  - **Mapa base `unRioCaucaMuchosMundos`:** PGW original `C=-79.45145, F=6.91141` → calibrado a `C=-79.45795, F=12.71141`. A/E se mantuvieron originales (`0.00123256 / -0.00123251`).
+  - **7 sub‑capas unRioCauca:** Unificadas con los valores del mapa base, luego A/E reducidos al 95.7%. C/F ajustados a `-79.25795 / 12.11141`.
+  - `mapConfig.js`: `debugMapOpacity` cambiado de `0.5` a `1` en mapas verificados. `unRioCaucaMuchosMundos` viewport extendido a bounds completos del marco maestro.
+- **Archivos modificados:**
+  - `src/data/geojsonLayers/namesEncuadres.js`
+  - `src/data/mapImages/pgwData.js`
+  - `src/data/mapImages/mapConfig.js`
+
+---
+
+## Estado actual (2026-07-03) — DEFINITIVO ✅
+- **Capítulo 1 completo:** 7 mapas base + ~54 sub‑capas raster calibradas y alineadas.
+- **PGW estandarizado:** Todas las entradas en formato `[A,0,0,E,C,F]` (B=D=0), sin skew.
+- **Patrón de sub‑capas documentado:** Cada grupo define A/E/C/F propios, relacionados al mapa base por factor de escala y offset.
+- **setTransformConstrain activo** en todos los mapas con bearing=-90.
+- **bug fixes:** `rangoEcosistemas` re‑agregado, bredunco `minZoom` duplicado corregido, popup encuadre en Amazonas corregido.
+
+---
+
+### Interacción 34 - Masivo: transformación PGW Ch2-4 (rotado→estándar) + mapConfig (2026-07-15)
+- **Qué se pidió:** Extender calibración PGW a todos los mapas de Capítulos 2, 3 y 4 (~31 mapas). bearing=-90 unificado, PGW mixto convertido a estándar, viewport bounds por mapa.
+- **Decisiones del usuario:**
+  - bearing=-90 unificado para todos los mapas
+  - PGW mixto (humedalesCap3, problematicas, humedalesCapa1970) convertir a estándar
+  - viewportMaxBounds por mapa (per-map imageBounds)
+- **Qué se hizo:**
+  - Se obtuvieron dimensiones reales de ~31 imágenes vía Cloudinary `fl_getinfo`
+  - Todas las imágenes: formato portrait (W<H), PGW con rotación 90° horaria (A=0, E=0)
+  - Transformación aplicada: `A_new=D_old, E_new=-B_old, F_new=F_old+B_old×W_portrait`
+  - Mapas PGW mixtos tratados con misma fórmula (rotación dominante)
+  - `mapConfig.js`: 31 mapas actualizados con `initialBearing:-90, useTransformConstrain:true, viewportMaxBounds` por mapa
+  - Ch4 zoom extremo (17.4-18.4): bounds muy ajustados (±0.003°-0.005°)
+- **Archivos modificados:**
+  - `src/data/mapImages/pgwData.js` — ~28 entradas transformadas de rotado a estándar
+  - `src/data/mapImages/mapConfig.js` — 31 mapas con config bearing-aware
+- **Dimensiones de imágenes Cloudinary obtenidas:**
+  - Ch2: TNAT(1754×3118), ASuarez(6300×11200), VDOriente(4960×8822), AVillaRica(4960×8818), MOriente(4921×8661), MVillaRica(3508×6236*), MSuarez(1329×2362)
+  - Ch3: introCap3(1754×3118), monocultivo(2806×4989), nosEncharcaron(4960×8822), arcilla(1969×3500), humedalesCap3(2559×4557), caliDeseca(4960×8822)
+  - Ch4: introCap4(2938×5223), asoyoge(7015×12472), elBuhido(7015×12472), bosqueComestible(1754×3118), losBajios/elPaso/lasMercedes/laVirginia/centroAgropecuario/laCaicedo(7015×12472), problematicas(4960×8822)
+  - Cross: suarez1970(4960×8822), cali1937/agua(4960×8822), humedalesCapa1970(5118×9114), enExplotacion/Reanatualizacion/Rellenados(3937×7000)
+  - *MVillaRica: dimensión de medium (high-res no accesible, 400 error)
+- **Riesgos/pendientes:**
+  - MVillaRica F calculado con W=3508 (medium) — verificar si coincide con PGW de alta resolución
+  - humedalesCap3 vs humedalesCapa1970: mismo PGW original pero dimensiones diferentes (2559 vs 5118) → F distintos (3.57 vs 4.21). Si deben cubrir misma área geográfica, ajustar A/E proporcionalmente.
+  - viewportMaxBounds son estimaciones iniciales — requieren calibración visual
+  - `humedalesCapa1970` tiene dimensiones 5118×9114 = 2× humedalesCap3 (2559×4557). PGW convertido con W=5118 → F=4.206. Si es misma imagen a 2× resolución, A/E deberían ser mitad (0.0001238) y F distinto.
+
+---
 ## Pendientes (futuro)
-- Implementar `calculateBoundsPadding()` automática
+- Simplificar expresiones `+ B×W` en F de ecosistemas/tejidos a números fijos pre‑calculados (facilita calibración manual)
 - Remover `setMaxBounds` cuando setTransformConstrain esté 100% verificado en todos los mapas
 - Remover logs de debug de useMap.js y debugMapOpacity de mapConfig.js para producción
+- Calibración visual de Ch2-4 (verificar que todos los mapas se vean correctamente con bearing=-90)
+- Revisar dimensión de MVillaRica (high-res no accesible) y ajustar F si es necesario
+- Decidir si humedalesCap3 y humedalesCapa1970 deben tener misma cobertura geográfica (misma imagen con diferente resolución) → ajustar A/E proporcionalmente

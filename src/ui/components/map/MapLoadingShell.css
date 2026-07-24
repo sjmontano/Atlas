@@ -6,7 +6,7 @@
   position: absolute;
   inset: 0;
   z-index: 10;
-  background-color: #12181f;
+  background-color: rgba(18, 24, 31, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -24,7 +24,7 @@ const resolveRequestedTilePath = (requestUrl: string): string | null => {
 
 const tileCacheHeadersPlugin = {
   name: "atlas-tile-cache-headers",
-  configureServer(server: { middlewares: { use: (fn: (req: { url?: string }, res: { setHeader: (name: string, value: string) => void }, next: () => void) => void) => void } }) {
+  configureServer(server: { middlewares: { use: (fn: (req: { url?: string }, res: { statusCode?: number; setHeader: (name: string, value: string) => void; end: (data: string) => void }, next: () => void) => void) => void } }) {
     server.middlewares.use((req, res, next) => {
       const tilePath = req.url ? resolveRequestedTilePath(req.url) : null;
       if (tilePath) {
@@ -40,7 +40,7 @@ const tileCacheHeadersPlugin = {
       next();
     });
   },
-  configurePreviewServer(server: { middlewares: { use: (fn: (req: { url?: string }, res: { setHeader: (name: string, value: string) => void }, next: () => void) => void) => void } }) {
+  configurePreviewServer(server: { middlewares: { use: (fn: (req: { url?: string }, res: { statusCode?: number; setHeader: (name: string, value: string) => void; end: (data: string) => void }, next: () => void) => void) => void } }) {
     server.middlewares.use((req, res, next) => {
       if (req.url && TILE_WEBP_PATH.test(req.url)) {
         res.setHeader("Cache-Control", "public, max-age=31536000, immutable");

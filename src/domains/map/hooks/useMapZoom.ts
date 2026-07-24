@@ -40,8 +40,10 @@ export function useMapZoom(
 ): UseMapZoomResult {
   const { bounds, center, settings, enabled } = options;
 
-  // Inicializar con 0 — el efecto calculará el valor correcto una vez montado
-  const [zoom, setZoom] = useState<number>(0);
+  // Inicializar con initialZoom si autoBounds=false, o con 0 si auto-cálculo activo
+  const [zoom, setZoom] = useState<number>(
+    enabled ? 0 : settings.initialZoom,
+  );
 
   // Refs para evitar stale closure en ResizeObserver
   const boundsRef = useRef(bounds);

@@ -8,25 +8,16 @@
  * REGLA: Este store puede llamar a useMapStore.getState() y
  * useLayersStore.getState() para orquestar —
  * los dominios no se llaman entre sí, los stores sí.
+ *
+ * IMPORTANTE: Los mapas se derivan de chaptersData.ts.
+ * NO duplicar CHAPTER_MAPS aquí; usa getChapterMapIds().
  */
 
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+import { getChapterMapIds } from "@chapters/data/chaptersData";
 import { useLayersStore } from "./layersStore";
 import { useMapStore } from "./mapStore";
-
-/** Los mapas de cada capítulo — se expande con chaptersData */
-const CHAPTER_MAPS: Record<number, string[]> = {
-  1: [
-    "chapter1-encuadres",
-    "chapter1-ecosistemas",
-    "chapter1-formas-paisaje",
-    "chapter1-bredunco",
-    "chapter1-mosaicos-del-agua",
-    "chapter1-un-rio-cauca",
-  ],
-  2: ["chapter2-valle", "chapter2-suarez"],
-};
 
 interface ChaptersStore {
   activeChapter: number;
@@ -43,10 +34,10 @@ export const useChaptersStore = create<ChaptersStore>()(
     (set) => ({
       activeChapter: 1,
       activeTerritory: null,
-      chapterMaps: CHAPTER_MAPS[1],
+      chapterMaps: getChapterMapIds(1),
 
       goToChapter: (chapter) => {
-        const maps = CHAPTER_MAPS[chapter] ?? [];
+        const maps = getChapterMapIds(chapter);
         set(
           { activeChapter: chapter, activeTerritory: null, chapterMaps: maps },
           false,
