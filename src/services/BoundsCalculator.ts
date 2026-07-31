@@ -8,9 +8,28 @@
  *   lng = A·col + B·row + C
  *   lat = D·col + E·row + F
  *
- * La fórmula es genérica: funciona con PGW estándar (B=D=0) y con PGW
- * rotado (A=E=0, B≠0, D≠0) sin conversión. Con PGW rotado la imagen tiene
- * el norte geográfico "a la derecha" y MapLibre la alinea con bearing −90.
+ * ESTRATEGIA DE CONVERSIÓN PGW — Auditoría 2026-07-30
+ * ===================================================
+ *
+ * PGW rotado (A=0, E=0, B≠0, D≠0):
+ *   Imagen de cartografía en orientación portrait física. Los ejes están
+ *   intercambiados respecto al espacio geográfico: columnas → latitud (D),
+ *   filas → longitud (B). MapLibre ImageSource NO puede interpretar este
+ *   formato correctamente porque espera coordenadas donde TL→TR sea un
+ *   paralelo (misma latitud), no una meridiana.
+ *
+ *   **Solución probada en v17**: convertir automáticamente a PGW estándar
+ *   (B=D=0) antes de calcular coordenadas. La conversión es 90° horario:
+ *     A_std = D       D_std = 0
+ *     B_std = 0       E_std = −B
+ *     C_std = C       F_std = F + B·H   (origen SW → NW)
+ *
+ *   Con PGW estándar + bearing=−90 en MapLibre, la imagen portrait se
+ *   alinea perfectamente con el basemap.
+ *
+ * PGW mixto (A≠0, E≠0, B≠0, D≠0):
+ *   PGW con componentes residuales de rotación. La fórmula afín genérica
+ *   maneja estos casos directamente sin conversión.
  *
  * C/F representan el CENTRO del píxel (0,0). Se aplica corrección
  * half-pixel para obtener la esquina real de la imagen.
@@ -49,20 +68,62 @@ function boundsFromCoordinates(coordinates: ImageCoordinates): GeographicBounds 
 }
 
 /**
+ * Detecta si un PGW está en formato rotado (ejes intercambiados).
+ * Condición: A ≈ 0, E ≈ 0, B ≠ 0, D ≠ 0.
+ */
+function isRotatedPGW(a: number, e: number, b: number, d: number): boolean {
+  const ε = 1e-10
+  return (
+    Math.abs(a) < ε &&
+    Math.abs(e) < ε &&
+    Math.abs(b) > ε &&
+    Math.abs(d) > ε
+  )
+}
+
+/**
+ * Convierte PGW rotado (A=0, E=0) a PGW estándar (B=0, D=0).
+ *
+ * Los PGW rotados provienen de imágenes portrait donde las columnas
+ * mapean a latitud y las filas a longitud. MapLibre ImageSource espera
+ * coordenadas en orden [NW, NE, SE, SW] con el borde superior paralelo
+ * a un paralelo. Esta conversión rota el PGW 90° horario:
+ *
+ *   A_std = D       B_std = 0       C_std = C
+ *   D_std = 0       E_std = −B      F_std = F + B·H
+ *
+ * F_std desplaza el origen de la esquina SW a la esquina NW.
+ *
+ * @param pgw - PGW rotado [0, D, B, 0, C, F]
+ * @param height - Alto de la imagen en píxeles
+ * @returns PGW estándar [A, 0, 0, E, C, F_nw]
+ */
+function convertRotatedPGW(
+  pgw: PGWData,
+  height: number,
+): PGWData {
+  const [, d, b, , c, f] = pgw
+  return [d, 0, 0, -b, c, f + b * height]
+}
+
+/**
  * Calcula las 4 esquinas geográficas de la imagen en orden MapLibre
  * [top-left, top-right, bottom-right, bottom-left].
  *
- * @param pgwData - Array PGW [A, D, B, E, C, F]
- * @param width - Ancho de la imagen en píxeles (portrait original)
- * @param height - Alto de la imagen en píxeles (portrait original)
+ * Recibe PGW estándar (B=0, D=0) — la conversión desde PGW rotado
+ * ocurre en processBounds() antes de llamar a esta función.
+ *
+ * @param pgwData - PGW estándar [A, 0, 0, E, C, F] con F en esquina NW
+ * @param width - Ancho de la imagen en píxeles
+ * @param height - Alto de la imagen en píxeles
  *
  * @example
- * // PGW rotado del mapa intro:
+ * // PGW estándar del mapa intro:
  * calculateImageCoordinates(
- *   [0, 0.001181998411, 0.001182047579, 0, -78.907953, -0.290036],
+ *   [0.001182, 0, 0, -0.001182, -78.908, 12.880],
  *   5649, 11141
  * )
- * // TL ≈ [-78.9085, -0.2906]  BR ≈ [-65.7393, 6.3865]
+ * // TL ≈ [-78.9085, 12.880]  BR ≈ [-72.231, -0.290]
  */
 export function calculateImageCoordinates(
   pgwData: PGWData,
@@ -71,7 +132,7 @@ export function calculateImageCoordinates(
 ): ImageCoordinates {
   const [a, d, b, e, c, f] = pgwData
 
-  // Centro del píxel (0,0) → esquina superior izquierda real
+  // Centro del píxel (0,0) → esquina superior izquierda real (NW)
   const x0 = c - 0.5 * a - 0.5 * b
   const y0 = f - 0.5 * d - 0.5 * e
 
@@ -143,13 +204,23 @@ export function expandBounds(
 
 /**
  * Procesa bounds completos: coordenadas + bounds + centro + validación.
+ *
+ * Si detecta PGW rotado (A=0, E=0), lo convierte automáticamente a
+ * PGW estándar antes de calcular coordenadas. Esto garantiza que
+ * MapLibre ImageSource reciba las 4 esquinas en orden [NW, NE, SE, SW]
+ * con el borde superior paralelo a un paralelo.
  */
 export function processBounds(
   pgwData: PGWData,
   width: number,
   height: number,
 ): BoundsResult {
-  const coordinates = calculateImageCoordinates(pgwData, width, height)
+  const [a, d, b, e] = pgwData
+  const effectivePGW = isRotatedPGW(a, e, b, d)
+    ? convertRotatedPGW(pgwData, height)
+    : pgwData
+
+  const coordinates = calculateImageCoordinates(effectivePGW, width, height)
   const bounds = boundsFromCoordinates(coordinates)
   const center = calculateCenter(bounds)
   const isValid = validateBounds(bounds)

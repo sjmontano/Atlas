@@ -1,32 +1,53 @@
-# React + TypeScript + Vite
+# Un Río Cauca, Muchos Mundos — Atlas Pluriversal
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Cartografía digital viva del Valle Alto del Río Cauca: 4 capítulos, 31 mapas y las voces de un territorio que se cuenta desde el agua. Memorias georreferenciadas que entrelazan saberes comunitarios, dinámicas socioambientales y datos espaciales.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+| Capa | Tecnología |
+|------|-----------|
+| Motor de mapas | [MapLibre GL JS](https://maplibre.org) 6.x — bearing −90, `setTransformConstrain` |
+| Frontend | React 19 + TypeScript strict + Vite |
+| Estado | Zustand 5 |
+| Routing | React Router 7 |
+| Animaciones | Framer Motion |
+| Tests | Vitest + jsdom + @testing-library |
+| Linter | oxlint |
 
-## React Compiler
+## Georreferenciación
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Los 31 mapas están calibrados con **world files (PGW) en formato rotado original** (A=0, E=0, B≠0, D≠0). La rotación la maneja MapLibre nativamente con `bearing: −90`, sin conversión de coordenadas en runtime ni rotación física de imágenes. El clamping del viewport usa `setTransformConstrain` (bearing-aware), nunca `setMaxBounds`.
 
-## Expanding the Oxlint configuration
+- PGW data: `src/data/maps/geo.js` (fuente de verdad)
+- Cálculo de bounds: `src/services/BoundsCalculator.ts` — fórmula afín con half-pixel correction
+- Constrain: `src/services/TransformConstrain.ts` — minZoom bearing-aware + clamp de centro
+- Renderer: `src/services/MapRenderer.ts` — ImageSource + pipeline georreferenciado
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Estructura
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```
+src/
+├── data/maps/       geo.js, configs.js, images.js  — datos de mapas
+├── data/chapters/   chapters.js                     — jerarquía de capítulos
+├── services/        BoundsCalculator, MapRenderer, TransformConstrain, BasemapManager
+├── stores/          mapStore, chapterStore, layerStore, uiStore
+├── hooks/           useMap.ts
+├── components/map/  AtlasMap.tsx, MapControls.tsx
+└── pages/           DevMenu, TestMapPage
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Scripts
+
+| Comando | Descripción |
+|---------|-------------|
+| `pnpm dev` | Servidor de desarrollo (Vite) |
+| `pnpm build` | TypeScript + build de producción |
+| `pnpm preview` | Previsualizar build |
+| `pnpm lint` | Lint con oxlint |
+| `pnpm test` | Tests con Vitest |
+| `pnpm test:watch` | Tests en modo watch |
+| `pnpm typecheck` | Verificar tipos TypeScript |
+
+## Licencia
+
+El código fuente está bajo licencia MIT. El contenido académico y artístico (mapas, textos, ilustraciones, audio, íconos) pertenece a sus autores y al equipo del Atlas Pluriversal — su uso requiere autorización.
