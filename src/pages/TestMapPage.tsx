@@ -1,7 +1,12 @@
 import { useParams, Link } from 'react-router-dom'
+import { useRef, useState } from 'react'
 import { getAllMaps } from '@data/chapters/chapters.js'
 import { AtlasMap } from '@components/map/AtlasMap.tsx'
+import { CalibrationPanel } from '@components/calibration/CalibrationPanel.tsx'
+import type { MapController } from '@services/MapRenderer'
 import styles from './TestMapPage.module.css'
+
+const ENABLE_DEV_TOOLS = import.meta.env.VITE_DEV_TOOLS === 'true'
 
 export function TestMapPage() {
   const { mapId } = useParams<{ mapId: string }>()
@@ -10,6 +15,9 @@ export function TestMapPage() {
   const currentMap = allMaps[currentIndex]
   const prevMap = currentIndex > 0 ? allMaps[currentIndex - 1] : null
   const nextMap = currentIndex < allMaps.length - 1 ? allMaps[currentIndex + 1] : null
+
+  const controllerRef = useRef<MapController | null>(null)
+  const [rebuildKey, setRebuildKey] = useState(0)
 
   if (!currentMap) {
     return (
@@ -31,7 +39,16 @@ export function TestMapPage() {
       </header>
 
       <div className={styles.mapArea}>
-        <AtlasMap key={currentMap.mapId} mapId={currentMap.mapId} />
+        <AtlasMap key={`${currentMap.mapId}-${rebuildKey}`} mapId={currentMap.mapId} controllerRef={controllerRef} />
+
+        {ENABLE_DEV_TOOLS && (
+          <CalibrationPanel
+            key={currentMap.mapId}
+            mapId={currentMap.mapId}
+            controllerRef={controllerRef}
+            onRebuild={() => setRebuildKey((k) => k + 1)}
+          />
+        )}
       </div>
 
       <nav className={styles.pagination}>

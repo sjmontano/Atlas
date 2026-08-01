@@ -14,7 +14,7 @@ import { useEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import type * as maplibregl from 'maplibre-gl'
 import { getMapEntry } from '@data/maps'
-import { buildGeoreferencedMap } from '@services/MapRenderer'
+import { buildGeoreferencedMap, type MapController } from '@services/MapRenderer'
 import { logger } from '@services/MapLogger'
 import { useMapStore } from '@stores/mapStore'
 
@@ -23,6 +23,7 @@ const CATEGORY = 'useMap'
 export interface UseMapOptions {
   mapId: string
   containerRef: RefObject<HTMLDivElement | null>
+  controllerRef?: RefObject<MapController | null>
 }
 
 export interface UseMapResult {
@@ -32,7 +33,7 @@ export interface UseMapResult {
   error: string | null
 }
 
-export function useMap({ mapId, containerRef }: UseMapOptions): UseMapResult {
+export function useMap({ mapId, containerRef, controllerRef }: UseMapOptions): UseMapResult {
   const mapRef = useRef<maplibregl.Map | null>(null)
   const [error, setError] = useState<string | null>(null)
 
@@ -68,6 +69,9 @@ export function useMap({ mapId, containerRef }: UseMapOptions): UseMapResult {
         }
         mapRef.current = result.map
         destroy = result.destroy
+        if (controllerRef) {
+          controllerRef.current = result.controller
+        }
         setMapBuilt(true)
         setLoading(false)
       })
@@ -84,6 +88,9 @@ export function useMap({ mapId, containerRef }: UseMapOptions): UseMapResult {
       cancelled = true
       destroy?.()
       mapRef.current = null
+      if (controllerRef) {
+        controllerRef.current = null
+      }
       setMapBuilt(false)
     }
     // containerRef es estable (ref de React); mapId dispara el rebuild

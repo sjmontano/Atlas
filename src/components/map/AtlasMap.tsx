@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react'
+import type { RefObject } from 'react'
 import { useMap } from '@hooks/useMap'
 import { useMapStore } from '@stores/mapStore'
 import { useUIStore } from '@stores/uiStore'
 import { addBasemap, removeBasemap, setImageOpacity } from '@services/BasemapManager'
+import type { MapController } from '@services/MapRenderer'
 import { MapControls } from './MapControls'
 import styles from './AtlasMap.module.css'
 
@@ -10,11 +12,12 @@ const ENABLE_DEV_TOOLS = import.meta.env.VITE_DEV_TOOLS === 'true'
 
 export interface AtlasMapProps {
   mapId: string
+  controllerRef?: RefObject<MapController | null>
 }
 
-export function AtlasMap({ mapId }: AtlasMapProps) {
+export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const { mapRef, error } = useMap({ mapId, containerRef })
+  const { mapRef, error } = useMap({ mapId, containerRef, controllerRef })
   const loading = useMapStore((s) => s.loading)
 
   const basemapVisible = useUIStore((s) => s.basemapVisible)

@@ -77,11 +77,11 @@ export const MAP_CONFIGS = {
   },
 
   'chapter2-valle': {
-    initialZoom: 7.5,
-    minZoom: 7.5,
+    initialZoom: 6,
+    minZoom: 6,
     maxZoom: 11,
     initialBearing: -90,
-    useTransformConstrain: true,
+    useTransformConstrain: false,
     viewportMaxBounds: null,
     dragPan: true,
     scrollZoom: true,
@@ -101,9 +101,9 @@ export const MAP_CONFIGS = {
   'chapter2-cali': {
     initialZoom: 7,
     minZoom: 7,
-    maxZoom: 11,
+    maxZoom: 16,
     initialBearing: -90,
-    useTransformConstrain: true,
+    useTransformConstrain: false,
     viewportMaxBounds: null,
     dragPan: true,
     scrollZoom: true,

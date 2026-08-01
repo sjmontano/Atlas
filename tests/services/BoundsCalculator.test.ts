@@ -92,14 +92,17 @@ describe('BoundsCalculator', () => {
   })
 
   describe('processBounds', () => {
-    it('procesa el mapa intro completo', () => {
+    it('procesa el mapa intro completo (convertido de rotado a estándar)', () => {
       const result = processBounds(INTRO.pgw, INTRO.width, INTRO.height)
 
       expect(result.isValid).toBe(true)
       expect(result.bounds[0]).toBeCloseTo(-78.9085, 3)
-      expect(result.bounds[3]).toBeCloseTo(6.3865, 3)
+      expect(result.bounds[1]).toBeCloseTo(-0.2894, 3)
+      expect(result.bounds[2]).toBeCloseTo(-72.2313, 3)
+      expect(result.bounds[3]).toBeCloseTo(12.8797, 3)
       expect(result.coordinates).toHaveLength(4)
-      expect(result.center[0]).toBeCloseTo(-72.3239, 3)
+      expect(result.center[0]).toBeCloseTo(-75.5699, 3)
+      expect(result.center[1]).toBeCloseTo(6.2952, 3)
     })
 
     it('procesa todos los mapas definidos en geo.js sin errores', () => {

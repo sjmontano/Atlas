@@ -14,7 +14,7 @@
  */
 
 import * as maplibregl from 'maplibre-gl'
-import { processBounds, expandBounds } from './BoundsCalculator'
+import { processBounds, expandBounds, type PGWData, type BoundsResult } from './BoundsCalculator'
 import { createBearingAwareConstrain } from './TransformConstrain'
 import { logger } from './MapLogger'
 import type { MapEntry } from '@data/maps'
@@ -45,9 +45,15 @@ const IMAGE_LAYER_ID = 'atlas-base-image-layer'
  */
 const VMB_EXPAND_FACTOR = 0.5
 
+export interface MapController {
+  map: maplibregl.Map
+  updateBounds(pgw: PGWData, width: number, height: number): BoundsResult
+}
+
 export interface BuildMapResult {
   map: maplibregl.Map
   destroy: () => void
+  controller: MapController
 }
 
 /**
@@ -151,8 +157,21 @@ export async function buildGeoreferencedMap(
 
   logger.info(CATEGORY, `Mapa construido: ${mapId}`, { bounds, center })
 
+  const controller: MapController = {
+    map,
+    updateBounds(pgw: PGWData, width: number, height: number): BoundsResult {
+      const result = processBounds(pgw, width, height)
+      const source = map.getSource(IMAGE_SOURCE_ID) as maplibregl.ImageSource | undefined
+      if (source) {
+        source.setCoordinates(result.coordinates)
+      }
+      return result
+    },
+  }
+
   return {
     map,
+    controller,
     destroy: () => {
       map.remove()
     },
