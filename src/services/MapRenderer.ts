@@ -14,7 +14,7 @@
  */
 
 import * as maplibregl from 'maplibre-gl'
-import { processBounds, expandBounds, type PGWData, type BoundsResult } from './BoundsCalculator'
+import { processBounds, expandBounds, type PGWData, type BoundsResult, type ImageCoordinates } from './BoundsCalculator'
 import { createBearingAwareConstrain } from './TransformConstrain'
 import { logger } from './MapLogger'
 import type { MapEntry } from '@data/maps'
@@ -44,6 +44,33 @@ const IMAGE_LAYER_ID = 'atlas-base-image-layer'
  * tamaño del canvas).
  */
 const VMB_EXPAND_FACTOR = 0.5
+
+/**
+ * Span mínimo (en coordenadas Mercator 0..1) para que un polígono se considere
+ * no degenerado. MapLibre v6 calcula en `ImageSource.setCoordinates` el tile
+ * central con `zoom = floor(-log2(span))`; si las 4 esquinas quedan casi en el
+ * mismo punto el zoom explota (>25) y `CanonicalTileID` lanza "outside of
+ * bounds". 2^-25 → zoom 25, el máximo permitido.
+ */
+const MIN_MERCATOR_SPAN = 2 ** -25
+
+/** Convierte las 4 esquinas a Mercator y comprueba que el span no colapse. */
+function isNonDegenerate(coordinates: ImageCoordinates): boolean {
+  let minX = Infinity
+  let minY = Infinity
+  let maxX = -Infinity
+  let maxY = -Infinity
+  for (const [lng, lat] of coordinates) {
+    const x = (lng + 180) / 360
+    const s = Math.sin((lat * Math.PI) / 180)
+    const y = 0.5 - Math.log((1 + s) / (1 - s)) / (4 * Math.PI)
+    if (x < minX) minX = x
+    if (x > maxX) maxX = x
+    if (y < minY) minY = y
+    if (y > maxY) maxY = y
+  }
+  return Math.max(maxX - minX, maxY - minY) >= MIN_MERCATOR_SPAN
+}
 
 export interface MapController {
   map: maplibregl.Map
@@ -162,7 +189,7 @@ export async function buildGeoreferencedMap(
     updateBounds(pgw: PGWData, width: number, height: number): BoundsResult {
       const result = processBounds(pgw, width, height)
       const source = map.getSource(IMAGE_SOURCE_ID) as maplibregl.ImageSource | undefined
-      if (source) {
+      if (source && isNonDegenerate(result.coordinates)) {
         source.setCoordinates(result.coordinates)
       }
       return result
@@ -175,6 +202,11 @@ export async function buildGeoreferencedMap(
     destroy: () => {
       try {
         const style = map.getStyle()
+        if (style?.layers) {
+          for (const layer of style.layers) {
+            try { map.removeLayer(layer.id) } catch { /* noop */ }
+          }
+        }
         if (style?.sources) {
           for (const id of Object.keys(style.sources)) {
             try {

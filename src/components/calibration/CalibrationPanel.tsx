@@ -241,7 +241,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
     const suffix = hasChange
       ? '  // ← calibrado'
       : ''
-    const snippet = `pgw: [0, ${state.d}, ${state.b}, 0, ${state.c}, ${state.f}],${suffix}\nwidth: ${state.width},\nheight: ${state.height},`
+    const snippet = `pgw: [${state.a}, ${state.d}, ${state.b}, ${state.e}, ${state.c}, ${state.f}],${suffix}\nwidth: ${state.width},\nheight: ${state.height},`
     navigator.clipboard.writeText(snippet).catch(() => { /* noop */ })
   }, [state, dirty])
 
