@@ -333,7 +333,7 @@ export const MAP_CONFIGS = {
     initialZoom: 10,
     minZoom: 10,
     maxZoom: 13,
-    initialBearing: 0,
+    initialBearing: -30,
     useTransformConstrain: true,
     viewportMaxBounds: null,
     dragPan: true,
