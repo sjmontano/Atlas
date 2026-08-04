@@ -81,9 +81,9 @@ export const MAP_IMAGES = {
   },
 
   'chapter2-m-villa-rica': {
-    base: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp',
-    full: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612181/geoImages/hrqmjq5rgv9a23jrqaaj.webp',
-    placeholder: ph('https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/qpexepxajsjxqrzff2bq.webp'),
+    base: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/pabcndrbg0gjx29iuccg.webp',
+    full: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1767891949/geoImages/knk721fgkqtvdxnppxzr.webp',
+    placeholder: ph('https://res.cloudinary.com/dvluvxfvn/image/upload/v1759612261/geoImages/pabcndrbg0gjx29iuccg.webp'),
   },
 
   'chapter2-m-suarez': {
