@@ -213,6 +213,21 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
     })
   }, [applyAndUpdate])
 
+  const onSizeScale = useCallback((pct: number) => {
+    const orig = originalRef.current
+    if (!orig) return
+    setState((prev) => {
+      if (!prev) return prev
+      const next = clampCalibration({
+        ...prev,
+        width: Math.round(orig.width * (pct / 100)),
+        height: Math.round(orig.height * (pct / 100)),
+      })
+      applyAndUpdate(next)
+      return next
+    })
+  }, [applyAndUpdate])
+
   const reset = useCallback(() => {
     const orig = originalRef.current
     if (orig) {
@@ -249,6 +264,11 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
   }, [state, mapId, onRebuild])
 
   const convertF = state ? state.f + state.b * state.height : 0
+  const sizePct = (() => {
+    const orig = originalRef.current
+    if (!state || !orig || orig.width <= 0) return 100
+    return Math.round((state.width / orig.width) * 100)
+  })()
 
   if (!state) return null
 
@@ -364,6 +384,21 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
               onExact={(v) => setFieldExact(key, v)}
             />
           ))}
+
+          <div className={styles.paramRow}>
+            <label className={styles.paramLabel}>Tamaño %</label>
+            <input
+              className={styles.sizeSlider}
+              type="range"
+              min={5}
+              max={500}
+              step={1}
+              value={sizePct}
+              onChange={(e) => onSizeScale(Number(e.target.value))}
+              title="Escalar width y height en porcentaje"
+            />
+            <span className={styles.displayValue}>{sizePct}%</span>
+          </div>
 
           <div className={styles.separator} />
 

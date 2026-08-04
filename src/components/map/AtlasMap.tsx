@@ -32,6 +32,9 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
     } else {
       removeBasemap(map)
     }
+    return () => {
+      removeBasemap(map)
+    }
   }, [basemapVisible, basemapStyle, mapRef])
 
   useEffect(() => {

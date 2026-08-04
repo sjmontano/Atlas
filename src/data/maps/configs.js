@@ -202,7 +202,7 @@ export const MAP_CONFIGS = {
     minZoom: 8,
     maxZoom: 11,
     initialBearing: -90,
-    useTransformConstrain: true,
+    useTransformConstrain: false,
     viewportMaxBounds: null,
     dragPan: true,
     scrollZoom: true,
@@ -264,9 +264,9 @@ export const MAP_CONFIGS = {
   },
 
   'chapter4-los-bajios': {
-    initialZoom: 11,
-    minZoom: 11,
-    maxZoom: 14,
+    initialZoom: 14,
+    minZoom: 14,
+    maxZoom: 18,
     initialBearing: -90,
     useTransformConstrain: true,
     viewportMaxBounds: null,

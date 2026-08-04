@@ -15,40 +15,44 @@ const BASEMAP_TILES: Record<BasemapStyle, string> = {
 }
 
 export function addBasemap(map: maplibregl.Map, style: BasemapStyle): void {
-  if (map.getSource(BASEMAP_SOURCE_ID)) {
-    logger.warn(CATEGORY, 'Basemap source already exists — updating')
-    removeBasemap(map)
-  }
+  try {
+    if (map.getSource(BASEMAP_SOURCE_ID)) {
+      logger.warn(CATEGORY, 'Basemap source already exists — updating')
+      removeBasemap(map)
+    }
 
-  const tiles = BASEMAP_TILES[style]
-  if (!tiles) {
-    logger.error(CATEGORY, `Unknown basemap style: ${style}`)
-    return
-  }
+    const tiles = BASEMAP_TILES[style]
+    if (!tiles) {
+      logger.error(CATEGORY, `Unknown basemap style: ${style}`)
+      return
+    }
 
-  map.addSource(BASEMAP_SOURCE_ID, {
-    type: 'raster',
-    tiles: [tiles],
-    tileSize: 256,
-    attribution:
-      style === 'streets'
-        ? '© OpenStreetMap contributors'
-        : style === 'light'
-          ? '© CARTO'
-          : '© ESRI',
-  })
-
-  map.addLayer(
-    {
-      id: BASEMAP_LAYER_ID,
+    map.addSource(BASEMAP_SOURCE_ID, {
       type: 'raster',
-      source: BASEMAP_SOURCE_ID,
-      paint: { 'raster-fade-duration': 0 },
-    },
-    'atlas-base-image-layer',
-  )
+      tiles: [tiles],
+      tileSize: 256,
+      attribution:
+        style === 'streets'
+          ? '© OpenStreetMap contributors'
+          : style === 'light'
+            ? '© CARTO'
+            : '© ESRI',
+    })
 
-  logger.info(CATEGORY, `Basemap added: ${style}`)
+    map.addLayer(
+      {
+        id: BASEMAP_LAYER_ID,
+        type: 'raster',
+        source: BASEMAP_SOURCE_ID,
+        paint: { 'raster-fade-duration': 0 },
+      },
+      'atlas-base-image-layer',
+    )
+
+    logger.info(CATEGORY, `Basemap added: ${style}`)
+  } catch (e) {
+    logger.warn(CATEGORY, 'Error adding basemap', e)
+  }
 }
 
 export function removeBasemap(map: maplibregl.Map): void {

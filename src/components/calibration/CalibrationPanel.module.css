@@ -177,6 +177,14 @@
   border-color: var(--primary-blue);
 }
 
+.sizeSlider {
+  flex: 1;
+  min-width: 0;
+  height: 14px;
+  accent-color: var(--primary-blue);
+  cursor: pointer;
+}
+
 .separator {
   height: 1px;
   background: rgba(5, 153, 183, 0.12);

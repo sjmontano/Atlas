@@ -173,7 +173,17 @@ export async function buildGeoreferencedMap(
     map,
     controller,
     destroy: () => {
-      map.remove()
+      try {
+        const style = map.getStyle()
+        if (style?.sources) {
+          for (const id of Object.keys(style.sources)) {
+            try {
+              if (map.getSource(id)) { map.removeSource(id) }
+            } catch { /* noop */ }
+          }
+        }
+      } catch { /* noop */ }
+      try { map.remove() } catch { /* noop */ }
     },
   }
 }
