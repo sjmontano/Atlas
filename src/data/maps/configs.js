@@ -145,8 +145,8 @@ export const MAP_CONFIGS = {
   'chapter2-m-suarez': {
     initialZoom: 9,
     minZoom: 9,
-    maxZoom: 12,
-    initialBearing: -90,
+    maxZoom: 16,
+    initialBearing: 0,
     useTransformConstrain: true,
     viewportMaxBounds: null,
     dragPan: true,

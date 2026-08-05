@@ -87,9 +87,9 @@ export const MAP_IMAGES = {
   },
 
   'chapter2-m-suarez': {
-    base: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp',
-    full: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp',
-    placeholder: ph('https://res.cloudinary.com/dvluvxfvn/image/upload/v1759613346/geoImages/tvfyvnlbnonz0xywzose.webp'),
+    base: '/assets/maps/m-suarez.png',
+    full: '/assets/maps/m-suarez.png',
+    placeholder: '/assets/maps/m-suarez.png',
   },
 
   'chapter3-introduccion': {
