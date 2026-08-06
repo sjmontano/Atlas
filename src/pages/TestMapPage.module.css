@@ -1,0 +1,94 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--fondo-oscuro);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.backLink {
+  font-size: var(--text-sm);
+  color: var(--primary-blue);
+  transition: opacity 0.15s;
+  white-space: nowrap;
+}
+.backLink:hover {
+  opacity: 0.7;
+}
+
+.info {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.id {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.title {
+  font-size: var(--text-base);
+  font-weight: 400;
+}
+
+.mapArea {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  color: var(--text-secondary);
+}
+
+.mapId_display {
+  font-size: var(--text-xl);
+  font-family: monospace;
+  color: var(--primary-blue);
+  opacity: 0.4;
+}
+
+.hint {
+  font-size: var(--text-sm);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navBtn {
+  font-size: var(--text-sm);
+  color: var(--primary-blue);
+  transition: opacity 0.15s;
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.navBtn:hover {
+  opacity: 0.7;
+}
+
+.counter {
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  font-family: monospace;
+}
