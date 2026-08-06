@@ -16,6 +16,14 @@ dist-ssr
 public/assets/maps/tiles
 .tmp-tiles
 
+# Mapas originales PNG (747 MB) — referencia local, servidos desde Cloudinary en runtime.
+# Para versionarlos usar Git LFS.
+public/assets/maps/cap1/
+public/assets/maps/cap2/
+public/assets/maps/cap3/
+public/assets/maps/cap4/
+public/assets/maps/intro/
+
 # Environment files
 .env*
 !.env.example
