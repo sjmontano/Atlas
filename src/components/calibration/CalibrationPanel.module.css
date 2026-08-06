@@ -1,0 +1,233 @@
+.panel {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  max-width: 340px;
+  background: rgba(3, 9, 30, 0.88);
+  border: 1px solid rgba(5, 153, 183, 0.35);
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  font-family: system-ui, sans-serif;
+  font-size: 12px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(5, 153, 183, 0.15);
+}
+
+.headerTitle {
+  color: var(--primary-blue);
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.headerBtn {
+  padding: 3px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.headerBtn:hover {
+  background: rgba(5, 153, 183, 0.15);
+  color: #fff;
+}
+
+.collapseBtn {
+  padding: 3px 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.15s;
+}
+
+.collapseBtn:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.body {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.paramRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.paramLabel {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  min-width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dirty .paramLabel {
+  color: var(--primary-blue);
+}
+
+.dirty .valueInput {
+  border-color: var(--primary-blue);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.stepBtn {
+  padding: 2px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 10px;
+  font-family: inherit;
+  transition: all 0.12s;
+  min-width: 22px;
+}
+
+.stepBtn:hover {
+  background: rgba(5, 153, 183, 0.2);
+  color: #fff;
+  border-color: rgba(5, 153, 183, 0.3);
+}
+
+.valueInput {
+  width: 90px;
+  padding: 2px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  text-align: right;
+  transition: border-color 0.15s;
+}
+
+.valueInput:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  background: rgba(5, 153, 183, 0.08);
+}
+
+.displayValue {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  min-width: 50px;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dirty .displayValue {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.stepSelect {
+  padding: 2px 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.stepSelect:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+}
+
+.sizeSlider {
+  flex: 1;
+  min-width: 0;
+  height: 14px;
+  accent-color: var(--primary-blue);
+  cursor: pointer;
+}
+
+.separator {
+  height: 1px;
+  background: rgba(5, 153, 183, 0.12);
+  margin: 4px 0;
+}
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.readoutTitle {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  margin-bottom: 2px;
+}
+
+.readoutRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 11px;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.readoutRow span:first-child {
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.error {
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  border-radius: 4px;
+  background: rgba(255, 0, 0, 0.1);
+  color: rgba(255, 130, 130, 0.9);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
