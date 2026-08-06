@@ -1,0 +1,186 @@
+import { describe, it, expect } from 'vitest'
+import {
+  pgwToState,
+  stateToPGW,
+  shiftOrigin,
+  scaleParam,
+  clampCalibration,
+  type CalibrationState,
+} from '@services/MapCalibration'
+import { processBounds } from '@services/BoundsCalculator'
+import type { PGWData } from '@services/BoundsCalculator'
+
+const PGW_INTRO: PGWData = [0, 0.001181998411, 0.001182047579, 0, -78.907953240108, -0.290036434033]
+const W_INTRO = 5649
+const H_INTRO = 11141
+
+const PGW_ROTATED: PGWData = [1.194087e-6, -2.068220e-6, -2.068153e-6, -1.194048e-6, -76.485574, 3.436552]
+const W_ROT = 4960
+const H_ROT = 8822
+
+describe('MapCalibration', () => {
+  describe('pgwToState', () => {
+    it('extrae a, d, b, e, c, f y dimensiones del PGW', () => {
+      const state = pgwToState(PGW_INTRO, W_INTRO, H_INTRO)
+      expect(state.a).toBe(0)
+      expect(state.d).toBeCloseTo(0.001181998411, 10)
+      expect(state.b).toBeCloseTo(0.001182047579, 10)
+      expect(state.e).toBe(0)
+      expect(state.c).toBe(-78.907953240108)
+      expect(state.f).toBe(-0.290036434033)
+      expect(state.width).toBe(W_INTRO)
+      expect(state.height).toBe(H_INTRO)
+    })
+
+    it('conserva A y E de un PGW con rotación real (A≠0, E≠0)', () => {
+      const state = pgwToState(PGW_ROTATED, W_ROT, H_ROT)
+      expect(state.a).toBe(PGW_ROTATED[0])
+      expect(state.d).toBe(PGW_ROTATED[1])
+      expect(state.b).toBe(PGW_ROTATED[2])
+      expect(state.e).toBe(PGW_ROTATED[3])
+      expect(state.c).toBe(PGW_ROTATED[4])
+      expect(state.f).toBe(PGW_ROTATED[5])
+    })
+  })
+
+  describe('stateToPGW', () => {
+    it('reconstruye el PGW completo desde CalibrationState', () => {
+      const state: CalibrationState = { a: 0, d: 0.005, b: 0.003, e: 0, c: -74, f: 4, width: 1000, height: 2000 }
+      const pgw = stateToPGW(state)
+      expect(pgw).toEqual([0, 0.005, 0.003, 0, -74, 4])
+    })
+
+    it('round-trip con pgwToState preserva los 6 coeficientes', () => {
+      const state = pgwToState(PGW_ROTATED, W_ROT, H_ROT)
+      const pgw = stateToPGW(state)
+      expect(pgw[0]).toBe(PGW_ROTATED[0])
+      expect(pgw[1]).toBe(PGW_ROTATED[1])
+      expect(pgw[2]).toBe(PGW_ROTATED[2])
+      expect(pgw[3]).toBe(PGW_ROTATED[3])
+      expect(pgw[4]).toBe(PGW_ROTATED[4])
+      expect(pgw[5]).toBe(PGW_ROTATED[5])
+    })
+  })
+
+  describe('shiftOrigin', () => {
+    it('desplaza C y F por el delta dado', () => {
+      const shifted = shiftOrigin(PGW_INTRO, 0.5, -0.3)
+      expect(shifted[4]).toBeCloseTo(-78.907953240108 + 0.5, 10)
+      expect(shifted[5]).toBeCloseTo(-0.290036434033 - 0.3, 10)
+    })
+
+    it('no modifica A, D, B, E', () => {
+      const shifted = shiftOrigin(PGW_INTRO, 1, 2)
+      expect(shifted[0]).toBe(PGW_INTRO[0])
+      expect(shifted[1]).toBe(PGW_INTRO[1])
+      expect(shifted[2]).toBe(PGW_INTRO[2])
+      expect(shifted[3]).toBe(PGW_INTRO[3])
+    })
+  })
+
+  describe('scaleParam', () => {
+    it('multiplica D por el factor', () => {
+      const scaled = scaleParam(PGW_INTRO, 'd', 2)
+      expect(scaled[1]).toBeCloseTo(PGW_INTRO[1] * 2, 10)
+      expect(scaled[2]).toBe(PGW_INTRO[2])
+    })
+
+    it('multiplica B por el factor', () => {
+      const scaled = scaleParam(PGW_INTRO, 'b', 1.5)
+      expect(scaled[2]).toBeCloseTo(PGW_INTRO[2] * 1.5, 10)
+      expect(scaled[1]).toBe(PGW_INTRO[1])
+    })
+
+    it('no modifica A, E, C, F', () => {
+      const scaled = scaleParam(PGW_INTRO, 'd', 1.2)
+      expect(scaled[0]).toBe(PGW_INTRO[0])
+      expect(scaled[3]).toBe(PGW_INTRO[3])
+      expect(scaled[4]).toBe(PGW_INTRO[4])
+      expect(scaled[5]).toBe(PGW_INTRO[5])
+    })
+  })
+
+  describe('clampCalibration', () => {
+    it('pasa valores finitos sin cambios', () => {
+      const state: CalibrationState = { a: 0, d: 0.001, b: 0.002, e: 0, c: -75, f: 3, width: 5000, height: 10000 }
+      const clamped = clampCalibration(state)
+      expect(clamped).toEqual(state)
+    })
+
+    it('redondea width y height a enteros positivos', () => {
+      const state: CalibrationState = { a: 0, d: 0.001, b: 0.002, e: 0, c: -75, f: 3, width: 5000.7, height: -10 }
+      const clamped = clampCalibration(state)
+      expect(clamped.width).toBe(5001)
+      expect(clamped.height).toBe(1)
+    })
+
+    it('preserva el signo de d y b y clampa no-finitos a la magnitud mínima', () => {
+      const state: CalibrationState = { a: 0, d: -0.01, b: Infinity, e: 0, c: -75, f: 3, width: 100, height: 100 }
+      const clamped = clampCalibration(state)
+      expect(clamped.d).toBe(-0.01)
+      expect(clamped.b).toBe(1e-12)
+    })
+
+    it('conserva A=0 y E=0 exactos (PGW retrato)', () => {
+      const state: CalibrationState = { a: 0, d: 0.001, b: 0.002, e: 0, c: -75, f: 3, width: 100, height: 100 }
+      const clamped = clampCalibration(state)
+      expect(clamped.a).toBe(0)
+      expect(clamped.e).toBe(0)
+    })
+
+    it('limita la magnitud de d y b a [1e-12, 1]', () => {
+      const state: CalibrationState = { a: 0, d: 1e-20, b: 50, e: 0, c: -75, f: 3, width: 100, height: 100 }
+      const clamped = clampCalibration(state)
+      expect(clamped.a).toBe(0)
+      expect(clamped.d).toBe(1e-12)
+      expect(clamped.b).toBe(1)
+      expect(clamped.e).toBe(0)
+    })
+
+    it('limita c entre -180 y 180', () => {
+      const state: CalibrationState = { a: 0, d: 0.001, b: 0.002, e: 0, c: -200, f: 100, width: 100, height: 100 }
+      const clamped = clampCalibration(state)
+      expect(clamped.c).toBe(-180)
+      expect(clamped.f).toBe(90)
+    })
+  })
+
+  describe('integration con processBounds', () => {
+    it('stateToPGW produce un PGW válido detectado como rotado', () => {
+      const state = pgwToState(PGW_INTRO, W_INTRO, H_INTRO)
+      const pgw = stateToPGW(state)
+      const result = processBounds(pgw, state.width, state.height)
+      expect(result.isValid).toBe(true)
+      expect(result.coordinates).toHaveLength(4)
+      expect(result.bounds).toHaveLength(4)
+    })
+
+    it('el PGW con rotación real (A≠0, E≠0) NO se auto-convierte y sigue válido', () => {
+      const state = pgwToState(PGW_ROTATED, W_ROT, H_ROT)
+      const pgw = stateToPGW(state)
+      expect(pgw[0]).not.toBe(0)
+      expect(pgw[3]).not.toBe(0)
+      const result = processBounds(pgw, state.width, state.height)
+      expect(result.isValid).toBe(true)
+      expect(result.coordinates).toHaveLength(4)
+      expect(result.bounds).toHaveLength(4)
+    })
+
+    it('después de nudge pequeño los bounds siguen válidos', () => {
+      const state = pgwToState(PGW_INTRO, W_INTRO, H_INTRO)
+      const nudged: CalibrationState = {
+        ...state,
+        d: state.d * 1.001,
+        b: state.b * 0.999,
+        c: state.c + 0.01,
+        f: state.f - 0.005,
+        width: state.width + 10,
+        height: state.height - 10,
+      }
+      const pgw = stateToPGW(clampCalibration(nudged))
+      const result = processBounds(pgw, nudged.width, nudged.height)
+      expect(result.isValid).toBe(true)
+      expect(result.coordinates).toHaveLength(4)
+    })
+  })
+})
