@@ -3,6 +3,7 @@ import type { RefObject } from 'react'
 import { useMap } from '@hooks/useMap'
 import { useAutoLowPower } from '@hooks/useAutoLowPower'
 import { usePrefetchAdjacent } from '@hooks/usePrefetchAdjacent'
+import { useTilePrefetch } from '@hooks/useTilePrefetch'
 import { useMapStore } from '@stores/mapStore'
 import { useUIStore } from '@stores/uiStore'
 import { useConnectionStore } from '@stores/connectionStore'
@@ -24,6 +25,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const { mapRef, error } = useMap({ mapId, containerRef, controllerRef })
   const loading = useMapStore((s) => s.loading)
   const tilesStatus = useMapStore((s) => s.tilesStatus)
+  const isSlow = useConnectionStore((s) => s.isSlow)
   const initConnection = useConnectionStore((s) => s.init)
 
   const basemapVisible = useUIStore((s) => s.basemapVisible)
@@ -32,6 +34,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
 
   useAutoLowPower()
   usePrefetchAdjacent(mapId)
+  useTilePrefetch(mapId)
 
   useEffect(() => {
     initConnection()
@@ -61,7 +64,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
       <div ref={containerRef} className={styles.mapContainer} />
       <OfflineBanner />
 
-      {!loading && tilesStatus === 'degraded' && (
+      {!loading && tilesStatus === 'degraded' && isSlow && (
         <div className={styles.degradedBanner}>
           <span>Modo básico: el mapa es navegable sin alta resolución por conexión lenta.</span>
         </div>

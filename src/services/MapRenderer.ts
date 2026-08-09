@@ -61,6 +61,17 @@ const VMB_EXPAND_FACTOR = 0.5
  */
 const MIN_MERCATOR_SPAN = 2 ** -25
 
+function resolveTileCacheSize(): number {
+  if (typeof navigator === 'undefined') return 400
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string } }).connection
+  const hw = navigator.hardwareConcurrency ?? 4
+
+  if (conn?.saveData || conn?.effectiveType === 'slow-2g') return 110
+  if (conn?.effectiveType === '2g' || conn?.effectiveType === '3g') return 160
+  if (hw <= 4) return 220
+  return 400
+}
+
 /** Convierte las 4 esquinas a Mercator y comprueba que el span no colapse. */
 function isNonDegenerate(coordinates: ImageCoordinates): boolean {
   let minX = Infinity
@@ -145,6 +156,11 @@ export async function buildGeoreferencedMap(
     keyboard: false,
     doubleClickZoom: config.scrollZoom,
     attributionControl: false,
+    // Evita re-fetch de tiles en caché (nuestros tiles son Cache-Control: immutable)
+    refreshExpiredTiles: false,
+    // Cache adaptativa: menor presión de memoria y menos requests en equipos
+    // modestos / conexión lenta (rescatado de atlas_3.0)
+    maxTileCacheSize: resolveTileCacheSize(),
   }
 
   if (config.useTransformConstrain) {
@@ -349,7 +365,10 @@ export function addTilesLayer(
   // ── Telemetría de tiles (nivel info) ────────────────────────────────────
   // Registra cada request/carga/aborto/error del source XYZ y detecta
   // duplicados (misma coord pedida 2+ veces sin ser cargada/abortada).
-  // Si ningún tile carga en 8s → modo degraded (conexión rural débil).
+  // Si ningún tile carga en 15s Y se solicitaron tiles → modo degraded.
+  // Solo se dispara si nRequested > 0 (tiles realmente pedidos); el primer
+  // tile:loaded lo desactiva inmediatamente. Tiempo extendido a 15s porque
+  // en Slow 4G los tiles pueden tardar >8s sin ser caída de conexión.
   const inFlight = new Set<string>()
   let nRequested = 0
   let nLoaded = 0
@@ -363,12 +382,12 @@ export function addTilesLayer(
 
   if (typeof window !== 'undefined') {
     tilesTimer = setTimeout(() => {
-      if (nLoaded === 0 && !tilesTimedOut) {
+      if (nRequested > 0 && nLoaded === 0 && !tilesTimedOut) {
         tilesTimedOut = true
         useMapStore.getState().setTilesStatus('degraded')
-        logger.warn(CATEGORY, `Tiles no cargaron en 8s: ${mapId} — mapa básico sin tiles`)
+        logger.warn(CATEGORY, `Tiles no cargaron en 15s: ${mapId} — mapa básico sin tiles`)
       }
-    }, 8000)
+    }, 15000)
   }
 
   const tileKey = (e: maplibregl.MapSourceDataEvent): string | null => {
