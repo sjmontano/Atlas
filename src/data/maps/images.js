@@ -1,5 +1,5 @@
 function ph(url) {
-  return url.replace('/upload/', '/upload/w_512,q_30,f_webp/')
+  return url.replace('/upload/', '/upload/w_1024,q_60,f_webp/')
 }
 
 const introBase =

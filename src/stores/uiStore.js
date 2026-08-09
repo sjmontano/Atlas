@@ -4,6 +4,12 @@ const isLowPowerDevice =
   typeof navigator !== 'undefined' &&
   (navigator.hardwareConcurrency != null ? navigator.hardwareConcurrency <= 4 : false)
 
+const isSlowConnection = () => {
+  if (typeof navigator === 'undefined') return false
+  const conn = navigator.connection
+  return conn?.effectiveType === 'slow-2g' || conn?.effectiveType === '2g'
+}
+
 export const useUIStore = create((set) => ({
   activeModal: null,
   sidebarOpen: false,
@@ -13,8 +19,7 @@ export const useUIStore = create((set) => ({
   basemapStyle: 'light',
   imageOpacity: 1,
 
-  /** Modo bajo consumo: reduce calidad/animaciones en equipos Celeron/A4 */
-  lowPowerMode: isLowPowerDevice,
+  lowPowerMode: isLowPowerDevice || isSlowConnection(),
 
   openModal: (modal) => set({ activeModal: modal }),
   closeModal: () => set({ activeModal: null }),
@@ -25,4 +30,5 @@ export const useUIStore = create((set) => ({
   setBasemapStyle: (style) => set({ basemapStyle: style }),
   setImageOpacity: (opacity) => set({ imageOpacity: opacity }),
   toggleLowPowerMode: () => set((s) => ({ lowPowerMode: !s.lowPowerMode })),
+  setLowPowerMode: (on) => set({ lowPowerMode: on }),
 }))

@@ -117,6 +117,12 @@ export default defineConfig({
   },
 
   build: {
+    modulePreload: {
+      polyfill: false,
+      resolveDependencies(_filename, deps) {
+        return deps.filter((d) => !d.includes('vendor-maplibre'))
+      },
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {

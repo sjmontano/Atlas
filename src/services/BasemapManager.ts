@@ -10,7 +10,7 @@ const BASEMAP_LAYER_ID = 'basemap-devtool-layer'
 
 const BASEMAP_TILES: Record<BasemapStyle, string> = {
   streets: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-  light: 'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+  light: 'https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
   satellite: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 }
 

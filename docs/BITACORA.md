@@ -595,15 +595,125 @@ ninguna decisión futura se tome por desconocimiento de lo que ya se evaluó.
 
 ---
 
+## Crónica: la pantalla azul y el día que por fin vimos el mapa (2026-08-07)
+
+> Escrito en primera persona de equipo. Más que un registro de cambios, es el
+> relato de cómo un problema de "no se ve nada" nos llevó a leer el render
+> desde cero, a perder el miedo al reset y a entender qué de lo que habíamos
+> construido valía la pena conservar.
+
+### La promesa
+
+Este proyecto está pensado para una sala comunitaria en una vereda del Cauca:
+un computador del gobierno de gama baja (Celeron o A4, 2-4 GB de RAM, GPU
+integrada) conectado a un internet rural que en el mejor día baja a 3G y en el
+peor se cae. Ese es el usuario final. No es un lujo: es una condición de
+diseño. Todo lo que hacemos — tiles WebP en vez de PNG, fade sin doble-build,
+modo bajo consumo, prefetch, service worker — existe para que ese equipo
+alcance a mostrar el atlas sin colapsar.
+
+### El síntoma
+
+Pero por días, la pantalla no mostraba nada. Un azul profundo, `#03091e`,
+bonito a la vista y devastador para el proyecto: el mapa entero era invisible.
+"No se ve nada" es la frase que más frustra a un equipo, porque no es un error
+que lanza un mensaje. Es un silencio. La consola no gritaba, los tiles se
+pedían, el worker cargaba... y el ojo veía azul.
+
+### Lo que fuimos descartando (uno por uno)
+
+Primero sospechamos de StrictMode: React montaba, desmontaba y remontaba el
+mapa, y la primera build se pisaba a sí misma. Ese era un problema real, y lo
+resolvimos con un contador de generación (`buildGen`). Pero el azul siguió.
+
+Luego sospechamos del worker de MapLibre v6. Bajo Vite, MapLibre deriva la URL
+de su worker desde `import.meta.url`, que apunta a un archivo que Vite nunca
+genera. Probamos `?worker&url`, lo descartamos (el canal de mensajes se cerraba
+en dev), y terminamos copiando el worker y su módulo compartido como archivos
+estáticos en `public/vendor/`. Verificamos en la red: worker 200, módulo
+compartido cargado, tiles pidiéndose por HTTP. Todo "funcionaba". Y el azul
+siguió.
+
+Sospechamos del token `{r}` de CARTO: MapLibre v6 renombró el token retina a
+`{ratio}`, y nuestro basemap pedía URLs con `{r}` literal que el servidor
+respondía con 404. Lo corregimos. Y el azul siguió.
+
+### El momento de la verdad
+
+Un día, mirando los logs con calma, algo nos paró en seco:
+
+```
+canvas-dimensions [chapter1-ecosistemas]
+{ containerW: 1400, containerH: 0, canvasW: 1400, canvasH: 300 }
+```
+
+`containerH: 0`. El div que contenía el mapa medía **cero píxeles de alto**.
+MapLibre, sin altura que ocupar, creó un canvas con su altura por defecto de
+300px, invisible detrás del fondo del contenedor. Todo ese tiempo habíamos
+estado buscando bugs en el render... y el problema estaba en el CSS: `height:
+100%` en un flexbox no resuelve cuando el padre solo tiene la altura "prestada"
+de `flex: 1`. El porcentaje colapsaba a cero, y con él el mapa.
+
+Y el azul no era del canvas: era el color de fondo del wrapper, idéntico al
+fondo del estilo del mapa. Por eso nada "se veía": mirábamos el fondo de
+pantalla, no el mapa.
+
+### La decisión del reset
+
+Íbamos a hacer `git reset --hard`. Perder el working tree entero y volver al
+último commit. Pero antes de borrar, nos sentamos y escribimos todo: cada
+hallazgo, cada archivo, cada decisión — porque sabíamos que entre el working
+tree había cosas buenas que no queríamos perder. Documentamos qué valía la
+pena conservar y qué era ruido.
+
+Y entonces hicimos el reset.
+
+### Lo que reconstruimos, ahora con conocimiento
+
+Al reimplementar, ya no era copiar y pegar: era aplicar lecciones. Tres fixes
+críticos para que el mapa exista, y las mejoras de red para que el mapa
+sobreviva en la vereda:
+
+1. **Vendor worker** — el worker de MapLibre v6 como estático, sin la
+   maquinaria de Vite metida en el medio. Es la base: sin worker no hay tiles.
+2. **CSS de la altura** — cadena flex anidada sin porcentajes
+   (`flex: 1` → `min-height: 0`), para que el contenedor siempre tenga altura
+   real, pase lo que pase con el layout.
+3. **Basemap CARTO** — el token `{r}` fuera, para que el toggle de basemap no
+   devuelva 404.
+4. **Baja conectividad** — `connectionStore` que escucha la red en tiempo real,
+   `useAutoLowPower` que baja la calidad de render si la señal empeora,
+   `usePrefetchAdjacent` que precarga el mapa siguiente mientras el usuario
+   lee, banner offline, y un modo `degraded` que avisa cuando los tiles tardan
+   en llegar.
+
+### La lección
+
+La pantalla azul no era un bug del render: era un bug del layout, disfrazado
+de bug del render, camuflado además por un color de fondo que coincidía con el
+del mapa. Nos costó días porque buscábamos en el lugar equivocado: seguíamos
+al worker y a las capas cuando debíamos medir el contenedor. El diagnóstico
+que lo resolvió fue un simple log de dimensiones.
+
+Y el reset no fue perder: fue separar lo que servía de lo que estorbaba. Todo
+lo que valía la pena quedó documentado primero — y reconstruido después, mejor.
+
+---
+
 ## Estado Actual
 
-- **Build**: `pnpm build` pasando sin errores
+- **✅ Los mapas renderizan** (validado en navegador). Se cerró la pantalla azul con el fix de altura (`containerH: 0`) + vendor worker v6 + basemap CARTO. Cierre documentado en la crónica de arriba.
+- **Build**: `pnpm build` pasando sin errores; typecheck ✓ · lint ✓ (0 errores)
+- **Worker MapLibre v6**: vendor estático en `public/vendor/maplibre/` (worker + shared), `setWorkerUrl` en `main.tsx`, sync con `pnpm sync:maplibre`. Sin `?worker&url` (descartado: canal roto en dev).
+- **CSS altura**: `.mapArea { min-height: 0 }` (TestMapPage) + `.wrapper { flex: 1; min-height: 0 }` (AtlasMap) — cadena flex sin porcentajes. Sin `height: 100%` que colapsa en flexbox.
+- **Baja conectividad (rural)**: `connectionStore` (online/offline/slow reactivo), `useAutoLowPower` (lowPower auto al degradar la señal), `usePrefetchAdjacent` (precarga mapas adyacentes, sin saturar 2G), banner offline + banner degraded, `tilesStatus: loading|ready|degraded` con timeout de 8s.
+- **Diagnósticos**: `canvas-dimensions`, `style-dump`, telemetría tiles INFO (`tile:request/loaded/duplicate/aborted`), `MapLibre error` listener, timeout degraded. Todos a nivel `?log=trace`.
 - **Tiles (faceta 2)**: piloto `chapter1-ecosistemas` con 2417 tiles WebP (z6-z12, 26.46 MB, QUALITY=95) en `public/assets/maps/tiles/mapas/`; sin over-zoom. `maxZoom` dinámico (max de config y tiles). Runtime con `addTilesLayer` + `tilesServePlugin` inmutable + SW cache-first. Estructura reservada `tiles/capas/`. Fade-in sin doble-fade. `maxParallelImageRequests: 4` (2 en lowPowerMode). `lowPowerMode` con autodetección por `navigator.hardwareConcurrency`.
 - **Originales**: 30/31 mapas PNG organizados por capítulo (`public/assets/maps/{intro,cap1,cap2,cap3,cap4}/`) y renombrados a canónico (falta el original de `chapter1-encuadres`); `GLOSARIO_MAPAS.md` con el mapeo comunidad↔canónico↔ID interno
 - **Mapas**: `chapter2-m-suarez` recalibrado con asset local (`public/assets/maps/cap2/modelo-territorial-suarez.png`) y `initialBearing: 180`; imagen corregida en zona de Suárez
 - **Imágenes**: images.js con 53/53 URLs verificadas (fix 404 de `chapter2-m-villa-rica`)
 - **PGW data**: geo.js con rotados originales (fuente de verdad) + `chapter4-problematicas` con rotación no ortogonal −30°
 - **Render pipeline**: MapRenderer con ImageSource + blank style + pipeline georreferenciado + guard anti-degenerado
-- **Basemap**: OSM tiles con toggle, 3 estilos, slider opacidad
+- **Basemap**: OSM tiles con toggle, 3 estilos (Light/Streets/Satellite), slider opacidad. CARTO light sin `{r}` (v6 usa `{ratio}`)
 - **Dev tool**: MapControls funcional solo en dev (VITE_DEV_TOOLS=true); panel de calibración compatible con mapas rotados (preserva A/E)
 - **Pendiente**: Extraer contenido v17 (modales, audio, galerías, iconos, entramados, GeoJSON, assets)

@@ -14,10 +14,14 @@
  */
 
 import * as maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import { processBounds, expandBounds, type PGWData, type BoundsResult, type ImageCoordinates, type GeographicBounds } from './BoundsCalculator'
 import { createBearingAwareConstrain } from './TransformConstrain'
 import { logger } from './MapLogger'
+import { useMapStore } from '@stores/mapStore'
 import type { MapEntry } from '@data/maps'
+
+maplibregl.setWorkerUrl('/vendor/maplibre/maplibre-gl-worker.mjs')
 
 const CATEGORY = 'MapRenderer'
 
@@ -168,6 +172,23 @@ export async function buildGeoreferencedMap(
 
   logger.trace(CATEGORY, 'map:loaded', { mapId })
 
+  const canvas = container.querySelector('canvas')
+  logger.info(CATEGORY, `canvas-dimensions [${mapId}]`, {
+    containerW: container.clientWidth,
+    containerH: container.clientHeight,
+    canvasW: canvas?.width,
+    canvasH: canvas?.height,
+    offsetW: canvas?.offsetWidth,
+    offsetH: canvas?.offsetHeight,
+    display: canvas ? getComputedStyle(canvas).display : 'no-canvas',
+  })
+
+  map.on('error', (e) => {
+    logger.warn(CATEGORY, `MapLibre error [${mapId}]`, {
+      message: e.error instanceof Error ? e.error.message : String(e.error),
+    })
+  })
+
   // ── 3. Encuadre inicial: centro + zoom de config (comportamiento v17) ───
   map.jumpTo({
     center,
@@ -181,10 +202,20 @@ export async function buildGeoreferencedMap(
   })
 
   // ── 4. Imagen base: placeholder primero (carga instantánea) ─────────────
+  map.on('data', (e) => {
+    if (e.dataType === 'source' && e.sourceId === IMAGE_SOURCE_ID) {
+      logger.trace(CATEGORY, `base:source-event [${mapId}]`, { type: e.type, sourceDataType: e.sourceDataType, isSourceLoaded: e.isSourceLoaded })
+    }
+  })
+
   map.addSource(IMAGE_SOURCE_ID, {
     type: 'image',
     url: images.placeholder,
     coordinates,
+  })
+  logger.info(CATEGORY, `base:source-added [${mapId}]`, {
+    placeholder: images.placeholder.slice(0, 60),
+    coords: coordinates.map(([lng, lat]) => `${lng.toFixed(4)},${lat.toFixed(4)}`),
   })
 
   map.addLayer({
@@ -223,6 +254,13 @@ export async function buildGeoreferencedMap(
 
   // ── 6. Tiles XYZ de alta resolución (sobre la imagen base full) ─────────
   addTilesLayer(map, mapId, entry, bounds, opts)
+
+  const style = map.getStyle()
+  logger.info(CATEGORY, `style-dump [${mapId}]`, {
+    sources: Object.keys(style.sources),
+    layers: style.layers.map((l) => ({ id: l.id, type: l.type, source: (l as { source?: string }).source })),
+    loadedSources: Object.keys(style.sources).map((id) => `${id}=${map.isSourceLoaded(id)}`),
+  })
 
   logger.info(CATEGORY, `Mapa construido: ${mapId}`, { bounds, center })
 
@@ -308,10 +346,10 @@ export function addTilesLayer(
     })
   }
 
-  // ── Telemetría de tiles (nivel trace) ───────────────────────────────────
+  // ── Telemetría de tiles (nivel info) ────────────────────────────────────
   // Registra cada request/carga/aborto/error del source XYZ y detecta
   // duplicados (misma coord pedida 2+ veces sin ser cargada/abortada).
-  // Útil en desarrollo para diagnosticar sobre-solicitud o problemas.
+  // Si ningún tile carga en 8s → modo degraded (conexión rural débil).
   const inFlight = new Set<string>()
   let nRequested = 0
   let nLoaded = 0
@@ -319,6 +357,19 @@ export function addTilesLayer(
   let nFailed = 0
   let nDuplicates = 0
   let summarized = false
+
+  let tilesTimedOut = false
+  let tilesTimer: ReturnType<typeof setTimeout> | null = null
+
+  if (typeof window !== 'undefined') {
+    tilesTimer = setTimeout(() => {
+      if (nLoaded === 0 && !tilesTimedOut) {
+        tilesTimedOut = true
+        useMapStore.getState().setTilesStatus('degraded')
+        logger.warn(CATEGORY, `Tiles no cargaron en 8s: ${mapId} — mapa básico sin tiles`)
+      }
+    }, 8000)
+  }
 
   const tileKey = (e: maplibregl.MapSourceDataEvent): string | null => {
     const c = e.coord
@@ -332,10 +383,10 @@ export function addTilesLayer(
       const key = tileKey(e)
       nRequested++
       if (key) {
-        logger.trace(CATEGORY, 'tile:request', { key })
+        logger.info(CATEGORY, 'tile:request', { key })
         if (inFlight.has(key)) {
           nDuplicates++
-          logger.trace(CATEGORY, 'tile:duplicate', { key })
+          logger.info(CATEGORY, 'tile:duplicate', { key })
         }
         inFlight.add(key)
       }
@@ -343,12 +394,19 @@ export function addTilesLayer(
       const key = tileKey(e)
       nLoaded++
       inFlight.delete(key ?? '')
-      logger.trace(CATEGORY, 'tile:loaded', { key })
+      if (tilesTimer) {
+        clearTimeout(tilesTimer)
+        tilesTimer = null
+      }
+      if (nLoaded === 1) {
+        useMapStore.getState().setTilesStatus('ready')
+      }
+      logger.info(CATEGORY, 'tile:loaded', { key })
     } else if (e.type === 'dataabort') {
       const key = tileKey(e)
       nAborted++
       inFlight.delete(key ?? '')
-      logger.trace(CATEGORY, 'tile:aborted', { key })
+      logger.info(CATEGORY, 'tile:aborted', { key })
     } else if (e.type === 'data' && e.sourceDataType === 'idle' && !summarized) {
       summarized = true
       logger.info(CATEGORY, `Tiles resumen: ${mapId}`, {

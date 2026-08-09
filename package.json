@@ -8,6 +8,7 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "tiles": "node scripts/generate-tiles.mjs",
+    "sync:maplibre": "node scripts/sync-maplibre-vendor.mjs",
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest",
