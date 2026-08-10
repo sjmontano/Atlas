@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 
 const DevMenu = lazy(() =>
@@ -25,6 +25,13 @@ function Fallback() {
 }
 
 export function App() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      void import('@pages/TestMapPage.tsx')
+    }, 1500)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <BrowserRouter>
       <Suspense fallback={<Fallback />}>
