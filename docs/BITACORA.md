@@ -700,13 +700,115 @@ lo que valía la pena quedó documentado primero — y reconstruido después, me
 
 ---
 
+## Rendimiento de carga — secuencia de optimizaciones (2026-08-09)
+
+Cuatro commits de optimización de carga ejecutados en secuencia, cada uno validado con
+typecheck/lint/test/build + revisión en navegador (red 3G en DevTools):
+
+### 1. `0f1d3fd` — cache adaptativo de tiles + prefetch z6-z8 + fix banner degraded
+
+- **Cache de tiles adaptativo**: `maxTileCacheSize` se calcula según dispositivo/conexión
+  (110-400 tiles). En equipos rurales con poca RAM el cache no explota.
+- **`refreshExpiredTiles: false`**: los tiles llevan `Cache-Control: immutable`, no tiene
+  sentido revalidarlos. Menos requests.
+- **Fix banner degraded**: antes aparecía siempre tras el timeout, incluso en conexión
+  buena. Ahora solo en conexión lenta (`connectionStore.isSlow`), con timeout de 15s y
+  condición `nRequested > 0` (no mostrar "tiles lentos" si ni siquiera se pidieron).
+- **TilePrefetcher (`src/services/TilePrefetcher.ts`)**: precarga tiles z6-z8 durante
+  el idle del navegador (`requestIdleCallback`), la cobertura mínima del viewport.
+- **`useTilePrefetch` (`src/hooks/useTilePrefetch.ts`)**: hook integrado en AtlasMap,
+  dispara el prefetch 2s después del build. No se ejecuta en conexión lenta.
+
+### 2. `b8395c7` — preload de ruta del mapa + reuso de imágenes cargadas
+
+- **C4**: precarga de MapLibre a los 1.5s mientras el usuario ve el DevMenu
+  (`src/App.tsx`): el bundle pesado ya está en cache cuando se navega al mapa.
+- **C6**: `preloadImage` reutiliza imágenes ya cargadas (`Map<string, HTMLImageElement>`).
+  Evita requests duplicados de la misma URL full — crítico en StrictMode (dev) donde el
+  effect se ejecuta 2 veces y antes se descargaba la full 2 veces.
+
+### 3. `84759f6` — tiles inmediatos (F1) + prefetch adyacente espera fin de carga (F2)
+
+- **F1**: `addTilesLayer` se ejecuta AHORA antes del upgrade a imagen full. Antes el
+  pipeline esperaba `preloadImage(full)` y luego agregaba tiles (los tiles tardaban en
+  aparecer). Ahora: placeholder → tiles cargan de inmediato → full upgrade asíncrono
+  (fire-and-forget). El mapa es visible e interactivo mucho antes.
+- **F2**: `usePrefetchAdjacent` esperaba solo a que el mapa existiera. Ahora espera
+  `loading === false` (fin del build) antes de precargar los mapas adyacentes, para no
+  competir con la carga del mapa actual en 3G.
+
+### 4. `c5e7825` — spinner visible hasta que los tiles cargan + placeholder más ligero
+
+Tras F1, el mapa se veía "sin nada" mientras los tiles descargaban. Restaurada la
+experiencia progresiva con la bolita girando:
+
+- **`mapStore.js`**: `tilesStatus` default `'idle'` (antes `'loading'` para siempre si el
+  mapa no tenía tiles). `setActiveMap` lo resetea a `'idle'`.
+- **`MapRenderer.ts` `addTilesLayer`**: sin tiles → `setTilesStatus('idle')`; con tiles →
+  `setTilesStatus('loading')` antes de crear el source. El spinner solo aparece cuando
+  realmente hay tiles que esperar.
+- **`AtlasMap.tsx`**: el overlay + spinner se muestran mientras `loading || tilesStatus
+  === 'loading'` (antes solo `loading`, que terminaba en ~200ms y el mapa quedaba "vacío"
+  mientras llegaban los tiles).
+- **`images.js`**: placeholder `w_1024,q_60` → `w_512,q_25` (~8 KB, carga instantánea).
+- **`AtlasMap.module.css`**: overlay `rgba(3,9,30,0.6)` → `0.35`, semitransparente — el
+  mapa borroso se ve detrás del spinner (progressive enhancement real).
+
+**Resultado de la secuencia**: el usuario ve un mapa borroso reconocible + spinner en
+<1s, tiles nítidos cargando, y el upgrade full en background sin bloquear. En red 3G
+todos los recursos visibles se priorizan sobre el contenido oculto (prefetch).
+
+---
+
+## Diagnóstico de red y 4 fixes (2026-08-10)
+
+### Contexto
+
+Se hizo un diagnóstico completo de red (chrome-devtools MCP) sobre `chapter1-ecosistemas`
+en dev, tanto sin emulación como con Slow 3G. Se detectaron 4 problemas con el flujo
+de carga, y se corrigieron.
+
+### Hallazgos del network
+
+Secuencia de carga observada:
+1. ~48 requests JS/CSS/Vite (dev) → ~150 KB
+2. Worker MapLibre (`vendor/maplibre/*.mjs`)
+3. Placeholder `w_1024,q_60` → 329 KB (Cloudinary, RTT ~80ms)
+4. Full image `keozbw51` (5846×10394) → 4.7 MB (Cloudinary)
+5. 18 tiles z6-z8 (~10-20 KB c/u, locales)
+6. Prefetch adyacente `xyrkeumf` (chapter1-formas-paisaje) → 1.2 MB
+
+### Problemas detectados y corregidos
+
+| # | Problema | Causa raíz | Fix |
+|---|----------|-----------|-----|
+| 1 | **Imagen full descargada 2×** (4.7 MB + 4.7 MB = 9.4 MB) | StrictMode doble-build: `preloadImage` solo cacheaba `HTMLImageElement` completas, no las promesas en vuelo. Build 1 y 2 iniciaban preload simultáneo antes de que la primera completara. | `preloadPromises: Map<string, Promise<void>>` — si una promesa está pendiente para la URL, se reusa en vez de crear otra. `onload`/`onerror` limpian la promesa del Map. |
+| 2 | **Placeholder 329 KB demasiado pesado** | `w_1024,q_60` compite en velocidad con los tiles locales → el usuario nunca ve la "baja resolución", ve tiles directo. | `ph()` → `w_512,q_25,f_webp` (~30 KB, carga en ~100ms en 3G). |
+| 3 | **Tiles z7 duplicados** (6 tiles × 2 = 12 requests) | `TilePrefetcher` precarga z6-z8 completos, pero z7 es el zoom del viewport inicial — MapLibre ya los está pidiendo. Duplicación de requests. | `TilePrefetchConfig.excludeZoom` — salta el zoom en `buildTileUrls`. `useTilePrefetch` pasa `excludeZoom: minZoom + 1` (z7 para ecosistemas). |
+| 4 | Prefetch adyacente (1.2 MB) del mapa siguiente | `usePrefetchAdjacent` espera `loading=false` correctamente. No es un bug, es comportamiento deseado (precarga). | Sin cambios. |
+
+### Commits y archivos modificados
+
+- `images.js` — `ph()` → `w_512,q_25,f_webp`
+- `AtlasMap.module.css` — overlay `0.6` → `0.35` (mapa visible detrás del spinner)
+- `AtlasMap.tsx` — spinner: `{loading || tilesStatus === 'loading'}`
+- `mapStore.js` — `tilesStatus: 'idle'` default
+- `MapRenderer.ts` — `setTilesStatus` en `addTilesLayer` + `preloadPromises` deduplicación
+- `TilePrefetcher.ts` — interfaz `excludeZoom` + salto en `buildTileUrls`
+- `useTilePrefetch.ts` — pasa `excludeZoom: minZoom + 1`
+
+Verificación: `pnpm typecheck` ✓ · `pnpm lint` ✓ · `pnpm build` ✓.
+
+---
+
 ## Estado Actual
 
 - **✅ Los mapas renderizan** (validado en navegador). Se cerró la pantalla azul con el fix de altura (`containerH: 0`) + vendor worker v6 + basemap CARTO. Cierre documentado en la crónica de arriba.
 - **Build**: `pnpm build` pasando sin errores; typecheck ✓ · lint ✓ (0 errores)
 - **Worker MapLibre v6**: vendor estático en `public/vendor/maplibre/` (worker + shared), `setWorkerUrl` en `main.tsx`, sync con `pnpm sync:maplibre`. Sin `?worker&url` (descartado: canal roto en dev).
 - **CSS altura**: `.mapArea { min-height: 0 }` (TestMapPage) + `.wrapper { flex: 1; min-height: 0 }` (AtlasMap) — cadena flex sin porcentajes. Sin `height: 100%` que colapsa en flexbox.
-- **Baja conectividad (rural)**: `connectionStore` (online/offline/slow reactivo), `useAutoLowPower` (lowPower auto al degradar la señal), `usePrefetchAdjacent` (precarga mapas adyacentes, sin saturar 2G), banner offline + banner degraded, `tilesStatus: loading|ready|degraded` con timeout de 8s.
+- **Baja conectividad (rural)**: `connectionStore` (online/offline/slow reactivo), `useAutoLowPower` (lowPower auto al degradar la señal), `usePrefetchAdjacent` (precarga mapas adyacentes tras el build, sin saturar 2G), banner offline + banner degraded (solo en conexión lenta, timeout 15s, `nRequested>0`), `tilesStatus: idle|loading|ready|degraded`.
+- **Carga progresiva**: placeholder `w_512,q_25` (~8 KB) → tiles nítidos de inmediato (F1) → upgrade full asíncrono. Spinner girando mientras `loading || tilesStatus==='loading'` con overlay semitransparente. Cache adaptativo (110-400 tiles), `refreshExpiredTiles:false`, TilePrefetcher z6-z8 en idle, preload de MapLibre a los 1.5s.
 - **Diagnósticos**: `canvas-dimensions`, `style-dump`, telemetría tiles INFO (`tile:request/loaded/duplicate/aborted`), `MapLibre error` listener, timeout degraded. Todos a nivel `?log=trace`.
 - **Tiles (faceta 2)**: piloto `chapter1-ecosistemas` con 2417 tiles WebP (z6-z12, 26.46 MB, QUALITY=95) en `public/assets/maps/tiles/mapas/`; sin over-zoom. `maxZoom` dinámico (max de config y tiles). Runtime con `addTilesLayer` + `tilesServePlugin` inmutable + SW cache-first. Estructura reservada `tiles/capas/`. Fade-in sin doble-fade. `maxParallelImageRequests: 4` (2 en lowPowerMode). `lowPowerMode` con autodetección por `navigator.hardwareConcurrency`.
 - **Originales**: 30/31 mapas PNG organizados por capítulo (`public/assets/maps/{intro,cap1,cap2,cap3,cap4}/`) y renombrados a canónico (falta el original de `chapter1-encuadres`); `GLOSARIO_MAPAS.md` con el mapeo comunidad↔canónico↔ID interno

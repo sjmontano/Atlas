@@ -37,6 +37,7 @@ export function useTilePrefetch(mapId: string) {
       bounds: [bounds[0], bounds[1], bounds[2], bounds[3]] as [number, number, number, number],
       minZoom: entry.tiles.minZoom,
       maxZoom: Math.min(adaptiveMaxZoom, 8),
+      excludeZoom: entry.tiles.minZoom + 1,
     }
 
     logger.debug(CATEGORY, `Prefetch tiles: ${mapId}`, {

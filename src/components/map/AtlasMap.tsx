@@ -74,7 +74,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
         <MapControls />
       )}
 
-      {loading && (
+      {(loading || tilesStatus === 'loading') && (
         <div className={styles.overlay}>
           <div className={styles.spinner} aria-label="Cargando mapa" />
         </div>

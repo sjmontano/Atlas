@@ -24,6 +24,9 @@ export interface TilePrefetchConfig {
   minZoom: number
   /** Máximo zoom base a precargar (el resolver lo ajusta según conexión) */
   maxZoom: number
+  /** Zoom a excluir del prefetch (típicamente el zoom inicial del mapa,
+   *  que MapLibre ya está cargando) */
+  excludeZoom?: number
 }
 
 /** Calcula maxZoom seguro para prefetch según calidad de conexión */
@@ -53,11 +56,12 @@ function latToTileY(lat: number, z: number): number {
 }
 
 function buildTileUrls(config: TilePrefetchConfig): string[] {
-  const { urlTemplate, bounds, minZoom, maxZoom } = config
+  const { urlTemplate, bounds, minZoom, maxZoom, excludeZoom } = config
   const [west, south, east, north] = bounds
   const urls: string[] = []
 
   for (let z = minZoom; z <= maxZoom; z++) {
+    if (z === excludeZoom) continue
     const n = Math.pow(2, z)
     const xMin = Math.max(0, lonToTileX(west, z))
     const xMax = Math.min(n - 1, lonToTileX(east, z))

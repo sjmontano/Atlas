@@ -5,9 +5,9 @@ export const useMapStore = create((set) => ({
   mapBuilt: false,
   loading: false,
   error: null,
-  tilesStatus: 'loading',
+  tilesStatus: 'idle',
 
-  setActiveMap: (mapId) => set({ activeMapId: mapId, mapBuilt: false, error: null, tilesStatus: 'loading' }),
+  setActiveMap: (mapId) => set({ activeMapId: mapId, mapBuilt: false, error: null, tilesStatus: 'idle' }),
   setMapBuilt: (built) => set({ mapBuilt: built }),
   setLoading: (loading) => set({ loading }),
   setError: (error) => set({ error }),

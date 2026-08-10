@@ -337,7 +337,12 @@ export function addTilesLayer(
   opts?: BuildOptions,
 ): void {
   const tiles = entry.tiles
-  if (!tiles) return
+  if (!tiles) {
+    useMapStore.getState().setTilesStatus('idle')
+    return
+  }
+
+  useMapStore.getState().setTilesStatus('loading')
 
   if (!map.getSource(TILES_SOURCE_ID)) {
     map.addSource(TILES_SOURCE_ID, {
@@ -460,25 +465,37 @@ export function addTilesLayer(
   })
 }
 
+const preloadPromises = new Map<string, Promise<void>>()
 const preloadedImages = new Map<string, HTMLImageElement>()
 
 /** Precarga una imagen en background (para el upgrade placeholder → full).
- *  Reutiliza imágenes ya cargadas para evitar requests duplicados
- *  (crítico en StrictMode donde el effect se ejecuta 2 veces seguidas). */
-function preloadImage(url: string): Promise<void> {
+ *  Deduplica solicitudes en vuelo con un Map de promesas pendientes
+ *  (crítico en StrictMode donde el effect se ejecuta 2 veces seguidas
+ *  y la primera build inicia el preload antes de ser descartada). */
+async function preloadImage(url: string): Promise<void> {
   const existing = preloadedImages.get(url)
   if (existing?.complete && existing.naturalWidth > 0) {
-    return Promise.resolve()
+    return
   }
 
-  return new Promise((resolve, reject) => {
+  const pending = preloadPromises.get(url)
+  if (pending) return pending
+
+  const promise = new Promise<void>((resolve, reject) => {
     const img = new Image()
     img.crossOrigin = 'anonymous'
     img.onload = () => {
       preloadedImages.set(url, img)
+      preloadPromises.delete(url)
       resolve()
     }
-    img.onerror = () => reject(new Error(`Error cargando imagen: ${url}`))
+    img.onerror = () => {
+      preloadPromises.delete(url)
+      reject(new Error(`Error cargando imagen: ${url}`))
+    }
     img.src = url
   })
+
+  preloadPromises.set(url, promise)
+  return promise
 }
