@@ -247,29 +247,34 @@ export async function buildGeoreferencedMap(
     placeholder: images.placeholder.slice(0, 80),
   })
 
-  // ── 5. Upgrade a imagen completa ANTES de los tiles ─────────────────────
-  // Se espera la imagen full para que los tiles siempre se agreguen sobre la
-  // imagen en su máxima calidad (evita el "pop" placeholder→full bajo tiles).
-  // Si falla, se continúa con el placeholder (degradación elegante).
+  // ── 5. Tiles XYZ de alta resolución (inmediatos, sobre placeholder) ──────
+  // Los tiles se agregan SIN esperar la imagen full. El placeholder (w_1024)
+  // ya da un mapa reconocible, y los tiles aportan detalle a z6-z8.
+  // Esto evita el bloqueo de 10-20s que causaba `await preloadImage(full)`
+  // en conexiones lentas (Slow 4G / 2G rural).
+  addTilesLayer(map, mapId, entry, bounds, opts)
+
+  // ── 6. Upgrade a imagen completa (asíncrono, no bloquea) ─────────────────
+  // Se dispara en background. Cuando termina, actualiza el ImageSource
+  // de forma transparente (el usuario ve la transición placeholder→full).
+  // Si falla, el placeholder + tiles ya son funcionales.
   if (images.full !== images.placeholder) {
     logger.trace(CATEGORY, 'full:preload-start', { mapId })
     const t0 = performance.now()
-    try {
-      await preloadImage(images.full)
-      if (map.getSource(IMAGE_SOURCE_ID)) {
-        const source = map.getSource(IMAGE_SOURCE_ID) as maplibregl.ImageSource
-        source.updateImage({ url: images.full, coordinates })
-        logger.info(CATEGORY, `Imagen completa cargada: ${mapId}`, {
-          ms: Math.round(performance.now() - t0),
-        })
-      }
-    } catch (err) {
-      logger.warn(CATEGORY, `No se pudo cargar imagen full: ${mapId}`, err)
-    }
+    preloadImage(images.full)
+      .then(() => {
+        if (map.getSource(IMAGE_SOURCE_ID)) {
+          const source = map.getSource(IMAGE_SOURCE_ID) as maplibregl.ImageSource
+          source.updateImage({ url: images.full, coordinates })
+          logger.info(CATEGORY, `Imagen completa cargada: ${mapId}`, {
+            ms: Math.round(performance.now() - t0),
+          })
+        }
+      })
+      .catch((err) => {
+        logger.warn(CATEGORY, `No se pudo cargar imagen full: ${mapId}`, err)
+      })
   }
-
-  // ── 6. Tiles XYZ de alta resolución (sobre la imagen base full) ─────────
-  addTilesLayer(map, mapId, entry, bounds, opts)
 
   const style = map.getStyle()
   logger.info(CATEGORY, `style-dump [${mapId}]`, {

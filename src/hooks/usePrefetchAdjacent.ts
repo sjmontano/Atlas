@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { getAllMaps } from '@data/chapters/chapters.js'
 import { getMapEntry } from '@data/maps'
 import { useConnectionStore } from '@stores/connectionStore.js'
+import { useMapStore } from '@stores/mapStore.js'
 
 function preloadImage(url: string): void {
   if (!url) return
@@ -13,9 +14,10 @@ function preloadImage(url: string): void {
 export function usePrefetchAdjacent(mapId: string) {
   const isOnline = useConnectionStore((s) => s.isOnline)
   const isSlow = useConnectionStore((s) => s.isSlow)
+  const loading = useMapStore((s) => s.loading)
 
   useEffect(() => {
-    if (!mapId || !isOnline || isSlow) return
+    if (!mapId || !isOnline || isSlow || loading) return
 
     const allMaps = getAllMaps()
     const idx = allMaps.findIndex((m) => m.mapId === mapId)
@@ -33,5 +35,5 @@ export function usePrefetchAdjacent(mapId: string) {
     }, 3000)
 
     return () => clearTimeout(timer)
-  }, [mapId, isOnline, isSlow])
+  }, [mapId, isOnline, isSlow, loading])
 }
