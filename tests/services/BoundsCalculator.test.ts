@@ -105,6 +105,30 @@ describe('BoundsCalculator', () => {
       expect(result.center[1]).toBeCloseTo(6.2952, 3)
     })
 
+    it('los composites de ecosistemas producen el mismo footprint que el mapa base', () => {
+      const baseGeo = MAP_GEO['chapter1-ecosistemas']
+      const baseResult = processBounds(baseGeo.pgw, baseGeo.width, baseGeo.height)
+
+      const compositePgw: readonly [number, number, number, number, number, number] = [
+        0.0018443379684604639, 0, 0, -0.0018447264954608695,
+        -77.717574036785, 6.3000595728748,
+      ]
+      const compW = 1462
+      const compH = 2599
+      const compResult = processBounds(compositePgw, compW, compH)
+
+      expect(compResult.isValid).toBe(true)
+
+      const baseSpanLng = baseResult.bounds[2] - baseResult.bounds[0]
+      const compSpanLng = compResult.bounds[2] - compResult.bounds[0]
+      expect(compSpanLng).toBeCloseTo(baseSpanLng, 6)
+
+      const baseSpanLat = baseResult.bounds[3] - baseResult.bounds[1]
+      const compSpanLat = compResult.bounds[3] - compResult.bounds[1]
+      expect(compSpanLat).toBeCloseTo(baseSpanLat, 6)
+
+    })
+
     it('procesa todos los mapas definidos en geo.js sin errores', () => {
       for (const [mapId, geo] of Object.entries(MAP_GEO)) {
         const result = processBounds(geo.pgw, geo.width, geo.height)
