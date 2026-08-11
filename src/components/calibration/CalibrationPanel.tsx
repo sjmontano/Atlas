@@ -11,8 +11,14 @@ import {
   type CalibrationState,
 } from '@services/MapCalibration'
 import { saveCalibration } from '@services/SaveCalibration'
+import { useLayerStore } from '@stores/layerStore'
+import { getMapLayers } from '@data/layers'
+import { updateLayerPGW } from '@services/LayerManager'
+import type { RasterPgwLayer } from '@types/layer'
 import type { BoundsResult } from '@services/BoundsCalculator'
 import styles from './CalibrationPanel.module.css'
+
+const ENABLE_DEV_TOOLS = import.meta.env.VITE_DEV_TOOLS === 'true'
 
 interface Props {
   mapId: string
@@ -21,6 +27,12 @@ interface Props {
 }
 
 type FieldKey = 'd' | 'b' | 'c' | 'f' | 'width' | 'height'
+
+type CalibrationTarget =
+  | { kind: 'map' }
+  | { kind: 'layers'; layerIds: string[] }
+
+const LAYER_COLORS = ['#4fc3f7', '#f06292', '#aed581', '#ffd54f', '#ba68c8', '#90a4ae', '#ff8a65']
 
 const PCT_STEPS = [0.0001, 0.001, 0.01, 0.1]
 const DEG_STEP_DEFAULT = 0.0005
@@ -51,6 +63,10 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
   const [dirty, setDirty] = useState<Record<FieldKey, boolean>>({ d: false, b: false, c: false, f: false, width: false, height: false })
   const [collapsed, setCollapsed] = useState(false)
   const [moveMode, setMoveMode] = useState(false)
+  const [target, setTarget] = useState<CalibrationTarget>({ kind: 'map' })
+  const [activeLayerIdx, setActiveLayerIdx] = useState(0)
+  const calibrationLayers = useLayerStore((s) => s.selectedForCalibration)
+  const layerStatesRef = useRef<Map<string, { current: CalibrationState; original: CalibrationState }>>(new Map())
   const [saveError, setSaveError] = useState<string | null>(null)
 
   const stepPctRef = useRef(PCT_STEPS[1])
@@ -263,6 +279,25 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
     }
   }, [state, mapId, onRebuild])
 
+  function initLayerStates(layerIds: string[]) {
+    const allLayers = getMapLayers(mapId) ?? []
+    const map = layerStatesRef.current
+    map.clear()
+    for (const id of layerIds) {
+      const layer = allLayers.find((l) => l.id === id) as RasterPgwLayer | undefined
+      if (layer) {
+        const cs = pgwToState(layer.pgw, layer.width, layer.height)
+        map.set(id, { current: cs, original: cs })
+      }
+    }
+    setActiveLayerIdx(0)
+    const first = map.get(layerIds[0])
+    if (first) {
+      setState(clampCalibration(first.current))
+      originalRef.current = first.original
+    }
+  }
+
   const convertF = state ? state.f + state.b * state.height : 0
   const sizePct = (() => {
     const orig = originalRef.current
@@ -276,6 +311,30 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
     <div className={styles.panel} role="region" aria-label="Calibración PGW">
       <div className={styles.header}>
         <span className={styles.headerTitle}>Calibración</span>
+        {ENABLE_DEV_TOOLS && getMapLayers(mapId) && (
+          <div className={styles.overridesSection}>
+            <button
+              className={`${styles.headerBtn} ${target.kind === 'map' ? styles.targetActive : ''}`}
+              onClick={() => {
+                useLayerStore.getState().clearCalibrationSelection()
+                setTarget({ kind: 'map' })
+              }}
+            >
+              🗺 Mapa base
+            </button>
+            <button
+              className={`${styles.headerBtn} ${target.kind === 'layers' ? styles.targetActive : ''}`}
+              onClick={() => {
+                const layerIds = [...calibrationLayers]
+                if (layerIds.length === 0) return
+                setTarget({ kind: 'layers', layerIds })
+                initLayerStates(layerIds)
+              }}
+            >
+              📐 Capas: {calibrationLayers.size || 0}
+            </button>
+          </div>
+        )}
         <div className={styles.headerActions}>
           <button
             className={styles.headerBtn}

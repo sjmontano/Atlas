@@ -29,6 +29,18 @@
   white-space: nowrap;
 }
 
+.overridesSection {
+  display: flex;
+  gap: 4px;
+}
+
+.targetActive {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background: rgba(5, 153, 183, 0.15);
+  font-weight: 600;
+}
+
 .headerActions {
   display: flex;
   align-items: center;
