@@ -202,6 +202,23 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
       const dLng = geo.lng - dragRef.current.startGeo.lng
       const dLat = geo.lat - dragRef.current.startGeo.lat
 
+      if (target.kind === 'layers' && target.layerIds.length > 0) {
+        const activeId = target.layerIds[activeLayerIdx]
+        if (!activeId) return
+        const activeEntry = layerStatesRef.current.get(activeId)
+        if (!activeEntry) return
+        for (const layerId of target.layerIds) {
+          const entry = layerStatesRef.current.get(layerId)
+          if (!entry) continue
+          const pgw = stateToPGW(entry.current)
+          const shifted = shiftOrigin(pgw, -dLng, -dLat)
+          entry.current = clampCalibration(pgwToState(shifted, entry.current.width, entry.current.height))
+        }
+        applyAndUpdate(activeEntry.current)
+        dragRef.current.startGeo = { lng: geo.lng, lat: geo.lat }
+        return
+      }
+
       setState((prev) => {
         if (!prev) return prev
         const pgw = stateToPGW(prev)
@@ -246,7 +263,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
       try { map.dragPan.enable() } catch { /* noop */ }
       dragRef.current = null
     }
-  }, [moveMode, controllerRef])
+  }, [moveMode, controllerRef, target, activeLayerIdx])
 
   const nudge = useCallback((key: FieldKey, sign: 1 | -1, fine: boolean) => {
     setState((prev) => {
