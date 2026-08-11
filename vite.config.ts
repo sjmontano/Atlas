@@ -4,9 +4,11 @@ import { resolve } from 'path'
 import { readFileSync, writeFileSync, existsSync, createReadStream } from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
 import { rewriteGeoEntry } from './src/services/geoRewrite.ts'
+import { rewriteLayerCalibration } from './src/services/rewriteLayerCalibration.ts'
 
 function calibrationSavePlugin(): Plugin {
   const geoPath = resolve(__dirname, 'src/data/maps/geo.js')
+  const calibrationPath = resolve(__dirname, 'src/data/layers/calibration.js')
 
   return {
     name: 'calibration-save',
@@ -24,7 +26,41 @@ function calibrationSavePlugin(): Plugin {
               pgw?: unknown
               width?: unknown
               height?: unknown
+              target?: unknown
+              layerIds?: unknown
+              entries?: unknown
             }
+            const target = typeof payload.target === 'string' ? payload.target : 'map'
+
+            if (target === 'layers') {
+              const layerIds = Array.isArray(payload.layerIds) ? payload.layerIds : []
+              const entries = Array.isArray(payload.entries) ? payload.entries : []
+
+              if (layerIds.length === 0 || entries.length === 0) {
+                throw new Error('layerIds y entries requeridos para target=layers')
+              }
+
+              let src = existsSync(calibrationPath) ? readFileSync(calibrationPath, 'utf8') : 'export const LAYER_CALIBRATIONS = {\n}'
+              for (const entry of entries) {
+                const id = String(entry.id ?? '')
+                if (!/^[A-Za-z0-9_-]+$/.test(id)) throw new Error(`layerId inválido: "${id}"`)
+                const pgw = entry.pgw
+                if (!Array.isArray(pgw) || pgw.length !== 6 || !pgw.every((v) => typeof v === 'number' && Number.isFinite(v))) {
+                  throw new Error('pgw inválido en entry')
+                }
+                const w = typeof entry.width === 'number' ? Math.round(entry.width) : NaN
+                const h = typeof entry.height === 'number' ? Math.round(entry.height) : NaN
+                if (!Number.isFinite(w) || !Number.isFinite(h) || w < 1 || h < 1) {
+                  throw new Error('width/height inválidos en entry')
+                }
+                src = rewriteLayerCalibration(src, id, { pgw: pgw as [number,number,number,number,number,number], width: w, height: h })
+              }
+              writeFileSync(calibrationPath, src, 'utf8')
+              res.writeHead(200, { 'Content-Type': 'application/json' })
+              res.end(JSON.stringify({ ok: true, target: 'layers' }))
+              return
+            }
+
             const { mapId, pgw, width, height } = payload
 
             if (typeof mapId !== 'string' || !/^[A-Za-z0-9_-]+$/.test(mapId)) {
