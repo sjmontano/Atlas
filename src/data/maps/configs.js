@@ -23,10 +23,10 @@ export const MAP_CONFIGS = {
 
   'chapter1-ecosistemas': {
     initialZoom: 6.4,
-    minZoom: 6.4,
+    minZoom: 2,
     maxZoom: 9.5,
     initialBearing: -90,
-    useTransformConstrain: true,
+    useTransformConstrain: false,
     viewportMaxBounds: null,
     dragPan: true,
     scrollZoom: true,

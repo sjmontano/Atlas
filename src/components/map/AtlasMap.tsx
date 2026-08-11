@@ -32,6 +32,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const { mapRef, error } = useMap({ mapId, containerRef, controllerRef })
   const loading = useMapStore((s) => s.loading)
+  const mapBuilt = useMapStore((s) => s.mapBuilt)
   const tilesStatus = useMapStore((s) => s.tilesStatus)
   const isSlow = useConnectionStore((s) => s.isSlow)
   const initConnection = useConnectionStore((s) => s.init)
@@ -99,15 +100,15 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
 
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !layers) return
+    if (!map || !mapBuilt || !layers) return
     syncLayers(map, mapId, layers, groups, { visibleLayers, opacities })
-  }, [mapRef, mapId, layers, groups, visibleLayers, opacities])
+  }, [mapRef, mapId, layers, groups, visibleLayers, opacities, mapBuilt])
 
   useEffect(() => {
     const map = mapRef.current
-    if (!map || !pois) return
+    if (!map || !mapBuilt || !pois) return
     addPois(map, mapId, pois, setActivePoi)
-  }, [mapRef, mapId, pois])
+  }, [mapRef, mapId, pois, mapBuilt])
 
   return (
     <div className={styles.wrapper}>
