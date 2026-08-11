@@ -61,13 +61,11 @@ export function addLayer(
   const opacity = store.opacities[layer.id] ?? layer.opacity ?? 1
 
   if (layer.type === 'raster-pgw') {
-    const { coordinates, bounds } = processBounds(pgw, width, height)
+    const { coordinates } = processBounds(pgw, width, height)
     if (isDegenerate(coordinates)) {
       logger.warn(CATEGORY, `Skipping degenerate layer: ${layer.id}`)
       return
     }
-
-    console.debug(`[LayerManager] Adding layer "${layer.id}" at bounds`, bounds, 'coords:', coordinates)
 
     map.addSource(sid, {
       type: 'image',
