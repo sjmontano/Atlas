@@ -2,8 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import * as maplibregl from 'maplibre-gl'
 import { sync, addLayer, removeLayer, removeAll, updateLayerPGW } from '@services/LayerManager'
 import { useLayerStore } from '@stores/layerStore'
-import { processBounds } from '@services/BoundsCalculator'
-import type { Layer, RasterPgwLayer } from '@types/layer'
+import type { RasterPgwLayer } from '@types/layer'
 
 vi.mock('maplibre-gl', () => ({
   Map: vi.fn(),

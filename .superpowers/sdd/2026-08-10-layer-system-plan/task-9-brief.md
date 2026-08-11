@@ -1,3 +1,22 @@
+### Task 9: AtlasMap integration + Copy composites
+
+**Files:**
+- Modify: `src/components/map/AtlasMap.tsx`
+- Create directories + copy files
+
+**Interfaces:**
+- Consumes: All tasks above (LayerManager, PoiManager, LayerMenu, PoiModal, layerStore, data)
+- Produces: Fully integrated AtlasMap with layers, POIs, and menu
+
+- [ ] **Step 1: Read current AtlasMap.tsx** (for context)
+
+```bash
+# No command needed — reference the design spec
+```
+
+- [ ] **Step 2: Rewrite AtlasMap.tsx**
+
+```tsx
 import { useEffect, useRef, useMemo, useState } from 'react'
 import type { RefObject } from 'react'
 import { useMap } from '@hooks/useMap'
@@ -14,7 +33,7 @@ import { addPois, removePois } from '@services/PoiManager'
 import { getMapLayers, getLayerGroups } from '@data/layers'
 import { getPois } from '@data/pois'
 import type { MapController } from '@services/MapRenderer'
-import type { Poi } from '../../types/poi.ts'
+import type { Poi } from '@types/poi'
 import { MapControls } from './MapControls'
 import { LayerMenu } from './LayerMenu'
 import { PoiModal } from './PoiModal'
@@ -40,7 +59,8 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const basemapStyle = useUIStore((s) => s.basemapStyle)
   const imageOpacity = useUIStore((s) => s.imageOpacity)
 
-  const { visibleLayers, opacities } = useLayerStore()
+  const visibleLayers = useLayerStore((s) => s.visibleLayers)
+  const opacities = useLayerStore((s) => s.opacities)
 
   const layers = useMemo(() => getMapLayers(mapId), [mapId])
   const groups = useMemo(() => getLayerGroups(mapId), [mapId])
@@ -58,8 +78,8 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
 
   useEffect(() => {
     useLayerStore.getState().resetAll(mapId)
-    const map = mapRef.current
     return () => {
+      const map = mapRef.current
       if (map) {
         removeAllLayers(map)
         removePois(map)
@@ -133,3 +153,22 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
     </div>
   )
 }
+```
+
+- [ ] **Step 3: Copy composite images**
+
+```bash
+New-Item -ItemType Directory -Force -Path "D:\Proyectos\Atlas\atlas-pluriversal\atlas\public\assets\maps\capas\ecosistemas"
+Copy-Item "D:\Proyectos\Atlas\atlas-pluriversal\tiles\ecosistemas\_composites\*.webp" -Destination "D:\Proyectos\Atlas\atlas-pluriversal\atlas\public\assets\maps\capas\ecosistemas\"
+```
+
+- [ ] **Step 4: Commit**
+
+```bash
+git add src/components/map/AtlasMap.tsx public/assets/maps/capas/ecosistemas/
+git commit -m "feat: integrate layers, POIs, and menu into AtlasMap; copy composite images"
+```
+
+---
+
+

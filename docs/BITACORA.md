@@ -799,6 +799,83 @@ Secuencia de carga observada:
 
 Verificación: `pnpm typecheck` ✓ · `pnpm lint` ✓ · `pnpm build` ✓.
 
+### Veredicto post-análisis: "doble descarga de full" en producción NO es bug (2026-08-10)
+
+Tras medir con cache habilitada se concluyó que la doble descarga de la full image
+(4.7 MB × 2) observada en prod era un **artefacto de `ignoreCache: true`** (caché
+deshabilitada en la recarga de medición), no un defecto real:
+
+- **Flujo real**: `preloadImage(full)` (MapRenderer.ts:475) puebla el HTTP cache con
+  `new Image()`; cuando resuelve, `source.updateImage({url: full})` (MapRenderer.ts:268)
+  hace el fetch de MapLibre (`ImageSource.load` → `makeRequest`), que **reutiliza el
+  cache** (Cloudinary responde `Cache-Control: public, immutable, max-age=2592000`).
+- **Evidencia**: prod Fast 4G con `ignoreCache` → 2 requests (reqid 58+72); dev con
+  recarga normal/caché habilitada → **1 solo request** (reqid 1051).
+- El patrón de requests duplicados de placeholder (`ERR_ABORTED` + `200`) es efecto
+  del **StrictMode doble-mount** (2× `effect:build-start`, `map:destroy` del 1º aborta
+  su placeholder de 33 KB) — benigno y solo en dev.
+- **Sin cambios de código necesarios**: `preloadPromises`/`preloadedImages` ya dedup
+  correctamente; el comportamiento con caché normal (usuarios reales) es óptimo.
+
+---
+
+## Foco de trabajo: capas del mapa de Ecosistemas — clasificación oficial (2026-08-10)
+
+### Contexto de trabajo acordado
+
+- **Proyecto principal donde se trabaja**: `D:\Proyectos\Atlas\atlas-pluriversal\atlas\` (dev server en `http://localhost:5173`, dev menu en `/dev`, mapas de test en `/test/:mapId`).
+- **v17** (`atlas_front/atlas_frontend_v17`) es la **referencia/origen** del que nos basamos (solo lectura: capas, PGW, assets).
+- **De ahora en adelante trabajamos en las capas del mapa de ecosistemas** (`chapter1-ecosistemas`).
+- El pipeline de tiles XYZ ya existe en `scripts/generate-tiles.mjs` (GDAL, salida a `public/assets/maps/tiles/mapas/{mapId}/...`, con estructura reservada `tiles/capas/{layerId}/...`).
+
+### Clasificación oficial de ecosistemas (provista por la comunidad/usuario)
+
+**1. Amenazados y en estado vulnerable**
+- **1.1. De litoral y aguas poco profundas**: Sedimentos submarinos · Manglar · Llanura mareal · Playas · Zona pantanosa
+- **1.2. Con vegetación de baja altura**: Rocas expuestas · Humedales · Vegetación arbustiva (arbustal) · Campos de hierbas y pastos (herbazal)
+- **1.3. Bosques**: Extremadamente secos (Xerofítico) · Muy secos (Subxerofítico) · Inundables · Secos tropicales · Húmedos tropicales · Subandinos · De niebla · Alto andinos
+- **1.4. Altas cumbres**: Pantano de páramo (Turbera) · Páramo · Laguna · Glaciares y nivales
+
+**2. Entornos del ser humano que transforman ecosistemas**
+- **2.1. Intervenciones moderadas**
+- **2.2. Zonas con agricultura y ganadería**
+- **2.3. Intervenciones severas**
+
+**3. Sin información y otras áreas**
+
+### Mapeo con los IDs de capa v17 (referencia)
+
+| Clasificación oficial | Capa v17 (`rasterTilesEcosistemas.js`) |
+|---|---|
+| Sedimentos submarinos | `sedimentosSubmarinos` |
+| Manglar | `manglar` |
+| Llanura mareal | `llanuraMareal` |
+| Playas | `playas` |
+| Zona pantanosa | `zonaPantanosa` |
+| Rocas expuestas | `rocasExpuestas` |
+| Humedales | `humedales` |
+| Vegetación arbustiva | `arbustal` |
+| Campos de hierbas y pastos | `herbazalPastos` |
+| Extremadamente secos (Xerofítico) | `xerofitico` |
+| Muy secos (Subxerofítico) | `subxerofitico` |
+| Inundables | `inundables` |
+| Secos tropicales | `secosTropicales` |
+| Húmedos tropicales | `humedosTropicales` |
+| Subandinos | `subandinos` |
+| De niebla | `bosqueNiebla` |
+| Alto andinos | `altoAndinos` |
+| Pantano de páramo (Turbera) | `pantanoParamo` |
+| Páramo | `Paramo` |
+| Laguna | `laguna` |
+| Glaciares y nivales | `glaciaresNivales` |
+| 2.1/2.2/2.3 y 3 | `agriculturaMixta`, `ganaderia`, `monocultivos`, `zonaUrbanaIndustrial`, `regeneracionVegetal`, `aguaSuperficial`, `areasInundacion`, `bosqueFragmentado`, `sinInformacion` — **asignación pendiente de confirmar** |
+
+### Notas / pendientes
+
+- ⚠️ Esta clasificación **reemplaza el agrupamiento provisional** que se usó en un pipeline previo (`D:\Proyectos\Atlas\atlas-pluriversal\tiles\generate_eco_tiles.py`, tiles raíz). Esa salida queda **obsoleta/descartada** como fuente; la clasificación oficial es la de esta entrada.
+- Pendiente de confirmar con la comunidad: qué capas caen en 2.1 (Intervenciones moderadas) vs 2.2 (Agricultura y ganadería) vs 2.3 (Intervenciones severas), y dónde quedan `aguaSuperficial`, `areasInundacion`, `bosqueFragmentado`, `regeneracionVegetal`.
+- Aún **no se ejecuta ningún cambio de código**; solo se registra el foco y la clasificación.
+
 ---
 
 ## Estado Actual

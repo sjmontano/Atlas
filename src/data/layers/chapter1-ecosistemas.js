@@ -1,5 +1,3 @@
-import { ECOSYSTEMS_LAYERS } from './shared/ecosistemas.js'
-
 const COMPOSITE_BASE = '/assets/maps/capas/ecosistemas'
 const COMPOSITE_PGW = [0.000441457732, 0, 0, -0.000441431774, -77.623835249, 6.140675060]
 const COMPOSITE_W = 1462

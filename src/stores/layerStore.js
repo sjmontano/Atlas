@@ -22,7 +22,7 @@ function persist(state, mapId) {
   localStorage.setItem(STORAGE_PREFIX + mapId, JSON.stringify(payload))
 }
 
-export const useLayerStore = create((set, get) => ({
+export const useLayerStore = create((set, _get) => ({
   visibleLayers: new Set(),
   opacities: {},
   activeCategories: new Set(),
