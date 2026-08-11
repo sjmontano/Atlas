@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useMemo, useState } from 'react'
 import type { RefObject } from 'react'
 import { useMap } from '@hooks/useMap'
 import { useAutoLowPower } from '@hooks/useAutoLowPower'
@@ -7,9 +7,17 @@ import { useTilePrefetch } from '@hooks/useTilePrefetch'
 import { useMapStore } from '@stores/mapStore'
 import { useUIStore } from '@stores/uiStore'
 import { useConnectionStore } from '@stores/connectionStore'
+import { useLayerStore } from '@stores/layerStore'
 import { addBasemap, removeBasemap, setImageOpacity } from '@services/BasemapManager'
+import { sync as syncLayers, removeAll as removeAllLayers } from '@services/LayerManager'
+import { addPois, removePois } from '@services/PoiManager'
+import { getMapLayers, getLayerGroups } from '@data/layers'
+import { getPois } from '@data/pois'
 import type { MapController } from '@services/MapRenderer'
+import type { Poi } from '../../types/poi.ts'
 import { MapControls } from './MapControls'
+import { LayerMenu } from './LayerMenu'
+import { PoiModal } from './PoiModal'
 import { OfflineBanner } from './OfflineBanner'
 import styles from './AtlasMap.module.css'
 
@@ -32,6 +40,14 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const basemapStyle = useUIStore((s) => s.basemapStyle)
   const imageOpacity = useUIStore((s) => s.imageOpacity)
 
+  const { visibleLayers, opacities } = useLayerStore()
+
+  const layers = useMemo(() => getMapLayers(mapId), [mapId])
+  const groups = useMemo(() => getLayerGroups(mapId), [mapId])
+  const pois = useMemo(() => getPois(mapId), [mapId])
+  const hasLayers = layers !== null && layers.length > 0
+  const [activePoi, setActivePoi] = useState<Poi | null>(null)
+
   useAutoLowPower()
   usePrefetchAdjacent(mapId)
   useTilePrefetch(mapId)
@@ -39,6 +55,17 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   useEffect(() => {
     initConnection()
   }, [initConnection])
+
+  useEffect(() => {
+    useLayerStore.getState().resetAll(mapId)
+    return () => {
+      const map = mapRef.current
+      if (map) {
+        removeAllLayers(map)
+        removePois(map)
+      }
+    }
+  }, [mapId, mapRef])
 
   useEffect(() => {
     const map = mapRef.current
@@ -59,6 +86,18 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
     setImageOpacity(map, imageOpacity)
   }, [imageOpacity, mapRef])
 
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !layers) return
+    syncLayers(map, mapId, layers, groups, { visibleLayers, opacities })
+  }, [mapRef, mapId, layers, groups, visibleLayers, opacities])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map || !pois) return
+    addPois(map, mapId, pois, setActivePoi)
+  }, [mapRef, mapId, pois])
+
   return (
     <div className={styles.wrapper}>
       <div ref={containerRef} className={styles.mapContainer} />
@@ -72,6 +111,12 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
 
       {ENABLE_DEV_TOOLS && !loading && !error && (
         <MapControls />
+      )}
+
+      {!loading && !error && hasLayers && <LayerMenu mapId={mapId} onCalibrate={() => {}} />}
+
+      {activePoi && (
+        <PoiModal poi={activePoi} onClose={() => setActivePoi(null)} />
       )}
 
       {(loading || tilesStatus === 'loading') && (

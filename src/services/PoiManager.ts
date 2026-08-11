@@ -1,5 +1,12 @@
 import type * as maplibregl from 'maplibre-gl'
-import type { Poi } from '@types/poi'
+import type { Poi } from '../types/poi.ts'
+
+interface GeoJSONFeature {
+  type: 'Feature'
+  id?: string | number
+  properties: Record<string, unknown>
+  geometry: { type: 'Point'; coordinates: [number, number] }
+}
 
 const POIS_SOURCE_ID = 'atlas-pois-source'
 const POIS_LAYER_ID = 'atlas-pois-layer'
@@ -12,7 +19,7 @@ export function addPois(
 ): void {
   removePois(map)
 
-  const features: GeoJSON.Feature[] = pois.map((poi) => ({
+  const features: GeoJSONFeature[] = pois.map((poi) => ({
     type: 'Feature',
     id: poi.id,
     properties: { id: poi.id, name: poi.name, numero: poi.numero, popupTitle: poi.popup.title },

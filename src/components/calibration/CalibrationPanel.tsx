@@ -13,8 +13,7 @@ import {
 import { saveCalibration } from '@services/SaveCalibration'
 import { useLayerStore } from '@stores/layerStore'
 import { getMapLayers } from '@data/layers'
-import { updateLayerPGW } from '@services/LayerManager'
-import type { RasterPgwLayer } from '@types/layer'
+import type { RasterPgwLayer } from '../../types/layer.ts'
 import type { BoundsResult } from '@services/BoundsCalculator'
 import styles from './CalibrationPanel.module.css'
 
@@ -31,8 +30,6 @@ type FieldKey = 'd' | 'b' | 'c' | 'f' | 'width' | 'height'
 type CalibrationTarget =
   | { kind: 'map' }
   | { kind: 'layers'; layerIds: string[] }
-
-const LAYER_COLORS = ['#4fc3f7', '#f06292', '#aed581', '#ffd54f', '#ba68c8', '#90a4ae', '#ff8a65']
 
 const PCT_STEPS = [0.0001, 0.001, 0.01, 0.1]
 const DEG_STEP_DEFAULT = 0.0005
@@ -64,8 +61,8 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
   const [collapsed, setCollapsed] = useState(false)
   const [moveMode, setMoveMode] = useState(false)
   const [target, setTarget] = useState<CalibrationTarget>({ kind: 'map' })
-  const [activeLayerIdx, setActiveLayerIdx] = useState(0)
-  const calibrationLayers = useLayerStore((s) => s.selectedForCalibration)
+  const [_activeLayerIdx, setActiveLayerIdx] = useState(0)
+  const { selectedForCalibration: calibrationLayers } = useLayerStore()
   const layerStatesRef = useRef<Map<string, { current: CalibrationState; original: CalibrationState }>>(new Map())
   const [saveError, setSaveError] = useState<string | null>(null)
 
@@ -291,10 +288,13 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
       }
     }
     setActiveLayerIdx(0)
-    const first = map.get(layerIds[0])
-    if (first) {
-      setState(clampCalibration(first.current))
-      originalRef.current = first.original
+    const firstId = layerIds[0]
+    if (firstId) {
+      const first = map.get(firstId)
+      if (first) {
+        setState(clampCalibration(first.current))
+        originalRef.current = first.original
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-import type { Poi } from '@types/poi'
+import type { Poi } from '../../types/poi.ts'
 import styles from './PoiModal.module.css'
 
 interface Props {

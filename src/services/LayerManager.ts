@@ -1,7 +1,7 @@
 import type * as maplibregl from 'maplibre-gl'
-import { processBounds, type PGWData, type GeographicBounds, type ImageCoordinates } from './BoundsCalculator'
+import { processBounds, type PGWData, type ImageCoordinates } from './BoundsCalculator'
 import { LAYER_CALIBRATIONS } from '@data/layers/calibration.js'
-import type { Layer, RasterPgwLayer, RasterTilesLayer } from '@types/layer'
+import type { Layer, RasterPgwLayer } from '../types/layer.ts'
 import { logger } from './MapLogger'
 
 const CATEGORY = 'LayerManager'
@@ -132,7 +132,7 @@ export function updateLayerPGW(
 
 export function sync(
   map: maplibregl.Map,
-  mapId: string,
+  _mapId: string,
   layers: Layer[],
   _groups: unknown,
   store: StoreSnapshot,

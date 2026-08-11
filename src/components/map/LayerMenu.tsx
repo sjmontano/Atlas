@@ -1,7 +1,7 @@
 import { useMemo, useState, useCallback } from 'react'
 import { useLayerStore } from '@stores/layerStore'
 import { getMapLayers, getLayerGroups } from '@data/layers'
-import type { Layer, LayerGroup } from '@types/layer'
+import type { Layer } from '../../types/layer.ts'
 import styles from './LayerMenu.module.css'
 
 interface Props {
@@ -21,15 +21,13 @@ function groupTriState(groupId: string, layers: Layer[], visibleLayers: Set<stri
 export function LayerMenu({ mapId, onCalibrate }: Props) {
   const layers = useMemo(() => getMapLayers(mapId), [mapId])
   const groups = useMemo(() => getLayerGroups(mapId), [mapId])
-  const visibleLayers = useLayerStore((s) => s.visibleLayers)
-  const opacities = useLayerStore((s) => s.opacities)
-  const expandedGroups = useLayerStore((s) => s.expandedGroups)
-  const selectedForCalibration = useLayerStore((s) => s.selectedForCalibration)
-  const toggleLayer = useLayerStore((s) => s.toggleLayer)
-  const setLayerOpacity = useLayerStore((s) => s.setLayerOpacity)
-  const setLayerGroupVisible = useLayerStore((s) => s.setLayerGroupVisible)
-  const toggleGroupExpanded = useLayerStore((s) => s.toggleGroupExpanded)
-  const toggleCalibrationSelection = useLayerStore((s) => s.toggleCalibrationSelection)
+  const store = useLayerStore()
+  const { visibleLayers, opacities, expandedGroups, selectedForCalibration } = store
+  const toggleLayer = store.toggleLayer
+  const setLayerOpacity = store.setLayerOpacity
+  const setLayerGroupVisible = store.setLayerGroupVisible
+  const toggleGroupExpanded = store.toggleGroupExpanded
+  const toggleCalibrationSelection = store.toggleCalibrationSelection
 
   const [collapsed, setCollapsed] = useState(false)
   const [calibrateMode, setCalibrateMode] = useState(false)
