@@ -39,7 +39,8 @@ function getBeforeId(map: maplibregl.Map, layerOrder: number, allLayers: Layer[]
   for (const l of sorted) {
     if (map.getLayer(sourceId(l.id))) return sourceId(l.id)
   }
-  return POIS_LAYER_ID
+  if (map.getLayer(POIS_LAYER_ID)) return POIS_LAYER_ID
+  return undefined
 }
 
 export function addLayer(
