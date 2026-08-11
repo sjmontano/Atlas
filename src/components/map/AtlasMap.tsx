@@ -39,6 +39,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const basemapVisible = useUIStore((s) => s.basemapVisible)
   const basemapStyle = useUIStore((s) => s.basemapStyle)
   const imageOpacity = useUIStore((s) => s.imageOpacity)
+  const tilesVisible = useUIStore((s) => s.tilesVisible)
 
   const { visibleLayers, opacities } = useLayerStore()
 
@@ -85,6 +86,16 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
     if (!map) return
     setImageOpacity(map, imageOpacity)
   }, [imageOpacity, mapRef])
+
+  useEffect(() => {
+    const map = mapRef.current
+    if (!map) return
+    try {
+      if (map.getLayer('atlas-tiles-layer')) {
+        map.setLayoutProperty('atlas-tiles-layer', 'visibility', tilesVisible ? 'visible' : 'none')
+      }
+    } catch { /* noop */ }
+  }, [tilesVisible, mapRef])
 
   useEffect(() => {
     const map = mapRef.current

@@ -18,6 +18,7 @@ export const useUIStore = create((set) => ({
   basemapVisible: false,
   basemapStyle: 'light',
   imageOpacity: 1,
+  tilesVisible: true,
 
   lowPowerMode: isLowPowerDevice || isSlowConnection(),
 
@@ -29,6 +30,7 @@ export const useUIStore = create((set) => ({
   toggleBasemap: () => set((s) => ({ basemapVisible: !s.basemapVisible })),
   setBasemapStyle: (style) => set({ basemapStyle: style }),
   setImageOpacity: (opacity) => set({ imageOpacity: opacity }),
+  toggleTiles: () => set((s) => ({ tilesVisible: !s.tilesVisible })),
   toggleLowPowerMode: () => set((s) => ({ lowPowerMode: !s.lowPowerMode })),
   setLowPowerMode: (on) => set({ lowPowerMode: on }),
 }))

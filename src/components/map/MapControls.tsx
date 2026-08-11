@@ -12,9 +12,11 @@ export function MapControls() {
   const basemapVisible = useUIStore((s) => s.basemapVisible)
   const basemapStyle = useUIStore((s) => s.basemapStyle)
   const imageOpacity = useUIStore((s) => s.imageOpacity)
+  const tilesVisible = useUIStore((s) => s.tilesVisible)
   const toggleBasemap = useUIStore((s) => s.toggleBasemap)
   const setBasemapStyle = useUIStore((s) => s.setBasemapStyle)
   const setImageOpacity = useUIStore((s) => s.setImageOpacity)
+  const toggleTiles = useUIStore((s) => s.toggleTiles)
 
   return (
     <div className={styles.toolbar} role="toolbar" aria-label="Mapa base (dev)">
@@ -56,6 +58,17 @@ export function MapControls() {
           title={`Opacidad de imagen: ${Math.round(imageOpacity * 100)}%`}
         />
         <span className={styles.sliderValue}>{Math.round(imageOpacity * 100)}%</span>
+      </div>
+
+      <div className={styles.row}>
+        <button
+          className={`${styles.toggleBtn} ${tilesVisible ? styles.active : ''}`}
+          onClick={toggleTiles}
+          title={tilesVisible ? 'Ocultar tiles' : 'Mostrar tiles'}
+        >
+          <span className={styles.toggleIcon}>🧩</span>
+          <span className={styles.toggleLabel}>Tiles {tilesVisible ? 'ON' : 'OFF'}</span>
+        </button>
       </div>
     </div>
   )
