@@ -29,7 +29,7 @@ export function LayerMenu({ mapId, onCalibrate }: Props) {
   const toggleGroupExpanded = store.toggleGroupExpanded
   const toggleCalibrationSelection = store.toggleCalibrationSelection
 
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
   const [calibrateMode, setCalibrateMode] = useState(false)
 
   const handleGroupToggle = useCallback(

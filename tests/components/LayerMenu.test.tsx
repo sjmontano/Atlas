@@ -56,12 +56,14 @@ describe('LayerMenu', () => {
   it('renders group and layer names', () => {
     render(<LayerMenu mapId="test" onCalibrate={vi.fn()} />)
     expect(screen.getByText(/Capas/)).toBeDefined()
+    fireEvent.click(screen.getByTitle('Mostrar panel'))
     expect(screen.getByText(/Group 1/)).toBeDefined()
     expect(screen.getByText(/Layer One/)).toBeDefined()
   })
 
   it('toggles layer visibility on checkbox click', () => {
     render(<LayerMenu mapId="test" onCalibrate={vi.fn()} />)
+    fireEvent.click(screen.getByTitle('Mostrar panel'))
     const store = useLayerStore.getState()
     expect(store.visibleLayers.size).toBe(0)
     const checks = screen.getAllByRole('checkbox')
@@ -77,6 +79,7 @@ describe('LayerMenu', () => {
 
   it('toggles group expansion on click', () => {
     render(<LayerMenu mapId="test" onCalibrate={vi.fn()} />)
+    fireEvent.click(screen.getByTitle('Mostrar panel'))
     const groupHeader = screen.getByText(/Group 1/)
     fireEvent.click(groupHeader!)
     expect(useLayerStore.getState().expandedGroups['group-1']).toBe(true)

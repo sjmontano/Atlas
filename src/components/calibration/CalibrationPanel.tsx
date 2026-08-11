@@ -23,6 +23,7 @@ interface Props {
   mapId: string
   controllerRef: RefObject<MapController | null>
   onRebuild?: () => void
+  onClose?: () => void
 }
 
 type FieldKey = 'd' | 'b' | 'c' | 'f' | 'width' | 'height'
@@ -53,12 +54,12 @@ function fmtExp(value: number): string {
   return value.toExponential(6)
 }
 
-export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
+export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: Props) {
   const originalRef = useRef<CalibrationState | null>(null)
   const [state, setState] = useState<CalibrationState | null>(null)
   const [readout, setReadout] = useState<Pick<BoundsResult, 'coordinates' | 'bounds'> | null>(null)
   const [dirty, setDirty] = useState<Record<FieldKey, boolean>>({ d: false, b: false, c: false, f: false, width: false, height: false })
-  const [collapsed, setCollapsed] = useState(false)
+  const [collapsed, setCollapsed] = useState(true)
   const [moveMode, setMoveMode] = useState(false)
   const [target, setTarget] = useState<CalibrationTarget>({ kind: 'map' })
   const [_activeLayerIdx, setActiveLayerIdx] = useState(0)
@@ -68,6 +69,15 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
 
   const stepPctRef = useRef(PCT_STEPS[1])
   const [stepPctIdx, setStepPctIdx] = useState(1)
+
+  useEffect(() => {
+    if (calibrationLayers.size > 0 && target.kind !== 'layers') {
+      const layerIds = [...calibrationLayers]
+      setTarget({ kind: 'layers', layerIds })
+      initLayerStates(layerIds)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const applyAndUpdate = useCallback((newState: CalibrationState) => {
     setState(newState)
@@ -364,6 +374,15 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild }: Props) {
           >
             📋 Copiar
           </button>
+          {onClose && (
+            <button
+              className={styles.collapseBtn}
+              title="Cerrar panel de calibración"
+              onClick={onClose}
+            >
+              ✕
+            </button>
+          )}
           <button
             className={styles.collapseBtn}
             title={collapsed ? 'Mostrar panel' : 'Ocultar panel'}

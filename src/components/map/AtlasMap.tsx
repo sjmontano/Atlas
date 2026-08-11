@@ -18,6 +18,7 @@ import type { Poi } from '../../types/poi.ts'
 import { MapControls } from './MapControls'
 import { LayerMenu } from './LayerMenu'
 import { PoiModal } from './PoiModal'
+import { CalibrationPanel } from '@components/calibration/CalibrationPanel.tsx'
 import { OfflineBanner } from './OfflineBanner'
 import styles from './AtlasMap.module.css'
 
@@ -49,6 +50,8 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const pois = useMemo(() => getPois(mapId), [mapId])
   const hasLayers = layers !== null && layers.length > 0
   const [activePoi, setActivePoi] = useState<Poi | null>(null)
+  const [rebuildKey, setRebuildKey] = useState(1)
+  const [calibrationOpen, setCalibrationOpen] = useState(false)
 
   useAutoLowPower()
   usePrefetchAdjacent(mapId)
@@ -111,7 +114,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   }, [mapRef, mapId, pois, mapBuilt])
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} key={`${mapId}-${rebuildKey}`}>
       <div ref={containerRef} className={styles.mapContainer} />
       <OfflineBanner />
 
@@ -125,7 +128,17 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
         <MapControls />
       )}
 
-      {!loading && !error && hasLayers && <LayerMenu mapId={mapId} onCalibrate={() => {}} />}
+      {!loading && !error && hasLayers && <LayerMenu mapId={mapId} onCalibrate={() => setCalibrationOpen(true)} />}
+
+      {ENABLE_DEV_TOOLS && calibrationOpen && controllerRef && (
+        <CalibrationPanel
+          key={mapId}
+          mapId={mapId}
+          controllerRef={controllerRef}
+          onRebuild={() => setRebuildKey((k) => k + 1)}
+          onClose={() => setCalibrationOpen(false)}
+        />
+      )}
 
       {activePoi && (
         <PoiModal poi={activePoi} onClose={() => setActivePoi(null)} />
