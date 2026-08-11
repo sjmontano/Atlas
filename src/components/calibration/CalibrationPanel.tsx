@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react'
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
 import type { RefObject } from 'react'
 import type { MapController } from '@services/MapRenderer'
 import { getMapEntry } from '@data/maps'
@@ -70,16 +70,21 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   const [moveMode, setMoveMode] = useState(false)
   const [target, setTarget] = useState<CalibrationTarget>({ kind: 'map' })
   const [activeLayerIdx, setActiveLayerIdx] = useState(0)
-  const { selectedForCalibration: calibrationLayers } = useLayerStore()
+  const { visibleLayers } = useLayerStore()
   const layerStatesRef = useRef<Map<string, { current: CalibrationState; original: CalibrationState }>>(new Map())
   const [saveError, setSaveError] = useState<string | null>(null)
 
   const stepPctRef = useRef(PCT_STEPS[1])
   const [stepPctIdx, setStepPctIdx] = useState(1)
 
+  const onLayerIds = useMemo(
+    () => (getMapLayers(mapId) ?? []).filter((l) => visibleLayers.has(l.id)).map((l) => l.id),
+    [mapId, visibleLayers],
+  )
+
   useEffect(() => {
-    if (calibrationLayers.size > 0 && target.kind !== 'layers') {
-      const layerIds = [...calibrationLayers]
+    if (onLayerIds.length > 0 && target.kind !== 'layers') {
+      const layerIds = [...onLayerIds]
       setTarget({ kind: 'layers', layerIds })
       initLayerStates(layerIds)
     }
@@ -479,7 +484,6 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
             <button
               className={`${styles.headerBtn} ${target.kind === 'map' ? styles.targetActive : ''}`}
               onClick={() => {
-                useLayerStore.getState().clearCalibrationSelection()
                 setTarget({ kind: 'map' })
                 const s = seedState(mapId)
                 originalRef.current = s
@@ -494,13 +498,13 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
             <button
               className={`${styles.headerBtn} ${target.kind === 'layers' ? styles.targetActive : ''}`}
               onClick={() => {
-                const layerIds = [...calibrationLayers]
+                const layerIds = [...onLayerIds]
                 if (layerIds.length === 0) return
                 setTarget({ kind: 'layers', layerIds })
                 initLayerStates(layerIds)
               }}
             >
-              📐 Capas: {calibrationLayers.size || 0}
+              📐 Capas: {onLayerIds.length}
             </button>
           </div>
         )}

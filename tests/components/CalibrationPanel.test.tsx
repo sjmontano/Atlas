@@ -46,11 +46,12 @@ describe('CalibrationPanel multi-layer', () => {
   })
 
   it('switches to layers mode when button clicked', () => {
-    useLayerStore.getState().setCalibrationSelection(['layer-x'])
+    useLayerStore.getState().toggleLayer('layer-x')
     const ctrl = { map: { getSource: vi.fn(), getLayer: vi.fn(), getStyle: vi.fn(() => ({ layers: [], sources: {} })), on: vi.fn(), off: vi.fn(), getCanvas: vi.fn(() => ({})), getContainer: vi.fn(() => ({ getBoundingClientRect: () => ({ left: 0, top: 0 }) })), unproject: vi.fn(() => ({ lng: 0, lat: 0 })), dragPan: { disable: vi.fn(), enable: vi.fn() } }, updateBounds: vi.fn(() => ({ coordinates: [[-77,2],[-76,2],[-76,1],[-77,1]], bounds: [-77,1,-76,2], center: [-76.5,1.5], isValid: true })) }
     render(<CalibrationPanel mapId="chapter1-ecosistemas" controllerRef={{ current: ctrl }} />)
     const layersBtn = screen.getByText(/📐 Capas/)
     fireEvent.click(layersBtn!)
-    expect(useLayerStore.getState().selectedForCalibration.size).toBe(1)
+    expect(useLayerStore.getState().visibleLayers.has('layer-x')).toBe(true)
+    expect(screen.getByText(/1\/1/)).toBeDefined()
   })
 })

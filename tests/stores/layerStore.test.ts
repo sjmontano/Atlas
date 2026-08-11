@@ -60,29 +60,6 @@ describe('layerStore', () => {
     })
   })
 
-  describe('calibration selection', () => {
-    it('toggleCalibrationSelection adds and removes', () => {
-      getState().toggleCalibrationSelection('layer-a')
-      expect(getState().selectedForCalibration.has('layer-a')).toBe(true)
-      getState().toggleCalibrationSelection('layer-a')
-      expect(getState().selectedForCalibration.has('layer-a')).toBe(false)
-    })
-
-    it('setCalibrationSelection replaces the set', () => {
-      getState().toggleCalibrationSelection('layer-a')
-      getState().setCalibrationSelection(['layer-b', 'layer-c'])
-      expect(getState().selectedForCalibration.has('layer-a')).toBe(false)
-      expect(getState().selectedForCalibration.has('layer-b')).toBe(true)
-      expect(getState().selectedForCalibration.has('layer-c')).toBe(true)
-    })
-
-    it('clearCalibrationSelection empties the set', () => {
-      getState().toggleCalibrationSelection('layer-a')
-      getState().clearCalibrationSelection()
-      expect(getState().selectedForCalibration.size).toBe(0)
-    })
-  })
-
   describe('expandedGroups', () => {
     it('toggleGroupExpanded toggles boolean', () => {
       getState().toggleGroupExpanded('g1')
@@ -119,13 +96,6 @@ describe('layerStore', () => {
       getState().resetAll('fresh-map')
       expect(getState().visibleLayers.size).toBe(0)
       expect(Object.keys(getState().opacities).length).toBe(0)
-    })
-
-    it('does not persist selectedForCalibration', () => {
-      getState().resetAll('map-1')
-      getState().toggleCalibrationSelection('layer-a')
-      const stored = JSON.parse(localStorage.getItem('atlas:layers:map-1')!)
-      expect(stored.sc).toBeUndefined()
     })
 
     it('does not persist expandedGroups', () => {

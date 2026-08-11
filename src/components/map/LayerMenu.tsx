@@ -22,15 +22,13 @@ export function LayerMenu({ mapId, onCalibrate }: Props) {
   const layers = useMemo(() => getMapLayers(mapId), [mapId])
   const groups = useMemo(() => getLayerGroups(mapId), [mapId])
   const store = useLayerStore()
-  const { visibleLayers, opacities, expandedGroups, selectedForCalibration } = store
+  const { visibleLayers, opacities, expandedGroups } = store
   const toggleLayer = store.toggleLayer
   const setLayerOpacity = store.setLayerOpacity
   const setLayerGroupVisible = store.setLayerGroupVisible
   const toggleGroupExpanded = store.toggleGroupExpanded
-  const toggleCalibrationSelection = store.toggleCalibrationSelection
 
   const [collapsed, setCollapsed] = useState(true)
-  const [calibrateMode, setCalibrateMode] = useState(false)
 
   const handleGroupToggle = useCallback(
     (groupId: string, groupLayers: Layer[]) => {
@@ -76,22 +74,9 @@ export function LayerMenu({ mapId, onCalibrate }: Props) {
           </label>
 
           <div className={styles.calibrateRow}>
-            <button
-              className={`${styles.calibrateBtn} ${calibrateMode ? styles.calibrateActive : ''}`}
-              onClick={() => {
-                setCalibrateMode((m) => !m)
-                if (calibrateMode) {
-                  useLayerStore.getState().clearCalibrationSelection()
-                }
-              }}
-            >
-              {calibrateMode ? 'Cancelar' : '🔧 Calibrar'}
+            <button className={styles.calibrateBtn} onClick={onCalibrate}>
+              🔧 Calibrar
             </button>
-            {calibrateMode && selectedForCalibration.size > 0 && (
-              <button className={styles.calibrateApplyBtn} onClick={onCalibrate}>
-                ✨ Calibrar selección ({selectedForCalibration.size})
-              </button>
-            )}
           </div>
 
           {groups?.map((group) => {
@@ -132,15 +117,7 @@ export function LayerMenu({ mapId, onCalibrate }: Props) {
                       layer={layer}
                       visible={visibleLayers.has(layer.id)}
                       opacity={opacities[layer.id] ?? layer.opacity ?? 1}
-                      calibrateMode={calibrateMode}
-                      selected={selectedForCalibration.has(layer.id)}
-                      onToggle={() => {
-                        if (calibrateMode) {
-                          toggleCalibrationSelection(layer.id)
-                        } else {
-                          toggleLayer(layer.id)
-                        }
-                      }}
+                      onToggle={() => toggleLayer(layer.id)}
                       onOpacityChange={(v) => setLayerOpacity(layer.id, v)}
                     />
                   ))}
@@ -157,24 +134,20 @@ function LayerRow({
   layer,
   visible,
   opacity,
-  calibrateMode,
-  selected,
   onToggle,
   onOpacityChange,
 }: {
   layer: Layer
   visible: boolean
   opacity: number
-  calibrateMode: boolean
-  selected: boolean
   onToggle: () => void
   onOpacityChange: (v: number) => void
 }) {
   return (
-    <div className={`${styles.layerRow} ${calibrateMode && selected ? styles.layerSelected : ''}`}>
+    <div className={styles.layerRow}>
       <input
         type="checkbox"
-        checked={calibrateMode ? selected : visible}
+        checked={visible}
         onChange={onToggle}
         aria-label={layer.name}
       />
@@ -184,7 +157,7 @@ function LayerRow({
       <span className={styles.layerName} title={layer.legend?.description}>
         {layer.name}
       </span>
-      {visible && !calibrateMode && (
+      {visible && (
         <input
           type="range"
           className={styles.opacitySlider}

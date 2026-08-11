@@ -26,7 +26,6 @@ export const useLayerStore = create((set, _get) => ({
   visibleLayers: new Set(),
   opacities: {},
   activeCategories: new Set(),
-  selectedForCalibration: new Set(),
   expandedGroups: {},
 
   toggleLayer: (layerId) =>
@@ -67,23 +66,6 @@ export const useLayerStore = create((set, _get) => ({
 
   setActiveCategories: (categories) => set({ activeCategories: new Set(categories) }),
 
-  toggleCalibrationSelection: (id) =>
-    set((state) => {
-      const next = new Set(state.selectedForCalibration)
-      if (next.has(id)) {
-        next.delete(id)
-      } else {
-        next.add(id)
-      }
-      return { selectedForCalibration: next }
-    }),
-
-  setCalibrationSelection: (ids) =>
-    set({ selectedForCalibration: new Set(ids) }),
-
-  clearCalibrationSelection: () =>
-    set({ selectedForCalibration: new Set() }),
-
   toggleGroupExpanded: (groupId) =>
     set((state) => ({
       expandedGroups: {
@@ -100,7 +82,6 @@ export const useLayerStore = create((set, _get) => ({
       visibleLayers: new Set(persisted.v),
       opacities: persisted.o,
       activeCategories: new Set(),
-      selectedForCalibration: new Set(),
       expandedGroups: {},
     })
     unsub = useLayerStore.subscribe((state) => {
