@@ -87,6 +87,9 @@ export function useMap({ mapId, containerRef, controllerRef }: UseMapOptions): U
         if (controllerRef) {
           controllerRef.current = result.controller
         }
+        if (typeof window !== 'undefined') {
+          ;(window as unknown as Record<string, unknown>).__atlasMap = result.map
+        }
         setMapBuilt(true)
         setLoading(false)
         logger.debug(CATEGORY, 'effect:build-ok', { mapId, buildGen })
