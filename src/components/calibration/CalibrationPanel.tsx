@@ -11,6 +11,8 @@ import {
   type CalibrationState,
 } from '@services/MapCalibration'
 import { saveCalibration } from '@services/SaveCalibration'
+import { updateLayerPGW } from '@services/LayerManager'
+import { processBounds } from '@services/BoundsCalculator'
 import { useLayerStore } from '@stores/layerStore'
 import { getMapLayers } from '@data/layers'
 import type { RasterPgwLayer } from '../../types/layer.ts'
@@ -37,6 +39,11 @@ const DEG_STEP_DEFAULT = 0.0005
 const PX_STEP = 1
 const PX_STEP_QUICK = 10
 
+function computeReadout(pgw: readonly [number, number, number, number, number, number], width: number, height: number) {
+  const { coordinates, bounds } = processBounds(pgw, width, height)
+  return { coordinates, bounds }
+}
+
 function seedState(mapId: string, state?: CalibrationState): CalibrationState {
   if (state) return clampCalibration(state)
   const entry = getMapEntry(mapId)
@@ -62,7 +69,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   const [collapsed, setCollapsed] = useState(true)
   const [moveMode, setMoveMode] = useState(false)
   const [target, setTarget] = useState<CalibrationTarget>({ kind: 'map' })
-  const [_activeLayerIdx, setActiveLayerIdx] = useState(0)
+  const [activeLayerIdx, setActiveLayerIdx] = useState(0)
   const { selectedForCalibration: calibrationLayers } = useLayerStore()
   const layerStatesRef = useRef<Map<string, { current: CalibrationState; original: CalibrationState }>>(new Map())
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -81,6 +88,39 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
 
   const applyAndUpdate = useCallback((newState: CalibrationState) => {
     setState(newState)
+    if (target.kind === 'layers' && target.layerIds.length > 0) {
+      const map = controllerRef.current?.map
+      if (map) {
+          const activeId = target.layerIds[activeLayerIdx]
+        if (activeId) {
+          const entry = layerStatesRef.current.get(activeId)
+          if (entry) entry.current = newState
+        }
+        for (const layerId of target.layerIds) {
+          const entry = layerStatesRef.current.get(layerId)
+          if (!entry) continue
+          updateLayerPGW(map, layerId, stateToPGW(entry.current), entry.current.width, entry.current.height)
+        }
+      }
+      const activeId2 = target.layerIds[activeLayerIdx]
+      if (activeId2) {
+        const activeEntry = layerStatesRef.current.get(activeId2)
+        if (activeEntry) {
+          const r = computeReadout(stateToPGW(activeEntry.current), activeEntry.current.width, activeEntry.current.height)
+          setReadout(r)
+        }
+        const orig = layerStatesRef.current.get(activeId2)
+        setDirty({
+          d: orig ? orig.original.d !== newState.d : false,
+          b: orig ? orig.original.b !== newState.b : false,
+          c: orig ? orig.original.c !== newState.c : false,
+          f: orig ? orig.original.f !== newState.f : false,
+          width: orig ? orig.original.width !== newState.width : false,
+          height: orig ? orig.original.height !== newState.height : false,
+        })
+      }
+      return
+    }
     const controller = controllerRef.current
     if (!controller) return
     const pgw = stateToPGW(newState)
@@ -99,7 +139,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
       width: orig ? orig.width !== newState.width : false,
       height: orig ? orig.height !== newState.height : false,
     })
-  }, [controllerRef])
+  }, [controllerRef, target, activeLayerIdx])
 
   useEffect(() => {
     const s = seedState(mapId)
@@ -111,7 +151,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   }, [mapId])
 
   useEffect(() => {
-    if (!state) return
+    if (!state || target.kind === 'layers') return
     try {
       const pgw = stateToPGW(state)
       const result = controllerRef.current?.updateBounds(pgw, state.width, state.height)
@@ -121,7 +161,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     } catch {
       // ignore
     }
-  }, [state, controllerRef])
+  }, [state, controllerRef, target.kind])
 
   // --- drag handlers ---
   const dragRef = useRef<{
@@ -222,10 +262,37 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
         const step = fine ? PX_STEP : PX_STEP_QUICK
         next = clampCalibration({ ...prev, [key]: Math.round(prev[key] + sign * step) })
       }
+
+      if (target.kind === 'layers' && target.layerIds.length > 0) {
+        for (const layerId of target.layerIds) {
+          const entry = layerStatesRef.current.get(layerId)
+          if (!entry) continue
+          let entryNext: CalibrationState
+          if (key === 'd' || key === 'b') {
+            const ePgw = stateToPGW(entry.current)
+            const pct = stepPctRef.current!
+            const factor = fine ? (1 + sign * pct * 0.1) : (1 + sign * pct)
+            const scaled = (key === 'd')
+              ? scaleParam(ePgw, 'd', factor)
+              : scaleParam(ePgw, 'b', factor)
+            entryNext = clampCalibration(pgwToState(scaled, entry.current.width, entry.current.height))
+          } else if (key === 'c' || key === 'f') {
+            const step = fine ? DEG_STEP_DEFAULT * 0.2 : DEG_STEP_DEFAULT
+            entryNext = clampCalibration({ ...entry.current, [key]: entry.current[key] + sign * step })
+          } else {
+            const step = fine ? PX_STEP : PX_STEP_QUICK
+            entryNext = clampCalibration({ ...entry.current, [key]: Math.round(entry.current[key] + sign * step) })
+          }
+          entry.current = entryNext
+        }
+        applyAndUpdate(next)
+        return next
+      }
+
       applyAndUpdate(next)
       return next
     })
-  }, [applyAndUpdate])
+  }, [applyAndUpdate, target])
 
   const setFieldExact = useCallback((key: FieldKey, value: number) => {
     setState((prev) => {
@@ -237,6 +304,28 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   }, [applyAndUpdate])
 
   const onSizeScale = useCallback((pct: number) => {
+    if (target.kind === 'layers' && target.layerIds.length > 0) {
+      setState((prev) => {
+        if (!prev) return prev
+        for (const layerId of target.layerIds) {
+          const entry = layerStatesRef.current.get(layerId)
+          if (!entry) continue
+          const orig = entry.original
+          entry.current = clampCalibration({
+            ...entry.current,
+            width: Math.round(orig.width * (pct / 100)),
+            height: Math.round(orig.height * (pct / 100)),
+          })
+        }
+        const activeId = target.layerIds[activeLayerIdx]
+        if (!activeId) return prev
+        const activeEntry = layerStatesRef.current.get(activeId)
+        if (!activeEntry) return prev
+        applyAndUpdate(activeEntry.current)
+        return activeEntry.current
+      })
+      return
+    }
     const orig = originalRef.current
     if (!orig) return
     setState((prev) => {
@@ -249,14 +338,37 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
       applyAndUpdate(next)
       return next
     })
-  }, [applyAndUpdate])
+  }, [applyAndUpdate, target, activeLayerIdx])
 
   const reset = useCallback(() => {
+    if (target.kind === 'layers' && target.layerIds.length > 0) {
+      for (const layerId of target.layerIds) {
+        const entry = layerStatesRef.current.get(layerId)
+        if (entry) {
+          entry.current = clampCalibration(entry.original)
+        }
+      }
+      const activeId = target.layerIds[activeLayerIdx]
+      if (!activeId) return
+      const activeEntry = layerStatesRef.current.get(activeId)
+      if (activeEntry) {
+        setState(clampCalibration(activeEntry.original))
+        originalRef.current = activeEntry.original
+        const map = controllerRef.current?.map
+        if (map) {
+          for (const layerId of target.layerIds) {
+            const e = layerStatesRef.current.get(layerId)
+            if (e) updateLayerPGW(map, layerId, stateToPGW(e.current), e.current.width, e.current.height)
+          }
+        }
+      }
+      return
+    }
     const orig = originalRef.current
     if (orig) {
       setState(clampCalibration(orig))
     }
-  }, [])
+  }, [target, activeLayerIdx, controllerRef])
 
   const copyPGW = useCallback(() => {
     if (!state) return
@@ -272,19 +384,48 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     if (!state) return
     setSaveError(null)
     try {
-      await saveCalibration({
-        mapId,
-        pgw: stateToPGW(state),
-        width: state.width,
-        height: state.height,
-      })
-      originalRef.current = state
+      if (target.kind === 'layers' && target.layerIds.length > 0) {
+        const entries = target.layerIds
+          .map((id) => {
+            const entry = layerStatesRef.current.get(id)
+            if (!entry) return null
+            return { id, pgw: stateToPGW(entry.current), width: entry.current.width, height: entry.current.height }
+          })
+          .filter((e): e is NonNullable<typeof e> => e !== null)
+        await saveCalibration({ mapId, target: 'layers', layerIds: target.layerIds, entries })
+        for (const [, entry] of layerStatesRef.current) {
+          entry.original = entry.current
+        }
+      } else {
+        await saveCalibration({
+          mapId,
+          pgw: stateToPGW(state),
+          width: state.width,
+          height: state.height,
+        })
+        originalRef.current = state
+      }
       setDirty({ d: false, b: false, c: false, f: false, width: false, height: false })
       onRebuild?.()
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : String(err))
     }
-  }, [state, mapId, onRebuild])
+  }, [state, mapId, onRebuild, target])
+
+  function selectLayer(idx: number) {
+    if (target.kind !== 'layers' || target.layerIds.length === 0) return
+    const newIdx = idx < 0 ? target.layerIds.length - 1 : idx >= target.layerIds.length ? 0 : idx
+    setActiveLayerIdx(newIdx)
+    const activeId = target.layerIds[newIdx]
+    if (!activeId) return
+    const entry = layerStatesRef.current.get(activeId)
+    if (entry) {
+      setState(clampCalibration(entry.current))
+      originalRef.current = entry.original
+      const r = computeReadout(stateToPGW(entry.current), entry.current.width, entry.current.height)
+      setReadout(r)
+    }
+  }
 
   function initLayerStates(layerIds: string[]) {
     const allLayers = getMapLayers(mapId) ?? []
@@ -304,16 +445,28 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
       if (first) {
         setState(clampCalibration(first.current))
         originalRef.current = first.original
+        const r = computeReadout(stateToPGW(first.current), first.current.width, first.current.height)
+        setReadout(r)
       }
     }
   }
 
   const convertF = state ? state.f + state.b * state.height : 0
   const sizePct = (() => {
+    if (target.kind === 'layers' && target.layerIds.length > 0) {
+      const activeId = target.layerIds[activeLayerIdx]
+      if (!activeId) return 100
+      const entry = layerStatesRef.current.get(activeId)
+      if (!entry || entry.original.width <= 0) return 100
+      return Math.round((entry.current.width / entry.original.width) * 100)
+    }
     const orig = originalRef.current
     if (!state || !orig || orig.width <= 0) return 100
     return Math.round((state.width / orig.width) * 100)
   })()
+  const activeLayerName = target.kind === 'layers' && target.layerIds.length > 0
+    ? getMapLayers(mapId)?.find((l) => l.id === (target.layerIds[activeLayerIdx] ?? ''))?.name ?? target.layerIds[activeLayerIdx] ?? ''
+    : null
 
   if (!state) return null
 
@@ -328,6 +481,12 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
               onClick={() => {
                 useLayerStore.getState().clearCalibrationSelection()
                 setTarget({ kind: 'map' })
+                const s = seedState(mapId)
+                originalRef.current = s
+                setState(s)
+                const pgw = stateToPGW(s)
+                const result = controllerRef.current?.updateBounds(pgw, s.width, s.height)
+                if (result) setReadout({ coordinates: result.coordinates, bounds: result.bounds })
               }}
             >
               🗺 Mapa base
@@ -343,6 +502,15 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
             >
               📐 Capas: {calibrationLayers.size || 0}
             </button>
+          </div>
+        )}
+        {target.kind === 'layers' && target.layerIds.length > 0 && (
+          <div className={styles.overridesSection}>
+            <button className={styles.headerBtn} onClick={() => selectLayer(activeLayerIdx - 1)} title="Capa anterior">◀</button>
+            <span className={styles.layerNavLabel}>
+              {activeLayerIdx + 1}/{target.layerIds.length} {activeLayerName}
+            </span>
+            <button className={styles.headerBtn} onClick={() => selectLayer(activeLayerIdx + 1)} title="Capa siguiente">▶</button>
           </div>
         )}
         <div className={styles.headerActions}>

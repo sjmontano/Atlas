@@ -41,6 +41,16 @@
   font-weight: 600;
 }
 
+.layerNavLabel {
+  color: var(--primary-blue);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
 .headerActions {
   display: flex;
   align-items: center;
