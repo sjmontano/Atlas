@@ -1,7 +1,7 @@
 const COMPOSITE_BASE = '/assets/maps/capas/ecosistemas'
-const COMPOSITE_PGW = [0.0018443379684604639, 0, 0, -0.0018447264954608695, -77.717574036785, 6.3000595728748]
-const COMPOSITE_W = 1462
-const COMPOSITE_H = 2599
+const COMPOSITE_PGW = [0.0018443379684604639, 0, 0, -0.0018447264954608695, -77.62486008564038, 6.099219641645617]
+const COMPOSITE_W = 1374
+const COMPOSITE_H = 2443
 
 const compositeLayer = (id, name, group, order, swatch) => ({
   id: `eco-composite-${id}`,

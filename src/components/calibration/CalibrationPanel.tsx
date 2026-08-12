@@ -664,7 +664,20 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
               onChange={(e) => onSizeScale(Number(e.target.value))}
               title="Escalar width y height en porcentaje"
             />
-            <span className={styles.displayValue}>{sizePct}%</span>
+            <input
+              className={styles.sizePctInput}
+              type="number"
+              min={5}
+              max={500}
+              step={1}
+              value={sizePct}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10)
+                if (Number.isFinite(v)) onSizeScale(v)
+              }}
+              title="Escribir porcentaje manualmente"
+            />
+            <span className={styles.displayValue}>%</span>
           </div>
 
           <div className={styles.separator} />
