@@ -1,7 +1,7 @@
 const URIO_CAUCA_BASE = '/assets/maps/capas/un-rio-cauca'
-const URIO_CAUCA_PGW = [0, 0.001232510189, 0.0012309569997728162, 0, -79.4475590385131, -0.5982582430346929]
-const URIO_CAUCA_W = 6082
-const URIO_CAUCA_H = 10826
+const URIO_CAUCA_PGW = [0, 0.001232510189, 0.0012309569997728162, 0, -79.24025330897976, -0.523978312770837]
+const URIO_CAUCA_W = 5778
+const URIO_CAUCA_H = 10285
 
 const urioLayer = (id, name, group, order, opacity = 0.8) => ({
   id: `urc-${id}`,
