@@ -411,9 +411,9 @@ export function addPois(
       filter: variantFilter('arrow'),
       layout: {
         'icon-image': ['get', 'markerIcon'],
-        'icon-size': zoomSize(0.5),
+        'icon-size': zoomSize(0.24),
         'icon-allow-overlap': true,
-        'icon-rotation-alignment': 'map',
+        'icon-rotation-alignment': 'viewport',
       },
     })
   }

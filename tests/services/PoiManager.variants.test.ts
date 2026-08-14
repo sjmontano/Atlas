@@ -140,6 +140,13 @@ describe('PoiManager variants', () => {
     expect(arrow.layout['icon-size'][0]).toBe('interpolate')
   })
 
+  it('flecha usa alineación viewport (imagen interna no rota con el bearing del mapa)', () => {
+    const map = makeMap()
+    addPois(map, 'test', ARROW_POIS, vi.fn())
+    const arrow = map._layers.get('atlas-pois-arrow-layer')
+    expect(arrow.layout['icon-rotation-alignment']).toBe('viewport')
+  })
+
   it('escala text-size del número con el zoom', () => {
     const map = makeMap()
     addPois(map, 'test', NUMBER_POIS, vi.fn())
