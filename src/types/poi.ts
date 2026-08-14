@@ -1,3 +1,5 @@
+export type PoiVariant = 'number' | 'icon' | 'arrow'
+
 export interface Poi {
   id: string
   numero?: number
@@ -13,4 +15,5 @@ export interface Poi {
   angle?: number
   icon?: string
   size?: 'normal' | 'large'
+  variant?: PoiVariant
 }

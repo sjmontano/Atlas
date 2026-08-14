@@ -2,7 +2,7 @@ import { describe, it, expect, beforeEach, vi } from 'vitest'
 import * as maplibregl from 'maplibre-gl'
 import { sync, addLayer, removeLayer, removeAll, updateLayerPGW } from '@services/LayerManager'
 import { useLayerStore } from '@stores/layerStore'
-import type { RasterPgwLayer } from '@types/layer'
+import type { RasterPgwLayer, GeojsonLayer } from '@types/layer'
 
 vi.mock('maplibre-gl', () => ({
   Map: vi.fn(),
@@ -42,6 +42,19 @@ const RASTER_LAYER: RasterPgwLayer = {
   height: 2000,
   order: 10,
   opacity: 0.8,
+  visibleByDefault: true,
+}
+
+const GEOJSON_LAYER: GeojsonLayer = {
+  id: 'nodo-suarez',
+  name: 'Nodo Suárez',
+  type: 'geojson',
+  category: 'nodes',
+  url: '/data/nodos/suarez.geojson',
+  geometry: 'fill',
+  paint: { 'fill-color': '#ffaf25', 'fill-opacity': 0.4 },
+  order: 20,
+  opacity: 0.4,
   visibleByDefault: true,
 }
 
@@ -88,6 +101,34 @@ describe('LayerManager', () => {
       expect(coords).toBeDefined()
       expect(coords.length).toBe(4)
       LAYER_CALIBRATIONS['test-layer'] = undefined as unknown as typeof LAYER_CALIBRATIONS[string]
+    })
+  })
+
+  describe('addLayer (geojson)', () => {
+    it('adds geojson source and fill layer with paint', () => {
+      const map = makeMap()
+      addLayer(map, GEOJSON_LAYER, { visibleLayers: new Set(['nodo-suarez']), opacities: {} })
+      expect(map.addSource).toHaveBeenCalledWith(
+        'atlas-layer-nodo-suarez',
+        expect.objectContaining({ type: 'geojson', data: '/data/nodos/suarez.geojson' }),
+      )
+      expect(map.addLayer).toHaveBeenCalledWith(
+        expect.objectContaining({
+          id: 'atlas-layer-nodo-suarez',
+          type: 'fill',
+          paint: expect.objectContaining({ 'fill-color': '#ffaf25' }),
+        }),
+        undefined,
+      )
+    })
+
+    it('sets visibility none when geojson layer not visible', () => {
+      const map = makeMap()
+      addLayer(map, GEOJSON_LAYER, { visibleLayers: new Set(), opacities: {} })
+      expect(map.addLayer).toHaveBeenCalledWith(
+        expect.objectContaining({ layout: { visibility: 'none' } }),
+        undefined,
+      )
     })
   })
 

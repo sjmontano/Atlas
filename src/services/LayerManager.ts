@@ -1,7 +1,7 @@
 import type * as maplibregl from 'maplibre-gl'
 import { processBounds, type PGWData, type ImageCoordinates } from './BoundsCalculator'
 import { LAYER_CALIBRATIONS } from '@data/layers/calibration.js'
-import type { Layer, RasterPgwLayer } from '../types/layer.ts'
+import type { Layer, RasterPgwLayer, GeojsonLayer } from '../types/layer.ts'
 import { logger } from './MapLogger'
 
 const CATEGORY = 'LayerManager'
@@ -81,6 +81,23 @@ export function addLayer(
         paint: { 'raster-opacity': opacity, 'raster-fade-duration': 0 },
         layout: { visibility: visible ? 'visible' : 'none' },
       },
+      allLayers ? getBeforeId(map, layer.order, allLayers) : undefined,
+    )
+  } else if (layer.type === 'geojson') {
+    const geojson = layer as GeojsonLayer
+    map.addSource(sid, {
+      type: 'geojson',
+      data: geojson.url,
+    })
+
+    map.addLayer(
+      {
+        id: sid,
+        type: geojson.geometry,
+        source: sid,
+        paint: { ...geojson.paint },
+        layout: { visibility: visible ? 'visible' : 'none' },
+      } as maplibregl.AddLayerObject,
       allLayers ? getBeforeId(map, layer.order, allLayers) : undefined,
     )
   }
@@ -169,7 +186,10 @@ export function sync(
       }
       const opacity = store.opacities[layer.id] ?? layer.opacity ?? 1
       if (map.getLayer(sid)) {
-        map.setPaintProperty(sid, 'raster-opacity', opacity)
+        const paintProp = layer.type === 'geojson'
+          ? (layer as GeojsonLayer).geometry === 'fill' ? 'fill-opacity' : 'raster-opacity'
+          : 'raster-opacity'
+        map.setPaintProperty(sid, paintProp, opacity)
       }
     }
   }

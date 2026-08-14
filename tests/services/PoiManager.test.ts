@@ -15,6 +15,7 @@ function makeMap() {
     removeSource: vi.fn((id) => { sources.delete(id) }),
     setPaintProperty: vi.fn(),
     getCanvas: vi.fn(() => ({ getBoundingClientRect: () => ({ left: 0, top: 0 }) })),
+    setMissingStyleImageResolver: vi.fn(),
     on: vi.fn(),
     off: vi.fn(),
     getStyle: vi.fn(() => ({ sources: Object.fromEntries(sources), layers: [...layers.values()] })),
