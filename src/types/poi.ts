@@ -12,4 +12,5 @@ export interface Poi {
   }
   angle?: number
   icon?: string
+  size?: 'normal' | 'large'
 }

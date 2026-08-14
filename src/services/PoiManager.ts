@@ -1,4 +1,5 @@
 import type * as maplibregl from 'maplibre-gl'
+import type { ExpressionSpecification } from 'maplibre-gl'
 import type { Poi } from '../types/poi.ts'
 
 interface GeoJSONFeature {
@@ -10,10 +11,29 @@ interface GeoJSONFeature {
 
 const POIS_SOURCE_ID = 'atlas-pois-source'
 const POIS_LAYER_ID = 'atlas-pois-layer'
+const POIS_CIRCLE_LAYER_ID = 'atlas-pois-circle-layer'
+const POIS_PULSE_LAYER_ID = 'atlas-pois-pulse-layer'
 
 const TOOLTIP_BG = '/assets/tooltip/fondo-tooltip.webp'
+const POI_BG = '#03103a'
+const POI_RADIUS = 15
+const POI_RADIUS_LARGE = 21
+const POI_TEXT_SIZE = 14
+const POI_TEXT_SIZE_LARGE = 20
+const PULSE_DURATION_MS = 2200
+const PULSE_MAX_SCALE = 1.9
+
+// Expresión data-driven: radio (o tamaño de texto) según el tamaño del POI.
+const sizeMatch = (base: number, large: number): ExpressionSpecification => [
+  'match',
+  ['get', 'size'],
+  'large',
+  large,
+  base,
+] as ExpressionSpecification
 
 let tooltipEl: HTMLDivElement | null = null
+let pulseRaf: number | null = null
 
 function getTooltip(): HTMLDivElement {
   if (!tooltipEl) {
@@ -52,6 +72,59 @@ function hideTooltip(): void {
   el.style.display = 'none'
 }
 
+function stopPulse(): void {
+  if (pulseRaf !== null) {
+    cancelAnimationFrame(pulseRaf)
+    pulseRaf = null
+  }
+}
+
+function startPulse(map: maplibregl.Map): void {
+  stopPulse()
+
+  // 1. Evitar que MapLibre intente animar/suavizar el salto de regreso
+  try {
+    map.setPaintProperty(POIS_PULSE_LAYER_ID, 'circle-radius-transition', { duration: 0 })
+    map.setPaintProperty(POIS_PULSE_LAYER_ID, 'circle-opacity-transition', { duration: 0 })
+  } catch { /* por si la capa aún no está lista */ }
+
+  const start = performance.now()
+
+  const tick = (now: number) => {
+    if (!map.getLayer(POIS_PULSE_LAYER_ID)) {
+      pulseRaf = null
+      return
+    }
+
+    const t = ((now - start) % PULSE_DURATION_MS) / PULSE_DURATION_MS
+
+    // 2. Curva Ease-Out: crece rápido al nacer y se frena suavemente al expandirse
+    const easeOut = 1 - Math.pow(1 - t, 2)
+    const scale = 1 + (PULSE_MAX_SCALE - 1) * easeOut
+
+    // 3. Opacidad con Fade-In (nace invisible) + Fade-Out (muere invisible)
+    let opacity = 0
+    if (t < 0.15) {
+      // Del 0% al 15% del tiempo: Nace en 0 y sube suavemente a 0.55
+      opacity = 0.55 * (t / 0.15)
+    } else {
+      // Del 15% al 100% del tiempo: Se desvanece de 0.55 a 0
+      opacity = 0.55 * (1 - (t - 0.15) / 0.85)
+    }
+
+    map.setPaintProperty(POIS_PULSE_LAYER_ID, 'circle-radius', [
+      '*',
+      sizeMatch(POI_RADIUS, POI_RADIUS_LARGE),
+      scale,
+    ] as ExpressionSpecification)
+    map.setPaintProperty(POIS_PULSE_LAYER_ID, 'circle-opacity', opacity)
+
+    pulseRaf = requestAnimationFrame(tick)
+  }
+
+  pulseRaf = requestAnimationFrame(tick)
+}
+
 function tooltipHtml(poi: Poi): string {
   const subtitle = poi.capa
     ? `<div style="position:relative;z-index:2;font-size:12px;color:white;">${poi.capa}</div>`
@@ -75,7 +148,7 @@ export function addPois(
   const features: GeoJSONFeature[] = pois.map((poi) => ({
     type: 'Feature',
     id: poi.id,
-    properties: { id: poi.id, name: poi.name, numero: poi.numero, popupTitle: poi.popup.title },
+    properties: { id: poi.id, name: poi.name, numero: poi.numero, popupTitle: poi.popup.title, size: poi.size ?? 'normal' },
     geometry: { type: 'Point', coordinates: poi.coords },
   }))
 
@@ -85,20 +158,41 @@ export function addPois(
   })
 
   map.addLayer({
+    id: POIS_PULSE_LAYER_ID,
+    type: 'circle',
+    source: POIS_SOURCE_ID,
+    paint: {
+      'circle-radius': sizeMatch(POI_RADIUS, POI_RADIUS_LARGE),
+      'circle-color': POI_BG,
+      'circle-opacity': 0.55,
+    },
+  })
+
+  map.addLayer({
+    id: POIS_CIRCLE_LAYER_ID,
+    type: 'circle',
+    source: POIS_SOURCE_ID,
+    paint: {
+      'circle-radius': sizeMatch(POI_RADIUS, POI_RADIUS_LARGE),
+      'circle-color': POI_BG,
+    },
+  })
+
+  map.addLayer({
     id: POIS_LAYER_ID,
     type: 'symbol',
     source: POIS_SOURCE_ID,
     layout: {
       'text-field': ['to-string', ['get', 'numero']],
-      'text-size': 14,
+      'text-size': sizeMatch(POI_TEXT_SIZE, POI_TEXT_SIZE_LARGE),
       'text-font': ['Noto Sans Bold'],
     },
     paint: {
       'text-color': '#ffffff',
-      'text-halo-color': '#1a1a2e',
-      'text-halo-width': 2,
     },
   })
+
+  startPulse(map)
 
   map.on('click', POIS_LAYER_ID, (e) => {
     const feature = e.features?.[0]
@@ -131,9 +225,12 @@ export function addPois(
 
 export function removePois(map: maplibregl.Map): void {
   hideTooltip()
-  try {
-    if (map.getLayer(POIS_LAYER_ID)) map.removeLayer(POIS_LAYER_ID)
-  } catch { /* noop */ }
+  stopPulse()
+  for (const id of [POIS_LAYER_ID, POIS_PULSE_LAYER_ID, POIS_CIRCLE_LAYER_ID]) {
+    try {
+      if (map.getLayer(id)) map.removeLayer(id)
+    } catch { /* noop */ }
+  }
   try {
     if (map.getSource(POIS_SOURCE_ID)) map.removeSource(POIS_SOURCE_ID)
   } catch { /* noop */ }
