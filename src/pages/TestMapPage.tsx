@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useRef, useState } from 'react'
-import { getAllMaps } from '@data/chapters/chapters.js'
+import { getAllMaps } from '@data/chapters/chapters.ts'
 import { AtlasMap } from '@components/map/AtlasMap.tsx'
 import { CalibrationPanel } from '@components/calibration/CalibrationPanel.tsx'
 import type { MapController } from '@services/MapRenderer'

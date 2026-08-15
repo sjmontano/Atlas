@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { getAllMaps } from '@data/chapters/chapters.js'
+import { getAllMaps } from '@data/chapters/chapters.ts'
 import { getMapEntry } from '@data/maps'
-import { useConnectionStore } from '@stores/connectionStore.js'
-import { useMapStore } from '@stores/mapStore.js'
+import { useConnectionStore } from '@stores/connectionStore.ts'
+import { useMapStore } from '@stores/mapStore.ts'
 
 function preloadImage(url: string): void {
   if (!url) return

@@ -27,10 +27,10 @@ import { spawnSync } from 'node:child_process'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { MAP_GEO } from '../src/data/maps/geo.js'
-import { MAP_IMAGES } from '../src/data/maps/images.js'
-import { MAP_CONFIGS } from '../src/data/maps/configs.js'
-import { MAP_TILES } from '../src/data/maps/tiles.js'
+import { MAP_GEO } from '../src/data/maps/geo.ts'
+import { MAP_IMAGES } from '../src/data/maps/images.ts'
+import { MAP_CONFIGS } from '../src/data/maps/configs.ts'
+import { MAP_TILES } from '../src/data/maps/tiles.ts'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT_ROOT = join(ROOT, 'public', 'assets', 'maps', 'tiles', 'mapas')

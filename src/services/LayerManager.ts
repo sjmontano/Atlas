@@ -1,6 +1,6 @@
 import type * as maplibregl from 'maplibre-gl'
 import { processBounds, type PGWData, type ImageCoordinates } from './BoundsCalculator'
-import { LAYER_CALIBRATIONS } from '@data/layers/calibration.js'
+import { LAYER_CALIBRATIONS } from '@data/layers/calibration.ts'
 import type { Layer, RasterPgwLayer, GeojsonLayer } from '../types/layer.ts'
 import { logger } from './MapLogger'
 

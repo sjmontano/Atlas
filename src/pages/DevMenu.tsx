@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { CHAPTERS } from '@data/chapters/chapters.js'
+import { CHAPTERS } from '@data/chapters/chapters.ts'
 import styles from './DevMenu.module.css'
 
 export function DevMenu() {

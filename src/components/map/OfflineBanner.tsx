@@ -1,4 +1,4 @@
-import { useConnectionStore } from '@stores/connectionStore.js'
+import { useConnectionStore } from '@stores/connectionStore.ts'
 import styles from './OfflineBanner.module.css'
 
 export function OfflineBanner() {

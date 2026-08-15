@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useConnectionStore } from '@stores/connectionStore.js'
-import { useUIStore } from '@stores/uiStore.js'
+import { useConnectionStore } from '@stores/connectionStore.ts'
+import { useUIStore } from '@stores/uiStore.ts'
 
 export function useAutoLowPower() {
   const isSlow = useConnectionStore((s) => s.isSlow)

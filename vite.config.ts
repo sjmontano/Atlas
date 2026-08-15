@@ -7,8 +7,8 @@ import { rewriteGeoEntry } from './src/services/geoRewrite.ts'
 import { rewriteLayerCalibration } from './src/services/rewriteLayerCalibration.ts'
 
 function calibrationSavePlugin(): Plugin {
-  const geoPath = resolve(__dirname, 'src/data/maps/geo.js')
-  const calibrationPath = resolve(__dirname, 'src/data/layers/calibration.js')
+  const geoPath = resolve(__dirname, 'src/data/maps/geo.ts')
+  const calibrationPath = resolve(__dirname, 'src/data/layers/calibration.ts')
 
   return {
     name: 'calibration-save',
@@ -40,7 +40,7 @@ function calibrationSavePlugin(): Plugin {
                 throw new Error('layerIds y entries requeridos para target=layers')
               }
 
-              let src = existsSync(calibrationPath) ? readFileSync(calibrationPath, 'utf8') : 'export const LAYER_CALIBRATIONS = {\n}'
+              let src = existsSync(calibrationPath) ? readFileSync(calibrationPath, 'utf8') : 'import type { PGWData } from \'@services/BoundsCalculator\'\n\nexport interface CalibrationEntry {\n  pgw: PGWData\n  width: number\n  height: number\n}\n\nexport const LAYER_CALIBRATIONS: Record<string, CalibrationEntry> = {\n}'
               for (const entry of entries) {
                 const id = String(entry.id ?? '')
                 if (!/^[A-Za-z0-9_-]+$/.test(id)) throw new Error(`layerId inválido: "${id}"`)
