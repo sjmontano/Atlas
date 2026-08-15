@@ -1,6 +1,6 @@
 import { useMemo, useState, useCallback } from 'react'
 import { useLayerStore } from '@stores/layerStore'
-import { getMapLayers, getLayerGroups } from '@data/layers'
+import { getMapContent } from '@content'
 import type { Layer } from '../../types/layer.ts'
 import styles from './LayerMenu.module.css'
 
@@ -19,8 +19,8 @@ function groupTriState(groupId: string, layers: Layer[], visibleLayers: Set<stri
 }
 
 export function LayerMenu({ mapId, onCalibrate }: Props) {
-  const layers = useMemo(() => getMapLayers(mapId), [mapId])
-  const groups = useMemo(() => getLayerGroups(mapId), [mapId])
+  const layers = useMemo(() => getMapContent(mapId)?.layers ?? null, [mapId])
+  const groups = useMemo(() => getMapContent(mapId)?.groups ?? null, [mapId])
   const store = useLayerStore()
   const { visibleLayers, opacities, expandedGroups } = store
   const toggleLayer = store.toggleLayer

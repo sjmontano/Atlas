@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { getAllMaps } from '@data/chapters/chapters.ts'
-import { getMapEntry } from '@data/maps'
+import { getMapContent } from '@content'
 import { useConnectionStore } from '@stores/connectionStore.ts'
 import { useMapStore } from '@stores/mapStore.ts'
 
@@ -27,7 +27,7 @@ export function usePrefetchAdjacent(mapId: string) {
       const adjacentIds = [allMaps[idx - 1]?.mapId, allMaps[idx + 1]?.mapId].filter(Boolean)
 
       for (const adjId of adjacentIds) {
-        const entry = getMapEntry(adjId!)
+        const entry = getMapContent(adjId!)
         if (entry?.images?.full) {
           preloadImage(entry.images.full)
         }

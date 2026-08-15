@@ -2,6 +2,7 @@ import type * as maplibregl from 'maplibre-gl'
 import type { ExpressionSpecification } from 'maplibre-gl'
 import type { Poi, PoiVariant } from '../types/poi.ts'
 import { composeArrowIcon, composeGotaIcon } from './poiIcons'
+import { POI_THEME } from '@content/theme'
 
 interface GeoJSONFeature {
   type: 'Feature'
@@ -24,10 +25,10 @@ const ALL_POI_LAYER_IDS = [
   POIS_ARROW_LAYER_ID,
 ]
 
-const GOTA_ICON_URL = '/assets/interface/icons/line/svg/location.svg'
+const GOTA_ICON_URL = POI_THEME.gota.url
 const GOTA_ICON_ID = 'atlas-poi-gota'
 // La gota se dibuja al 70% del diámetro del círculo (radio 15 → alto ~21px).
-const GOTA_ICON_HEIGHT = 21
+const GOTA_ICON_HEIGHT = POI_THEME.gota.height
 
 async function loadImage(
   map: maplibregl.Map,
@@ -94,15 +95,15 @@ function setupImageResolver(map: maplibregl.Map, pois: Poi[]): void {
   })
 }
 
-const TOOLTIP_BG = '/assets/tooltip/fondo-tooltip.webp'
-const POI_BG = '#03103a'
-const POI_ICON_BG = '#0081a9'
-const POI_RADIUS = 15
-const POI_RADIUS_LARGE = 21
-const POI_TEXT_SIZE = 14
-const POI_TEXT_SIZE_LARGE = 20
-const PULSE_DURATION_MS = 2200
-const PULSE_MAX_SCALE = 1.9
+const TOOLTIP_BG = POI_THEME.tooltipBg
+const POI_BG = POI_THEME.circleBg
+const POI_ICON_BG = POI_THEME.iconBg
+const POI_RADIUS = POI_THEME.radius
+const POI_RADIUS_LARGE = POI_THEME.radiusLarge
+const POI_TEXT_SIZE = POI_THEME.textSize
+const POI_TEXT_SIZE_LARGE = POI_THEME.textSizeLarge
+const PULSE_DURATION_MS = POI_THEME.pulse.durationMs
+const PULSE_MAX_SCALE = POI_THEME.pulse.maxScale
 
 // Expresión data-driven: radio (o tamaño de texto) según el tamaño del POI.
 const sizeMatch = (base: number, large: number): ExpressionSpecification => [
@@ -125,9 +126,9 @@ const circleColor: ExpressionSpecification = [
 // Escala el tamaño de los markers con el zoom: 80% cuando alejado → 100% al acercar.
 // Evita que los POIs se vean desproporcionadamente grandes en vistas lejanas.
 // `factor` extra permite multiplicar cada stop (p. ej. el pulso).
-const POI_MIN_ZOOM = 6
-const POI_MAX_ZOOM = 14
-const POI_MIN_SCALE = 0.8
+const POI_MIN_ZOOM = POI_THEME.minZoom
+const POI_MAX_ZOOM = POI_THEME.maxZoom
+const POI_MIN_SCALE = POI_THEME.minScale
 
 const zoomSize = (
   expr: ExpressionSpecification | number,
@@ -224,10 +225,10 @@ function startPulse(map: maplibregl.Map): void {
     let opacity = 0
     if (t < 0.15) {
       // Del 0% al 15% del tiempo: Nace en 0 y sube suavemente a 0.55
-      opacity = 0.55 * (t / 0.15)
+      opacity = POI_THEME.pulse.opacity * (t / 0.15)
     } else {
       // Del 15% al 100% del tiempo: Se desvanece de 0.55 a 0
-      opacity = 0.55 * (1 - (t - 0.15) / 0.85)
+      opacity = POI_THEME.pulse.opacity * (1 - (t - 0.15) / 0.85)
     }
 
     map.setPaintProperty(POIS_PULSE_LAYER_ID, 'circle-radius', zoomSize(sizeMatch(POI_RADIUS, POI_RADIUS_LARGE), scale))
@@ -356,7 +357,7 @@ export function addPois(
       paint: {
         'circle-radius': zoomSize(sizeMatch(POI_RADIUS, POI_RADIUS_LARGE)),
         'circle-color': circleColor,
-        'circle-opacity': 0.55,
+        'circle-opacity': POI_THEME.pulse.opacity,
       },
     })
 

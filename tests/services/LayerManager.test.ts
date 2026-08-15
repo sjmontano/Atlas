@@ -89,7 +89,7 @@ describe('LayerManager', () => {
     })
 
     it('uses calibrated PGW when LAYER_CALIBRATIONS has entry', async () => {
-      const { LAYER_CALIBRATIONS } = await import('@data/layers/calibration.js')
+      const { LAYER_CALIBRATIONS } = await import('@content/calibration/layers')
       LAYER_CALIBRATIONS['test-layer'] = {
         pgw: [0, 0.002, 0.002, 0, -78, 3],
         width: 500,

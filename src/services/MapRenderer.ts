@@ -19,7 +19,7 @@ import { processBounds, expandBounds, type PGWData, type BoundsResult, type Imag
 import { createBearingAwareConstrain } from './TransformConstrain'
 import { logger } from './MapLogger'
 import { useMapStore } from '@stores/mapStore'
-import type { MapEntry } from '@data/maps'
+import type { MapContent } from '../types/content'
 
 maplibregl.setWorkerUrl('/vendor/maplibre/maplibre-gl-worker.mjs')
 
@@ -113,7 +113,7 @@ export interface BuildOptions {
 export async function buildGeoreferencedMap(
   container: HTMLElement,
   mapId: string,
-  entry: MapEntry,
+  entry: MapContent,
   opts?: BuildOptions,
 ): Promise<BuildMapResult> {
   const { geo, images, config } = entry
@@ -332,7 +332,7 @@ export async function buildGeoreferencedMap(
 export function addTilesLayer(
   map: maplibregl.Map,
   mapId: string,
-  entry: MapEntry,
+  entry: MapContent,
   bounds: GeographicBounds,
   opts?: BuildOptions,
 ): void {

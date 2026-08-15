@@ -3,12 +3,11 @@ import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync, existsSync, createReadStream } from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
-import { rewriteGeoEntry } from './src/services/geoRewrite.ts'
-import { rewriteLayerCalibration } from './src/services/rewriteLayerCalibration.ts'
+import { rewriteCalibrationEntry } from './src/services/rewriteCalibration.ts'
 
 function calibrationSavePlugin(): Plugin {
-  const geoPath = resolve(__dirname, 'src/data/maps/geo.ts')
-  const calibrationPath = resolve(__dirname, 'src/data/layers/calibration.ts')
+  const mapCalibrationPath = resolve(__dirname, 'src/content/calibration/map.ts')
+  const layerCalibrationPath = resolve(__dirname, 'src/content/calibration/layers.ts')
 
   return {
     name: 'calibration-save',
@@ -40,7 +39,7 @@ function calibrationSavePlugin(): Plugin {
                 throw new Error('layerIds y entries requeridos para target=layers')
               }
 
-              let src = existsSync(calibrationPath) ? readFileSync(calibrationPath, 'utf8') : 'import type { PGWData } from \'@services/BoundsCalculator\'\n\nexport interface CalibrationEntry {\n  pgw: PGWData\n  width: number\n  height: number\n}\n\nexport const LAYER_CALIBRATIONS: Record<string, CalibrationEntry> = {\n}'
+              let src = existsSync(layerCalibrationPath) ? readFileSync(layerCalibrationPath, 'utf8') : 'import type { PGWData } from \'@services/BoundsCalculator\'\n\nexport interface CalibrationEntry {\n  pgw: PGWData\n  width: number\n  height: number\n}\n\nexport const LAYER_CALIBRATIONS: Record<string, CalibrationEntry> = {\n}'
               for (const entry of entries) {
                 const id = String(entry.id ?? '')
                 if (!/^[A-Za-z0-9_-]+$/.test(id)) throw new Error(`layerId inválido: "${id}"`)
@@ -53,9 +52,9 @@ function calibrationSavePlugin(): Plugin {
                 if (!Number.isFinite(w) || !Number.isFinite(h) || w < 1 || h < 1) {
                   throw new Error('width/height inválidos en entry')
                 }
-                src = rewriteLayerCalibration(src, id, { pgw: pgw as [number,number,number,number,number,number], width: w, height: h })
+                src = rewriteCalibrationEntry(src, id, { pgw: pgw as [number,number,number,number,number,number], width: w, height: h })
               }
-              writeFileSync(calibrationPath, src, 'utf8')
+              writeFileSync(layerCalibrationPath, src, 'utf8')
               res.writeHead(200, { 'Content-Type': 'application/json' })
               res.end(JSON.stringify({ ok: true, target: 'layers' }))
               return
@@ -81,13 +80,15 @@ function calibrationSavePlugin(): Plugin {
               throw new Error('width/height inválidos')
             }
 
-            const src = readFileSync(geoPath, 'utf8')
-            const out = rewriteGeoEntry(src, mapId, {
+            const src = existsSync(mapCalibrationPath)
+              ? readFileSync(mapCalibrationPath, 'utf8')
+              : 'import type { CalibrationEntry } from \'./layers\'\n\nexport const MAP_CALIBRATIONS: Record<string, CalibrationEntry> = {\n}'
+            const out = rewriteCalibrationEntry(src, mapId, {
               pgw: pgw as [number, number, number, number, number, number],
               width: w,
               height: h,
             })
-            writeFileSync(geoPath, out, 'utf8')
+            writeFileSync(mapCalibrationPath, out, 'utf8')
 
             res.writeHead(200, { 'Content-Type': 'application/json' })
             res.end(JSON.stringify({ ok: true, mapId }))
@@ -141,6 +142,7 @@ export default defineConfig({
 
   resolve: {
     alias: {
+      '@content': resolve(__dirname, 'src/content'),
       '@data': resolve(__dirname, 'src/data'),
       '@services': resolve(__dirname, 'src/services'),
       '@stores': resolve(__dirname, 'src/stores'),

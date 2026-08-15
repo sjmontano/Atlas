@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { getMapEntry } from '@data/maps'
+import { getMapContent } from '@content'
 import { processBounds } from '@services/BoundsCalculator'
 import { useConnectionStore } from '@stores/connectionStore'
 import { prefetchRegionTiles, resolveAdaptivePrefetchMaxZoom } from '@services/TilePrefetcher'
@@ -23,7 +23,7 @@ export function useTilePrefetch(mapId: string) {
   useEffect(() => {
     if (!isOnline || isSlow) return
 
-    const entry = getMapEntry(mapId)
+    const entry = getMapContent(mapId)
     if (!entry?.tiles) return
 
     const { bounds } = processBounds(entry.geo.pgw, entry.geo.width, entry.geo.height)

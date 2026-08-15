@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect, useRef, useMemo } from 'react'
 import type { RefObject } from 'react'
 import type { MapController } from '@services/MapRenderer'
-import { getMapEntry } from '@data/maps'
+import { getMapContent } from '@content'
 import {
   pgwToState,
   stateToPGW,
@@ -14,7 +14,6 @@ import { saveCalibration } from '@services/SaveCalibration'
 import { updateLayerPGW } from '@services/LayerManager'
 import { processBounds } from '@services/BoundsCalculator'
 import { useLayerStore } from '@stores/layerStore'
-import { getMapLayers } from '@data/layers'
 import type { RasterPgwLayer } from '../../types/layer.ts'
 import type { BoundsResult } from '@services/BoundsCalculator'
 import styles from './CalibrationPanel.module.css'
@@ -46,7 +45,7 @@ function computeReadout(pgw: readonly [number, number, number, number, number, n
 
 function seedState(mapId: string, state?: CalibrationState): CalibrationState {
   if (state) return clampCalibration(state)
-  const entry = getMapEntry(mapId)
+  const entry = getMapContent(mapId)
   if (!entry) throw new Error(`Mapa no encontrado: ${mapId}`)
   return pgwToState(entry.geo.pgw, entry.geo.width, entry.geo.height)
 }
@@ -78,7 +77,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   const [stepPctIdx, setStepPctIdx] = useState(1)
 
   const onLayerIds = useMemo(
-    () => (getMapLayers(mapId) ?? []).filter((l) => visibleLayers.has(l.id)).map((l) => l.id),
+    () => (getMapContent(mapId)?.layers ?? []).filter((l) => visibleLayers.has(l.id)).map((l) => l.id),
     [mapId, visibleLayers],
   )
 
@@ -450,7 +449,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   }
 
   function initLayerStates(layerIds: string[]) {
-    const allLayers = getMapLayers(mapId) ?? []
+    const allLayers = getMapContent(mapId)?.layers ?? []
     const map = layerStatesRef.current
     map.clear()
     for (const id of layerIds) {
@@ -487,7 +486,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     return Math.round((state.width / orig.width) * 100)
   })()
   const activeLayerName = target.kind === 'layers' && target.layerIds.length > 0
-    ? getMapLayers(mapId)?.find((l) => l.id === (target.layerIds[activeLayerIdx] ?? ''))?.name ?? target.layerIds[activeLayerIdx] ?? ''
+    ? getMapContent(mapId)?.layers?.find((l) => l.id === (target.layerIds[activeLayerIdx] ?? ''))?.name ?? target.layerIds[activeLayerIdx] ?? ''
     : null
 
   if (!state) return null
@@ -496,7 +495,7 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     <div className={styles.panel} role="region" aria-label="Calibración PGW">
       <div className={styles.header}>
         <span className={styles.headerTitle}>Calibración</span>
-        {ENABLE_DEV_TOOLS && getMapLayers(mapId) && (
+        {ENABLE_DEV_TOOLS && getMapContent(mapId)?.layers && (
           <div className={styles.overridesSection}>
             <button
               className={`${styles.headerBtn} ${target.kind === 'map' ? styles.targetActive : ''}`}

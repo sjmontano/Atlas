@@ -4,7 +4,7 @@
  *
  * Hook principal del visor. Orquesta el ciclo de vida del mapa:
  *
- *   datos (getMapEntry) → buildGeoreferencedMap → mapBuilt
+ *   datos (getMapContent) → buildGeoreferencedMap → mapBuilt
  *
  * Se ejecuta una vez por mapId. Al cambiar de mapa o desmontar,
  * destruye la instancia de MapLibre anterior.
@@ -17,7 +17,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { RefObject } from 'react'
 import type * as maplibregl from 'maplibre-gl'
-import { getMapEntry } from '@data/maps'
+import { getMapContent } from '@content'
 import { buildGeoreferencedMap, type MapController } from '@services/MapRenderer'
 import { logger } from '@services/MapLogger'
 import { useMapStore } from '@stores/mapStore'
@@ -57,7 +57,7 @@ export function useMap({ mapId, containerRef, controllerRef }: UseMapOptions): U
     const container = containerRef.current
     if (!container) return
 
-    const entry = getMapEntry(mapId)
+    const entry = getMapContent(mapId)
     if (!entry) {
       const msg = `Mapa no encontrado en los datos: ${mapId}`
       setError(msg)

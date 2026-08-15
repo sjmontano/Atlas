@@ -11,8 +11,7 @@ import { useLayerStore } from '@stores/layerStore'
 import { addBasemap, removeBasemap, setImageOpacity } from '@services/BasemapManager'
 import { sync as syncLayers, removeAll as removeAllLayers } from '@services/LayerManager'
 import { addPois, removePois } from '@services/PoiManager'
-import { getMapLayers, getLayerGroups } from '@data/layers'
-import { getPois } from '@data/pois'
+import { getMapContent } from '@content'
 import type { MapController } from '@services/MapRenderer'
 import type { Poi } from '../../types/poi.ts'
 import { MapControls } from './MapControls'
@@ -45,9 +44,10 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
 
   const { visibleLayers, opacities } = useLayerStore()
 
-  const layers = useMemo(() => getMapLayers(mapId), [mapId])
-  const groups = useMemo(() => getLayerGroups(mapId), [mapId])
-  const pois = useMemo(() => getPois(mapId), [mapId])
+  const content = useMemo(() => getMapContent(mapId), [mapId])
+  const layers = content?.layers ?? null
+  const groups = content?.groups ?? null
+  const pois = content?.pois ?? null
   const hasLayers = layers !== null && layers.length > 0
   const [activePoi, setActivePoi] = useState<Poi | null>(null)
   const [rebuildKey, setRebuildKey] = useState(1)

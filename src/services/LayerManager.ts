@@ -1,6 +1,7 @@
 import type * as maplibregl from 'maplibre-gl'
 import { processBounds, type PGWData, type ImageCoordinates } from './BoundsCalculator'
-import { LAYER_CALIBRATIONS } from '@data/layers/calibration.ts'
+import { LAYER_CALIBRATIONS } from '@content/calibration/layers'
+import { LAYER_STYLES } from '@content/theme'
 import type { Layer, RasterPgwLayer, GeojsonLayer } from '../types/layer.ts'
 import { logger } from './MapLogger'
 
@@ -58,7 +59,7 @@ export function addLayer(
   const width = calib ? calib.width : (layer as RasterPgwLayer).width
   const height = calib ? calib.height : (layer as RasterPgwLayer).height
   const visible = store.visibleLayers.has(layer.id)
-  const opacity = store.opacities[layer.id] ?? layer.opacity ?? 1
+  const opacity = store.opacities[layer.id] ?? layer.opacity ?? LAYER_STYLES[layer.category].defaultOpacity ?? 1
 
   if (layer.type === 'raster-pgw') {
     const { coordinates } = processBounds(pgw, width, height)
@@ -184,7 +185,7 @@ export function sync(
       if (map.getLayer(sid)) {
         map.setLayoutProperty(sid, 'visibility', visible ? 'visible' : 'none')
       }
-      const opacity = store.opacities[layer.id] ?? layer.opacity ?? 1
+      const opacity = store.opacities[layer.id] ?? layer.opacity ?? LAYER_STYLES[layer.category].defaultOpacity ?? 1
       if (map.getLayer(sid)) {
         const paintProp = layer.type === 'geojson'
           ? (layer as GeojsonLayer).geometry === 'fill' ? 'fill-opacity' : 'raster-opacity'

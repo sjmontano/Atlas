@@ -4,6 +4,7 @@ import { resolve } from 'path'
 export default defineConfig({
   resolve: {
     alias: {
+      '@content': resolve(__dirname, 'src/content'),
       '@data': resolve(__dirname, 'src/data'),
       '@services': resolve(__dirname, 'src/services'),
       '@stores': resolve(__dirname, 'src/stores'),

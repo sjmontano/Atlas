@@ -22,6 +22,8 @@
 
     /* Path aliases — TS 6.0+ uses relative paths without baseUrl */
     "paths": {
+      "@content": ["./src/content/index.ts"],
+      "@content/*": ["./src/content/*"],
       "@data/*": ["./src/data/*"],
       "@services/*": ["./src/services/*"],
       "@stores/*": ["./src/stores/*"],

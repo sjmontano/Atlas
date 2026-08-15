@@ -6,10 +6,13 @@ import {
   validateBounds,
   processBounds,
 } from '@services/BoundsCalculator'
-import { MAP_GEO } from '@data/maps/geo.js'
 
-// PGW rotado del mapa intro (fuente: geo.js)
-const INTRO = MAP_GEO['intro']
+// PGW rotado del mapa intro (fuente: content/intro/index.ts)
+const INTRO = {
+  pgw: [0, 0.001181998411, 0.001182047579, 0, -78.907953240108, -0.290036434033] as const,
+  width: 5649,
+  height: 11141,
+}
 
 describe('BoundsCalculator', () => {
   describe('calculateImageCoordinates', () => {
@@ -105,8 +108,9 @@ describe('BoundsCalculator', () => {
       expect(result.center[1]).toBeCloseTo(6.2952, 3)
     })
 
-    it('los composites de ecosistemas producen el mismo footprint que el mapa base', () => {
-      const baseGeo = MAP_GEO['chapter1-ecosistemas']
+    it('los composites de ecosistemas producen el mismo footprint que el mapa base', async () => {
+      const { getMapContent } = await import('@content')
+      const baseGeo = getMapContent('chapter1-ecosistemas')!.geo
       const baseResult = processBounds(baseGeo.pgw, baseGeo.width, baseGeo.height)
 
       const compositePgw: readonly [number, number, number, number, number, number] = [
@@ -129,8 +133,25 @@ describe('BoundsCalculator', () => {
 
     })
 
-    it('procesa todos los mapas definidos en geo.js sin errores', () => {
-      for (const [mapId, geo] of Object.entries(MAP_GEO)) {
+    it('procesa todos los mapas definidos en el contenido sin errores', async () => {
+      const { getMapContent } = await import('@content')
+      const mapIds = [
+        'intro',
+        'chapter1-encuadres', 'chapter1-ecosistemas', 'chapter1-formas-paisaje', 'chapter1-bredunco',
+        'chapter1-mosaicos-del-agua', 'chapter1-un-rio-cauca',
+        'chapter2-valle', 'chapter2-suarez', 'chapter2-cali', 'chapter2-villa-rica',
+        'chapter2-m-oriente-cali', 'chapter2-m-villa-rica', 'chapter2-m-suarez',
+        'chapter3-introduccion', 'chapter3-monocultivo', 'chapter3-encharcaron',
+        'chapter3-cali-deseca', 'chapter3-humedales', 'chapter3-arcilla',
+        'chapter4-introduccion', 'chapter4-asoyoge', 'chapter4-el-buhido',
+        'chapter4-bosque-comestible', 'chapter4-los-bajios', 'chapter4-el-paso',
+        'chapter4-las-mercedes', 'chapter4-la-virginia', 'chapter4-centro-agropecuario',
+        'chapter4-la-caicedo', 'chapter4-problematicas',
+      ]
+      for (const mapId of mapIds) {
+        const content = getMapContent(mapId)
+        expect(content, `mapId: ${mapId}`).not.toBeNull()
+        const geo = content!.geo
         const result = processBounds(geo.pgw, geo.width, geo.height)
         expect(result.isValid, `mapId: ${mapId}`).toBe(true)
         // Colombia/extensión razonable

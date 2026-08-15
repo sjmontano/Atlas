@@ -11,28 +11,25 @@ import { processBounds } from '@services/BoundsCalculator'
 
 vi.mock('maplibre-gl', () => ({ default: {} }))
 
-vi.mock('@data/maps', () => ({
-  getMapEntry: vi.fn(() => ({
+vi.mock('@content', () => ({
+  getMapContent: vi.fn(() => ({
     geo: { pgw: [0, 0.001, 0.001, 0, -77, 2], width: 1000, height: 2000 },
     images: { placeholder: '', full: '' },
     config: { initialZoom: 5, initialBearing: -90, minZoom: 3, maxZoom: 8, dragPan: true, scrollZoom: true, useTransformConstrain: false },
+    layers: [
+      {
+        id: 'layer-x',
+        name: 'Layer X',
+        type: 'raster-pgw',
+        category: 'ecosystems',
+        order: 1,
+        pgw: [0, 0.001, 0.001, 0, -77, 2],
+        width: 100,
+        height: 200,
+        image: '',
+      },
+    ],
   })),
-}))
-
-vi.mock('@data/layers', () => ({
-  getMapLayers: vi.fn(() => [
-    {
-      id: 'layer-x',
-      name: 'Layer X',
-      type: 'raster-pgw',
-      category: 'ecosystems',
-      order: 1,
-      pgw: [0, 0.001, 0.001, 0, -77, 2],
-      width: 100,
-      height: 200,
-      image: '',
-    },
-  ]),
 }))
 
 describe('CalibrationPanel multi-layer', () => {
