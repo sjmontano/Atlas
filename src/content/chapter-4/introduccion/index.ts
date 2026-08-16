@@ -16,7 +16,7 @@ export default {
   },
   images: {
     base,
-    full: 'assets/img/maps/homeCap4-high.webp',
+    full: 'https://res.cloudinary.com/dvluvxfvn/image/upload/v1765910781/geoImages/nxrpulpigg0ohxe0bjxy.webp',
     placeholder: ph(base),
   },
   config: {
