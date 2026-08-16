@@ -150,3 +150,84 @@
   accent-color: #6688cc;
   flex-shrink: 0;
 }
+
+.legendSection {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #2a2a4e;
+}
+
+.legendSectionTitle {
+  color: #8888aa;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0 0 6px;
+}
+
+.legendGroup {
+  margin-bottom: 4px;
+}
+
+.legendGroupName {
+  color: #9999bb;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 0 2px 24px;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 0 3px 24px;
+  font-size: 12px;
+}
+
+.legendRow:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.legendName {
+  color: #bbb;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.infoIcon {
+  position: relative;
+  color: #6688cc;
+  font-size: 12px;
+  cursor: help;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.infoIcon .tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 200px;
+  background: rgba(20, 20, 45, 0.97);
+  border: 1px solid #3a3a6e;
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: #ddd;
+  font-size: 11px;
+  line-height: 1.4;
+  pointer-events: none;
+  transition: opacity 0.15s ease;
+  z-index: 20;
+}
+
+.infoIcon:hover .tooltip,
+.infoIcon:focus .tooltip {
+  visibility: visible;
+  opacity: 1;
+}

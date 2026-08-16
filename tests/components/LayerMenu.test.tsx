@@ -41,6 +41,14 @@ vi.mock('@content', () => ({
         groups: [{ id: 'group-1', name: 'Group 1', order: 1 }],
       }
     }
+    if (mapId === 'legend-only') {
+      return {
+        legends: [
+          { id: 'leg-1', name: 'Río Cauca', swatch: '#2b83ba', order: 1, longText: 'Texto largo confirmado' },
+          { id: 'leg-2', name: 'Represas', swatch: '#0c4c8a', group: '2022', order: 2 },
+        ],
+      }
+    }
     return null
   }),
 }))
@@ -80,5 +88,21 @@ describe('LayerMenu', () => {
     const groupHeader = screen.getByText(/Group 1/)
     fireEvent.click(groupHeader!)
     expect(useLayerStore.getState().expandedGroups['group-1']).toBe(true)
+  })
+
+  it('renders legends without interactivity for a map with only legends', () => {
+    render(<LayerMenu mapId="legend-only" onCalibrate={vi.fn()} />)
+    fireEvent.click(screen.getByTitle('Mostrar panel'))
+    expect(screen.getByText('Leyenda')).toBeDefined()
+    expect(screen.getByText('Río Cauca')).toBeDefined()
+    expect(screen.getByText('Represas')).toBeDefined()
+    expect(screen.getByText('2022')).toBeDefined()
+  })
+
+  it('does not render a master checkbox when there are no activable layers', () => {
+    render(<LayerMenu mapId="legend-only" onCalibrate={vi.fn()} />)
+    fireEvent.click(screen.getByTitle('Mostrar panel'))
+    expect(screen.queryByText(/Todas/)).toBeNull()
+    expect(screen.queryByRole('checkbox')).toBeNull()
   })
 })

@@ -47,8 +47,10 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
   const content = useMemo(() => getMapContent(mapId), [mapId])
   const layers = content?.layers ?? null
   const groups = content?.groups ?? null
+  const legends = content?.legends ?? null
   const pois = content?.pois ?? null
   const hasLayers = layers !== null && layers.length > 0
+  const hasLegends = legends !== null && legends.length > 0
   const [activePoi, setActivePoi] = useState<Poi | null>(null)
   const [rebuildKey, setRebuildKey] = useState(1)
   const [calibrationOpen, setCalibrationOpen] = useState(false)
@@ -128,7 +130,7 @@ export function AtlasMap({ mapId, controllerRef }: AtlasMapProps) {
         <MapControls />
       )}
 
-      {!loading && !error && hasLayers && <LayerMenu mapId={mapId} onCalibrate={() => setCalibrationOpen(true)} />}
+      {!loading && !error && (hasLayers || hasLegends) && <LayerMenu mapId={mapId} onCalibrate={() => setCalibrationOpen(true)} />}
 
       {ENABLE_DEV_TOOLS && calibrationOpen && controllerRef && (
         <CalibrationPanel

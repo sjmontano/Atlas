@@ -1,8 +1,8 @@
 import type { PGWData } from '@services/BoundsCalculator'
-import type { Layer, LayerGroup } from './layer'
+import type { Layer, LayerGroup, LegendItem } from './layer'
 import type { Poi } from './poi'
 
-export type { Layer, LayerGroup } from './layer'
+export type { Layer, LayerGroup, LegendItem } from './layer'
 export type { Poi } from './poi'
 
 export interface MapGeoEntry {
@@ -45,5 +45,6 @@ export interface MapContent {
   tiles?: MapTilesConfig | null
   layers?: Layer[]
   groups?: LayerGroup[]
+  legends?: LegendItem[]
   pois?: Poi[]
 }

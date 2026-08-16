@@ -61,3 +61,13 @@ export interface LayerGroup {
   parent?: string
   order: number
 }
+
+export interface LegendItem {
+  id: string
+  name: string
+  swatch: string
+  group?: string
+  order: number
+  description?: string
+  longText?: string
+}

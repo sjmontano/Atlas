@@ -1,4 +1,6 @@
 import type { MapContent } from '../../../types/content'
+import { LAYERS } from './layers'
+import { LEGENDS } from './legends'
 
 const ph = (url: string): string => url.replace('/upload/', '/upload/w_512,q_25,f_webp/')
 
@@ -27,4 +29,6 @@ export default {
     dragPan: true,
     scrollZoom: true,
   },
+  layers: LAYERS,
+  legends: LEGENDS,
 } satisfies MapContent
