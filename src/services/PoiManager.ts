@@ -1,7 +1,7 @@
 import type * as maplibregl from 'maplibre-gl'
 import type { ExpressionSpecification } from 'maplibre-gl'
 import type { Poi, PoiVariant } from '../types/poi.ts'
-import { composeArrowIcon, composeGotaIcon } from './poiIcons'
+import { composeArrowIcon, composeGotaIcon, ARROW_COLOR } from './poiIcons'
 import { POI_THEME } from '@content/theme'
 
 interface GeoJSONFeature {
@@ -79,11 +79,13 @@ function setupImageResolver(map: maplibregl.Map, pois: Poi[]): void {
     let task = pending.get(id)
     if (!task) {
       const icon = poi.icon
+      const arrowColor = poi.arrowColor ?? ARROW_COLOR
+      const isSvg = icon.toLowerCase().endsWith('.svg')
       task = (async () => {
-        const img = await loadImage(map, icon)
+        const img = isSvg ? await loadSvgImage(icon) : await loadImage(map, icon)
         if (!img || map.hasImage(id)) return
         try {
-          map.addImage(id, composeArrowIcon(img, poi.angle ?? 0))
+          map.addImage(id, composeArrowIcon(img, poi.angle ?? 0, arrowColor))
         } catch {
           // canvas no disponible → se omite la imagen
         }

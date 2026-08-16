@@ -16,4 +16,6 @@ export interface Poi {
   icon?: string
   size?: 'normal' | 'large'
   variant?: PoiVariant
+  /** Color de la flecha (variante arrow). Default: #03103a */
+  arrowColor?: string
 }
