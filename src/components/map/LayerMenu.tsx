@@ -196,7 +196,13 @@ export function LayerMenu({ mapId, onCalibrate }: Props) {
 function LegendRow({ item }: { item: LegendItem }) {
   return (
     <div className={styles.legendRow}>
-      <span className={styles.swatch} style={{ backgroundColor: item.swatch }} />
+      {item.icon ? (
+        <span className={styles.legendIcon}>
+          <img src={item.icon} alt="" className={styles.legendIconImg} />
+        </span>
+      ) : (
+        <span className={styles.swatch} style={{ backgroundColor: item.swatch }} />
+      )}
       <span className={styles.legendName} title={item.description}>
         {item.name}
       </span>

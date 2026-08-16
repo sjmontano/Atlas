@@ -65,7 +65,10 @@ export interface LayerGroup {
 export interface LegendItem {
   id: string
   name: string
-  swatch: string
+  /** Color de swatch (para leyendas de color sólido) */
+  swatch?: string
+  /** URL de icono SVG (para leyendas con símbolo propio del mapa) */
+  icon?: string
   group?: string
   order: number
   description?: string

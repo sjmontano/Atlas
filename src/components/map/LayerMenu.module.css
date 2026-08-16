@@ -197,6 +197,21 @@
   white-space: nowrap;
 }
 
+.legendIcon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.legendIconImg {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+}
+
 .infoIcon {
   position: relative;
   color: #6688cc;
