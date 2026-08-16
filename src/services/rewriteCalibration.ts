@@ -2,6 +2,7 @@ export interface CalibrationEntryData {
   readonly pgw: readonly [number, number, number, number, number, number]
   readonly width: number
   readonly height: number
+  readonly viewportMargin?: number
 }
 
 export function rewriteCalibrationEntry(
@@ -17,8 +18,13 @@ export function rewriteCalibrationEntry(
     `    pgw: [${a}, ${d}, ${b}, ${e}, ${c}, ${f}],`,
     `    width: ${Math.round(data.width)},`,
     `    height: ${Math.round(data.height)},`,
+    data.viewportMargin !== undefined
+      ? `    viewportMargin: ${data.viewportMargin},`
+      : null,
     `  },`,
-  ].join('\n')
+  ]
+    .filter((line): line is string => line !== null)
+    .join('\n')
 
   const re = new RegExp(`^  '${escapeRegex(id)}': \\{[\\s\\S]*?\\r?\\n  \\},`, 'm')
   if (re.test(src)) {

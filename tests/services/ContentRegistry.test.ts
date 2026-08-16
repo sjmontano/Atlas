@@ -37,4 +37,18 @@ describe('getMapContent', () => {
     expect(content?.geo.pgw).toEqual([0, 0.000239511553, 0.000239528625, 0, -77.387345555, 2.198599777])
     delete MAP_CALIBRATIONS['chapter3-introduccion']
   })
+
+  it('aplica viewportMargin de calibración al config', async () => {
+    const { MAP_CALIBRATIONS } = await import('@content/calibration/map')
+    MAP_CALIBRATIONS['chapter3-introduccion'] = {
+      pgw: [0, 0.000239511553, 0.000239528625, 0, -77.387345555, 2.198599777],
+      width: 1754,
+      height: 3118,
+      viewportMargin: 0.2,
+    }
+    const { getMapContent } = await import('@content')
+    const content = getMapContent('chapter3-introduccion')
+    expect(content?.config.viewportMargin).toBe(0.2)
+    delete MAP_CALIBRATIONS['chapter3-introduccion']
+  })
 })

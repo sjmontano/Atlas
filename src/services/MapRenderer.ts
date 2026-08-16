@@ -44,13 +44,13 @@ const BLANK_STYLE: maplibregl.StyleSpecification = {
 const IMAGE_SOURCE_ID = 'atlas-base-image'
 const IMAGE_LAYER_ID = 'atlas-base-image-layer'
 /**
- * Margen del viewportMaxBounds alrededor de la imagen (50% por lado).
- * Generoso a propósito: el constrain calcula un minZoom para que el viewport
- * quepa dentro del vmb; un margen amplio evita que ese minZoom recorte la
- * imagen al zoom inicial de config (lección: constrain es dependiente del
- * tamaño del canvas).
+ * Margen por defecto del viewportMaxBounds alrededor de la imagen (50% por
+ * lado). Generoso a propósito: el constrain calcula un minZoom para que el
+ * viewport quepa dentro del vmb; un margen amplio evita que ese minZoom recorte
+ * la imagen al zoom inicial de config (lección: constrain es dependiente del
+ * tamaño del canvas). Se puede sobrescribir por mapa vía config.viewportMargin.
  */
-const VMB_EXPAND_FACTOR = 0.5
+const DEFAULT_VMB_EXPAND_FACTOR = 0.5
 
 /**
  * Span mínimo (en coordenadas Mercator 0..1) para que un polígono se considere
@@ -93,6 +93,7 @@ function isNonDegenerate(coordinates: ImageCoordinates): boolean {
 export interface MapController {
   map: maplibregl.Map
   updateBounds(pgw: PGWData, width: number, height: number): BoundsResult
+  updateViewportMargin(margin: number): void
 }
 
 export interface BuildMapResult {
@@ -135,8 +136,9 @@ export async function buildGeoreferencedMap(
     throw new Error(`Sin imagen disponible para el mapa: ${mapId}`)
   }
 
-  const vmb = expandBounds(bounds, VMB_EXPAND_FACTOR)
-  logger.debug(CATEGORY, 'build:bounds', { mapId, bounds, center, vmb })
+  const viewportMargin = config.viewportMargin ?? DEFAULT_VMB_EXPAND_FACTOR
+  const vmb = expandBounds(bounds, viewportMargin)
+  logger.debug(CATEGORY, 'build:bounds', { mapId, bounds, center, vmb, viewportMargin })
 
   // ── 2. Instancia MapLibre ───────────────────────────────────────────────
   const mapOptions: maplibregl.MapOptions = {
@@ -170,7 +172,6 @@ export async function buildGeoreferencedMap(
       config.initialBearing,
     )
   }
-
   const map = new maplibregl.Map(mapOptions)
 
   // Límite de descargas/decodificaciones simultáneas de imágenes
@@ -294,6 +295,18 @@ export async function buildGeoreferencedMap(
         source.setCoordinates(result.coordinates)
       }
       return result
+    },
+    updateViewportMargin(margin: number): void {
+      if (!config.useTransformConstrain) return
+      const newVmb = expandBounds(bounds, margin)
+      map.setTransformConstrain(
+        createBearingAwareConstrain(
+          () => container,
+          newVmb,
+          config.initialBearing,
+        ),
+      )
+      logger.debug(CATEGORY, `viewportMargin actualizado: ${mapId}`, { margin })
     },
   }
 

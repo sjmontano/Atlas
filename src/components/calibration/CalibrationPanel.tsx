@@ -37,6 +37,7 @@ const PCT_STEPS = [0.0001, 0.001, 0.01, 0.1]
 const DEG_STEP_DEFAULT = 0.0005
 const PX_STEP = 1
 const PX_STEP_QUICK = 10
+const DEFAULT_VIEWPORT_MARGIN = 0.5
 
 function computeReadout(pgw: readonly [number, number, number, number, number, number], width: number, height: number) {
   const { coordinates, bounds } = processBounds(pgw, width, height)
@@ -75,6 +76,9 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
 
   const stepPctRef = useRef(PCT_STEPS[1])
   const [stepPctIdx, setStepPctIdx] = useState(1)
+
+  const viewportMarginOriginalRef = useRef<number>(DEFAULT_VIEWPORT_MARGIN)
+  const [viewportMargin, setViewportMargin] = useState(DEFAULT_VIEWPORT_MARGIN)
 
   const onLayerIds = useMemo(
     () => (getMapContent(mapId)?.layers ?? []).filter((l) => visibleLayers.has(l.id)).map((l) => l.id),
@@ -151,6 +155,9 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     setState(s)
     setDirty({ d: false, b: false, c: false, f: false, width: false, height: false })
     setMoveMode(false)
+    const margin = getMapContent(mapId)?.config.viewportMargin ?? DEFAULT_VIEWPORT_MARGIN
+    viewportMarginOriginalRef.current = margin
+    setViewportMargin(margin)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapId])
 
@@ -324,8 +331,13 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
     })
   }, [applyAndUpdate])
 
-  const onSizeScale = useCallback((pct: number) => {
-    if (target.kind === 'layers' && target.layerIds.length > 0) {
+  const onViewportMarginChange = useCallback((pct: number) => {
+    const margin = pct / 100
+    setViewportMargin(margin)
+    controllerRef.current?.updateViewportMargin(margin)
+  }, [controllerRef])
+
+  const onSizeScale = useCallback((pct: number) => {    if (target.kind === 'layers' && target.layerIds.length > 0) {
       setState((prev) => {
         if (!prev) return prev
         for (const layerId of target.layerIds) {
@@ -362,6 +374,9 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
   }, [applyAndUpdate, target, activeLayerIdx])
 
   const reset = useCallback(() => {
+    const margin = viewportMarginOriginalRef.current
+    setViewportMargin(margin)
+    controllerRef.current?.updateViewportMargin(margin)
     if (target.kind === 'layers' && target.layerIds.length > 0) {
       for (const layerId of target.layerIds) {
         const entry = layerStatesRef.current.get(layerId)
@@ -423,15 +438,17 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
           pgw: stateToPGW(state),
           width: state.width,
           height: state.height,
+          viewportMargin: viewportMargin !== viewportMarginOriginalRef.current ? viewportMargin : undefined,
         })
         originalRef.current = state
+        viewportMarginOriginalRef.current = viewportMargin
       }
       setDirty({ d: false, b: false, c: false, f: false, width: false, height: false })
       onRebuild?.()
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : String(err))
     }
-  }, [state, mapId, onRebuild, target])
+  }, [state, mapId, onRebuild, target, viewportMargin])
 
   function selectLayer(idx: number) {
     if (target.kind !== 'layers' || target.layerIds.length === 0) return
@@ -675,6 +692,34 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
                 if (Number.isFinite(v)) onSizeScale(v)
               }}
               title="Escribir porcentaje manualmente"
+            />
+            <span className={styles.displayValue}>%</span>
+          </div>
+
+          <div className={styles.paramRow}>
+            <label className={styles.paramLabel}>Margen viewport</label>
+            <input
+              className={styles.sizeSlider}
+              type="range"
+              min={0}
+              max={100}
+              step={1}
+              value={Math.round(viewportMargin * 100)}
+              onChange={(e) => onViewportMarginChange(Number(e.target.value))}
+              title="Margen del viewportMaxBounds alrededor de la imagen (por lado)"
+            />
+            <input
+              className={styles.sizePctInput}
+              type="number"
+              min={0}
+              max={100}
+              step={1}
+              value={Math.round(viewportMargin * 100)}
+              onChange={(e) => {
+                const v = parseInt(e.target.value, 10)
+                if (Number.isFinite(v)) onViewportMarginChange(v)
+              }}
+              title="Escribir margen manualmente"
             />
             <span className={styles.displayValue}>%</span>
           </div>

@@ -5,6 +5,7 @@ export interface SaveCalibrationPayload {
   readonly pgw?: readonly [number, number, number, number, number, number]
   readonly width?: number
   readonly height?: number
+  readonly viewportMargin?: number
   readonly entries?: readonly { id: string; pgw: readonly [number, number, number, number, number, number]; width: number; height: number }[]
 }
 

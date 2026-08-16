@@ -71,4 +71,23 @@ describe('rewriteCalibrationEntry', () => {
     expect(out).toContain('width: 101')
     expect(out).toContain('height: 200')
   })
+
+  it('writes viewportMargin when provided', () => {
+    const out = rewriteCalibrationEntry(SRC, 'layer-a', {
+      pgw: [0, 1, 2, 0, -77, 2],
+      width: 100,
+      height: 200,
+      viewportMargin: 0.2,
+    })
+    expect(out).toContain('viewportMargin: 0.2')
+  })
+
+  it('omits viewportMargin when not provided', () => {
+    const out = rewriteCalibrationEntry(SRC, 'layer-a', {
+      pgw: [0, 1, 2, 0, -77, 2],
+      width: 100,
+      height: 200,
+    })
+    expect(out).not.toContain('viewportMargin')
+  })
 })

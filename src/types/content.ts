@@ -25,6 +25,8 @@ export interface MapConfig {
   initialBearing: number
   useTransformConstrain: boolean
   viewportMaxBounds: null | { west: number; south: number; east: number; north: number }
+  /** Margen del viewportMaxBounds alrededor de la imagen (fracción por lado). Default: 0.5 */
+  viewportMargin?: number
   dragPan: boolean
   scrollZoom: boolean
 }
