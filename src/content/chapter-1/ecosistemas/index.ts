@@ -1,6 +1,6 @@
 import type { MapContent } from '../../../types/content'
-import { LAYERS } from './layers'
 import { GROUPS } from './groups'
+import { LAYERS } from './layers'
 
 const ph = (url: string): string => url.replace('/upload/', '/upload/w_512,q_25,f_webp/')
 
@@ -24,7 +24,7 @@ export default {
     minZoom: 2,
     maxZoom: 9.5,
     initialBearing: -90,
-    useTransformConstrain: false,
+    useTransformConstrain: true,
     viewportMaxBounds: null,
     dragPan: true,
     scrollZoom: true,

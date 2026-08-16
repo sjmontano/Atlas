@@ -82,6 +82,16 @@ describe('rewriteCalibrationEntry', () => {
     expect(out).toContain('viewportMargin: 0.2')
   })
 
+  it('writes a negative viewportMargin (recorte dentro de la imagen)', () => {
+    const out = rewriteCalibrationEntry(SRC, 'layer-a', {
+      pgw: [0, 1, 2, 0, -77, 2],
+      width: 100,
+      height: 200,
+      viewportMargin: -0.15,
+    })
+    expect(out).toContain('viewportMargin: -0.15')
+  })
+
   it('omits viewportMargin when not provided', () => {
     const out = rewriteCalibrationEntry(SRC, 'layer-a', {
       pgw: [0, 1, 2, 0, -77, 2],

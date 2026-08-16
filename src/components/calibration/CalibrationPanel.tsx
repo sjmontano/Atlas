@@ -39,6 +39,13 @@ const PX_STEP = 1
 const PX_STEP_QUICK = 10
 const DEFAULT_VIEWPORT_MARGIN = 0
 
+/**
+ * Rango mínimo del "Margen viewport" en %. Negativo encoge el
+ * viewportMaxBounds hacia dentro de la imagen (recorte del pan).
+ * |factor| < 0.5 garantiza que el box no se invierta (spans positivos).
+ */
+const VIEWPORT_MARGIN_MIN_PCT = -50
+
 function computeReadout(pgw: readonly [number, number, number, number, number, number], width: number, height: number) {
   const { coordinates, bounds } = processBounds(pgw, width, height)
   return { coordinates, bounds }
@@ -701,17 +708,17 @@ export function CalibrationPanel({ mapId, controllerRef, onRebuild, onClose }: P
             <input
               className={styles.sizeSlider}
               type="range"
-              min={0}
+              min={VIEWPORT_MARGIN_MIN_PCT}
               max={100}
               step={1}
               value={Math.round(viewportMargin * 100)}
               onChange={(e) => onViewportMarginChange(Number(e.target.value))}
-              title="Margen del viewportMaxBounds alrededor de la imagen (por lado)"
+              title="Margen del viewportMaxBounds alrededor de la imagen (por lado). Negativo = encoger el límite dentro de la imagen."
             />
             <input
               className={styles.sizePctInput}
               type="number"
-              min={0}
+              min={VIEWPORT_MARGIN_MIN_PCT}
               max={100}
               step={1}
               value={Math.round(viewportMargin * 100)}
