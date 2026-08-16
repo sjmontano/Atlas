@@ -44,13 +44,12 @@ const BLANK_STYLE: maplibregl.StyleSpecification = {
 const IMAGE_SOURCE_ID = 'atlas-base-image'
 const IMAGE_LAYER_ID = 'atlas-base-image-layer'
 /**
- * Margen por defecto del viewportMaxBounds alrededor de la imagen (50% por
- * lado). Generoso a propósito: el constrain calcula un minZoom para que el
- * viewport quepa dentro del vmb; un margen amplio evita que ese minZoom recorte
- * la imagen al zoom inicial de config (lección: constrain es dependiente del
- * tamaño del canvas). Se puede sobrescribir por mapa vía config.viewportMargin.
+ * Margen por defecto del viewportMaxBounds alrededor de la imagen (fracción
+ * por lado). 0 = el viewport no se sale de la imagen (el constrain clampa el
+ * centro para que las esquinas del viewport nunca escapen del bounds). Se
+ * puede sobrescribir por mapa vía config.viewportMargin.
  */
-const DEFAULT_VMB_EXPAND_FACTOR = 0.5
+const DEFAULT_VMB_EXPAND_FACTOR = 0
 
 /**
  * Span mínimo (en coordenadas Mercator 0..1) para que un polígono se considere

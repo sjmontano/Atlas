@@ -37,7 +37,7 @@ const PCT_STEPS = [0.0001, 0.001, 0.01, 0.1]
 const DEG_STEP_DEFAULT = 0.0005
 const PX_STEP = 1
 const PX_STEP_QUICK = 10
-const DEFAULT_VIEWPORT_MARGIN = 0.5
+const DEFAULT_VIEWPORT_MARGIN = 0
 
 function computeReadout(pgw: readonly [number, number, number, number, number, number], width: number, height: number) {
   const { coordinates, bounds } = processBounds(pgw, width, height)
